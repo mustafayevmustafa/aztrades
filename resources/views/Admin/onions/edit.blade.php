@@ -81,7 +81,8 @@
                 {{ $message }}
             </p>
             @enderror
-        </div> <div class="form-group">
+        </div>
+        <div class="form-group">
             <label for="post-title">Lom  Kisə Sayı</label>
             <input type="text" value="{{ optional($data)->getAttribute('lom_bag_number') }}" name="lom_bag_number" class="form-control" id="post-title" placeholder="Enter title">
             @error('lom_bag_number')
@@ -90,7 +91,15 @@
             </p>
             @enderror
         </div>
-
+        <div class="form-group">
+            <label for="post-title">Qiyməti</label>
+            <input type="text" value="{{ optional($data)->getAttribute('onion_price') }}" name="onion_price" class="form-control" id="post-title" placeholder="Enter title">
+            @error('onion_price')
+            <p class="text-danger">
+                {{ $message }}
+            </p>
+            @enderror
+        </div>
         @if ($action)
             <button type="submit" class="btn btn-primary">Submit</button>
         @endif

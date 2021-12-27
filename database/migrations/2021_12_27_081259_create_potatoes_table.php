@@ -17,6 +17,7 @@ class CreatePotatoesTable extends Migration
             $table->id();
             $table->unsignedBigInteger("country_id")->nullable();
             $table->string("from_whom")->nullable();
+            $table->string("party")->nullable();
             $table->string("car_number")->nullable();
             $table->string("driver_name")->nullable();
             $table->integer("driver_cost")->nullable();

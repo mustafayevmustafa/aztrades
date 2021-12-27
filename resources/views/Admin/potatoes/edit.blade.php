@@ -92,6 +92,14 @@
                         {{ $message }}
                     </p>
                     @enderror
+                    <div class="form-group">
+                        <label for="post-title">Qiyməti</label>
+                        <input type="text" value="{{ optional($data)->getAttribute('party') }}" name="party" class="form-control" id="post-title" placeholder="Enter title"></br></br>
+                        @error('party')
+                        <p class="text-danger">
+                            {{ $message }}
+                        </p>
+                        @enderror
                 @if ($action)
                     <button type="submit" class="btn btn-primary">Submit</button>
                 @endif

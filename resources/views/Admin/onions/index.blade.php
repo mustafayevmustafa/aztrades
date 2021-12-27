@@ -26,10 +26,11 @@
                 <th scope="col">Tədarük Xərci</th>
                 <th scope="col">Maya Dəyəri</th>
                 <th scope="col">Növü</th>
-                <th scope="col">Çəkisi</th>
                 <th scope="col">Qırmızı Kisə Sayı</th>
                 <th scope="col">Sarı Kisə Sayı</th>
                 <th scope="col">Lom Kisə Sayı</th>
+                <th scope="col">Çəkisi</th>
+                <th scope="col">Qiyməti</th>
                 <th scope="col">Actions</th>
             </tr>
             </thead>
@@ -46,7 +47,8 @@
                     <td>{{ $onion->getAttribute('red_bag_number') }}</td>
                     <td>{{ $onion->getAttribute('yellow_bag_number') }}</td>
                     <td>{{ $onion->getAttribute('lom_bag_number') }}</td>
-                    <td>{{ $onion->getAttribute('lom_bag_number') }}</td>
+                    <td>{{ $onion->getAttribute('total_weight') }}</td>
+                    <td>{{ $onion->getAttribute('onion_price') }}</td>
                     <td>
                         <a href="{{ route('onions.show', $onion) }}" class="btn btn-outline-success">Show</a>
 

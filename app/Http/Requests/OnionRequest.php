@@ -33,6 +33,7 @@ class OnionRequest extends FormRequest
             'red_bag_number' => 'nullable',
             'yellow_bag_number' => 'nullable',
             'lom_bag_number' => 'nullable',
+            'onion_price' => 'nullable',
         ];
     }
 }

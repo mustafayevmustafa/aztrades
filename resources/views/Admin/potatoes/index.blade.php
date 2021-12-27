@@ -30,6 +30,7 @@
                 <th scope="col">Bazar Xərci</th>
                 <th scope="col">Digər Xərc</th>
                 <th scope="col">Ümumi Çəkisi</th>
+                <th scope="col">Qiyməti</th>
                 <th scope="col">Actions</th>
             </tr>
             </thead>
@@ -38,6 +39,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $potato->getAttribute('from_whom') }}</td>
+                    <td>{{ $potato->getAttribute('party') }}</td>
                     <td>{{ $potato->getAttribute('car_number') }}</td>
                     <td>{{ $potato->getAttribute('driver_name') }}</td>
                     <td>{{ $potato->getAttribute('driver_cost') }}</td>
@@ -46,7 +48,7 @@
                     <td>{{ $potato->getAttribute('market_cost') }}</td>
                     <td>{{ $potato->getAttribute('other_cost') }}</td>
                     <td>{{ $potato->getAttribute('total_weight') }}</td>
-                    <td>{{ $potato->getAttribute('total_weight') }}</td>
+                    <td>{{ $potato->getAttribute('potato_price') }}</td>
                     <td>
                         <a href="{{ route('potatoes.show', $potato) }}" class="btn btn-outline-success">Show</a>
 

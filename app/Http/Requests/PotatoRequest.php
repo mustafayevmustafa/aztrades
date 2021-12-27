@@ -24,6 +24,7 @@ class PotatoRequest extends FormRequest
             'market_cost' => 'nullable',
             'total_weight' => 'nullable',
             'other_cost' => 'nullable',
+            'potato_price' => 'nullable',
         ];
     }
 }
