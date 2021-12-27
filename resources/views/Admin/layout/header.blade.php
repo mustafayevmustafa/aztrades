@@ -2,16 +2,16 @@
     <div class="navbar-header">
         <div class="container-fluid">
             <div class="float-right d-flex align-items-center" id="lang-flags">
-                <div class="dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="flag-icon flag-icon-{{(session()->get('locale') ?? 'ge') == 'ge' ? 'ge' : session()->get('locale')}}"></span> {{ucfirst(session()->get('locale') ?? 'ge')}}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        @foreach(config('app.locales') as $lang => $language)
-                            <a class="dropdown-item" href="{{route('locale', $lang)}}"><span class="flag-icon flag-icon-{{$lang}}"></span> {{$language}}</a>
-                        @endforeach
-                    </div>
-                </div>
+{{--                <div class="dropdown">--}}
+{{--                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+{{--                        <span class="flag-icon flag-icon-{{(session()->get('locale') ?? 'ge') == 'ge' ? 'ge' : session()->get('locale')}}"></span> {{ucfirst(session()->get('locale') ?? 'ge')}}--}}
+{{--                    </a>--}}
+{{--                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">--}}
+{{--                        @foreach(config('app.locales') as $lang => $language)--}}
+{{--                            <a class="dropdown-item" href="{{route('locale', $lang)}}"><span class="flag-icon flag-icon-{{$lang}}"></span> {{$language}}</a>--}}
+{{--                        @endforeach--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <div class="dropdown d-none d-lg-inline-block ml-1">
                     <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
                         <i class="mdi mdi-fullscreen"></i>

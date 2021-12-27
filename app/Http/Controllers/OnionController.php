@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OnionRequest;
 use App\Models\Onion;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -13,13 +14,13 @@ class OnionController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-//        $this->authorizeResource(Post::class, 'post');
     }
 
     public function index()
     {
-        $onions = Onion::all();
-        return view('Admin.onions.index', compact('onions'));
+        return view('Admin.onions.index')->with([
+            'onions' => Onion::get()
+        ]);
     }
 
     public function create()
@@ -33,12 +34,11 @@ class OnionController extends Controller
 
     public function store(OnionRequest $request): RedirectResponse
     {
-
         $validated = $request->validated();
 
-        Onion::create($validated);
+        $onion = Onion::create($validated);
 
-        return redirect()->route('onions.index')->with('message', 'Created successfully!');
+        return redirect()->route('onions.index')->with('success', "Onion {$onion->getAttribute('from_whom')} Created successfully!");
     }
 
     public function show(Onion $onion)
@@ -63,15 +63,14 @@ class OnionController extends Controller
     {
         $validated = $request->validated();
 
-
         $validated['state'] = $request->has('state');
 
         $onion->update($validated);
 
-        return redirect()->route('onions.index')->with('message', "Post {$onion->getAttribute('title')} updated successfully!");
+        return redirect()->route('onions.index')->with('success', "Onion {$onion->getAttribute('from_whom')} updated successfully!");
     }
 
-    public function destroy(Onion $onion)
+    public function destroy(Onion $onion): JsonResponse
     {
         if($onion->delete()){
             return response()->json(['code' => 200]);

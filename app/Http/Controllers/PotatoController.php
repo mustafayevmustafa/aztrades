@@ -4,22 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PotatoRequest;
 use App\Models\Potato;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class PotatoController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
-//        $this->authorizeResource(Post::class, 'post');
     }
 
     public function index()
     {
-        $potatoes = Potato::all();
-        return view('Admin.potatoes.index', compact('potatoes'));
+        return view('Admin.potatoes.index')->with([
+            'potatoes' => Potato::get()
+        ]);
     }
 
     public function create()
@@ -33,12 +33,11 @@ class PotatoController extends Controller
 
     public function store(PotatoRequest $request): RedirectResponse
     {
-
         $validated = $request->validated();
 
-        Potato::create($validated);
+        $potato = Potato::create($validated);
 
-        return redirect()->route('potatoes.index')->with('message', 'Created successfully!');
+        return redirect()->route('potatoes.index')->with('success', "Potato {$potato->getAttribute('from_whom')} created successfully!");
     }
 
     public function show(Potato $potato)
@@ -63,15 +62,14 @@ class PotatoController extends Controller
     {
         $validated = $request->validated();
 
-
         $validated['state'] = $request->has('state');
 
         $potato->update($validated);
 
-        return redirect()->route('potatoes.index')->with('message', "Post {$potato->getAttribute('title')} updated successfully!");
+        return redirect()->route('potatoes.index')->with('success', "Potato {$potato->getAttribute('from_whom')} updated successfully!");
     }
 
-    public function destroy(Potato $potato)
+    public function destroy(Potato $potato): JsonResponse
     {
         if($potato->delete()){
             return response()->json(['code' => 200]);

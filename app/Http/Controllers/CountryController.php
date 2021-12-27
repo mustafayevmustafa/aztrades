@@ -4,21 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CountryRequest;
 use App\Models\Country;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class CountryController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-//        $this->authorizeResource(Post::class, 'post');
     }
 
     public function index()
     {
-        $countries = Country::all();
-        return view('Admin.countries.index', compact('countries'));
+        return view('Admin.countries.index')->with([
+            'countries' => Country::get()
+        ]);
     }
 
     public function create()
@@ -32,12 +32,11 @@ class CountryController extends Controller
 
     public function store(CountryRequest $request): RedirectResponse
     {
-
         $validated = $request->validated();
 
-        Country::create($validated);
+        $country = Country::create($validated);
 
-        return redirect()->route('countries.index')->with('message', 'Created successfully!');
+        return redirect()->route('countries.index')->with('success', "Country {$country->getAttribute('name')} reated successfully!");
     }
 
     public function show(Country $country)
@@ -64,10 +63,10 @@ class CountryController extends Controller
 
         $country->update($validated);
 
-        return redirect()->route('countries.index')->with('message', "Post {$country->getAttribute('title')} updated successfully!");
+        return redirect()->route('countries.index')->with('success', "Country {$country->getAttribute('name')} updated successfully!");
     }
 
-    public function destroy(Country $country)
+    public function destroy(Country $country): JsonResponse
     {
         if($country->delete()){
             return response()->json(['code' => 200]);

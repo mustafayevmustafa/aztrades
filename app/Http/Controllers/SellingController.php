@@ -2,32 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CountryRequest;
 use App\Http\Requests\SellingsRequest;
-use App\Models\Country;
-use App\Models\Debet;
 use App\Models\Selling;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class SellingController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-//        $this->authorizeResource(Post::class, 'post');
     }
 
     public function index()
     {
-        $sellings = Selling::all();
-        return view('Admin.sellings.index', compact('sellings'));
+        return view('Admin.sellings.index')->with([
+            'sellings' => Selling::get()
+        ]);
     }
 
     public function create()
     {
-        return view('admin.debets.edit', [
-            'action' => route('debets.store'),
+        return view('Admin.sellings.edit', [
+            'action' => route('sellings.store'),
             'method' => null,
             'data'   => null
         ]);
@@ -35,44 +32,43 @@ class SellingController extends Controller
 
     public function store(SellingsRequest $request): RedirectResponse
     {
-
         $validated = $request->validated();
 
-        Debet::create($validated);
+        $selling = Selling::create($validated);
 
-        return redirect()->route('debets.index')->with('message', 'Created successfully!');
+        return redirect()->route('sellings.index')->with('success', "Selling {$selling->getAttribute('from_sell')} created successfully!");
     }
 
-    public function show(Debet $country)
+    public function show(Selling $selling)
     {
-        return view('admin.debets.edit', [
+        return view('Admin.sellings.edit', [
             'action' => null,
             'method' => null,
-            'data'   => $country
+            'data'   => $selling
         ]);
     }
 
-    public function edit(Debet $debet)
+    public function edit(Selling $selling)
     {
-        return view('admin.countries.edit', [
-            'action' => route('debets.update', $debet),
+        return view('Admin.sellings.edit', [
+            'action' => route('sellings.update', $selling),
             'method' => "PUT",
-            'data'   => $debet
+            'data'   => $selling
         ]);
     }
 
-    public function update(SellingsRequest $request, Debet $debet): RedirectResponse
+    public function update(SellingsRequest $request, Selling $selling): RedirectResponse
     {
         $validated = $request->validated();
 
-        $debet->update($validated);
+        $selling->update($validated);
 
-        return redirect()->route('debets.index')->with('message', "Post {$debet->getAttribute('title')} updated successfully!");
+        return redirect()->route('sellings.index')->with('success', "Selling {$selling->getAttribute('from_sell')} updated successfully!");
     }
 
-    public function destroy(Debet $debet)
+    public function destroy(Selling $selling): JsonResponse
     {
-        if($debet->delete()){
+        if($selling->delete()){
             return response()->json(['code' => 200]);
         }else{
             return response()->json(['code' => 400]);

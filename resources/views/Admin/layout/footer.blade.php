@@ -4,11 +4,11 @@
             <div class="col-sm-6">
                 <script>
                     document.write(new Date().getFullYear())
-                </script> © Georgian Academic Abroad
+                </script> © AZTRADE COMPANY SATIŞ MƏRKƏZİ
             </div>
             <div class="col-sm-6">
                 <div class="text-sm-right d-none d-sm-block">
-                    Design & Develop by EA2O
+                    Design & Develop with ❤️
                 </div>
             </div>
         </div>

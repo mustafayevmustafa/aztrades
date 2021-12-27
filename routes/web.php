@@ -1,14 +1,14 @@
 <?php
 
 
-use App\Http\Controllers\ContinentController;
 use App\Http\Controllers\CountryController;
-use App\Http\Controllers\InformationController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SellingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OnionController;
 use App\Http\Controllers\PotatoController;
 use App\Http\Middleware\Localization;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -26,15 +26,14 @@ use Illuminate\Http\Request;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], function () {
-//    Route::view('/', 'Admin.index')->name('admin.index');
-    Route::resource('informations', InformationController::class);
+    Route::redirect('/', 'Admin/dashboard');
+    Route::resource('dashboard', DashboardController::class);
     Route::resource('onions', OnionController::class);
     Route::resource('potatoes', PotatoController::class);
     Route::resource('countries', CountryController::class);
     Route::resource('sellings', SellingController::class);
 
 });
-
 
 Auth::routes([
     'register' => false,

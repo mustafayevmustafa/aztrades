@@ -106,11 +106,12 @@
             </form>
         </div>
     </main>
+@endsection
 @section('script')
     @if (is_null($action))
         <script>
             $('form :input').attr('disabled', true)
         </script>
     @endif
-@endsection
+
 @endsection
