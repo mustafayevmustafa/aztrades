@@ -81,7 +81,7 @@
                                 <label for="exampleFormControlSelect1">Kimdən</label>
                                 <select class="form-control" id="exampleFormControlSelect1">
                                     @foreach($onions as $onion)
-                                        <option>{{$onion->from_whom}}</option>
+                                        <option>{{$onion->car_number}}</option>
                                     @endforeach
                                 </select>
                         </div>
