@@ -6,14 +6,12 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PotatoRequest extends FormRequest
 {
-
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
-
-    public function rules()
+    public function rules(): array
     {
         return [
             'from_whom' => 'nullable|string',
@@ -25,6 +23,7 @@ class PotatoRequest extends FormRequest
             'total_weight' => 'nullable',
             'other_cost' => 'nullable',
             'potato_price' => 'nullable',
+            'sacs' => 'nullable|array'
         ];
     }
 }

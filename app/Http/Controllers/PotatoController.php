@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PotatoRequest;
 use App\Models\Potato;
+use App\Models\PotatoSac;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -37,6 +38,10 @@ class PotatoController extends Controller
 
         $potato = Potato::create($validated);
 
+        if($request->has('sacs')){
+            $potato->sacs()->createMany($validated['sacs']);
+        }
+
         return redirect()->route('potatoes.index')->with('success', "Potato {$potato->getAttribute('from_whom')} created successfully!");
     }
 
@@ -65,6 +70,14 @@ class PotatoController extends Controller
         $validated['state'] = $request->has('state');
 
         $potato->update($validated);
+
+        // Add, update or delete social networks
+        $sacs = collect($request->get('sacs') ?? []);
+
+        // destroy should appear before create or update
+        PotatoSac::destroy($potato->sacs()->pluck('id')->diff($sacs->pluck('id')));
+
+        $sacs->each(fn($sac) => $potato->sacs()->updateOrCreate(['id' => $sac['id']], $sac));
 
         return redirect()->route('potatoes.index')->with('success', "Potato {$potato->getAttribute('from_whom')} updated successfully!");
     }

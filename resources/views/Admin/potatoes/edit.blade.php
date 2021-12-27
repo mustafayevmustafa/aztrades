@@ -5,8 +5,6 @@
         <div class="container">
             <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
                 @csrf @method($method)
-                @if ($action)
-                @endif
                 <div class="form-group">
                     <label for="post-title">Kimden</label>
                     <input type="text" value="{{ optional($data)->getAttribute('from_whom') }}" name="from_whom" class="form-control" id="post-title" placeholder="Enter title">
@@ -42,7 +40,8 @@
                         {{ $message }}
                     </p>
                     @enderror
-                </div> <div class="form-group">
+                </div>
+                <div class="form-group">
                     <label for="post-title">Sürücü Xərci</label>
                     <input type="text" value="{{ optional($data)->getAttribute('supply_cost') }}" name="driver_cost" class="form-control" id="post-title" placeholder="Enter title">
                     @error('driver_cost')
@@ -50,7 +49,8 @@
                         {{ $message }}
                     </p>
                     @enderror
-                </div> <div class="form-group">
+                </div>
+                <div class="form-group">
                     <label for="post-title">Maya Dəyəri</label>
                     <input type="text" value="{{ optional($data)->getAttribute('cost') }}" name="cost" class="form-control" id="post-title" placeholder="Enter title">
                     @error('cost')
@@ -66,7 +66,8 @@
                         {{ $message }}
                     </p>
                     @enderror
-                </div> <div class="form-group">
+                </div>
+                <div class="form-group">
                     <label for="post-title">Bazar Xərci</label>
                     <input type="text" value="{{ optional($data)->getAttribute('market_cost') }}" name="market_cost" class="form-control" id="post-title" placeholder="Enter title">
                     @error('market_cost')
@@ -92,14 +93,22 @@
                         {{ $message }}
                     </p>
                     @enderror
-                    <div class="form-group">
-                        <label for="post-title">Qiyməti</label>
-                        <input type="text" value="{{ optional($data)->getAttribute('party') }}" name="party" class="form-control" id="post-title" placeholder="Enter title"></br></br>
-                        @error('party')
-                        <p class="text-danger">
-                            {{ $message }}
-                        </p>
-                        @enderror
+                </div>
+                <div class="form-group">
+                    <label for="post-title">Qiyməti</label>
+                    <input type="text" value="{{ optional($data)->getAttribute('party') }}" name="party" class="form-control" id="post-title" placeholder="Enter title"></br></br>
+                    @error('party')
+                    <p class="text-danger">
+                        {{ $message }}
+                    </p>
+                    @enderror
+                </div>
+
+                <div class="my-3">
+                    <h4>Potato sacs</h4>
+                    @livewire('show-sacs', ['potato' => $data, 'action' => $action])
+                </div>
+
                 @if ($action)
                     <button type="submit" class="btn btn-primary">Submit</button>
                 @endif
