@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\ContinentController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\InformationController;
 use App\Http\Controllers\SellingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OnionController;
@@ -25,7 +26,8 @@ use Illuminate\Http\Request;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], function () {
-    Route::view('/', 'Admin.index')->name('admin.index');
+//    Route::view('/', 'Admin.index')->name('admin.index');
+    Route::resource('informations', InformationController::class);
     Route::resource('onions', OnionController::class);
     Route::resource('potatoes', PotatoController::class);
     Route::resource('countries', CountryController::class);

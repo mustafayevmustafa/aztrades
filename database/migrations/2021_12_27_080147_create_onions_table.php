@@ -25,7 +25,7 @@ class CreateOnionsTable extends Migration
             $table->integer("yellow_bag_number")->nullable();
             $table->integer("lom_bag_number")->nullable();
             $table->integer("total_weight")->nullable();
-            $table->integer("price")->nullable();
+            $table->integer("onion_price")->nullable();
             $table->timestamps();
         });
     }

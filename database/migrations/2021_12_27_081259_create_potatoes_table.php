@@ -24,6 +24,7 @@ class CreatePotatoesTable extends Migration
             $table->integer("cost")->nullable();
             $table->integer("market_cost")->nullable();
             $table->integer("other_cost")->nullable();
+            $table->integer("potato_price")->nullable();
             $table->integer("total_weight")->nullable();
             $table->timestamps();
         });

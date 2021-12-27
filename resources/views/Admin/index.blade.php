@@ -78,11 +78,12 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">Kimdən</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>Vahid</option>
-                                <option>Elvin</option>
-                            </select>
+                                <label for="exampleFormControlSelect1">Kimdən</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    @foreach($onions as $onion)
+                                        <option>{{$onion->from_whom}}</option>
+                                    @endforeach
+                                </select>
                         </div>
                     </div>
                     <div class="modal-footer">

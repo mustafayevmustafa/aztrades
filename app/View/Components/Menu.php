@@ -14,7 +14,7 @@ class Menu extends Component
         $this->items = (array) [
             (object) [
                 'name' => 'Məlumat Səhifəsi',
-                'url' => route('admin.index'),
+                'url' => route('informations.index'),
                 'icon' => 'mdi-airplay',
             ],
             (object) [

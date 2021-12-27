@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CountryRequest;
-use App\Http\Requests\DebetRequest;
+use App\Http\Requests\SellingsRequest;
 use App\Models\Country;
 use App\Models\Debet;
+use App\Models\Selling;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,8 @@ class SellingController extends Controller
 
     public function index()
     {
-        $debets = DebetRequest::all();
-        return view('Admin.debets.index', compact('debets'));
+        $sellings = Selling::all();
+        return view('Admin.sellings.index', compact('sellings'));
     }
 
     public function create()
@@ -32,7 +33,7 @@ class SellingController extends Controller
         ]);
     }
 
-    public function store(DebetRequest $request): RedirectResponse
+    public function store(SellingsRequest $request): RedirectResponse
     {
 
         $validated = $request->validated();
@@ -60,7 +61,7 @@ class SellingController extends Controller
         ]);
     }
 
-    public function update(DebetRequest $request, Debet $debet): RedirectResponse
+    public function update(SellingsRequest $request, Debet $debet): RedirectResponse
     {
         $validated = $request->validated();
 
