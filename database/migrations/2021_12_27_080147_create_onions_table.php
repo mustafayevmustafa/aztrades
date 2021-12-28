@@ -10,7 +10,7 @@ class CreateOnionsTable extends Migration
     {
         Schema::create('onions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('city_id')->nullable()->index()->constrained()->onDelete('SET_NULL');
+            $table->foreignId('city_id')->nullable()->index()->constrained()->onDelete('SET NULL');
             $table->string("from_whom");
             $table->string("car_number")->nullable();
             $table->string("driver_name")->nullable();

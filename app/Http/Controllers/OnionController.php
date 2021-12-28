@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OnionRequest;
+use App\Models\City;
 use App\Models\Onion;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -18,7 +19,7 @@ class OnionController extends Controller
     public function index()
     {
         return view('Admin.onions.index')->with([
-            'onions' => Onion::latest()->get()
+            'onions' => Onion::latest()->oldest('is_trash')->get()
         ]);
     }
 
@@ -28,6 +29,7 @@ class OnionController extends Controller
             'action' => route('onions.store'),
             'method' => "POST",
             'data'   => new Onion(),
+            'cities' => City::get()
         ]);
     }
 
@@ -43,7 +45,8 @@ class OnionController extends Controller
         return view('admin.onions.edit', [
             'action' => null,
             'method' => null,
-            'data'   => $onion
+            'data'   => $onion,
+            'cities' => City::get()
         ]);
     }
 
@@ -52,7 +55,8 @@ class OnionController extends Controller
         return view('admin.onions.edit', [
             'action' => route('onions.update', $onion),
             'method' => "PUT",
-            'data'   => $onion
+            'data'   => $onion,
+            'cities' => City::get()
         ]);
     }
 

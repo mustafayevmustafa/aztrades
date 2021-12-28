@@ -27,11 +27,11 @@
                         <thead>
                             <tr>
                                 <th class="text-nowrap" scope="col">#</th>
+                                <th class="text-nowrap" scope="col">Şəhər</th>
                                 <th class="text-nowrap" scope="col">Kimdən</th>
                                 <th class="text-nowrap" scope="col">Maşın Nömrəsi</th>
-                                <th class="text-nowrap" scope="col">Sürücünün Adı</th>
-                                <th class="text-nowrap" scope="col">Tədarük Xərci</th>
-                                <th class="text-nowrap" scope="col">Maya Dəyəri</th>
+                                <th class="text-nowrap" scope="col">Tədarük Xərci (AZN)</th>
+                                <th class="text-nowrap" scope="col">Maya Dəyəri (AZN)</th>
                                 <th class="text-nowrap" scope="col">Çəkisi</th>
                                 <th class="text-nowrap" scope="col">Atxot Mal</th>
                                 <th class="text-nowrap" scope="col">Yaradılma Tarixi</th>
@@ -42,13 +42,13 @@
                         @forelse ($onions as $onion)
                             <tr>
                                 <td class="text-nowrap">{{ $loop->iteration }}</td>
+                                <td class="text-nowrap">{{ $onion->getRelationValue('city')->getAttribute('name') }}</td>
                                 <td class="text-nowrap">{{ $onion->getAttribute('from_whom') }}</td>
                                 <td class="text-nowrap">{{ $onion->getAttribute('car_number') }}</td>
-                                <td class="text-nowrap">{{ $onion->getAttribute('driver_name') }}</td>
                                 <td class="text-nowrap">{{ $onion->getAttribute('supply_cost') }}</td>
                                 <td class="text-nowrap">{{ $onion->getAttribute('cost') }}</td>
                                 <td class="text-nowrap">{{ $onion->getAttribute('total_weight') }}</td>
-                                <td class="text-nowrap">{{ $onion->getAttribute('is_trash') ? 'Yes' : 'No' }}</td>
+                                <td class="text-nowrap">{{ $onion->getAttribute('is_trash') ? 'Bəli' : 'Xeyir' }}</td>
                                 <td class="text-nowrap">{{ $onion->getAttribute('created_at') }}</td>
                                 <td class="text-nowrap">
                                     <a href="{{ route('onions.show', $onion) }}" class="btn btn-link p-0"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>

@@ -12,10 +12,9 @@ class DashboardController extends Controller
     public function index()
     {
         return view('Admin.index')->with([
-            'onions' => Onion::notTrash()->totalWeight()->limit(5)->get(),
-            'potatoes' => Potato::limit(5)->get(),
+            'onions' => Onion::notTrash()->hasWeight()->limit(5)->get(),
+            'potatoes' => Potato::notTrash()->hasWeight()->limit(5)->get(),
             'selling' => Selling::get(),
-
         ]);
     }
 }
