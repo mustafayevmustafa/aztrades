@@ -47,6 +47,11 @@ class Menu extends Component
                 'url' => route('countries.index'),
                 'icon' => 'mdi mdi-earth',
             ],
+            (object) [
+                'name' => 'Şəhər',
+                'url' => route('cities.index'),
+                'icon' => 'mdi-map-marker',
+            ],
         ];
     }
 
