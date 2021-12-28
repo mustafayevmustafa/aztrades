@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PotatoRequest;
+use App\Models\Country;
 use App\Models\Potato;
 use App\Models\PotatoSac;
 use Illuminate\Http\JsonResponse;
@@ -19,7 +20,7 @@ class PotatoController extends Controller
     public function index()
     {
         return view('Admin.potatoes.index')->with([
-            'potatoes' => Potato::get()
+            'potatoes' => Potato::latest()->get()
         ]);
     }
 
@@ -28,7 +29,8 @@ class PotatoController extends Controller
         return view('admin.potatoes.edit', [
             'action' => route('potatoes.store'),
             'method' => null,
-            'data'   => null
+            'data'   => null,
+            'countries' => Country::get(),
         ]);
     }
 
@@ -42,6 +44,7 @@ class PotatoController extends Controller
             $potato->sacs()->createMany($validated['sacs']);
         }
 
+
         return redirect()->route('potatoes.index')->with('success', "Potato {$potato->getAttribute('from_whom')} created successfully!");
     }
 
@@ -50,7 +53,9 @@ class PotatoController extends Controller
         return view('admin.potatoes.edit', [
             'action' => null,
             'method' => null,
-            'data'   => $potato
+            'data'   => $potato,
+            'countries' => Country::get(),
+
         ]);
     }
 
@@ -59,7 +64,8 @@ class PotatoController extends Controller
         return view('admin.potatoes.edit', [
             'action' => route('potatoes.update', $potato),
             'method' => "PUT",
-            'data'   => $potato
+            'data'   => $potato,
+            'countries' => Country::get(),
         ]);
     }
 

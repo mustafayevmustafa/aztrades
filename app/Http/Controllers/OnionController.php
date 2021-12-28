@@ -19,7 +19,7 @@ class OnionController extends Controller
     public function index()
     {
         return view('Admin.onions.index')->with([
-            'onions' => Onion::get()
+            'onions' => Onion::latest()->get()
         ]);
     }
 
@@ -27,7 +27,7 @@ class OnionController extends Controller
     {
         return view('admin.onions.edit', [
             'action' => route('onions.store'),
-            'method' => null,
+            'method' => "POST",
             'data'   => null
         ]);
     }
@@ -37,6 +37,7 @@ class OnionController extends Controller
         $validated = $request->validated();
 
         $onion = Onion::create($validated);
+
 
         return redirect()->route('onions.index')->with('success', "Onion {$onion->getAttribute('from_whom')} Created successfully!");
     }
@@ -63,7 +64,7 @@ class OnionController extends Controller
     {
         $validated = $request->validated();
 
-        $validated['state'] = $request->has('state');
+        $validated['onion_trash'] = $request->has('onion_trash');
 
         $onion->update($validated);
 

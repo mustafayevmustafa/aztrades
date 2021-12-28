@@ -20,5 +20,20 @@ class Onion extends Model
         'lom_bag_number',
         'onion_price',
         'total_weight',
+        'onion_trash'
     ];
+
+    protected $casts = [
+        'onion_trash' => 'boolean'
+    ];
+
+    public function scopeTotalWeight($query)
+    {
+        return $query->where('total_weight', '!=', 0);
+    }
+
+    public function scopeNotTrash($query)
+    {
+        return $query->where('onion_trash', false);
+    }
 }

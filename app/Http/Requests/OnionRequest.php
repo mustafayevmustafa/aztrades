@@ -19,6 +19,7 @@ class OnionRequest extends FormRequest
             'yellow_bag_number' => 'nullable|integer',
             'lom_bag_number' => 'nullable|integer',
             'onion_price' => 'nullable|numeric',
+            'onion_trash' => 'nullable',
             'total_weight' => 'nullable|numeric'
         ];
     }

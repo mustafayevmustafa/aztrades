@@ -17,12 +17,15 @@ class PotatoRequest extends FormRequest
             'from_whom' => 'nullable|string',
             'car_number' => 'nullable|string',
             'driver_name' => 'nullable|string',
+            'driver_cost' => 'nullable|numeric',
             'cost' => 'nullable|numeric',
             'custom_cost' => 'nullable|numeric',
             'market_cost' => 'nullable|numeric',
             'total_weight' => 'nullable|numeric',
             'other_cost' => 'nullable|numeric',
             'potato_price' => 'nullable|numeric',
+            'party' => 'nullable',
+            'country_id' => 'required|integer',
             'sacs' => 'nullable|array'
         ];
     }

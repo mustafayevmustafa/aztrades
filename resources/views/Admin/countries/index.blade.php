@@ -1,6 +1,8 @@
 @extends('Admin.layout.master')
 
 @section('content')
+
+
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
@@ -8,15 +10,20 @@
             </div>
         </div>
     </div>
-    <div class="row mb-3 float-right">
-        <div class="col-12">
-            <a href="{{ route('countries.create') }}" class="btn btn-outline-success">Ölkə Əlavə Et</a>
-        </div>
-    </div>
-
 
     <div class="row">
-        <table class="table">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
+                        <a class="btn btn-outline-success" href="{{route('countries.create')}}">Ölkə Əlavə Et</a>
+                    </div>
+                    @if (session('success'))
+                        <div class="alert alert-success mt-2">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+              <table class="table">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -39,6 +46,8 @@
             @endforeach
             </tbody>
         </table>
-
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
