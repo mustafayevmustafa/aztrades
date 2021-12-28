@@ -1,8 +1,10 @@
 <?php
 
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SellingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OnionController;
@@ -32,6 +34,8 @@ Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], 
     Route::resource('potatoes', PotatoController::class);
     Route::resource('countries', CountryController::class);
     Route::resource('sellings', SellingController::class);
+    Route::resource('admins', AdminController::class);
+    Route::resource('roles', RoleController::class);
 
 });
 

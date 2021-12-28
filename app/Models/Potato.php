@@ -20,7 +20,9 @@ class Potato extends Model
         'market_cost',
         'other_cost',
         'total_weight',
-        'potato_price'
+        'potato_price',
+        'country_id',
+        'party'
     ];
 
     public function sacs(): HasMany

@@ -33,6 +33,16 @@ class Menu extends Component
                 'icon' => 'mdi mdi-teamviewer',
             ],
             (object) [
+                'name' => 'Icazələr',
+                'url' => route('roles.index'),
+                'icon' => 'mdi-account-key',
+            ],
+            (object) [
+                'name' => 'İstifadəcilər',
+                'url' => route('admins.index'),
+                'icon' => 'mdi-account-multiple-plus',
+            ],
+            (object) [
                 'name' => 'Ölkə',
                 'url' => route('countries.index'),
                 'icon' => 'mdi mdi-earth',

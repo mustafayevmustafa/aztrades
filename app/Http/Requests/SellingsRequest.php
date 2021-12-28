@@ -16,11 +16,14 @@ class SellingsRequest extends FormRequest
     public function rules()
     {
         return [
-            'from_sell' => 'from_sell|string',
-            'to_sell' => 'to_sell|string',
-            'content' => 'to_sell|string',
-            'type' => 'nullable|numeric',
-            'status' => 'nullable|numeric',
+            'from_sell' => 'required|string',
+            'type' => 'required|string',
+            'content' => 'string',
+            'type_id' => 'nullable|integer',
+            'status' => 'nullable',
+            'weight' => 'nullable|numeric',
+            'price' => 'nullable|numeric',
+            'sac_count' => 'nullable|numeric'
         ];
     }
 }

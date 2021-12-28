@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSellingsTable extends Migration
+class AddTrashPotatoToPotatoesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateSellingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sellings', function (Blueprint $table) {
-            $table->id();
-            $table->string("from_sell")->nullable();
-            $table->integer("status")->nullable();
-            $table->string("content")->nullable();
-            $table->timestamps();
+        Schema::table('potatoes', function (Blueprint $table) {
+            $table->integer("potato_trash")->nullable();
         });
     }
 
@@ -29,6 +25,8 @@ class CreateSellingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sellings');
+        Schema::table('potatoes', function (Blueprint $table) {
+            //
+        });
     }
 }
