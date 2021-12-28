@@ -20,11 +20,11 @@ class CreatePotatoesTable extends Migration
             $table->string("party")->nullable();
             $table->string("car_number")->nullable();
             $table->string("driver_name")->nullable();
-            $table->integer("driver_cost")->nullable();
-            $table->integer("custom_cost")->nullable();
-            $table->integer("cost")->nullable();
-            $table->integer("market_cost")->nullable();
-            $table->integer("other_cost")->nullable();
+            $table->float("driver_cost", '8', '2')->nullable();
+            $table->float("custom_cost", '8', '2')->nullable();
+            $table->float("cost", '8', '2')->nullable();
+            $table->float("market_cost", '8', '2')->nullable();
+            $table->float("other_cost", '8', '2')->nullable();
             $table->integer("total_weight")->nullable();
             $table->integer("is_trash")->nullable();
             $table->timestamps();

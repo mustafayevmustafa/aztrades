@@ -35,7 +35,7 @@
                         @forelse($sellings as $selling)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $selling->getAttribute('from_sell') }}</td>
+                                <td>{{ $selling->getAttribute('customer') }}</td>
                                 <td>{{ $selling->getAttribute('type')== 'onion' ? "Soğan" : "Kartof" }}</td>
                                 <td>{{ $selling->getAttribute('status') == 0 ? "Nagd" : "Borc" }}</td>
                                 <td>{{ $selling->getAttribute('price')}}</td>

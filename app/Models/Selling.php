@@ -11,7 +11,7 @@ class Selling extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'from_sell',
+        'customer',
         'content',
         'status',
         'weight',

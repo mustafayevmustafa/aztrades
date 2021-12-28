@@ -48,8 +48,8 @@
                         @endif
                         <div class="form-group">
                             <label for="post-title">Kimə Satılır</label>
-                            <input type="text" value="{{ optional($data)->getAttribute('from_sell') }}" name="from_sell" class="form-control" id="post-title" placeholder="Kimə Satılır">
-                            @error('from_sell')
+                            <input type="text" value="{{ optional($data)->getAttribute('customer') }}" name="customer" class="form-control" id="post-title" placeholder="Kimə Satılır">
+                            @error('customer')
                             <p class="text-danger">
                                 {{ $message }}
                             </p>

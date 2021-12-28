@@ -16,7 +16,7 @@ class SellingsRequest extends FormRequest
     public function rules()
     {
         return [
-            'from_sell' => 'required|string',
+            'customer' => 'required|string',
             'type' => 'required|string',
             'content' => 'string',
             'type_id' => 'nullable|integer',

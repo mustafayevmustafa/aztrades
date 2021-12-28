@@ -13,7 +13,7 @@ class CreatePotatoSacsTable extends Migration
             $table->foreignId("potato_id")->nullable()->index()->constrained();
             $table->string("name");
             $table->integer("sac_count")->nullable();
-            $table->integer("sac_weight")->nullable();
+            $table->float("sac_weight", '8', '2')->nullable();
             $table->timestamps();
         });
     }

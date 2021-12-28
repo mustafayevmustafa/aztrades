@@ -10,10 +10,10 @@ class CreateSellingsTable extends Migration
     {
         Schema::create('sellings', function (Blueprint $table) {
             $table->id();
-            $table->string("from_sell")->nullable();
+            $table->string("customer")->nullable();
             $table->morphs('sellingable');
-            $table->integer("weight")->nullable();
-            $table->integer("price")->nullable();
+            $table->float("weight", '8', '2')->nullable();
+            $table->float("price", '8', '2')->nullable();
             $table->integer("sac_count")->nullable();
             $table->integer("status")->nullable();
             $table->string("content")->nullable();
