@@ -18,7 +18,6 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    <p>ss</p>
                     <table class="table table-responsive-sm" id="myTable">
                         <thead>
                         <tr>

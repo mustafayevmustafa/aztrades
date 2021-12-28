@@ -11,9 +11,9 @@ class CreatePotatoSacsTable extends Migration
         Schema::create('potato_sacs', function (Blueprint $table) {
             $table->id();
             $table->foreignId("potato_id")->nullable()->index()->constrained();
-            $table->string("name");
-            $table->integer("sac_count")->nullable();
-            $table->float("sac_weight", '8', '2')->nullable();
+            $table->string("name")->unique();
+            $table->integer("sac_count")->default(0);
+            $table->float("sac_weight", '8', '2')->default(0);
             $table->timestamps();
         });
     }

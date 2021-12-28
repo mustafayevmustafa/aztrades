@@ -25,8 +25,11 @@ class PotatoRequest extends FormRequest
             'other_cost' => 'nullable|numeric',
             'party' => 'nullable',
             'country_id' => 'required|integer',
+            'is_trash' => 'nullable',
             'sacs' => 'nullable|array',
-            'is_trash' => 'nullable'
+            'sacs.*.name'   => 'required|string|unique:potato_sacs,name',
+            'sacs.*.sac_count'   => 'required|string',
+            'sacs.*.sac_weight'   => 'required|string',
         ];
     }
 }

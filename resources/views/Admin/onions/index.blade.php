@@ -41,7 +41,7 @@
                         <tbody>
                         @forelse ($onions as $onion)
                             <tr>
-                                <td class="text-nowrap">{{ $loop->iteration }}</td>
+                                <td class="text-nowrap">{{ $onion->id }}</td>
                                 <td class="text-nowrap">{{ $onion->getRelationValue('city')->getAttribute('name') }}</td>
                                 <td class="text-nowrap">{{ $onion->getAttribute('from_whom') }}</td>
                                 <td class="text-nowrap">{{ $onion->getAttribute('car_number') }}</td>

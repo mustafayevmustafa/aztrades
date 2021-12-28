@@ -17,6 +17,10 @@ class Selling extends Model
         'weight',
         'price',
         'sac_count',
+        'sac_name',
+        'type',
+        'sellingable_type',
+        'sellingable_id',
     ];
 
     protected $casts = [

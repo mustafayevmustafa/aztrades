@@ -17,13 +17,14 @@ class SellingsRequest extends FormRequest
     {
         return [
             'customer' => 'required|string',
-            'type' => 'required|string',
-            'content' => 'string',
-            'type_id' => 'nullable|integer',
+            'content' => 'nullable|string',
             'status' => 'nullable',
-            'weight' => 'nullable|numeric',
-            'price' => 'nullable|numeric',
-            'sac_count' => 'nullable|numeric'
+            'weight' => 'required|numeric',
+            'price' => 'required|numeric',
+            'sac_name' => 'nullable|string',
+            'sac_count' => 'required_without::sac_name|numeric',
+            'type' => 'nullable|string',
+            'type_id' => 'nullable|integer',
         ];
     }
 }

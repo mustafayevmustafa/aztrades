@@ -50,4 +50,9 @@ class Onion extends Model
     {
         return $this->belongsTo(City::class)->withDefault();
     }
+
+    public function getInfoAttribute(): string
+    {
+        return "{$this->getAttribute('from_whom')} ({$this->getAttribute('car_number')}) ({$this->getRelationValue('city')->getAttribute('name')} #{$this->getAttribute('id')})";
+    }
 }

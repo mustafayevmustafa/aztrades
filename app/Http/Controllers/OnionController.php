@@ -19,7 +19,7 @@ class OnionController extends Controller
     public function index()
     {
         return view('Admin.onions.index')->with([
-            'onions' => Onion::latest()->oldest('is_trash')->get()
+            'onions' => Onion::oldest('is_trash')->latest('id')->get()
         ]);
     }
 

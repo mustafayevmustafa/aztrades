@@ -40,10 +40,13 @@ class PotatoController extends Controller
 
         $potato = Potato::create($validated);
 
+        foreach ($validated['sacs'] as $index => $sac) {
+            $validated['sacs'][$index]['name'] .= " (#{$potato->id})";
+        }
+
         if($request->has('sacs')){
             $potato->sacs()->createMany($validated['sacs']);
         }
-
 
         return redirect()->route('potatoes.index')->with('success', "Potato {$potato->getAttribute('from_whom')} created successfully!");
     }

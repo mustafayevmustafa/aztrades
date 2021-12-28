@@ -43,7 +43,7 @@
                         <tbody>
                         @forelse ($potatoes as $potato)
                             <tr>
-                                <td class="text-nowrap">{{ $loop->iteration }}</td>
+                                <td class="text-nowrap">{{ $potato->id }}</td>
                                 <td class="text-nowrap">{{ $potato->getAttribute('from_whom') }}</td>
                                 <td class="text-nowrap">{{ $potato->getAttribute('party') }}</td>
                                 <td class="text-nowrap">{{ $potato->getAttribute('car_number') }}</td>

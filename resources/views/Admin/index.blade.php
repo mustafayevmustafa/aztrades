@@ -39,8 +39,8 @@
                         <tbody>
                         @foreach($onions as $onion)
                             <tr>
-                                <th>{{$loop->iteration}}</th>
-                                <th>{{$onion->car_number}}</th>
+                                <th>{{$onion->id}}</th>
+                                <th>{{$onion->getAttribute('info')}}</th>
                                 <th>{{$onion->total_weight}}</th>
                             </tr>
                         @endforeach
@@ -58,13 +58,11 @@
                         <tbody>
                         @foreach($potatoes as $potato)
                             <tr>
-                                <th scope="row">{{$loop->iteration}}</th>
+                                <th scope="row">{{$potato->id}}</th>
                                 <td>{{$potato->car_number}}</td>
                                 <td>{{$potato->total_weight}}</td>
                             </tr>
                         @endforeach
-
-
                         </tbody>
                     </table>
                 </div>
@@ -75,7 +73,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Satış</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Soğan Satışı</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -86,9 +84,7 @@
                                 <label for="exampleFormControlSelect1">Kimdən</label>
                                 <select name="type_id" class="form-control" id="exampleFormControlSelect1">
                                     @foreach($onions as $onion)
-                                        @if($onion->total_weight!=0)
-                                            <option value="{{$onion->id}}">{{$onion->car_number}}</option>
-                                        @endif
+                                        <option value="{{$onion->id}}">{{$onion->getAttribute('info')}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -106,7 +102,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Satış</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Kartof Satışı</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

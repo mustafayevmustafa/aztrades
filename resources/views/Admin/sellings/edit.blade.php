@@ -9,47 +9,59 @@
         </div>
     </div>
 
-
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-3">
                         <a class="btn btn-outline-primary" href="{{route('sellings.index')}}"><i class="mdi mdi-arrow-left"></i></a>
+
                         @if (is_null($action))
                             <a class="btn btn-outline-primary" href="{{route('sellings.edit', $data)}}">Edit</a>
                         @endif
                     </div>
-                    <h4>Məhsul Çəkisi:{{$type->total_weight}}KQ</h4>
-                    @if($type->getTable()=="onions")
-                        <h4>Sarı Kisə Sayı:{{$type->yellow_bag_number}}</h4>
-                        <h4>Qırmızı Kisə Sayı:{{$type->red_bag_number}}</h4>
-                        <h4>Lom Kisə Sayı:{{$type->lom_bag_number}}</h4>
-                    @else
-                        <h4>Kisə Sayı:
-                            @foreach($type->sacs as $sac)
-                               {{$sac->sac_count}}
-                            @endforeach
-                        </h4>
-                        <h4>Kisə Adı:
-                            @foreach($type->sacs as $sac)
-                                {{$sac->name}}
-                            @endforeach
-                        </h4>
-                        <h4>Kisə Çəkisi:
-                            @foreach($type->sacs as $sac)
-                                {{$sac->sac_weight}}
-                            @endforeach
-                        </h4>
-                    @endif
+
+                    <div class="my-3">
+                        <h4><strong>Məhsul Çəkisi:</strong> {{$type->total_weight}} kg</h4>
+                        @if($type->getTable() == "onions")
+                            <h4><strong>Sarı Kisə Sayı:</strong> {{$type->yellow_bag_number}}</h4>
+                            <h4><strong>Qırmızı Kisə Sayı:</strong> {{$type->red_bag_number}}</h4>
+                            <h4><strong>Lom Kisə Sayı:</strong> {{$type->lom_bag_number}}</h4>
+                        @else
+                            <h4>Kisə Sayı:
+                                @foreach($type->sacs as $sac)
+                                    {{$sac->sac_count}}
+                                @endforeach
+                            </h4>
+                            <h4>Kisə Adı:
+                                @foreach($type->sacs as $sac)
+                                    {{$sac->name}}
+                                @endforeach
+                            </h4>
+                            <h4>Kisə Çəkisi:
+                                @foreach($type->sacs as $sac)
+                                    {{$sac->sac_weight}}
+                                @endforeach
+                            </h4>
+                        @endif
+
+                    </div>
+
                     <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
                         @csrf @method($method)
-                        @if ($action)
+
+                        @if (session('message'))
+                            <div class="alert alert-danger my-2">
+                                {{ session('message') }}
+                            </div>
                         @endif
+
                         <div class="form-group">
-                            <label for="post-title">Kimə Satılır</label>
-                            <input type="text" value="{{ optional($data)->getAttribute('customer') }}" name="customer" class="form-control" id="post-title" placeholder="Kimə Satılır">
-                            @error('customer')
+                            <label for="post-title">Növü</label>
+                            @php($typeName = $data->getAttribute('type') ? ($data->getAttribute('type') == "onion" ? "Sogan" : "Kartof") : (request()->get('type') == "onion" ? "Sogan" : "Kartof"))
+                            <input type="text"   value="{{ $typeName }}" class="form-control" readonly>
+                            <input type="hidden" value="{{ $data->getAttribute('type') ?? request()->get('type') }}" name="type"  class="form-control" readonly>
+                            @error('type')
                             <p class="text-danger">
                                 {{ $message }}
                             </p>
@@ -57,15 +69,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="text" value="{{ optional($data)->getAttribute('type') ?? request()->get('type')=="onion" ? "sogan" : "kartof" }}" name="type" class="form-control" id="post-title" placeholder="Enter title" readonly>
-                            @error('type')
-                            <p class="text-danger">
-                                {{ $message }}
-                            </p>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <input type="text" value="{{$type->car_number}}" class="form-control" placeholder="Enter title" readonly>
+                            <input type="text" value="{{$type->getAttribute('info')}}" class="form-control" readonly>
                             <input type="hidden" value="{{$type->id}}" name="type_id">
                             @error('type_id')
                             <p class="text-danger">
@@ -75,43 +79,72 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="post-title">Kimə Satılır</label>
+                            <input type="text" value="{{ $data->getAttribute('customer') }}" name="customer" class="form-control" id="post-title" placeholder="Kimə Satılır">
+                            @error('customer')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Kisə Adı</label>
+                            <select name="sac_name" class="form-control">
+                                <option value="">Kisə seç</option>
+                                @foreach($sacs as $index => $sac)
+                                    <option value="{{$index}}" @if($data->getAttribute('sac_name') == $index) selected @endif>{{$sac}}</option>
+                                @endforeach
+                            </select>
+                            @error('sac_name')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
                             <label for="post-title">Kisə Sayı</label>
-                            <input type="text" value="{{ optional($data)->getAttribute('sac_count') }}" name="sac_count" class="form-control" id="post-title" placeholder="Kisə Sayı">
+                            <input type="number" min="0" step="1" value="{{ $data->getAttribute('sac_count') }}" name="sac_count" class="form-control" id="post-title" placeholder="Kisə Sayı">
                             @error('sac_count')
                             <p class="text-danger">
                                 {{ $message }}
                             </p>
                             @enderror
                         </div>
+
                         <div class="form-group">
-                            <label for="post-title">Çəki(kq)</label>
-                            <input type="text" value="{{ optional($data)->getAttribute('weight') }}" name="weight" class="form-control" id="post-title" placeholder="Çəki(kq)">
+                            <label for="post-title">Çəki (kq)</label>
+                            <input type="number" min="1" step=".1" max="{{$type->total_weight + $data->getAttribute('weight')}}" value="{{ $data->getAttribute('weight') }}" name="weight" class="form-control" id="post-title" placeholder="Çəki (kq)">
                             @error('weight')
                             <p class="text-danger">
                                 {{ $message }}
                             </p>
                             @enderror
                         </div>
+
                         <div class="form-group">
-                            <label for="post-title">Qiymət</label>
-                            <input type="text" value="{{ optional($data)->getAttribute('price') }}" name="price" class="form-control" id="post-title" placeholder="Qiymət">
+                            <label for="post-title">Qiymət (AZN)</label>
+                            <input type="number" min="0" step=".1" value="{{ $data->getAttribute('price') }}" name="price" class="form-control" id="post-title" placeholder="Qiymət">
                             @error('price')
                             <p class="text-danger">
                                 {{ $message }}
                             </p>
                             @enderror
                         </div>
+
                         <div class="form-group">
                             <label for="post-title">Qeyd</label>
-                            <input type="text" value="{{ optional($data)->getAttribute('content') }}" name="content" class="form-control" id="post-title" placeholder="Qeyd">
+                            <input type="text" value="{{ $data->getAttribute('content') }}" name="content" class="form-control" id="post-title" placeholder="Qeyd">
                             @error('content')
                             <p class="text-danger">
                                 {{ $message }}
                             </p>
                             @enderror
                         </div>
+
                         <div class="form-group form-check">
-                                <input type="checkbox"   name="status" class="form-check-input" id="post-state">
+                            <input type="checkbox"  name="status" class="form-check-input" id="post-state">
                             <label class="form-check-label" for="post-state">Borc</label>
                         </div>
 
@@ -123,11 +156,13 @@
             </div>
         </div>
     </div>
-                @section('script')
+@endsection
+
+@section('script')
     @if (is_null($action))
         <script>
             $('form :input').attr('disabled', true)
         </script>
     @endif
 @endsection
-@endsection
+
