@@ -19,110 +19,119 @@
                             <a class="btn btn-outline-primary" href="{{route('onions.edit', $data)}}">Edit</a>
                         @endif
                     </div>
-                    <form action="{{$action}}" method="POST" enctype="multipart/form-data">
+
+                    <form action="{{$action}}" method="POST">
                         @csrf @method($method)
 
                         <div class="form-group">
                             <label for="post-title">Kimden</label>
-                            <input type="text" value="{{ optional($data)->getAttribute('from_whom') }}" name="from_whom" class="form-control" id="post-title" placeholder="Kimden aldığınız daxil edin">
+                            <input type="text" value="{{ optional($data)->getAttribute('from_whom') }}" name="from_whom" class="form-control" placeholder="Kimden aldığınız daxil edin">
                             @error('from_whom')
-                            <p class="text-danger">
-                                {{ $message }}
-                            </p>
+                                <p class="text-danger">
+                                    {{ $message }}
+                                </p>
                             @enderror
                         </div>
+
                         <div class="form-group">
                             <label for="post-title">Maşın Nömrəsi</label>
-                            <input type="text" value="{{ optional($data)->getAttribute('car_number') }}" name="car_number" class="form-control" id="post-title" placeholder="Maşın nömrəsini daxil edin">
+                            <input type="text" value="{{ optional($data)->getAttribute('car_number') }}" name="car_number" class="form-control" placeholder="Maşın nömrəsini daxil edin">
                             @error('car_number')
-                            <p class="text-danger">
-                                {{ $message }}
-                            </p>
+                                <p class="text-danger">
+                                    {{ $message }}
+                                </p>
                             @enderror
                         </div>
+
                         <div class="form-group">
                             <label for="post-title">Sürücü Adı</label>
-                            <input type="text" value="{{ optional($data)->getAttribute('driver_name') }}" name="driver_name" class="form-control" id="post-title" placeholder="Sürücü adını daxil edin">
+                            <input type="text" value="{{ optional($data)->getAttribute('driver_name') }}" name="driver_name" class="form-control" placeholder="Sürücü adını daxil edin">
                             @error('driver_name')
-                            <p class="text-danger">
-                                {{ $message }}
-                            </p>
+                                <p class="text-danger">
+                                    {{ $message }}
+                                </p>
                             @enderror
-                        </div> <div class="form-group">
-                            <label for="post-title">Tədarük Xərci</label>
-                            <input type="number" value="{{ optional($data)->getAttribute('supply_cost') }}" name="supply_cost" class="form-control" id="post-title" placeholder="Tədarük xərcini daxil edin">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="post-title">Sürücü Xərci</label>
+                            <input type="number" min="0" step=".01" value="{{ optional($data)->getAttribute('driver_cost') }}" name="driver_cost" class="form-control" placeholder="Sürücü xərcini daxil edin">
                             @error('supply_cost')
                             <p class="text-danger">
                                 {{ $message }}
                             </p>
                             @enderror
-                        </div> <div class="form-group">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="post-title">Tədarük Xərci</label>
+                            <input type="number" min="0" step=".01" value="{{ optional($data)->getAttribute('supply_cost') }}" name="supply_cost" class="form-control" placeholder="Tədarük xərcini daxil edin">
+                            @error('supply_cost')
+                                <p class="text-danger">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
                             <label for="post-title">Maya Dəyəri</label>
-                            <input type="number" value="{{ optional($data)->getAttribute('cost') }}" name="cost" class="form-control" id="post-title" placeholder="Maya dəyərini">
+                            <input type="number" min="0" step=".01" value="{{ optional($data)->getAttribute('cost') }}" name="cost" class="form-control" placeholder="Maya dəyərini">
                             @error('cost')
                             <p class="text-danger">
                                 {{ $message }}
                             </p>
                             @enderror
-                        </div> <div class="form-group">
-                            <label for="post-title">Növü</label>
-                            <input type="text" value="{{ optional($data)->getAttribute('type') }}" name="type" class="form-control" id="post-title" placeholder="Növünü daxil edin">
-                            @error('type')
-                            <p class="text-danger">
-                                {{ $message }}
-                            </p>
-                            @enderror
-                        </div> <div class="form-group">
-                            <label for="post-title">Çəkisi</label>
-                            <input type="number" value="{{ optional($data)->getAttribute('total_weight') }}" name="total_weight" class="form-control" id="post-title" placeholder="Çəkisini daxil edin">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="post-title">Çəkisi (kg)</label>
+                            <input type="number" min="0" step=".01" value="{{ optional($data)->getAttribute('total_weight') }}" name="total_weight" class="form-control" placeholder="Çəkisini daxil edin">
                             @error('total_weight')
-                            <p class="text-danger">
-                                {{ $message }}
-                            </p>
+                                <p class="text-danger">
+                                    {{ $message }}
+                                </p>
                             @enderror
-                        </div> <div class="form-group">
+                        </div>
+
+                        <div class="form-group">
                             <label for="post-title">Qırmızı Kisə Sayı</label>
-                            <input type="number" value="{{ optional($data)->getAttribute('red_bag_number') }}" name="red_bag_number" class="form-control" id="post-title" placeholder="Qırmızı kisə sayını daxil edin">
+                            <input type="number" min="0" step="1" value="{{ optional($data)->getAttribute('red_bag_number') }}" name="red_bag_number" class="form-control" placeholder="Qırmızı kisə sayını daxil edin">
                             @error('red_bag_number')
-                            <p class="text-danger">
-                                {{ $message }}
-                            </p>
+                                <p class="text-danger">
+                                    {{ $message }}
+                                </p>
                             @enderror
-                        </div> <div class="form-group">
-                            <label for="post-title">Sarı  Kisə Sayı</label>
-                            <input type="number" value="{{ optional($data)->getAttribute('yellow_bag_number') }}" name="yellow_bag_number" class="form-control" id="post-title" placeholder="Sarı kisə sayını daxil edin">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="post-title">Sarı Kisə Sayı</label>
+                            <input type="number" min="0" step="1" value="{{ optional($data)->getAttribute('yellow_bag_number') }}" name="yellow_bag_number" class="form-control" placeholder="Sarı kisə sayını daxil edin">
                             @error('yellow_bag_number')
-                            <p class="text-danger">
-                                {{ $message }}
-                            </p>
+                                <p class="text-danger">
+                                    {{ $message }}
+                                </p>
                             @enderror
                         </div>
+
                         <div class="form-group">
-                            <label for="post-title">Lom  Kisə Sayı</label>
-                            <input type="text" value="{{ optional($data)->getAttribute('lom_bag_number') }}" name="lom_bag_number" class="form-control" id="post-title" placeholder="Lom kisə sayını daxil edin">
+                            <label for="post-title">Lom Kisə Sayı</label>
+                            <input type="number" min="0" step="1" value="{{ optional($data)->getAttribute('lom_bag_number') }}" name="lom_bag_number" class="form-control" placeholder="Lom kisə sayını daxil edin">
                             @error('lom_bag_number')
-                            <p class="text-danger">
-                                {{ $message }}
-                            </p>
+                                <p class="text-danger">
+                                    {{ $message }}
+                                </p>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="post-title">Qiyməti</label>
-                            <input type="number" value="{{ optional($data)->getAttribute('onion_price') }}" name="onion_price" class="form-control" id="post-title" placeholder="Qiymətini daxil edin">
-                            @error('onion_price')
-                            <p class="text-danger">
-                                {{ $message }}
-                            </p>
-                            @enderror
-                        </div>
+
                         @if ($method != "POST")
                             <div class="form-group form-check">
-                                <input type="checkbox"  {{ optional($data)->getAttribute('onion_trash') == true ? 'checked' : '' }}  name="onion_trash" class="form-check-input" id="post-state">
+                                <input type="checkbox" {{ optional($data)->getAttribute('is_trash') == true ? 'checked' : '' }}  name="is_trash" class="form-check-input">
                                 <label class="form-check-label" for="post-state">Atxot Mal</label>
                             </div>
                         @endif
+
                         @if ($action)
-                            <button type="submit" class="btn btn-primary">Əlavə Et</button>
+                            <button type="submit" class="btn btn-primary">Yadda saxla</button>
                         @endif
                     </form>
                 </div>

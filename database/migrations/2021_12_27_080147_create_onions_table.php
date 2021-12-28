@@ -6,35 +6,27 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateOnionsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('onions', function (Blueprint $table) {
             $table->id();
-            $table->string("from_whom")->nullable();
+            $table->foreignId('city_id')->nullable()->index()->constrained()->onDelete('SET_NULL');
+            $table->string("from_whom");
             $table->string("car_number")->nullable();
             $table->string("driver_name")->nullable();
-            $table->string("supply_cost")->nullable();
-            $table->string("cost")->nullable();
-            $table->string("type")->nullable();
+            $table->integer("driver_cost")->nullable();
+            $table->integer("supply_cost")->nullable();
+            $table->integer("cost")->nullable();
             $table->integer("red_bag_number")->nullable();
             $table->integer("yellow_bag_number")->nullable();
             $table->integer("lom_bag_number")->nullable();
             $table->integer("total_weight")->nullable();
-            $table->integer("onion_price")->nullable();
+            $table->integer("is_trash")->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('onions');

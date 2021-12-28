@@ -6,27 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateSellingsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('sellings', function (Blueprint $table) {
             $table->id();
             $table->string("from_sell")->nullable();
+            $table->morphs('sellingable');
+            $table->integer("weight")->nullable();
+            $table->integer("price")->nullable();
+            $table->integer("sac_count")->nullable();
             $table->integer("status")->nullable();
             $table->string("content")->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('sellings');

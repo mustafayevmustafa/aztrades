@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class OnionController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -28,16 +27,13 @@ class OnionController extends Controller
         return view('admin.onions.edit', [
             'action' => route('onions.store'),
             'method' => "POST",
-            'data'   => null
+            'data'   => new Onion(),
         ]);
     }
 
     public function store(OnionRequest $request): RedirectResponse
     {
-        $validated = $request->validated();
-
-        $onion = Onion::create($validated);
-
+        $onion = Onion::create($request->validated());
 
         return redirect()->route('onions.index')->with('success', "Onion {$onion->getAttribute('from_whom')} Created successfully!");
     }
@@ -64,7 +60,7 @@ class OnionController extends Controller
     {
         $validated = $request->validated();
 
-        $validated['onion_trash'] = $request->has('onion_trash');
+        $validated['is_trash'] = $request->has('is_trash');
 
         $onion->update($validated);
 

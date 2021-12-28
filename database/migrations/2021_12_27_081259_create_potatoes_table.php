@@ -15,8 +15,8 @@ class CreatePotatoesTable extends Migration
     {
         Schema::create('potatoes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("country_id")->nullable();
-            $table->string("from_whom")->nullable();
+            $table->foreignId("country_id")->index()->nullable()->constrained()->onDelete('SET NULL');
+            $table->string("from_whom");
             $table->string("party")->nullable();
             $table->string("car_number")->nullable();
             $table->string("driver_name")->nullable();
@@ -25,9 +25,10 @@ class CreatePotatoesTable extends Migration
             $table->integer("cost")->nullable();
             $table->integer("market_cost")->nullable();
             $table->integer("other_cost")->nullable();
-            $table->integer("potato_price")->nullable();
             $table->integer("total_weight")->nullable();
+            $table->integer("is_trash")->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -3,14 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Selling extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'from_sell',
-        'type',
-        'type_id',
         'content',
         'status',
         'weight',
@@ -22,12 +23,8 @@ class Selling extends Model
         'status' => 'boolean'
     ];
 
-    public function type(): BelongsTo
+    public function sellingable(): MorphTo
     {
-        $type = $this->getAttribute('type') == 'onion' ? Onion::class : Potato::class;
-
-        return $this->belongsTo($type, 'type_id')->withDefault();
+        return $this->morphTo();
     }
-
-
 }

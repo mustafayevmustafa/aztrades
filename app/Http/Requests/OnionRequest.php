@@ -9,18 +9,18 @@ class OnionRequest extends FormRequest
     public function rules()
     {
         return [
-            'from_whom' => 'nullable|string',
+            'from_whom' => 'required|string',
             'car_number' => 'nullable|string',
             'driver_name' => 'nullable|string',
+            'driver_cost' => 'nullable|numeric',
             'supply_cost' => 'nullable|numeric',
             'cost' => 'nullable|numeric',
-            'type' => 'nullable|string',
             'red_bag_number' => 'nullable|integer',
             'yellow_bag_number' => 'nullable|integer',
             'lom_bag_number' => 'nullable|integer',
-            'onion_price' => 'nullable|numeric',
-            'onion_trash' => 'nullable',
-            'total_weight' => 'nullable|numeric'
+            'is_trash' => 'nullable',
+            'total_weight' => 'nullable|numeric',
+            'city_id' => 'required|integer'
         ];
     }
 }
