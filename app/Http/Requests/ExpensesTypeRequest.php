@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ExprenceTypeRequest extends FormRequest
+class ExpensesTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class ExprenceTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'nullable|string',
-            'key' => 'unique'
+            'name' => 'required|string',
+            'key' => 'unique:expenses_types,key'
         ];
     }
 }

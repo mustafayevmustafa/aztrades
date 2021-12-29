@@ -28,21 +28,10 @@
                             <h4><strong>Qırmızı Kisə Sayı:</strong> {{$type->red_bag_number}}</h4>
                             <h4><strong>Lom Kisə Sayı:</strong> {{$type->lom_bag_number}}</h4>
                         @else
-                            <h4>Kisə Sayı:
-                                @foreach($type->sacs as $sac)
-                                    {{$sac->sac_count}}
-                                @endforeach
-                            </h4>
-                            <h4>Kisə Adı:
-                                @foreach($type->sacs as $sac)
-                                    {{$sac->name}}
-                                @endforeach
-                            </h4>
-                            <h4>Kisə Çəkisi:
-                                @foreach($type->sacs as $sac)
-                                    {{$sac->sac_weight}}
-                                @endforeach
-                            </h4>
+                            @foreach($type->sacs as $sac)
+                                <h4><strong>{{$sac->name}}:</strong> Sayı: {{$sac->sac_count}}, Həcmi: {{$sac->sac_weight}} kg</h4>
+                            @endforeach
+
                         @endif
 
                     </div>
@@ -92,8 +81,8 @@
                             <label for="">Kisə Adı</label>
                             <select name="sac_name" class="form-control">
                                 <option value="">Kisə seç</option>
-                                @foreach($sacs as $index => $sac)
-                                    <option value="{{$index}}" @if($data->getAttribute('sac_name') == $index) selected @endif>{{$sac}}</option>
+                                @foreach($sacs as $sac)
+                                    <option value="{{$sac}}" @if($data->getAttribute('sac_name') == $sac) selected @endif>{{$sac}}</option>
                                 @endforeach
                             </select>
                             @error('sac_name')

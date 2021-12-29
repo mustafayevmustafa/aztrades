@@ -26,10 +26,10 @@ class PotatoController extends Controller
 
     public function create()
     {
-        return view('admin.potatoes.edit', [
+        return view('Admin.potatoes.edit', [
             'action' => route('potatoes.store'),
             'method' => null,
-            'data'   => null,
+            'data'   => new Potato(),
             'countries' => Country::get(),
         ]);
     }
@@ -53,7 +53,7 @@ class PotatoController extends Controller
 
     public function show(Potato $potato)
     {
-        return view('admin.potatoes.edit', [
+        return view('Admin.potatoes.edit', [
             'action' => null,
             'method' => null,
             'data'   => $potato,
@@ -64,7 +64,7 @@ class PotatoController extends Controller
 
     public function edit(Potato $potato)
     {
-        return view('admin.potatoes.edit', [
+        return view('Admin.potatoes.edit', [
             'action' => route('potatoes.update', $potato),
             'method' => "PUT",
             'data'   => $potato,

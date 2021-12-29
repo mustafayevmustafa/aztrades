@@ -28,16 +28,10 @@
                             <th class="text-nowrap" scope="col">Partiyası</th>
                             <th class="text-nowrap" scope="col">Maşın Nömrəsi</th>
                             <th class="text-nowrap" scope="col">Sürücünün Adı</th>
-                            <th class="text-nowrap" scope="col">Sürücünün Xərci</th>
-                            <th class="text-nowrap" scope="col">Gömrük Xərci</th>
-                            <th class="text-nowrap" scope="col">Maya Dəyəri</th>
-                            <th class="text-nowrap" scope="col">Bazar Xərci</th>
-                            <th class="text-nowrap" scope="col">Digər Xərc</th>
-                            <th class="text-nowrap" scope="col">Kisə Sayı</th>
-                            <th class="text-nowrap" scope="col">Ümumi Çəkisi</th>
-                            <th class="text-nowrap" scope="col">Qiyməti</th>
+                            <th class="text-nowrap" scope="col">Maya Dəyəri (AZN)</th>
+                            <th class="text-nowrap" scope="col">Ümumi Çəkisi (kg)</th>
                             <th class="text-nowrap" scope="col">Yaradılma Tarixi</th>
-                            <th class="text-nowrap" scope="col">Actions</th>
+                            <th class="text-nowrap" scope="col">Əməliyyatlar</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -48,14 +42,8 @@
                                 <td class="text-nowrap">{{ $potato->getAttribute('party') }}</td>
                                 <td class="text-nowrap">{{ $potato->getAttribute('car_number') }}</td>
                                 <td class="text-nowrap">{{ $potato->getAttribute('driver_name') }}</td>
-                                <td class="text-nowrap">{{ $potato->getAttribute('driver_cost') }}</td>
                                 <td class="text-nowrap">{{ $potato->getAttribute('cost') }}</td>
-                                <td class="text-nowrap">{{ $potato->getAttribute('custom_cost') }}</td>
-                                <td class="text-nowrap">{{ $potato->getAttribute('market_cost') }}</td>
-                                <td class="text-nowrap">{{ $potato->getAttribute('other_cost') }}</td>
-                                <td class="text-nowrap">{{ $potato->getRelationValue('sacs')->getAttribute('sac_count') }}</td>
                                 <td class="text-nowrap">{{ $potato->getAttribute('total_weight') }}</td>
-                                <td class="text-nowrap">{{ $potato->getAttribute('potato_price') }}</td>
                                 <td class="text-nowrap">{{ $potato->getAttribute('created_at') }}</td>
                                 <td class="text-nowrap">
                                     <a href="{{ route('potatoes.show', $potato) }}" class="btn btn-link p-0"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>

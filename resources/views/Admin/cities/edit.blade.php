@@ -9,8 +9,6 @@
         </div>
     </div>
 
-
-
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
@@ -20,20 +18,21 @@
                         @if (is_null($action))
                             <a class="btn btn-outline-primary" href="{{route('cities.edit', $data)}}">Edit</a>
                         @endif
+
                     </div>
                     <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
                         @csrf @method($method)
-                        @if ($action)
-                        @endif
+
                         <div class="form-group">
                             <label for="post-title">Şəhər Adı</label>
                             <input type="text" value="{{ optional($data)->getAttribute('name') }}" name="name" class="form-control" id="post-title" placeholder="Ölkə Adı Daxil Edin">
                             @error('name')
-                            <p class="text-danger">
-                                {{ $message }}
-                            </p>
+                                <p class="text-danger">
+                                    {{ $message }}
+                                </p>
                             @enderror
                         </div>
+
                         @if ($action)
                             <button type="submit" class="btn btn-primary">Əlavə Et</button>
                         @endif
@@ -43,11 +42,12 @@
             </div>
         </div>
     </div>
+@endsection
+
 @section('script')
     @if (is_null($action))
         <script>
             $('form :input').attr('disabled', true)
         </script>
     @endif
-@endsection
 @endsection

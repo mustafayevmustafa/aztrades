@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ExprenceTypeController;
+use App\Http\Controllers\ExpensesTypeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SellingController;
 use App\Http\Controllers\HomeController;
@@ -40,7 +40,7 @@ Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], 
     Route::resource('sellings', SellingController::class);
     Route::resource('admins', AdminController::class);
     Route::resource('roles', RoleController::class);
-    Route::resource('exprence_types', ExprenceTypeController::class);
+    Route::resource('expenses_types', ExpensesTypeController::class);
 
 });
 

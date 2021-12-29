@@ -44,8 +44,8 @@ class Menu extends Component
             ],
             (object) [
                 'name' => 'Xərclərin Tipi',
-                'url' => route('exprencies.index'),
-                'icon' => 'mdi-map-marker',
+                'url' => route('expenses_types.index'),
+                'icon' => 'mdi-cash',
             ],
             (object) [
                 'name' => 'Ölkə',

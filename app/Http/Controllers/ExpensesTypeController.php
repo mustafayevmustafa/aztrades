@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\CityRequest;
+use App\Http\Requests\CountryRequest;
+use App\Http\Requests\ExpensesTypeRequest;
+use App\Models\City;
+use App\Models\Country;
+use App\Models\ExpensesType;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+
+class ExpensesTypeController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        return view('Admin.expenses_types.index')->with([
+            'expenses_types' => ExpensesType::get()
+        ]);
+    }
+
+    public function create()
+    {
+        return view('Admin.expenses_types.edit', [
+            'action' => route('expenses_types.store'),
+            'method' => null,
+            'data'   => new ExpensesType()
+        ]);
+    }
+
+    public function store(ExpensesTypeRequest $request): RedirectResponse
+    {
+        $validated = $request->validated();
+
+        $expenses_type = ExpensesType::create($validated);
+
+        return redirect()->route('expenses_types.index')->with('success', "Expense type {$expenses_type ->getAttribute('name')} created successfully!");
+    }
+
+    public function show(ExpensesType $expensesType)
+    {
+        return view('admin.cities.edit', [
+            'action' => null,
+            'method' => null,
+            'data'   => $expensesType
+        ]);
+    }
+
+    public function edit(ExpensesType $expensesType)
+    {
+        return view('admin.countries.edit', [
+            'action' => route('expenses_types.update', $expensesType),
+            'method' => "PUT",
+            'data'   => $expensesType
+        ]);
+    }
+
+    public function update(CityRequest $request, ExpensesType $expensesType): RedirectResponse
+    {
+        $validated = $request->validated();
+
+        $expensesType->update($validated);
+
+        return redirect()->route('cities.index')->with('success', "Expense type {$expensesType->getAttribute('name')} updated successfully!");
+    }
+
+    public function destroy(ExpensesType $expensesType): JsonResponse
+    {
+        if($expensesType->delete()){
+            return response()->json(['code' => 200]);
+        }else{
+            return response()->json(['code' => 400]);
+        }
+    }
+}

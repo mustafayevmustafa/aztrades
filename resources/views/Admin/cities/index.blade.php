@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
@@ -23,29 +22,29 @@
                             {{ session('success') }}
                         </div>
                     @endif
-              <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Şəhər Adı</th>
-                <th scope="col">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach ($cities as $city)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $city->getAttribute('name') }}</td>
-                    <td>
-                        <a href="{{ route('cities.show', $city) }}" class="btn btn-outline-success">Show</a>
+                      <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Şəhər Adı</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($cities as $city)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $city->getAttribute('name') }}</td>
+                                <td>
+                                    <a href="{{ route('cities.show', $city) }}" class="btn btn-outline-success">Show</a>
 
-                        <a href="{{ route('cities.edit', $city) }}" class="btn btn-outline-primary">Edit</a>
-                        <button class="btn btn-outline-danger" onclick="deleteConfirmation({{ $city->getAttribute('id') }}, 'cities')">DELETE</button>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+                                    <a href="{{ route('cities.edit', $city) }}" class="btn btn-outline-primary">Edit</a>
+                                    <button class="btn btn-outline-danger" onclick="deleteConfirmation({{ $city->getAttribute('id') }}, 'cities')">DELETE</button>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                      </table>
                 </div>
             </div>
         </div>

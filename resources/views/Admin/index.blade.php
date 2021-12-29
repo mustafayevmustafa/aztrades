@@ -21,7 +21,6 @@
                     <button class="btn btn-primary mt-md-0 mx-2 btn-block">Borcdan Gələn</button>
                     <button class="btn btn-primary mt-md-0 mx-2 btn-block">Sklad Xərci</button>
                     <button class="btn btn-primary mt-md-0 mx-2 btn-block">Əlavə Xərc</button>
-                    <button class="btn btn-primary mt-md-0 mx-2 mr-0 btn-block">Qeyd Yaz</button>
                 </div>
                 <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap">
                     <button  type="button" class="btn btn-success btn-block mt-md-0 mx-2 ml-0" data-toggle="modal" data-target="#exampleModal">Sogan Sat</button>
@@ -59,7 +58,7 @@
                         @foreach($potatoes as $potato)
                             <tr>
                                 <th scope="row">{{$potato->id}}</th>
-                                <td>{{$potato->car_number}}</td>
+                                <td>{{$potato->getAttribute('info')}}</td>
                                 <td>{{$potato->total_weight}}</td>
                             </tr>
                         @endforeach
@@ -113,7 +112,7 @@
                                 <label for="exampleFormControlSelect1">Kimdən</label>
                                 <select name="type_id" class="form-control" id="exampleFormControlSelect1">
                                     @foreach($potatoes as $potato)
-                                        <option value="{{$potato->id}}">{{$potato->car_number}}</option>
+                                        <option value="{{$potato->id}}">{{$potato->getAttribute('info')}}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -49,5 +50,15 @@ class Potato extends Model
     public function sellings(): MorphMany
     {
         return $this->morphMany(Selling::class, 'sellingable');
+    }
+
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class)->withDefault();
+    }
+
+    public function getInfoAttribute(): string
+    {
+        return "{$this->getAttribute('from_whom')} ({$this->getAttribute('car_number')}) ({$this->getRelationValue('country')->getAttribute('name')} #{$this->getAttribute('id')})";
     }
 }

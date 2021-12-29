@@ -26,7 +26,7 @@ class CreatePotatoesTable extends Migration
             $table->float("market_cost", '8', '2')->nullable();
             $table->float("other_cost", '8', '2')->nullable();
             $table->integer("total_weight")->nullable();
-            $table->integer("is_trash")->nullable();
+            $table->boolean("is_trash")->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

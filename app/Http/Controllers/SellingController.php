@@ -39,7 +39,7 @@ class SellingController extends Controller
             'type'   => $type,
             'sacs'   => $type->getTable() == 'onions' ?
                 ['yellow_bag_number' => 'Sarı Kisə', 'red_bag_number' => 'Qırmızı Kisə', 'lom_bag_number' => 'Lom Kisə'] :
-                $type->sacs->pluck('id', 'name'),
+                $type->sacs->pluck('name'),
         ]);
     }
 
@@ -74,7 +74,7 @@ class SellingController extends Controller
                 case 'potatoes':
                     $sac = $sellingable->sacs()->where('potato_id', $validated['type_id'])->where('name', $validated['sac_name'])->first();
 
-                    if ($sac->getAttribute('sac_count') < $validated['sac_count']) {
+                    if ($sac->getAttribute('sac_count') < $validated['sac_count'] || $sac->getAttribute('sac_weight') < $validated['weight']) {
                         $error = true;
                         break;
                     }
@@ -87,8 +87,19 @@ class SellingController extends Controller
             }
         }
 
+        if ($sellingable->getTable() == 'potatoes') {
+            $total_sacs_weight = 0;
+            foreach ($sellingable->sacs as $_sac) {
+                $total_sacs_weight += $_sac->sac_weight;
+            }
+
+            if ($total_sacs_weight > $sellingableData['total_weight']) {
+                $error = true;
+            }
+        }
+
         if ($error) {
-            return back()->with('message', 'Seçdiyiniz kisədə o qədər say mövcud deyil');
+            return back()->with('message', 'Seçdiyiniz kisədə o qədər say və ya həcm mövcud deyil');
         }
 
         $selling->sellingable()->update($sellingableData);
@@ -109,7 +120,7 @@ class SellingController extends Controller
             'type' => $sellingable,
             'sacs'   => $sellingable->getTable() == 'onions' ?
                 ['yellow_bag_number' => 'Sarı Kisə', 'red_bag_number' => 'Qırmızı Kisə', 'lom_bag_number' => 'Lom Kisə'] :
-                $sellingable->sacs->pluck('id', 'name'),
+                $sellingable->sacs->pluck('name'),
         ]);
     }
 
@@ -124,7 +135,7 @@ class SellingController extends Controller
             'type' => $selling->getRelationValue('sellingable'),
             'sacs'   => $sellingable->getTable() == 'onions' ?
                 ['yellow_bag_number' => 'Sarı Kisə', 'red_bag_number' => 'Qırmızı Kisə', 'lom_bag_number' => 'Lom Kisə'] :
-                $sellingable->sacs->pluck('id', 'name'),
+                $sellingable->sacs->pluck('name'),
         ]);
     }
 
