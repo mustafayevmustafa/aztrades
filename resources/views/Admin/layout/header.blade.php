@@ -23,19 +23,19 @@
                 <div class="navbar-brand-box">
                     <a href="/Admin" class="logo logo-dark">
                         <span class="logo-sm">
-{{--                            <img class="d-inline" style="filter: brightness(0) invert(1);" src="{{ asset('') }}" alt="" height="40">--}}
+                            <img class="d-inline" src="{{ asset('assets/images/logo.jpeg') }}" alt="" height="45">
                         </span>
                         <span class="logo-lg">
-{{--                            <img class="d-inline" style="filter: brightness(0) invert(1);" src="{{ asset('') }}" alt="" height="40">--}}
+                            <img class="d-inline" src="{{ asset('assets/images/logo.jpeg') }}" alt="" height="45">
                         </span>
                     </a>
 
                     <a href="/Admin" class="logo logo-light">
                         <span class="logo-sm">
-{{--                            <img class="d-inline" style="filter: brightness(0) invert(1);" src="{{ asset('') }}" alt="" height="40">--}}
+                            <img class="d-inline" src="{{ asset('assets/images/logo.jpeg') }}" alt="" height="45">
                         </span>
                         <span class="logo-lg">
-{{--                            <img class="d-inline" style="filter: brightness(0) invert(1);" src="{{ asset('') }}" alt="" height="40">--}}
+                            <img class="d-inline" src="{{ asset('assets/images/logo.jpeg') }}" alt="" height="45">
                         </span>
                     </a>
                 </div>
