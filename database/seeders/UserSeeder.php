@@ -17,12 +17,12 @@ class UserSeeder extends Seeder
     public function run()
     {
         $user = User::create(['name' => 'Admin','email' => 'admin@admin.com', 'email_verified_at' => now(), 'password' => Hash::make('admin12345'), 'remember_token' => Str::random(10)]);
-//        $user->roles()->sync([1]);
+        $user->roles()->sync([1]);
 
         $user = User::create(['name' => 'Creator','email' => 'creator@admin.com', 'email_verified_at' => now(), 'password' => Hash::make('creator123'), 'remember_token' => Str::random(10)]);
-//        $user->roles()->sync([2]);
+        $user->roles()->sync([2]);
 
         $user = User::create(['name' => 'Editor','email' => 'editor@admin.com', 'email_verified_at' => now(), 'password' => Hash::make('editor123'), 'remember_token' => Str::random(10)]);
-//        $user->roles()->sync([3]);
+        $user->roles()->sync([3]);
     }
 }
