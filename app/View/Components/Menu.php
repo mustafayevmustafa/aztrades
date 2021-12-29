@@ -43,6 +43,11 @@ class Menu extends Component
                 'icon' => 'mdi-account-multiple-plus',
             ],
             (object) [
+                'name' => 'Xərclərin Tipi',
+                'url' => route('exprencies.index'),
+                'icon' => 'mdi-map-marker',
+            ],
+            (object) [
                 'name' => 'Ölkə',
                 'url' => route('countries.index'),
                 'icon' => 'mdi mdi-earth',
