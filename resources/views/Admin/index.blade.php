@@ -12,43 +12,65 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
-                <div class="card-body text-center">
+                <div class="card-body px-2">
                     <h3 class="text-center">AZTRADE COMPANY SATIŞ MƏRKƏZİ</h3>
-                    <div class="my-4">
-                        <h4>Aylıq</h4>
-                        <div class="row text-center m-0 my-4">
-                            <div class="col-12 col-md-4">
-                                <h5 class="card-title">Net gelir</h5>
-                                <p class="card-text" style="font-size: 16px">{{$monthly_net_income}} AZN</p>
-                            </div>
+                    <button class="btn btn-outline-success" id="show-statistics">Statistikanı görsət</button>
+                    <div id="statistics" class="d-none text-center">
+                        <div class="my-4">
+                            <h4>Günlük</h4>
+                            <div class="row text-center m-0 my-4">
+                                <div class="col-12 col-md-4">
+                                    <h5 class="card-title">Net gelir</h5>
+                                    <p class="card-text" style="font-size: 16px">{{$daily_net_income}} AZN</p>
+                                </div>
 
-                            <div class="col-12 col-md-4">
-                                <h5 class="card-title">Gozlenilen gelir</h5>
-                                <p class="card-text" style="font-size: 16px">{{$monthly_waiting_income}} AZN</p>
-                            </div>
+                                <div class="col-12 col-md-4">
+                                    <h5 class="card-title">Gozlenilen gelir</h5>
+                                    <p class="card-text" style="font-size: 16px">{{$daily_waiting_income}} AZN</p>
+                                </div>
 
-                            <div class="col-12 col-md-4">
-                                <h5 class="card-title">Xercler</h5>
-                                <p class="card-text" style="font-size: 16px">{{$monthly_expense}} AZN</p>
+                                <div class="col-12 col-md-4">
+                                    <h5 class="card-title">Xercler</h5>
+                                    <p class="card-text" style="font-size: 16px">{{$daily_expense}} AZN</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="my-4">
-                        <h4>Ümumi</h4>
-                        <div class="row text-center m-0 my-4">
-                            <div class="col-12 col-md-4">
-                                <h5 class="card-title">Net gelir</h5>
-                                <p class="card-text" style="font-size: 16px">{{$net_income}} AZN</p>
-                            </div>
+                        <div class="my-4">
+                            <h4>Aylıq</h4>
+                            <div class="row text-center m-0 my-4">
+                                <div class="col-12 col-md-4">
+                                    <h5 class="card-title">Net gelir</h5>
+                                    <p class="card-text" style="font-size: 16px">{{$monthly_net_income}} AZN</p>
+                                </div>
 
-                            <div class="col-12 col-md-4">
-                                <h5 class="card-title">Gozlenilen gelir</h5>
-                                <p class="card-text" style="font-size: 16px">{{$waiting_income}} AZN</p>
-                            </div>
+                                <div class="col-12 col-md-4">
+                                    <h5 class="card-title">Gozlenilen gelir</h5>
+                                    <p class="card-text" style="font-size: 16px">{{$monthly_waiting_income}} AZN</p>
+                                </div>
 
-                            <div class="col-12 col-md-4">
-                                <h5 class="card-title">Xercler</h5>
-                                <p class="card-text" style="font-size: 16px">{{$expense}} AZN</p>
+                                <div class="col-12 col-md-4">
+                                    <h5 class="card-title">Xercler</h5>
+                                    <p class="card-text" style="font-size: 16px">{{$monthly_expense}} AZN</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-4">
+                            <h4>Ümumi</h4>
+                            <div class="row text-center m-0 my-4">
+                                <div class="col-12 col-md-4">
+                                    <h5 class="card-title">Net gelir</h5>
+                                    <p class="card-text" style="font-size: 16px">{{$net_income}} AZN</p>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <h5 class="card-title">Gozlenilen gelir</h5>
+                                    <p class="card-text" style="font-size: 16px">{{$waiting_income}} AZN</p>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <h5 class="card-title">Xercler</h5>
+                                    <p class="card-text" style="font-size: 16px">{{$expense}} AZN</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -163,6 +185,12 @@
                 </div>
             </div>
         </div>
-
     </div>
+@endsection
+@section('script')
+    <script>
+        $('#show-statistics').click(function (){
+            $('#statistics').toggleClass('d-none');
+        });
+    </script>
 @endsection
