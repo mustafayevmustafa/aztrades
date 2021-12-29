@@ -43,7 +43,12 @@ class Menu extends Component
                 'icon' => 'mdi-account-multiple-plus',
             ],
             (object) [
-                'name' => 'Xərclərin Tipi',
+                'name' => 'Xərclər',
+                'url' => route('expenses.index'),
+                'icon' => 'mdi-cash-multiple',
+            ],
+            (object) [
+                'name' => 'Xərclərin Növü',
                 'url' => route('expenses_types.index'),
                 'icon' => 'mdi-cash',
             ],

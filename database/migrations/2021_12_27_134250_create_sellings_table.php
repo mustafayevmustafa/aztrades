@@ -13,8 +13,8 @@ class CreateSellingsTable extends Migration
             $table->string("customer")->nullable();
             $table->string("type")->nullable();
             $table->morphs('sellingable');
-            $table->float("weight", '8', '2')->nullable();
-            $table->float("price", '8', '2')->nullable();
+            $table->float("weight")->nullable();
+            $table->float("price")->nullable();
             $table->string("sac_name")->nullable();
             $table->integer("sac_count")->nullable();
             $table->integer("status")->nullable();

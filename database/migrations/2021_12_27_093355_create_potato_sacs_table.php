@@ -12,8 +12,8 @@ class CreatePotatoSacsTable extends Migration
             $table->id();
             $table->foreignId("potato_id")->nullable()->index()->constrained();
             $table->string("name")->unique();
-            $table->integer("sac_count")->default(0);
-            $table->float("sac_weight", '8', '2')->default(0);
+            $table->integer("sac_count")->default(0.00);
+            $table->float("sac_weight")->default(0.00);
             $table->timestamps();
         });
     }

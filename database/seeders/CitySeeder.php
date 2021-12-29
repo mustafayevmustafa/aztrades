@@ -16,10 +16,10 @@ class CitySeeder extends Seeder
     {
         DB::table('cities')->insert([
             [
-                'name' => 'Gedebey',
+                'name' => 'Gədəbəy',
             ],
             [
-                'name' => 'Berde',
+                'name' => 'Bərdə',
             ],
             [
                 'name' => 'Salyan',

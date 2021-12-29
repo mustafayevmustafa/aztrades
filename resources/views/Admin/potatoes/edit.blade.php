@@ -169,7 +169,7 @@
                               </div>
 
                               @if ($action)
-                                  <button type="submit" class="btn btn-primary">Əlavə Et</button>
+                                  <button type="submit" class="btn btn-primary">Yadda saxla</button>
                               @endif
                           </div>
                       </div>

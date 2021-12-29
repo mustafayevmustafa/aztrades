@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CityRequest;
-use App\Http\Requests\CountryRequest;
 use App\Http\Requests\ExpensesTypeRequest;
-use App\Models\City;
-use App\Models\Country;
 use App\Models\ExpensesType;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -45,7 +41,7 @@ class ExpensesTypeController extends Controller
 
     public function show(ExpensesType $expensesType)
     {
-        return view('admin.cities.edit', [
+        return view('Admin.expenses_types.edit', [
             'action' => null,
             'method' => null,
             'data'   => $expensesType
@@ -54,20 +50,20 @@ class ExpensesTypeController extends Controller
 
     public function edit(ExpensesType $expensesType)
     {
-        return view('admin.countries.edit', [
+        return view('Admin.expenses_types.edit', [
             'action' => route('expenses_types.update', $expensesType),
             'method' => "PUT",
             'data'   => $expensesType
         ]);
     }
 
-    public function update(CityRequest $request, ExpensesType $expensesType): RedirectResponse
+    public function update(ExpensesTypeRequest $request, ExpensesType $expensesType): RedirectResponse
     {
         $validated = $request->validated();
 
         $expensesType->update($validated);
 
-        return redirect()->route('cities.index')->with('success', "Expense type {$expensesType->getAttribute('name')} updated successfully!");
+        return redirect()->route('expenses_types.index')->with('success', "Expense type {$expensesType->getAttribute('name')} updated successfully!");
     }
 
     public function destroy(ExpensesType $expensesType): JsonResponse
