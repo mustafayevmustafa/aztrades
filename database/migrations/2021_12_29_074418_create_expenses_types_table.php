@@ -13,6 +13,7 @@ class CreateExpensesTypesTable extends Migration
             $table->string('name')->nullable();
             $table->string('key')->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -15,6 +15,7 @@ class CreatePotatoSacsTable extends Migration
             $table->integer("sac_count")->default(0.00);
             $table->float("sac_weight")->default(0.00);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
