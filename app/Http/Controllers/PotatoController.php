@@ -51,7 +51,7 @@ class PotatoController extends Controller
                 $total += $validated['sacs'][$index]['total_weight'];
             }
 
-            if($total < $potato->getAttribute('total_weight')) {
+            if($total <= $potato->getAttribute('total_weight')) {
                 $potato->save();
                 $potato->sacs()->createMany($validated['sacs']);
             }else {
