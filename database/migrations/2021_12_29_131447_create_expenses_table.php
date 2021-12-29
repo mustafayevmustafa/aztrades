@@ -10,7 +10,7 @@ class CreateExpensesTable extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('expense_type_id')->nullable()->index()->constrained('expenses_types');
+            $table->integer('expense_type_id')->nullable();
             $table->string('goods_type')->nullable();
             $table->integer('goods_type_id')->nullable();
             $table->float('expense')->nullable();
