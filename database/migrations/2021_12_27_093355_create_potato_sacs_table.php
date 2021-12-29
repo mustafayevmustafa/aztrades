@@ -10,7 +10,7 @@ class CreatePotatoSacsTable extends Migration
     {
         Schema::create('potato_sacs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("potato_id")->nullable()->index()->constrained();
+            $table->integer("potato_id")->nullable();
             $table->string("name")->unique();
             $table->integer("sac_count")->default(0.00);
             $table->float("sac_weight")->default(0.00);

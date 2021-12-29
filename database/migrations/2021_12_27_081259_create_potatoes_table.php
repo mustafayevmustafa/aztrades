@@ -15,7 +15,7 @@ class CreatePotatoesTable extends Migration
     {
         Schema::create('potatoes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("country_id")->index()->nullable()->constrained()->onDelete('SET NULL');
+            $table->integer("country_id")->nullable()->index();
             $table->string("from_whom");
             $table->string("party")->nullable();
             $table->string("car_number")->nullable();
