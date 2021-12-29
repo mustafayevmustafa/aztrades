@@ -29,7 +29,6 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::redirect('/', '/Admin');
 
 Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], function () {
     Route::redirect('/', 'Admin/dashboard');
@@ -57,18 +56,4 @@ Auth::routes([
     'verify' => false,
 ]);
 
-
 Route::get('locale/{locale}', [Localization::class, 'locale'])->whereAlpha('locale')->where('locale', '[a-z]{2}')->name('locale');
-
-// tiny mce upload
-Route::post('/image/uploads', function (Request $request) {
-    $newMediaUpload = $request->file('file') ? 'media/uploads/' . time() . '.' . $request->file('file')->extension() : "";
-
-    if ($request->hasFile('file')) {
-        $request->file('file')->storeAs('public', $newMediaUpload);
-        return response()->json(['location' => '/storage/' . $newMediaUpload]);
-    }
-
-    return response()->setStatusCode('204');
-});
-
