@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PotatoRequest;
 use App\Models\Country;
+use App\Models\Expense;
+use App\Models\ExpensesType;
+use App\Models\Onion;
 use App\Models\Potato;
 use App\Models\PotatoSac;
 use Illuminate\Http\JsonResponse;
@@ -40,12 +43,24 @@ class PotatoController extends Controller
 
         $potato = Potato::create($validated);
 
-        foreach ($validated['sacs'] as $index => $sac) {
-            $validated['sacs'][$index]['name'] .= " (#{$potato->id})";
+        if($request->has('sacs')){
+            foreach ($validated['sacs'] ?? [] as $index => $sac) {
+                $validated['sacs'][$index]['name'] .= " (#{$potato->id})";
+            }
+            $potato->sacs()->createMany($validated['sacs']);
         }
 
-        if($request->has('sacs')){
-            $potato->sacs()->createMany($validated['sacs']);
+        foreach ($validated as $key => $value) {
+            if (!str_contains($key, 'cost')) continue;
+
+            if(!is_null($value)) {
+                Expense::create([
+                    'expense_type_id' => ExpensesType::costTypes()[$key],
+                    'expense' => $value,
+                    'goods_type' => Potato::class,
+                    'goods_type_id' => $potato->getAttribute('id'),
+                ]);
+            }
         }
 
         return redirect()->route('potatoes.index')->with('success', "Potato {$potato->getAttribute('from_whom')} created successfully!");

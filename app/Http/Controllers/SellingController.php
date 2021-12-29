@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SellingsRequest;
+use App\Models\Expense;
+use App\Models\ExpensesType;
 use App\Models\Onion;
 use App\Models\Potato;
 use App\Models\Selling;
