@@ -51,16 +51,16 @@
                                 <td class="text-nowrap">{{ $onion->getAttribute('is_trash') ? 'Bəli' : 'Xeyir' }}</td>
                                 <td class="text-nowrap">{{ $onion->getAttribute('created_at') }}</td>
                                 <td class="text-nowrap">
-                                    <a href="{{ route('onions.show', $onion) }}" class="btn btn-link p-0"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
-                                    <a href="{{ route('onions.edit', $onion) }}" class="btn btn-link p-0"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
+                                    <a href="{{ route('onions.show', $onion) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
+                                    <a href="{{ route('onions.edit', $onion) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
                                     <button class="btn btn-link p-0" onclick="deleteConfirmation({{ $onion->getAttribute('id') }}, 'onions')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <th colspan="15">
+                                <td colspan="15">
                                     <p class="text-danger">No data found</p>
-                                </th>
+                                </td>
                             </tr>
                         @endforelse
                         </tbody>

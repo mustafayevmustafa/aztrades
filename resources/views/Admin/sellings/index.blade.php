@@ -49,9 +49,9 @@
                             </tr>
                         @empty
                             <tr>
-                                <th colspan="3">
+                                <td colspan="12">
                                     <p class="text-danger text-center">No data found</p>
-                                </th>
+                                </td>
                             </tr>
                         @endforelse
                         </tbody>

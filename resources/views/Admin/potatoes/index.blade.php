@@ -46,16 +46,16 @@
                                 <td class="text-nowrap">{{ $potato->getAttribute('total_weight') }}</td>
                                 <td class="text-nowrap">{{ $potato->getAttribute('created_at') }}</td>
                                 <td class="text-nowrap">
-                                    <a href="{{ route('potatoes.show', $potato) }}" class="btn btn-link p-0"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
-                                    <a href="{{ route('potatoes.edit', $potato) }}" class="btn btn-link p-0"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
+                                    <a href="{{ route('potatoes.show', $potato) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
+                                    <a href="{{ route('potatoes.edit', $potato) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
                                     <button onclick="deleteConfirmation({{ $potato->getAttribute('id') }}, 'potatoes')" class="btn btn-link p-0"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <th colspan="3">
+                                <td colspan="12">
                                     <p class="text-danger">No data found</p>
-                                </th>
+                                </td>
                             </tr>
                         @endforelse
                         </tbody>

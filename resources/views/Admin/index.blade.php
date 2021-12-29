@@ -14,7 +14,7 @@
             <div class="card">
                 <div class="card-body px-2">
                     <h3 class="text-center">AZTRADE COMPANY SATIŞ MƏRKƏZİ</h3>
-                    <button class="btn btn-outline-success" id="show-statistics">Statistikanı görsət</button>
+                    <button class="btn btn-outline-primary" id="show-statistics">Statistikanı görsət</button>
                     <div id="statistics" class="d-none text-center">
                         <div class="my-4">
                             <h4>Günlük</h4>
