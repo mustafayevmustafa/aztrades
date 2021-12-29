@@ -28,6 +28,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Xərcin növu</th>
+                    <th scope="col">Xərcin malın növu</th>
                     <th scope="col">Xərcin malı</th>
                     <th scope="col">Qeyd</th>
                     <th scope="col">Xərc (AZN)</th>
@@ -39,6 +40,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $expense->getRelationValue('type')->getAttribute('name') }}</td>
+                        <td>{{ $expense->goodsType()->exists() ? ($expense->getRelationValue('goodsType')->getTable() == 'onions' ? 'Soğan' : 'Kartof') : 'Digər' }}</td>
                         <td>{{ $expense->goodsType()->exists() ? $expense->getRelationValue('goodsType')->getAttribute('info') : 'Digər'}}</td>
                         <td>{{ $expense->getAttribute('note') }}</td>
                         <td>{{ $expense->getAttribute('expense') }}</td>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OnionRequest;
 use App\Models\City;
+use App\Models\Expense;
+use App\Models\ExpensesType;
 use App\Models\Onion;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -35,7 +37,22 @@ class OnionController extends Controller
 
     public function store(OnionRequest $request): RedirectResponse
     {
-        $onion = Onion::create($request->validated());
+        $validated = $request->validated();
+
+        $onion = Onion::create($validated);
+
+        foreach ($validated as $key => $value) {
+            if (!str_contains($key, 'cost')) continue;
+
+            if(!is_null($value)) {
+                Expense::create([
+                    'expense_type_id' => ExpensesType::costTypes()[$key],
+                    'expense' => $value,
+                    'goods_type' => Onion::class,
+                    'goods_type_id' => $onion->getAttribute('id'),
+                ]);
+            }
+        }
 
         return redirect()->route('onions.index')->with('success', "Onion {$onion->getAttribute('from_whom')} Created successfully!");
     }

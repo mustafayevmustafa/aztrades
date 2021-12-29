@@ -23,7 +23,7 @@ class ExpenseController extends Controller
     public function index()
     {
         return view('Admin.expenses.index')->with([
-            'expenses' => Expense::get()
+            'expenses' => Expense::latest()->latest('expense')->get()
         ]);
     }
 
