@@ -76,10 +76,10 @@
                     </div>
                 </div>
                 <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap justify-content-between">
-                    <button class="btn btn-primary mt-md-0 mx-2 ml-0 btn-block">Borca Gedən</button>
-                    <button class="btn btn-primary mt-md-0 mx-2 btn-block">Borcdan Gələn</button>
-                    <button class="btn btn-primary mt-md-0 mx-2 btn-block">Sklad Xərci</button>
-                    <button class="btn btn-primary mt-md-0 mx-2 btn-block">Əlavə Xərc</button>
+                    <a href="{{route('sellings.index', ['status' => true])}}" class="btn btn-primary mt-md-0 mx-2 ml-0 btn-block">Borca Gedən</a>
+                    <a href="{{route('sellings.index', ['status' => false, 'was_debt' => true])}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Borcdan Gələn</a>
+                    <a href="{{route('expenses.index', ['expense_type_id' => \App\Models\ExpensesType::warehouse_cost])}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Sklad Xərci</a>
+                    <a href="{{route('expenses.index', ['expense_type_id' => \App\Models\ExpensesType::other_cost])}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Digər Xərc</a>
                 </div>
                 <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap">
                     <button  type="button" class="btn btn-success btn-block mt-md-0 mx-2 ml-0" data-toggle="modal" data-target="#exampleModal">Sogan Sat</button>

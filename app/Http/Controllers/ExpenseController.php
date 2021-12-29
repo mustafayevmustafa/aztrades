@@ -12,6 +12,7 @@ use App\Models\Expense;
 use App\Models\ExpensesType;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
 {
@@ -20,10 +21,16 @@ class ExpenseController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $filters = $request->only(['expense_type_id']);
+
         return view('Admin.expenses.index')->with([
-            'expenses' => Expense::latest()->latest('expense')->get()
+            'expenses' => Expense::query()
+                ->when(array_key_exists('expense_type_id', $filters), fn ($q) => $q->where('expense_type_id', $filters['expense_type_id']))
+                ->latest()
+                ->latest('expense')
+                ->get()
         ]);
     }
 

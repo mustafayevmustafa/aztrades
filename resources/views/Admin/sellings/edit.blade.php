@@ -80,8 +80,9 @@
                             <label for="">Kisə Adı</label>
                             <select name="sac_name" class="form-control">
                                 <option value="">Kisə seç</option>
-                                @foreach($sacs as $sac)
-                                    <option value="{{$sac}}" @if($data->getAttribute('sac_name') == $sac) selected @endif>{{$sac}}</option>
+                                @foreach($sacs as $index => $sac)
+                                    @php($key = $type == 'onion' ? $index : $sac)
+                                    <option value="{{$type == 'onion' ? $index : $sac}}" @if($data->getAttribute('sac_name') == $key) selected @endif>{{$sac}}</option>
                                 @endforeach
                             </select>
                             @if($method == 'PUT')
@@ -150,7 +151,7 @@
 @endsection
 
 @section('script')
-    @if ($action != 'POST')
+    @if ($method != 'POST')
         <script>
             $('form :input').attr('readonly', true);
             $('form select').attr('disabled', true);

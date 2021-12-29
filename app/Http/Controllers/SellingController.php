@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SellingsRequest;
-use App\Models\Expense;
-use App\Models\ExpensesType;
 use App\Models\Onion;
 use App\Models\Potato;
+use App\Models\PotatoSac;
 use App\Models\Selling;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -19,10 +18,23 @@ class SellingController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $filters = $request->only(['status', 'was_debt']);
+
         return view('Admin.sellings.index')->with([
-            'sellings' => Selling::latest()->get()
+            'sellings' => Selling::query()
+                ->when(array_key_exists('status', $filters) &&
+                    array_key_exists('was_debt', $filters) &&
+                    $filters['status'] == 0 && $filters['was_debt'] == 1 ,
+                    fn ($q) => $q->where('status', $filters['status'])->where('was_debt', $filters['was_debt'])
+                )
+                ->when(array_key_exists('status', $filters) &&
+                    $filters['status'] == 1,
+                    fn ($q) => $q->where('status', $filters['status'])
+                )
+                ->latest()
+                ->get()
         ]);
     }
 
@@ -36,7 +48,7 @@ class SellingController extends Controller
 
         return view('Admin.sellings.edit', [
             'action' => route('sellings.store'),
-            'method' => null,
+            'method' => 'POST',
             'data'   => new Selling(),
             'type'   => $type,
             'sacs'   => $type->getTable() == 'onions' ?
@@ -63,6 +75,7 @@ class SellingController extends Controller
 
         $sellingableData['total_weight'] = $sellingable->getAttribute('total_weight') - $validated['weight'];
 
+        $sac = new PotatoSac();
         if(!is_null($validated['sac_name']) && $validated['sac_count'] > 0) {
             switch ($sellingable->getTable()) {
                 case 'onions':
@@ -81,11 +94,6 @@ class SellingController extends Controller
                         $error = true;
                         break;
                     }
-
-                    $sac->update([
-                    'sac_count' => $sac->sac_count - $validated['sac_count'],
-                    'total_weight' => $sac->total_weight - $validated['weight'],
-                    ]);
                     break;
             }
         }
@@ -93,10 +101,10 @@ class SellingController extends Controller
         if ($sellingable->getTable() == 'potatoes') {
             $total_sacs_weight = 0;
             foreach ($sellingable->sacs as $_sac) {
-                $total_sacs_weight += $_sac->sac_weight;
+                $total_sacs_weight += $_sac->total_weight;
             }
 
-            if ($total_sacs_weight > $sellingableData['total_weight']) {
+            if ($total_sacs_weight > $validated['weight']) {
                 $error = true;
             }
         }
@@ -105,8 +113,13 @@ class SellingController extends Controller
             return back()->with('message', 'Seçdiyiniz kisədə o qədər say və ya həcm mövcud deyil');
         }
 
+
         $selling->sellingable()->update($sellingableData);
 
+        $sac->update([
+            'sac_count' => $sac->sac_count - $validated['sac_count'],
+            'total_weight' => $sac->total_weight - $validated['weight'],
+        ]);
         $selling->save();
 
         return redirect()->route('sellings.index')->with('success', "Satış uğurlu oldu");
