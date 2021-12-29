@@ -40,10 +40,10 @@
                                 <td>{{ $selling->getAttribute('status') == 0 ? "Nagd" : "Borc" }}</td>
                                 <td>{{ $selling->getAttribute('price')}}</td>
                                 <td>{{ $selling->getAttribute('content') }}</td>
-                                <td>{{ $selling->getAttribute('crated_at') }}</td>
+                                <td>{{ $selling->getAttribute('created_at') }}</td>
                                 <td>
                                     <a href="{{ route('sellings.show', $selling) }}" class="btn"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
-                                    <a href="{{ route('sellings.edit', $selling) }}" class="btn"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
+{{--                                    <a href="{{ route('sellings.edit', $selling) }}" class="btn"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>--}}
                                     <button class="btn" onclick="deleteConfirmation({{ $selling->getAttribute('id') }}, 'sellings')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
                                 </td>
                             </tr>

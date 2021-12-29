@@ -16,7 +16,8 @@ class ExpensesType extends Model implements Recordable
     public const supply_cost = 3;
     public const market_cost = 4;
     public const other_cost = 5;
-    public const cost = 6;
+    public const warehouse_cost = 6;
+    public const cost = 7;
 
     public static function costTypes(): array
     {

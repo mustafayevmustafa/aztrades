@@ -145,6 +145,7 @@ class SellingController extends Controller
     public function update(SellingsRequest $request, Selling $selling): RedirectResponse
     {
         $validated = $request->validated();
+        $validated['status'] = $request->has('status');
 
         if(is_null($validated['sac_name'])) $validated['sac_count'] = null;
 

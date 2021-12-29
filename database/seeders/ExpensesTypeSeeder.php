@@ -11,7 +11,7 @@ class ExpensesTypeSeeder extends Seeder
     {
         DB::table('expenses_types')->insert([
             [
-                'name' => 'Sürücü xərcləri',
+                'name' => 'Sürücü xərci',
                 'key'  => 'driver_cost'
             ],
             [
@@ -29,6 +29,10 @@ class ExpensesTypeSeeder extends Seeder
             [
                 'name' => 'Digər Xərc',
                 'key'  => 'other_cost'
+            ],
+            [
+                'name' => 'Sklad Xərci',
+                'key'  => 'warehouse_cost'
             ],
             [
                 'name' => 'Maya Dəyəri',

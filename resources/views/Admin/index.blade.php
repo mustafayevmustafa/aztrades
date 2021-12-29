@@ -12,9 +12,46 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
-                <div class="card-body">
-                    {{--                    <h2 class="text-center">Welcome, {{ auth()->user()->getAttribute('name') }}!</h2>--}}
-                    <h2 class="text-center">AZTRADE COMPANY SATIŞ MƏRKƏZİ</h2>
+                <div class="card-body text-center">
+                    <h3 class="text-center">AZTRADE COMPANY SATIŞ MƏRKƏZİ</h3>
+                    <div class="my-4">
+                        <h4>Aylıq</h4>
+                        <div class="row text-center m-0 my-4">
+                            <div class="col-12 col-md-4">
+                                <h5 class="card-title">Net gelir</h5>
+                                <p class="card-text">{{$monthly_net_income}} AZN</p>
+                            </div>
+
+                            <div class="col-12 col-md-4">
+                                <h5 class="card-title">Gozlenilen gelir</h5>
+                                <p class="card-text">{{$monthly_waiting_income}} AZN</p>
+                            </div>
+
+                            <div class="col-12 col-md-4">
+                                <h5 class="card-title">Xercler</h5>
+                                <p class="card-text">{{$monthly_expense}} AZN</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-4">
+                        <h4>Ümumi</h4>
+                        <div class="row text-center m-0 my-4">
+                            <div class="col-12 col-md-4">
+                                <h5 class="card-title">Net gelir</h5>
+                                <p class="card-text">{{$net_income}} AZN</p>
+                            </div>
+
+                            <div class="col-12 col-md-4">
+                                <h5 class="card-title">Gozlenilen gelir</h5>
+                                <p class="card-text">{{$waiting_income}} AZN</p>
+                            </div>
+
+                            <div class="col-12 col-md-4">
+                                <h5 class="card-title">Xercler</h5>
+                                <p class="card-text">{{$expense}} AZN</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap justify-content-between">
                     <button class="btn btn-primary mt-md-0 mx-2 ml-0 btn-block">Borca Gedən</button>
@@ -38,9 +75,9 @@
                         <tbody>
                         @foreach($onions as $onion)
                             <tr>
-                                <th>{{$onion->id}}</th>
+                                <th>{{$onion->getAttribute('id')}}</th>
                                 <th>{{$onion->getAttribute('info')}}</th>
-                                <th>{{$onion->total_weight}}</th>
+                                <th>{{$onion->getAttribute('total_weight')}}</th>
                             </tr>
                         @endforeach
 
@@ -57,9 +94,9 @@
                         <tbody>
                         @foreach($potatoes as $potato)
                             <tr>
-                                <th scope="row">{{$potato->id}}</th>
+                                <th scope="row">{{$potato->getAttribute('id')}}</th>
                                 <td>{{$potato->getAttribute('info')}}</td>
-                                <td>{{$potato->total_weight}}</td>
+                                <td>{{$potato->getAttribute('total_weight')}}</td>
                             </tr>
                         @endforeach
                         </tbody>

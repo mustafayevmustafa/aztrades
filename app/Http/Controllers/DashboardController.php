@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Expense;
 use App\Models\Onion;
 use App\Models\Potato;
 use App\Models\Selling;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -14,7 +14,12 @@ class DashboardController extends Controller
         return view('Admin.index')->with([
             'onions' => Onion::notTrash()->hasWeight()->limit(5)->get(),
             'potatoes' => Potato::notTrash()->hasWeight()->limit(5)->get(),
-            'selling' => Selling::get(),
+            'net_income' => Selling::where('status', false)->get()->sum('price'),
+            'waiting_income' => Selling::where('status', true)->get()->sum('price'),
+            'expense' => Expense::get()->sum('expense'),
+            'monthly_net_income' => Selling::where('status', false)->whereMonth('created_at', now()->month)->get()->sum('price'),
+            'monthly_waiting_income' => Selling::where('status', true)->whereMonth('created_at', now()->month)->get()->sum('price'),
+            'monthly_expense' => Expense::whereMonth('created_at', now()->month)->get()->sum('expense'),
         ]);
     }
 }

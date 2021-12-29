@@ -133,8 +133,8 @@
                         </div>
 
                         <div class="form-group form-check">
-                            <input type="checkbox"  name="status" class="form-check-input" id="post-state">
-                            <label class="form-check-label" for="post-state">Borc</label>
+                            <input type="checkbox"  name="status" class="form-check-input" id="data-status" @if($data->getAttribute('status')) checked @endif>
+                            <label class="form-check-label" for="data-status">Borc</label>
                         </div>
 
                         @if ($action)
