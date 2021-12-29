@@ -25,7 +25,7 @@ class CityController extends Controller
 
     public function create()
     {
-        return view('admin.cities.edit', [
+        return view('Admin.cities.edit', [
             'action' => route('cities.store'),
             'method' => null,
             'data'   => null
@@ -43,7 +43,7 @@ class CityController extends Controller
 
     public function show(City $city)
     {
-        return view('admin.cities.edit', [
+        return view('Admin.cities.edit', [
             'action' => null,
             'method' => null,
             'data'   => $city
@@ -52,7 +52,7 @@ class CityController extends Controller
 
     public function edit(City $city)
     {
-        return view('admin.countries.edit', [
+        return view('Admin.countries.edit', [
             'action' => route('cities.update', $city),
             'method' => "PUT",
             'data'   => $city

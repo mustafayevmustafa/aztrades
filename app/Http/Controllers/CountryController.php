@@ -23,7 +23,7 @@ class CountryController extends Controller
 
     public function create()
     {
-        return view('admin.countries.edit', [
+        return view('Admin.countries.edit', [
             'action' => route('countries.store'),
             'method' => null,
             'data'   => null
@@ -41,7 +41,7 @@ class CountryController extends Controller
 
     public function show(Country $country)
     {
-        return view('admin.countries.edit', [
+        return view('Admin.countries.edit', [
             'action' => null,
             'method' => null,
             'data'   => $country
@@ -50,7 +50,7 @@ class CountryController extends Controller
 
     public function edit(Country $country)
     {
-        return view('admin.countries.edit', [
+        return view('Admin.countries.edit', [
             'action' => route('countries.update', $country),
             'method' => "PUT",
             'data'   => $country

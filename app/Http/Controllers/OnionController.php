@@ -27,7 +27,7 @@ class OnionController extends Controller
 
     public function create()
     {
-        return view('admin.onions.edit', [
+        return view('Admin.onions.edit', [
             'action' => route('onions.store'),
             'method' => "POST",
             'data'   => new Onion(),
@@ -59,7 +59,7 @@ class OnionController extends Controller
 
     public function show(Onion $onion)
     {
-        return view('admin.onions.edit', [
+        return view('Admin.onions.edit', [
             'action' => null,
             'method' => null,
             'data'   => $onion,
@@ -69,7 +69,7 @@ class OnionController extends Controller
 
     public function edit(Onion $onion)
     {
-        return view('admin.onions.edit', [
+        return view('Admin.onions.edit', [
             'action' => route('onions.update', $onion),
             'method' => "PUT",
             'data'   => $onion,

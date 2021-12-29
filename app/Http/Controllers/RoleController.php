@@ -22,7 +22,7 @@ class RoleController extends Controller
     }
     public function create()
     {
-        return view('admin.roles.edit', [
+        return view('Admin.roles.edit', [
             'action' => route('roles.store'),
             'method' => null,
             'data'   => null
@@ -40,7 +40,7 @@ class RoleController extends Controller
 
     public function show(Role $role)
     {
-        return view('admin.roles.edit', [
+        return view('Admin.roles.edit', [
             'action' => null,
             'method' => null,
             'data'   => $role
@@ -49,7 +49,7 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
-        return view('admin.roles.edit', [
+        return view('Admin.roles.edit', [
             'action' => route('roles.update', $role),
             'method' => "PUT",
             'data'   => $role
