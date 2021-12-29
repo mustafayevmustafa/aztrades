@@ -77,14 +77,14 @@ class SellingController extends Controller
                 case 'potatoes':
                     $sac = $sellingable->sacs()->where('potato_id', $validated['type_id'])->where('name', $validated['sac_name'])->first();
 
-                    if ($sac->getAttribute('sac_count') < $validated['sac_count'] || $sac->getAttribute('sac_weight') < $validated['weight']) {
+                    if ($sac->getAttribute('sac_count') < $validated['sac_count'] || $sac->getAttribute('total_weight') < $validated['weight']) {
                         $error = true;
                         break;
                     }
 
                     $sac->update([
                     'sac_count' => $sac->sac_count - $validated['sac_count'],
-                    'sac_weight' => $sac->sac_weight - $validated['weight'],
+                    'total_weight' => $sac->total_weight - $validated['weight'],
                     ]);
                     break;
             }

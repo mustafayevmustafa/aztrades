@@ -16,13 +16,13 @@ class CountrySeeder extends Seeder
     {
         DB::table('countries')->insert([
             [
-                'name' => 'Azərbaycan',
+                'name' => 'Türkiyə',
             ],
             [
                 'name' => 'İran',
             ],
             [
-                'name' => 'Ukraniya',
+                'name' => 'Ukrayna',
             ]
         ]);
     }

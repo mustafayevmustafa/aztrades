@@ -29,9 +29,8 @@
                             <h4><strong>Lom Kisə Sayı:</strong> {{$type->lom_bag_number}}</h4>
                         @else
                             @foreach($type->sacs as $sac)
-                                <h4><strong>{{$sac->name}}:</strong> Sayı: {{$sac->sac_count}}, Həcmi: {{$sac->sac_weight}} kg</h4>
+                                <h4><strong>{{$sac->name}}:</strong> Sayı: {{$sac->sac_count}}, Kisə həcmi: {{$sac->total_weight}} kg</h4>
                             @endforeach
-
                         @endif
 
                     </div>
@@ -85,6 +84,9 @@
                                     <option value="{{$sac}}" @if($data->getAttribute('sac_name') == $sac) selected @endif>{{$sac}}</option>
                                 @endforeach
                             </select>
+                            @if($method == 'PUT')
+                                <input type="hidden" value="{{$data->getAttribute('sac_name')}}" name="sac_name">
+                            @endif
                             @error('sac_name')
                             <p class="text-danger">
                                 {{ $message }}
@@ -138,7 +140,7 @@
                         </div>
 
                         @if ($action)
-                            <button type="submit" class="btn btn-primary">Sat</button>
+                            <button type="submit" class="btn btn-primary">@if($method == 'POST') Sat @else Yadda saxla @endif</button>
                         @endif
                     </form>
                 </div>
@@ -148,9 +150,14 @@
 @endsection
 
 @section('script')
-    @if (is_null($action))
+    @if ($action != 'POST')
         <script>
-            $('form :input').attr('disabled', true)
+            $('form :input').attr('readonly', true);
+            $('form select').attr('disabled', true);
+            $('input[name="status"]').attr('disabled', false);
+            $('input[name="_method"]').attr('disabled', false);
+            $('input[name="_token"]').attr('disabled', false);
+            $('button[type="submit"]').attr('disabled', false);
         </script>
     @endif
 @endsection

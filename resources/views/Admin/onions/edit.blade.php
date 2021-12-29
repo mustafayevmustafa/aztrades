@@ -10,9 +10,9 @@
     </div>
 
     <div class="row">
-        <div class="col-xl-12">
+        <div class="col-xl-12 p-0">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body p-1">
                     <div class="d-flex justify-content-between mb-3">
                         <a class="btn btn-outline-primary" href="{{route('onions.index')}}"><i class="mdi mdi-arrow-left"></i></a>
                         @if (is_null($action))
@@ -20,10 +20,10 @@
                         @endif
                     </div>
 
-                    <form action="{{$action}}" method="POST">
+                    <form action="{{$action}}" method="POST" class="row m-0">
                         @csrf @method($method)
 
-                        <div class="form-group">
+                        <div class="form-group col-12 col-md-6">
                             <label for="">Şəhər</label>
                             <select name="city_id" class="form-control">
                                 <option value="">Şəhər Seçin</option>
@@ -38,7 +38,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-12 col-md-6">
                             <label for="post-title">Kimden</label>
                             <input type="text" value="{{ $data->getAttribute('from_whom') }}" name="from_whom" class="form-control" placeholder="Kimden aldığınız daxil edin">
                             @error('from_whom')
@@ -48,7 +48,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-12 col-md-6">
                             <label for="post-title">Maşın Nömrəsi</label>
                             <input type="text" value="{{ $data->getAttribute('car_number') }}" name="car_number" class="form-control" placeholder="Maşın nömrəsini daxil edin">
                             @error('car_number')
@@ -58,7 +58,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-12 col-md-6">
                             <label for="post-title">Sürücü Adı</label>
                             <input type="text" value="{{ $data->getAttribute('driver_name') }}" name="driver_name" class="form-control" placeholder="Sürücü adını daxil edin">
                             @error('driver_name')
@@ -68,7 +68,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-12 col-md-6">
                             <label for="post-title">Sürücü Xərci (AZN)</label>
                             <input type="number" min="0" step=".1" value="{{ $data->getAttribute('driver_cost') }}" name="driver_cost" class="form-control" placeholder="Sürücü xərcini daxil edin">
                             @error('supply_cost')
@@ -78,7 +78,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-12 col-md-6">
                             <label for="post-title">Tədarük Xərci (AZN)</label>
                             <input type="number" min="0" step=".1" value="{{ $data->getAttribute('supply_cost') }}" name="supply_cost" class="form-control" placeholder="Tədarük xərcini daxil edin">
                             @error('supply_cost')
@@ -88,7 +88,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-12 col-md-6">
                             <label for="post-title">Maya Dəyəri (AZN)</label>
                             <input type="number" min="0" step=".1" value="{{ $data->getAttribute('cost') }}" name="cost" class="form-control" placeholder="Maya dəyərini">
                             @error('cost')
@@ -98,7 +98,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-12 col-md-6">
                             <label for="post-title">Çəkisi (kg)</label>
                             <input type="number" min="0" step=".1" value="{{ $data->getAttribute('total_weight') }}" name="total_weight" class="form-control" placeholder="Çəkisini daxil edin">
                             @error('total_weight')
@@ -108,7 +108,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-12 col-md-6">
                             <label for="post-title">Qırmızı Kisə Sayı</label>
                             <input type="number" min="0" step="1" value="{{ $data->getAttribute('red_bag_number') }}" name="red_bag_number" class="form-control" placeholder="Qırmızı kisə sayını daxil edin">
                             @error('red_bag_number')
@@ -118,7 +118,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-12 col-md-6">
                             <label for="post-title">Sarı Kisə Sayı</label>
                             <input type="number" min="0" step="1" value="{{ $data->getAttribute('yellow_bag_number') }}" name="yellow_bag_number" class="form-control" placeholder="Sarı kisə sayını daxil edin">
                             @error('yellow_bag_number')
@@ -128,7 +128,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-12 col-md-6">
                             <label for="post-title">Lom Kisə Sayı</label>
                             <input type="number" min="0" step="1" value="{{ $data->getAttribute('lom_bag_number') }}" name="lom_bag_number" class="form-control" placeholder="Lom kisə sayını daxil edin">
                             @error('lom_bag_number')
@@ -146,7 +146,9 @@
                         @endif
 
                         @if ($action)
-                            <button type="submit" class="btn btn-primary">Yadda saxla</button>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Yadda saxla</button>
+                            </div>
                         @endif
                     </form>
                 </div>

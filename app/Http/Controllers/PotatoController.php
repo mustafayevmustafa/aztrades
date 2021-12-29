@@ -46,6 +46,7 @@ class PotatoController extends Controller
         if($request->has('sacs')){
             foreach ($validated['sacs'] ?? [] as $index => $sac) {
                 $validated['sacs'][$index]['name'] .= " (#{$potato->id})";
+                $validated['sacs'][$index]['total_weight'] = $validated['sacs'][$index]['sac_count'] * $validated['sacs'][$index]['sac_weight'];
             }
             $potato->sacs()->createMany($validated['sacs']);
         }

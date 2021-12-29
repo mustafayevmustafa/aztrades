@@ -12,7 +12,7 @@ class PotatoSac extends Model implements Recordable
 {
     use SoftDeletes, \Altek\Accountant\Recordable, Eventually;
 
-    protected $fillable = ['name', 'sac_count', 'sac_weight'];
+    protected $fillable = ['name', 'sac_count', 'sac_weight', 'total_weight'];
 
     public function potato(): BelongsTo
     {

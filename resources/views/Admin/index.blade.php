@@ -19,17 +19,17 @@
                         <div class="row text-center m-0 my-4">
                             <div class="col-12 col-md-4">
                                 <h5 class="card-title">Net gelir</h5>
-                                <p class="card-text">{{$monthly_net_income}} AZN</p>
+                                <p class="card-text" style="font-size: 16px">{{$monthly_net_income}} AZN</p>
                             </div>
 
                             <div class="col-12 col-md-4">
                                 <h5 class="card-title">Gozlenilen gelir</h5>
-                                <p class="card-text">{{$monthly_waiting_income}} AZN</p>
+                                <p class="card-text" style="font-size: 16px">{{$monthly_waiting_income}} AZN</p>
                             </div>
 
                             <div class="col-12 col-md-4">
                                 <h5 class="card-title">Xercler</h5>
-                                <p class="card-text">{{$monthly_expense}} AZN</p>
+                                <p class="card-text" style="font-size: 16px">{{$monthly_expense}} AZN</p>
                             </div>
                         </div>
                     </div>
@@ -38,17 +38,17 @@
                         <div class="row text-center m-0 my-4">
                             <div class="col-12 col-md-4">
                                 <h5 class="card-title">Net gelir</h5>
-                                <p class="card-text">{{$net_income}} AZN</p>
+                                <p class="card-text" style="font-size: 16px">{{$net_income}} AZN</p>
                             </div>
 
                             <div class="col-12 col-md-4">
                                 <h5 class="card-title">Gozlenilen gelir</h5>
-                                <p class="card-text">{{$waiting_income}} AZN</p>
+                                <p class="card-text" style="font-size: 16px">{{$waiting_income}} AZN</p>
                             </div>
 
                             <div class="col-12 col-md-4">
                                 <h5 class="card-title">Xercler</h5>
-                                <p class="card-text">{{$expense}} AZN</p>
+                                <p class="card-text" style="font-size: 16px">{{$expense}} AZN</p>
                             </div>
                         </div>
                     </div>
