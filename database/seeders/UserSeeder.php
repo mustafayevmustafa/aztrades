@@ -16,6 +16,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        \DB::table('users')->truncate();
+
         $user = User::create(['name' => 'Admin','email' => 'admin@admin.com', 'email_verified_at' => now(), 'password' => Hash::make('admin123'), 'remember_token' => Str::random(10)]);
         $user->roles()->sync([1]);
 
