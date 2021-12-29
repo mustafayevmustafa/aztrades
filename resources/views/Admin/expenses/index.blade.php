@@ -32,6 +32,7 @@
                     <th scope="col">Xərcin malı</th>
                     <th scope="col">Qeyd</th>
                     <th scope="col">Xərc (AZN)</th>
+                    <th scope="col">Tarix</th>
                     <th scope="col">Əməliyyatlar</th>
                 </tr>
                 </thead>
@@ -44,6 +45,7 @@
                         <td>{{ $expense->goodsType()->exists() ? $expense->getRelationValue('goodsType')->getAttribute('info') : 'Digər'}}</td>
                         <td>{{ $expense->getAttribute('note') }}</td>
                         <td>{{ $expense->getAttribute('expense') }}</td>
+                        <td>{{ $expense->getAttribute('created_at') }}</td>
                         <td>
                             <a href="{{ route('expenses.show', $expense) }}" class="btn btn-outline-success">Show</a>
                             <a href="{{ route('expenses.edit', $expense) }}" class="btn btn-outline-primary">Edit</a>

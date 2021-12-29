@@ -28,6 +28,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Ölkə Adı</th>
+                <th scope="col">Tarix</th>
                 <th scope="col">Actions</th>
             </tr>
             </thead>
@@ -36,6 +37,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $country->getAttribute('name') }}</td>
+                    <td>{{ $country->getAttribute('created_at') }}</td>
                     <td>
                         <a href="{{ route('countries.show', $country) }}" class="btn btn-outline-success">Show</a>
 

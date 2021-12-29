@@ -29,6 +29,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Xərclərin Tipinin adı</th>
                     <th scope="col">Xərclərin Tipinin acarı</th>
+                    <th scope="col">Tarix</th>
                     <th scope="col">Əməliyyatlar</th>
                 </tr>
                 </thead>
@@ -38,6 +39,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $type->getAttribute('name') }}</td>
                         <td>{{ $type->getAttribute('key') }}</td>
+                        <td>{{ $type->getAttribute('created_at') }}</td>
                         <td>
                             <a href="{{ route('expenses_types.show', $type) }}" class="btn btn-outline-success">Show</a>
                             <a href="{{ route('expenses_types.edit', $type) }}" class="btn btn-outline-primary">Edit</a>

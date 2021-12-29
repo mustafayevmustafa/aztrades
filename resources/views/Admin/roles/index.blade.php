@@ -25,6 +25,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Icazə</th>
+                            <th scope="col">Tarix</th>
                             <th scope="col">Actions</th>
                         </tr>
                         </thead>
@@ -33,6 +34,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $role->getAttribute('name') }}</td>
+                                <td>{{ $role->getAttribute('created_at') }}</td>
                                 <td>
                                     <a href="{{ route('roles.show', $role) }}" class="btn"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
                                     <a href="{{ route('roles.edit', $role) }}" class="btn"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>

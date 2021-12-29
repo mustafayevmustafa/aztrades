@@ -17,7 +17,8 @@ class CreateSellingsTable extends Migration
             $table->float("price")->nullable();
             $table->string("sac_name")->nullable();
             $table->integer("sac_count")->nullable();
-            $table->integer("status")->nullable();
+            $table->boolean("status")->default(false);
+            $table->boolean("was_debt")->default(false);
             $table->string("content")->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -16,6 +16,7 @@ class Selling extends Model implements Recordable
         'customer',
         'content',
         'status',
+        'was_debt',
         'weight',
         'price',
         'sac_count',
@@ -26,7 +27,8 @@ class Selling extends Model implements Recordable
     ];
 
     protected $casts = [
-        'status' => 'boolean'
+        'status' => 'boolean',
+        'was_debt' => 'boolean',
     ];
 
     public function sellingable(): MorphTo

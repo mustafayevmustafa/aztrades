@@ -34,7 +34,7 @@
                                 <th class="text-nowrap" scope="col">Maya Dəyəri (AZN)</th>
                                 <th class="text-nowrap" scope="col">Çəkisi</th>
                                 <th class="text-nowrap" scope="col">Atxot Mal</th>
-                                <th class="text-nowrap" scope="col">Yaradılma Tarixi</th>
+                                <th class="text-nowrap" scope="col">Tarix</th>
                                 <th class="text-nowrap" scope="col">Əməliyyatlar</th>
                             </tr>
                         </thead>

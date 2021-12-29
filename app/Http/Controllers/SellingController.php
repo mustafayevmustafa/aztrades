@@ -50,6 +50,7 @@ class SellingController extends Controller
         $validated = $request->validated();
 
         $validated['status'] = $request->has('status');
+        $validated['was_debt'] = $validated['status'];
 
         // Store sellingable model
         $validated['sellingable_type'] = $request->get('type') === 'onion' ? Onion::class : Potato::class;

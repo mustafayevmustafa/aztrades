@@ -30,7 +30,7 @@
                             <th class="text-nowrap" scope="col">Sürücünün Adı</th>
                             <th class="text-nowrap" scope="col">Maya Dəyəri (AZN)</th>
                             <th class="text-nowrap" scope="col">Ümumi Çəkisi (kg)</th>
-                            <th class="text-nowrap" scope="col">Yaradılma Tarixi</th>
+                            <th class="text-nowrap" scope="col">Tarix</th>
                             <th class="text-nowrap" scope="col">Əməliyyatlar</th>
                         </tr>
                         </thead>
