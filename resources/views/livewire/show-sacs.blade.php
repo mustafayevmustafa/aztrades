@@ -11,9 +11,9 @@
                 <div class="row d-flex align-items-center m-0">
                     <input type="hidden"  name="sacs[{{$index}}][id]"    value="{{$sac['id']}}" />
                     <x-forms.input        name="sacs[{{$index}}][name]" :value="$sac['name']" label="Kisə adı"/>
-                    <x-forms.input        name="sacs[{{$index}}][sac_count]"  :value="$sac['sac_count']" label="Kisə sayı"/>
-                    <x-forms.input        name="sacs[{{$index}}][sac_weight]"  :value="$sac['sac_weight']" label="Kisə həcmi (kg)"/>
-                    <x-forms.input        name="sacs[{{$index}}][total_weight]"  :value="$sac['total_weight']" label="Kisə həcmi (kg)" :status="false"/>
+                    <x-forms.input        name="sacs[{{$index}}][sac_count]"     :value="$sac['sac_count']" label="Kisə sayı"/>
+                    <x-forms.input        name="sacs[{{$index}}][sac_weight]"    :value="$sac['sac_weight']" label="Kisə həcmi (kg)"/>
+                    <x-forms.input        name="sacs[{{$index}}][total_weight]"  :value="$sac['total_weight']" label="Kisə həcmi (kg)" :status="false" info="Kisə yadda saxlanan zaman avtomatik olaraq hesablanacaqdır"/>
                     @if($action)
                         <div class="form-group col-12 col-md-1 mb-3 mb-md-0 mt-0 mt-md-3 pl-3 pl-md-0">
                             <button type="button" wire:click.prevent="removeSac({{$index}})" class="btn btn-outline-danger">

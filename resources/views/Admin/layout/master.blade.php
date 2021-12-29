@@ -55,6 +55,10 @@
         <script src="{{ asset('assets/js/app.js') }}"></script>
         <!-- Swal -->
         <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+
             function deleteConfirmation(id, model) {
                 swal({
                     title: "Delete?",
