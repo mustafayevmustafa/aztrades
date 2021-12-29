@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Onion extends Model implements Recordable
+class Onion extends Model
 {
-    use SoftDeletes, \Altek\Accountant\Recordable, Eventually;
+    use SoftDeletes;
 
     protected $fillable = [
         'from_whom',

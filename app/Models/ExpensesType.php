@@ -7,9 +7,9 @@ use Altek\Eventually\Eventually;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ExpensesType extends Model implements Recordable
+class ExpensesType extends Model
 {
-    use SoftDeletes, \Altek\Accountant\Recordable, Eventually;
+    use SoftDeletes;
 
     public const driver_cost = 1;
     public const custom_cost = 2;

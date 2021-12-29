@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Selling extends Model implements Recordable
+class Selling extends Model
 {
-    use SoftDeletes, \Altek\Accountant\Recordable, Eventually;
+    use SoftDeletes;
 
     protected $fillable = [
         'customer',

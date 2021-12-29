@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Potato extends Model implements Recordable
+class Potato extends Model
 {
-    use SoftDeletes, \Altek\Accountant\Recordable, Eventually;
+    use SoftDeletes;
 
     protected $fillable = [
         'from_whom',
