@@ -41,14 +41,22 @@ class PotatoController extends Controller
     {
         $validated = $request->validated();
 
-        $potato = Potato::create($validated);
+        $potato = new Potato($validated);
 
+        $total = 0;
         if($request->has('sacs')){
             foreach ($validated['sacs'] ?? [] as $index => $sac) {
-                $validated['sacs'][$index]['name'] .= " (#{$potato->id})";
+                $validated['sacs'][$index]['name'] .= " (#{$potato->getAttribute('id')})";
                 $validated['sacs'][$index]['total_weight'] = $validated['sacs'][$index]['sac_count'] * $validated['sacs'][$index]['sac_weight'];
+                $total += $validated['sacs'][$index]['total_weight'];
             }
-            $potato->sacs()->createMany($validated['sacs']);
+
+            if($total < $potato->getAttribute('total_weight')) {
+                $potato->save();
+                $potato->sacs()->createMany($validated['sacs']);
+            }else {
+                 return back()->with('message', 'Daxil etdiyiniz kisə həcmi qədər həcm mövcud deyil');
+            }
         }
 
         foreach ($validated as $key => $value) {
@@ -110,6 +118,7 @@ class PotatoController extends Controller
     public function destroy(Potato $potato): JsonResponse
     {
         if($potato->delete()){
+            $potato->expenses()->delete();
             return response()->json(['code' => 200]);
         }else{
             return response()->json(['code' => 400]);

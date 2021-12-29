@@ -56,4 +56,9 @@ class Onion extends Model implements Recordable
     {
         return "{$this->getAttribute('from_whom')} ({$this->getAttribute('car_number')}) ({$this->getRelationValue('city')->getAttribute('name')} #{$this->getAttribute('id')})";
     }
+
+    public function expenses()
+    {
+        return  Expense::where('goods_type', Onion::class)->where('goods_type_id', $this->getAttribute('id'));
+    }
 }

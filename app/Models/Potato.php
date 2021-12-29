@@ -62,4 +62,9 @@ class Potato extends Model implements Recordable
     {
         return "{$this->getAttribute('from_whom')} ({$this->getAttribute('car_number')}) ({$this->getRelationValue('country')->getAttribute('name')} #{$this->getAttribute('id')})";
     }
+
+    public function expenses()
+    {
+        return  Expense::where('goods_type', Potato::class)->where('goods_type_id', $this->getAttribute('id'));
+    }
 }

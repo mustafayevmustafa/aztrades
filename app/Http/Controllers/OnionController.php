@@ -91,6 +91,7 @@ class OnionController extends Controller
     public function destroy(Onion $onion): JsonResponse
     {
         if($onion->delete()){
+            $onion->expenses()->delete();
             return response()->json(['code' => 200]);
         }else{
             return response()->json(['code' => 400]);

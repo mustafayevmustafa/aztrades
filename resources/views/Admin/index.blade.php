@@ -69,7 +69,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Son Alınan Soğanlar</th>
-                            <th scope="col">Qalıq Çəki(kq)</th>
+                            <th scope="col">Qalıq Çəki (kq)</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -88,7 +88,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Son Alınan Kartoflar</th>
-                            <th scope="col">Qalıq Çəki(kq)</th>
+                            <th scope="col">Qalıq Çəki (kq)</th>
                         </tr>
                         </thead>
                         <tbody>

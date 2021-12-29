@@ -21,8 +21,14 @@
 
                     <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
                       @csrf @method($method)
-                      <div class="row">
 
+                      @if (session('message'))
+                          <div class="alert alert-danger my-2">
+                              {{ session('message') }}
+                          </div>
+                      @endif
+
+                      <div class="row">
                           <div class="col-12 col-md-4">
                               <div class="form-group">
                                   <label>Ölkə</label>
