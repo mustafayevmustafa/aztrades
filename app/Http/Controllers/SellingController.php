@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SellingsRequest;
 use App\Models\Onion;
 use App\Models\Potato;
-use App\Models\PotatoSac;
 use App\Models\Selling;
+use App\Models\Setting;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,7 +15,10 @@ class SellingController extends Controller
 {
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('auth');
+
+        abort_if(!Setting::first()->getAttribute('is_active'), 503);
     }
 
     public function index(Request $request)
