@@ -25,8 +25,8 @@ class OnionController extends Controller
 
         $types = ['Aktiv mallar', 'Atxod mallar'];
 
-        return view('Admin.potatoes.index')->with([
-            'potatoes' => Onion::query()
+        return view('Admin.onions.index')->with([
+            'onions' => Onion::query()
                 ->when($is_trash == 0, fn($q) => $q->where('is_trash', 0))
                 ->when($is_trash == 1, fn($q) => $q->where('is_trash', 1))
                 ->latest()
