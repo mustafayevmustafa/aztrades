@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             ExpensesTypeSeeder::class,
             UserSeeder::class,
+            SettingSeeder::class
         ]);
     }
 }

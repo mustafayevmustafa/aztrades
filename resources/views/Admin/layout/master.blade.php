@@ -16,6 +16,8 @@
     <!-- App Css-->
     <link href="{{ secure_asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
+    <link rel="stylesheet" href="{{mix('css/app.css')}}">
+
     <!-- SweetAlert2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
     <style>

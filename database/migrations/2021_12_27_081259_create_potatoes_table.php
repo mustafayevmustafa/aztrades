@@ -16,7 +16,7 @@ class CreatePotatoesTable extends Migration
         Schema::create('potatoes', function (Blueprint $table) {
             $table->id();
             $table->integer("country_id")->nullable()->index();
-            $table->string("from_whom");
+            $table->string("from_whom")->nullable();
             $table->string("party")->nullable();
             $table->string("car_number")->nullable();
             $table->string("driver_name")->nullable();

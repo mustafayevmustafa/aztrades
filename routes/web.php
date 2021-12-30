@@ -13,6 +13,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OnionController;
 use App\Http\Controllers\PotatoController;
 use App\Http\Middleware\Localization;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -43,6 +44,12 @@ Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], 
     Route::resource('expenses_types', ExpensesTypeController::class);
     Route::resource('expenses', ExpenseController::class);
 
+    Route::get('/toggle-active', function (){
+        $setting = Setting::first();
+        Setting::first()->update(['is_active' => !$setting->getAttribute('is_active')]);
+
+        return back();
+    })->name('settings.toggle-state');
 });
 
 Auth::routes([

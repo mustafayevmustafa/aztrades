@@ -14,6 +14,7 @@
             <div class="card">
                 <div class="card-body px-2">
                     <h3 class="text-center">AZTRADE COMPANY SATIŞ MƏRKƏZİ</h3>
+                    <a href="{{route('settings.toggle-state')}}" class="btn @if($setting->getAttribute('is_active')) btn-outline-danger @else btn-outline-success @endif">Satışı @if($setting->getAttribute('is_active')) bağla @else aç @endif</a>
                     <button class="btn btn-outline-primary" id="show-statistics">Statistikanı görsət</button>
                     <div id="statistics" class="d-none text-center">
                         <div class="my-4">
@@ -94,10 +95,14 @@
                     <a href="{{route('expenses.index', ['expense_type_id' => \App\Models\ExpensesType::warehouse_cost])}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Sklad Xərci</a>
                     <a href="{{route('expenses.index', ['expense_type_id' => \App\Models\ExpensesType::other_cost])}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Digər Xərc</a>
                 </div>
-                <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap">
-                    <button  type="button" class="btn btn-success btn-block mt-md-0 mx-2 ml-0" data-toggle="modal" data-target="#exampleModal">Sogan Sat</button>
-                    <button  type="button" class="btn btn-success btn-block mt-md-0 mx-2 ml-0" data-toggle="modal" data-target="#ModalPotato">Kartof Sat</button>
-                </div>
+
+                @if($setting->getAttribute('is_active'))
+                    <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap">
+                        <button  type="button" class="btn btn-success btn-block mt-md-0 mx-2 ml-0" data-toggle="modal" data-target="#exampleModal">Sogan Sat</button>
+                        <button  type="button" class="btn btn-success btn-block mt-md-0 mx-2 ml-0" data-toggle="modal" data-target="#ModalPotato">Kartof Sat</button>
+                    </div>
+                @endif
+
                 <div class="card-body row">
                     <div class="col-12 col-md-5 p-0 pr-md-1">
                         <table class="table mx-2 ml-0 table-dark">
@@ -116,7 +121,7 @@
                                 <tr>
                                     <th>{{$onion->getAttribute('id')}}</th>
                                     <th>
-                                        <a class="text-white"    href="{{route('sellings.create', ['type_id' => $onion->getAttribute('id'), 'type' => 'onion'])}}">
+                                        <a class="text-white @if(!$setting->getAttribute('is_active')) disabled @endif"  href="{{route('sellings.create', ['type_id' => $onion->getAttribute('id'), 'type' => 'onion'])}}">
                                             {{$onion->getAttribute('info')}}
                                         </a>
                                     </th>
@@ -145,7 +150,7 @@
                                     <tr>
                                         <th scope="row">{{$potato->getAttribute('id')}}</th>
                                         <td>
-                                            <a class="text-white" href="{{route('sellings.create', ['type_id' => $potato->getAttribute('id'), 'type' => 'potato'])}}">
+                                            <a class="text-white @if(!$setting->getAttribute('is_active')) disabled @endif" href="{{route('sellings.create', ['type_id' => $potato->getAttribute('id'), 'type' => 'potato'])}}">
                                                 {{$potato->getAttribute('info')}}
                                             </a>
                                         </td>

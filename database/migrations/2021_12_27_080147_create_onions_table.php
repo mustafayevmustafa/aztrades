@@ -11,7 +11,7 @@ class CreateOnionsTable extends Migration
         Schema::create('onions', function (Blueprint $table) {
             $table->id();
             $table->integer('city_id')->nullable()->index();
-            $table->string("from_whom");
+            $table->string("from_whom")->nullable();
             $table->string("car_number")->nullable();
             $table->string("driver_name")->nullable();
             $table->float("driver_cost")->nullable();
