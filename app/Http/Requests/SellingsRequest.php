@@ -21,8 +21,8 @@ class SellingsRequest extends FormRequest
             'status' => 'nullable',
             'weight' => 'nullable|numeric',
             'price' => 'required|numeric',
-            'sac_name' => 'nullable|string',
-            'sac_count' => 'required_with:sac_name,|nullable|numeric',
+            'sac_name' => 'nullable|string|required_with:sac_count',
+            'sac_count' => 'required_with:sac_name|nullable|numeric',
             'type' => 'nullable|string',
             'type_id' => 'nullable|integer',
         ];

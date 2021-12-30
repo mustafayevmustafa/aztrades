@@ -77,6 +77,7 @@ class SellingController extends Controller
         $error = false;
 
         $validated['weight'] = $validated['weight'] ?? 0;
+        $validated['sac_count'] = $validated['sac_count'] ?? 0;
 
         $sellingableData['total_weight'] = $sellingable->getAttribute('total_weight') - $validated['weight'];
 
@@ -114,7 +115,7 @@ class SellingController extends Controller
 
         $selling->sellingable()->update($sellingableData);
 
-        if($sellingable->getTable() == 'potatoes') {
+        if($sellingable->getTable() == 'potatoes' && !is_null($validated['sac_name']) && $validated['sac_count'] > 0) {
             $sac_count = $sac->sac_count - $validated['sac_count'];
             $sac->update([
                 'sac_count' => $sac_count,
