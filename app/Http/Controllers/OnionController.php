@@ -86,6 +86,23 @@ class OnionController extends Controller
 
         $onion->update($validated);
 
+        foreach ($validated as $key => $value) {
+            if (!str_contains($key, 'cost')) continue;
+
+            if(!is_null($value)) {
+                Expense::updateOrCreate(
+                    [
+                        'expense_type_id' => ExpensesType::costTypes()[$key],
+                        'goods_type' => Onion::class,
+                        'goods_type_id' => $onion->getAttribute('id')
+                    ],
+                    [
+                        'expense' => $value,
+                    ]
+                );
+            }
+        }
+
         return redirect()->route('onions.index')->with('success', "Onion {$onion->getAttribute('from_whom')} updated successfully!");
     }
 

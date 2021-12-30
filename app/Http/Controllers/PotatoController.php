@@ -115,6 +115,23 @@ class PotatoController extends Controller
 
         $sacs->each(fn($sac) => $potato->sacs()->updateOrCreate(['id' => $sac['id']], $sac));
 
+        foreach ($validated as $key => $value) {
+            if (!str_contains($key, 'cost')) continue;
+
+            if(!is_null($value)) {
+                Expense::updateOrCreate(
+                    [
+                        'expense_type_id' => ExpensesType::costTypes()[$key],
+                        'goods_type' => Potato::class,
+                        'goods_type_id' => $potato->getAttribute('id')
+                    ],
+                    [
+                        'expense' => $value,
+                    ]
+                );
+            }
+        }
+
         return redirect()->route('potatoes.index')->with('success', "Potato {$potato->getAttribute('from_whom')} updated successfully!");
     }
 
