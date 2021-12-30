@@ -20,7 +20,7 @@
                             <h4>Günlük</h4>
                             <div class="row text-center m-0 my-4">
                                 <div class="col-12 col-md-4">
-                                    <h5 class="card-title">Cibimdəki Pul</h5>
+                                    <h5 class="card-title">Gəlir</h5>
                                     <p class="card-text" style="font-size: 16px">{{$daily_net_income}} AZN</p>
                                 </div>
 
@@ -39,12 +39,12 @@
                             <h4>Aylıq</h4>
                             <div class="row text-center m-0 my-4">
                                 <div class="col-12 col-md-4">
-                                    <h5 class="card-title">Cibimdəki Pul</h5>
+                                    <h5 class="card-title">Gəlir</h5>
                                     <p class="card-text" style="font-size: 16px">{{$monthly_net_income}} AZN</p>
                                 </div>
 
                                 <div class="col-12 col-md-4">
-                                    <h5 class="card-title">Borcdan gələn gəlir</h5>
+                                    <h5 class="card-title">Borcdan gozlənilən gəlir</h5>
                                     <p class="card-text" style="font-size: 16px">{{$monthly_waiting_income}} AZN</p>
                                 </div>
 
@@ -58,12 +58,12 @@
                             <h4>Ümumi</h4>
                             <div class="row text-center m-0 my-4">
                                 <div class="col-12 col-md-4">
-                                    <h5 class="card-title">Cibimdəki Pul</h5>
+                                    <h5 class="card-title">Gəlir</h5>
                                     <p class="card-text" style="font-size: 16px">{{$net_income}} AZN</p>
                                 </div>
 
                                 <div class="col-12 col-md-4">
-                                    <h5 class="card-title">Borcdan gələn gelir</h5>
+                                    <h5 class="card-title">Borcdan gozlənilən gelir</h5>
                                     <p class="card-text" style="font-size: 16px">{{$waiting_income}} AZN</p>
                                 </div>
 

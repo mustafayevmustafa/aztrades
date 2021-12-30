@@ -14,7 +14,7 @@ class PotatoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'from_whom' => 'string',
+            'from_whom' => 'nullable|string',
             'car_number' => 'nullable|string',
             'driver_name' => 'nullable|string',
             'driver_cost' => 'nullable|numeric',
