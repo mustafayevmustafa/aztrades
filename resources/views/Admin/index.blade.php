@@ -20,12 +20,12 @@
                             <h4>Günlük</h4>
                             <div class="row text-center m-0 my-4">
                                 <div class="col-12 col-md-4">
-                                    <h5 class="card-title">Net gelir</h5>
+                                    <h5 class="card-title">Cibimdəki Pul</h5>
                                     <p class="card-text" style="font-size: 16px">{{$daily_net_income}} AZN</p>
                                 </div>
 
                                 <div class="col-12 col-md-4">
-                                    <h5 class="card-title">Gozlenilen gelir</h5>
+                                    <h5 class="card-title">Borcdan gələn gəlir</h5>
                                     <p class="card-text" style="font-size: 16px">{{$daily_waiting_income}} AZN</p>
                                 </div>
 
@@ -39,12 +39,12 @@
                             <h4>Aylıq</h4>
                             <div class="row text-center m-0 my-4">
                                 <div class="col-12 col-md-4">
-                                    <h5 class="card-title">Net gelir</h5>
+                                    <h5 class="card-title">Cibimdəki Pul</h5>
                                     <p class="card-text" style="font-size: 16px">{{$monthly_net_income}} AZN</p>
                                 </div>
 
                                 <div class="col-12 col-md-4">
-                                    <h5 class="card-title">Gozlenilen gelir</h5>
+                                    <h5 class="card-title">Borcdan gələn gəlir</h5>
                                     <p class="card-text" style="font-size: 16px">{{$monthly_waiting_income}} AZN</p>
                                 </div>
 
@@ -58,12 +58,12 @@
                             <h4>Ümumi</h4>
                             <div class="row text-center m-0 my-4">
                                 <div class="col-12 col-md-4">
-                                    <h5 class="card-title">Net gelir</h5>
+                                    <h5 class="card-title">Cibimdəki Pul</h5>
                                     <p class="card-text" style="font-size: 16px">{{$net_income}} AZN</p>
                                 </div>
 
                                 <div class="col-12 col-md-4">
-                                    <h5 class="card-title">Gozlenilen gelir</h5>
+                                    <h5 class="card-title">Borcdan gələn gelir</h5>
                                     <p class="card-text" style="font-size: 16px">{{$waiting_income}} AZN</p>
                                 </div>
 
@@ -90,8 +90,11 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Son Alınan Soğanlar</th>
-                            <th scope="col">Qalıq Çəki (kq)</th>
+                            <th scope="col">Son Satılan Soğanlar</th>
+                            <th scope="col">Sarı Kisə Sayı</th>
+                            <th scope="col">Qırmızı Kisə Sayı</th>
+                            <th scope="col">Lom Kisə Sayı</th>
+                            <th scope="col">Qalıq</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -99,6 +102,9 @@
                             <tr>
                                 <th>{{$onion->getAttribute('id')}}</th>
                                 <th>{{$onion->getAttribute('info')}}</th>
+                                <th>{{$onion->getAttribute('total_weight')}}</th>
+                                <th>{{$onion->getAttribute('total_weight')}}</th>
+                                <th>{{$onion->getAttribute('total_weight')}}</th>
                                 <th>{{$onion->getAttribute('total_weight')}}</th>
                             </tr>
                         @endforeach
@@ -109,7 +115,8 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Son Alınan Kartoflar</th>
+                            <th scope="col">Son Satılan Kartoflar</th>
+                            <th scope="col">Kisə Sayı</th>
                             <th scope="col">Qalıq Çəki (kq)</th>
                         </tr>
                         </thead>
@@ -119,10 +126,15 @@
                                 <th scope="row">{{$potato->getAttribute('id')}}</th>
                                 <td>{{$potato->getAttribute('info')}}</td>
                                 <td>{{$potato->getAttribute('total_weight')}}</td>
+                                <td>{{$potato->getAttribute('total_weight')}}</td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="col-12 col-md-4">
+                    <h5 class="card-title">Cibimdəki Pul</h5>
+                    <p class="card-text" style="font-size: 16px">{{$net_income}} AZN</p>
                 </div>
             </div>
         </div>

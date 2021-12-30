@@ -9,7 +9,7 @@ class OnionRequest extends FormRequest
     public function rules()
     {
         return [
-            'from_whom' => 'required|string',
+            'from_whom' => 'string',
             'car_number' => 'nullable|string',
             'driver_name' => 'nullable|string',
             'driver_cost' => 'nullable|numeric',
