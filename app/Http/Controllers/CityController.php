@@ -20,7 +20,7 @@ class CityController extends Controller
     public function index()
     {
         return view('Admin.cities.index')->with([
-            'cities' => City::get()
+            'cities' => City::paginate(10)
         ]);
     }
 

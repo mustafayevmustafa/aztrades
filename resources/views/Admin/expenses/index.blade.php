@@ -55,7 +55,9 @@
                 @endforeach
                 </tbody>
               </table>
-            </div>
+              {{ $expenses->appends(request()->input())->links() }}
+
+              </div>
           </div>
         </div>
     </div>

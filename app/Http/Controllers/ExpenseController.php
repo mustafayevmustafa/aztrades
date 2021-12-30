@@ -32,7 +32,7 @@ class ExpenseController extends Controller
                 ->when(array_key_exists('all_except', $filters), fn ($q) => $q->where('expense_type_id', '!=', $filters['all_except']))
                 ->latest()
                 ->latest('expense')
-                ->get()
+                ->paginate(25)
         ]);
     }
 

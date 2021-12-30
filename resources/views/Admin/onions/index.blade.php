@@ -23,8 +23,18 @@
                         </div>
                     @endif
 
-                    <table class="table table-responsive">
-                        <thead>
+                    <form action="{{route('onions.index')}}">
+                        <div class="form-group col-12 col-md-6 p-0">
+                            <label for="is-trash-filter">Malin statusu uzre filterle</label>
+                            <select class="form-control" id="is-trash-filter" name="is_trash">
+                                @foreach($types as $index => $type)
+                                    <option value="{{$index}}" @if($is_trash == $index) selected @endif>{{$type}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <table class="table table-responsive">
+                            <thead>
                             <tr>
                                 <th class="text-nowrap" scope="col">#</th>
                                 <th class="text-nowrap" scope="col">Şəhər</th>
@@ -37,34 +47,36 @@
                                 <th class="text-nowrap" scope="col">Tarix</th>
                                 <th class="text-nowrap" scope="col">Əməliyyatlar</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                        @forelse ($onions as $onion)
-                            <tr>
-                                <td class="text-nowrap">{{ $onion->id }}</td>
-                                <td class="text-nowrap">{{ $onion->getRelationValue('city')->getAttribute('name') }}</td>
-                                <td class="text-nowrap">{{ $onion->getAttribute('from_whom') }}</td>
-                                <td class="text-nowrap">{{ $onion->getAttribute('car_number') }}</td>
-                                <td class="text-nowrap">{{ $onion->getAttribute('supply_cost') }}</td>
-                                <td class="text-nowrap">{{ $onion->getAttribute('cost') }}</td>
-                                <td class="text-nowrap">{{ $onion->getAttribute('total_weight') }}</td>
-                                <td class="text-nowrap">{{ $onion->getAttribute('is_trash') ? 'Bəli' : 'Xeyir' }}</td>
-                                <td class="text-nowrap">{{ $onion->getAttribute('created_at') }}</td>
-                                <td class="text-nowrap">
-                                    <a href="{{ route('onions.show', $onion) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
-                                    <a href="{{ route('onions.edit', $onion) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
-                                    <button class="btn btn-link p-0" onclick="deleteConfirmation({{ $onion->getAttribute('id') }}, 'onions')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="15">
-                                    <p class="text-danger">No data found</p>
-                                </td>
-                            </tr>
-                        @endforelse
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @forelse ($onions as $onion)
+                                <tr>
+                                    <td class="text-nowrap">{{ $onion->id }}</td>
+                                    <td class="text-nowrap">{{ $onion->getRelationValue('city')->getAttribute('name') }}</td>
+                                    <td class="text-nowrap">{{ $onion->getAttribute('from_whom') }}</td>
+                                    <td class="text-nowrap">{{ $onion->getAttribute('car_number') }}</td>
+                                    <td class="text-nowrap">{{ $onion->getAttribute('supply_cost') }}</td>
+                                    <td class="text-nowrap">{{ $onion->getAttribute('cost') }}</td>
+                                    <td class="text-nowrap">{{ $onion->getAttribute('total_weight') }}</td>
+                                    <td class="text-nowrap">{{ $onion->getAttribute('is_trash') ? 'Bəli' : 'Xeyir' }}</td>
+                                    <td class="text-nowrap">{{ $onion->getAttribute('created_at') }}</td>
+                                    <td class="text-nowrap">
+                                        <a href="{{ route('onions.show', $onion) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
+                                        <a href="{{ route('onions.edit', $onion) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
+                                        <button class="btn btn-link p-0" onclick="deleteConfirmation({{ $onion->getAttribute('id') }}, 'onions')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="15">
+                                        <p class="text-danger">No data found</p>
+                                    </td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
+                        {{ $onions->appends(request()->input())->links() }}
+                    </form>
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@ class AdminController extends Controller
     public function index()
     {
         return view('Admin.admins.index')->with([
-            'users' => User::latest()->get()
+            'users' => User::latest()->paginate(10)
         ]);
     }
 

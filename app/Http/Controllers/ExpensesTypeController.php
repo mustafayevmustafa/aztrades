@@ -18,7 +18,7 @@ class ExpensesTypeController extends Controller
     public function index()
     {
         return view('Admin.expenses_types.index')->with([
-            'expenses_types' => ExpensesType::get()
+            'expenses_types' => ExpensesType::paginate(10)
         ]);
     }
 

@@ -1,8 +1,6 @@
 @extends('Admin.layout.master')
 
 @section('content')
-
-
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
@@ -24,30 +22,31 @@
                         </div>
                     @endif
               <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Ölkə Adı</th>
-                <th scope="col">Tarix</th>
-                <th scope="col">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach ($countries as $country)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $country->getAttribute('name') }}</td>
-                    <td>{{ $country->getAttribute('created_at') }}</td>
-                    <td>
-                        <a href="{{ route('countries.show', $country) }}" class="btn btn-outline-success">Show</a>
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Ölkə Adı</th>
+                        <th scope="col">Tarix</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($countries as $country)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $country->getAttribute('name') }}</td>
+                            <td>{{ $country->getAttribute('created_at') }}</td>
+                            <td>
+                                <a href="{{ route('countries.show', $country) }}" class="btn btn-outline-success">Show</a>
 
-                        <a href="{{ route('countries.edit', $country) }}" class="btn btn-outline-primary">Edit</a>
-                        <button class="btn btn-outline-danger" onclick="deleteConfirmation({{ $country->getAttribute('id') }}, 'countries')">DELETE</button>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+                                <a href="{{ route('countries.edit', $country) }}" class="btn btn-outline-primary">Edit</a>
+                                <button class="btn btn-outline-danger" onclick="deleteConfirmation({{ $country->getAttribute('id') }}, 'countries')">DELETE</button>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                    {{ $countries->appends(request()->input())->links() }}
                 </div>
             </div>
         </div>

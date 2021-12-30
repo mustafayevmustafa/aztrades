@@ -37,7 +37,7 @@ class SellingController extends Controller
                     fn ($q) => $q->where('status', $filters['status'])
                 )
                 ->latest()
-                ->get()
+                ->paginate(25)
         ]);
     }
 

@@ -56,6 +56,7 @@
                         @endforelse
                         </tbody>
                     </table>
+                    {{ $sellings->appends(request()->input())->links() }}
                 </div>
             </div>
         </div>

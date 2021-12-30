@@ -18,7 +18,7 @@ class CountryController extends Controller
     public function index()
     {
         return view('Admin.countries.index')->with([
-            'countries' => Country::get()
+            'countries' => Country::paginate(10)
         ]);
     }
 

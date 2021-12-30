@@ -21,10 +21,20 @@ class PotatoController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $is_trash = $request->get('is_trash', 0);
+
+        $types = ['Aktiv mallar', 'Atxod mallar'];
+
         return view('Admin.potatoes.index')->with([
-            'potatoes' => Potato::latest()->get()
+            'potatoes' => Potato::query()
+                ->when($is_trash == 0, fn($q) => $q->where('is_trash', 0))
+                ->when($is_trash == 1, fn($q) => $q->where('is_trash', 1))
+                ->latest()
+                ->paginate(25),
+            'is_trash' => $is_trash,
+            'types' => $types
         ]);
     }
 

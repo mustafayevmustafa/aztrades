@@ -47,6 +47,7 @@
                         @endforeach
                         </tbody>
                       </table>
+                    {{ $cities->appends(request()->input())->links() }}
                 </div>
             </div>
         </div>

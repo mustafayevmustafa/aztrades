@@ -50,6 +50,7 @@
                         @endforelse
                         </tbody>
                     </table>
+                    {{ $roles->appends(request()->input())->links() }}
                 </div>
             </div>
         </div>
