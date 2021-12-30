@@ -97,7 +97,7 @@
 
                         <div class="form-group">
                             <label for="post-title">Kisə Sayı</label>
-                            <input type="number" min="0" step="1" value="{{ $data->getAttribute('sac_count') }}" name="sac_count" class="form-control" id="post-title" placeholder="Kisə Sayı">
+                            <input type="number" min="1" step="1" value="{{ $data->getAttribute('sac_count') }}" name="sac_count" class="form-control" id="post-title" placeholder="Kisə Sayı">
                             @error('sac_count')
                             <p class="text-danger">
                                 {{ $message }}
