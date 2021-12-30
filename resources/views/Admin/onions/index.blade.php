@@ -32,7 +32,7 @@
                                 <th class="text-nowrap" scope="col">Maşın Nömrəsi</th>
                                 <th class="text-nowrap" scope="col">Tədarük Xərci (AZN)</th>
                                 <th class="text-nowrap" scope="col">Maya Dəyəri (AZN)</th>
-                                <th class="text-nowrap" scope="col">Çəkisi</th>
+                                <th class="text-nowrap" scope="col">Çəkisi (kg)</th>
                                 <th class="text-nowrap" scope="col">Atxot Mal</th>
                                 <th class="text-nowrap" scope="col">Tarix</th>
                                 <th class="text-nowrap" scope="col">Əməliyyatlar</th>

@@ -25,7 +25,7 @@
                             <th scope="col">Kimə Satılıb</th>
                             <th scope="col">Tipi</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Qiyməti</th>
+                            <th scope="col">Qiymət (AZN)</th>
                             <th scope="col">Qeyd</th>
                             <th scope="col">Tarix</th>
                             <th scope="col">Actions</th>
