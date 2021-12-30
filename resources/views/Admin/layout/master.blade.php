@@ -8,13 +8,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @livewireStyles
     <!-- Bootstrap Css -->
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Flags Css -->
-    <link href="{{ asset('assets/css/flags.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('assets/css/flags.css') }}" rel="stylesheet">
     <!-- Icons Css -->
-    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ secure_asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ secure_asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
     <!-- SweetAlert2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
@@ -52,8 +52,8 @@
     </div>
         <!-- JAVASCRIPT -->
         <script src="{{ mix('js/app.js') }}"></script>
-        <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js') }}"></script>
-        <script src="{{ asset('assets/js/app.js') }}"></script>
+        <script src="{{ secure_asset('assets/libs/metismenu/metisMenu.min.js') }}"></script>
+        <script src="{{ secure_asset('assets/js/app.js') }}"></script>
         <!-- Swal -->
         <script>
             $(function () {

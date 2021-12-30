@@ -12,7 +12,7 @@
   <div class="header-left-panel">
     <div class="logo-wrap">
       <div class="logo">
-        <center><h1><img src="{{asset('assets/images/logo.jpeg')}}" width="250" height="250"/></h1></center>
+        <center><h1><img src="{{secure_asset('assets/images/logo.jpeg')}}" width="250" height="250"/></h1></center>
         <center><h2>Hər kəs üçün faydalı</h2></center>
       </div>
     </div>
