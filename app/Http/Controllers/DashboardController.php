@@ -16,8 +16,9 @@ class DashboardController extends Controller
         $daily_net_income = Selling::where('status', false)->whereDate('created_at', now())->get()->sum('price') - Expense::whereDate('created_at', now())->get()->sum('expense');
 
         return view('Admin.index')->with([
-            'onions' => Onion::notTrash()->hasWeight()->limit(5)->get(),
-            'potatoes' => Potato::notTrash()->hasWeight()->limit(5)->get(),
+            // goods
+            'onions' => Onion::notTrash()->hasGoods()->latest('updated_at')->limit(5)->get(),
+            'potatoes' => Potato::notTrash()->hasGoods()->latest('updated_at')->limit(5)->get(),
             // total data
             'total_net_income' => $total_net_income,
             'total_income' => Selling::where('status', false)->get()->sum('price'),

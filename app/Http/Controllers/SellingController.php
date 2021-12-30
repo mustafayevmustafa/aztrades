@@ -73,9 +73,10 @@ class SellingController extends Controller
 
         $error = false;
 
+        $validated['weight'] = $validated['weight'] ?? 0;
+
         $sellingableData['total_weight'] = $sellingable->getAttribute('total_weight') - $validated['weight'];
 
-        $sac = new PotatoSac();
         if(!is_null($validated['sac_name']) && $validated['sac_count'] > 0) {
             switch ($sellingable->getTable()) {
                 case 'onions':
@@ -94,18 +95,13 @@ class SellingController extends Controller
                         $error = true;
                         break;
                     }
+
+                    if ($sellingable->sacs->sum('total_weight') < $validated['weight']) {
+                        $error = true;
+                        break;
+                    }
+
                     break;
-            }
-        }
-
-        if ($sellingable->getTable() == 'potatoes') {
-            $total_sacs_weight = 0;
-            foreach ($sellingable->sacs as $_sac) {
-                $total_sacs_weight += $_sac->total_weight;
-            }
-
-            if ($total_sacs_weight > $validated['weight']) {
-                $error = true;
             }
         }
 
@@ -113,13 +109,15 @@ class SellingController extends Controller
             return back()->with('message', 'Seçdiyiniz kisədə o qədər say və ya həcm mövcud deyil');
         }
 
-
         $selling->sellingable()->update($sellingableData);
 
-        $sac->update([
-            'sac_count' => $sac->sac_count - $validated['sac_count'],
-            'total_weight' => $sac->total_weight - $validated['weight'],
-        ]);
+        if($sellingable->getTable() == 'potatoes') {
+            $sac_count = $sac->sac_count - $validated['sac_count'];
+            $sac->update([
+                'sac_count' => $sac_count,
+                'total_weight' => $validated['weight'] > 0 ? $sac->total_weight - $validated['weight'] : $sac_count * $sac->sac_weight,
+            ]);
+        }
         $selling->save();
 
         return redirect()->route('sellings.index')->with('success', "Satış uğurlu oldu");

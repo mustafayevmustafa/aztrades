@@ -33,9 +33,10 @@ class Potato extends Model
         'is_trash' => 'boolean'
     ];
 
-    public function scopeHasWeight($query)
+    public function scopeHasGoods($query)
     {
-        return $query->where('total_weight', '!=', 0);
+        return $query->where('total_weight', '!=', 0)
+            ->orWhereHas('sacs');
     }
 
     public function scopeNotTrash($query)

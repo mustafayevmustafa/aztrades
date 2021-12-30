@@ -32,9 +32,12 @@ class Onion extends Model
         'is_trash' => 'boolean'
     ];
 
-    public function scopeHasWeight($query)
+    public function scopeHasGoods($query)
     {
-        return $query->where('total_weight', '!=', 0);
+        return $query->where('total_weight', '!=', 0)
+            ->orWhere('red_bag_number', '!=', 0)
+            ->orWhere('yellow_bag_number', '!=', 0)
+            ->orWhere('lom_bag_number', '!=', 0);
     }
 
     public function scopeNotTrash($query)

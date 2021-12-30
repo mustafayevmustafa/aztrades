@@ -81,8 +81,8 @@
                             <select name="sac_name" class="form-control">
                                 <option value="">Kisə seç</option>
                                 @foreach($sacs as $index => $sac)
-                                    @php($key = $type == 'onion' ? $index : $sac)
-                                    <option value="{{$type == 'onion' ? $index : $sac}}" @if($data->getAttribute('sac_name') == $key) selected @endif>{{$sac}}</option>
+                                    @php($key = $type->getTable() == 'onions' ? $index : $sac)
+                                    <option value="{{$key}}" @if($data->getAttribute('sac_name') == $key) selected @endif>{{$sac}}</option>
                                 @endforeach
                             </select>
                             @if($method == 'PUT')
@@ -105,15 +105,20 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="post-title">Çəki (kq)</label>
-                            <input type="number" min="1" step=".1" max="{{$type->total_weight + $data->getAttribute('weight')}}" value="{{ $data->getAttribute('weight') }}" name="weight" class="form-control" id="post-title" placeholder="Çəki (kq)">
-                            @error('weight')
-                            <p class="text-danger">
-                                {{ $message }}
-                            </p>
-                            @enderror
-                        </div>
+                        @if(
+                            ($type->getTable() == 'onions' && $type->getAttribute('total_weight') != 0) ||
+                            ($type->getTable() == 'potatoes')
+                        )
+                            <div class="form-group">
+                                <label for="post-title">Çəki (kq)</label>
+                                <input type="number" min="1" step=".1" value="{{ $data->getAttribute('weight') }}" name="weight" class="form-control" id="post-title" placeholder="Çəki (kq)">
+                                @error('weight')
+                                <p class="text-danger">
+                                    {{ $message }}
+                                </p>
+                                @enderror
+                            </div>
+                        @endif
 
                         <div class="form-group">
                             <label for="post-title">Qiymət (AZN)</label>

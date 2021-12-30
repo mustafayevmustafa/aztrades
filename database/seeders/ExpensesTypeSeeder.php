@@ -37,6 +37,10 @@ class ExpensesTypeSeeder extends Seeder
             [
                 'name' => 'Maya Dəyəri',
                 'key'  => 'cost'
+            ],
+            [
+                'name' => 'Borc',
+                'key'  => 'debt'
             ]
         ]);
     }

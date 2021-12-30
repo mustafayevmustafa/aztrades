@@ -16,10 +16,10 @@ class SellingsRequest extends FormRequest
     public function rules()
     {
         return [
-            'customer' => 'required|string',
+            'customer' => 'nullable|string',
             'content' => 'nullable|string',
             'status' => 'nullable',
-            'weight' => 'required|numeric',
+            'weight' => 'nullable|numeric',
             'price' => 'required|numeric',
             'sac_name' => 'nullable|string',
             'sac_count' => 'required_with:sac_name,|nullable|numeric',

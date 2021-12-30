@@ -98,55 +98,84 @@
                     <button  type="button" class="btn btn-success btn-block mt-md-0 mx-2 ml-0" data-toggle="modal" data-target="#exampleModal">Sogan Sat</button>
                     <button  type="button" class="btn btn-success btn-block mt-md-0 mx-2 ml-0" data-toggle="modal" data-target="#ModalPotato">Kartof Sat</button>
                 </div>
-                <div class="card-body row d-flex flex-md-nowrap flex-wrap">
-                    <table class="table mx-2 ml-0 table-dark">
-                        <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Son Satılan Soğanlar</th>
-                            <th scope="col">Sarı Kisə Sayı</th>
-                            <th scope="col">Qırmızı Kisə Sayı</th>
-                            <th scope="col">Lom Kisə Sayı</th>
-                            <th scope="col">Qalıq</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($onions as $onion)
+                <div class="card-body row">
+                    <div class="col-12 col-md-5 p-0 pr-md-1">
+                        <table class="table mx-2 ml-0 table-dark">
+                            <thead>
                             <tr>
-                                <th>{{$onion->getAttribute('id')}}</th>
-                                <th>{{$onion->getAttribute('info')}}</th>
-                                <th>{{$onion->getAttribute('total_weight')}}</th>
-                                <th>{{$onion->getAttribute('total_weight')}}</th>
-                                <th>{{$onion->getAttribute('total_weight')}}</th>
-                                <th>{{$onion->getAttribute('total_weight')}}</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Son Satılan Soğanlar</th>
+                                <th scope="col">Qırmızı Kisə Sayı</th>
+                                <th scope="col">Sarı Kisə Sayı</th>
+                                <th scope="col">Lom Kisə Sayı</th>
+                                <th scope="col">Çəki (kq)</th>
                             </tr>
-                        @endforeach
+                            </thead>
+                            <tbody>
+                            @foreach($onions as $onion)
+                                <tr>
+                                    <th>{{$onion->getAttribute('id')}}</th>
+                                    <th>
+                                        <a class="text-white"    href="{{route('sellings.create', ['type_id' => $onion->getAttribute('id'), 'type' => 'onion'])}}">
+                                            {{$onion->getAttribute('info')}}
+                                        </a>
+                                    </th>
+                                    <th>{{$onion->getAttribute('red_bag_number')}}</th>
+                                    <th>{{$onion->getAttribute('yellow_bag_number')}}</th>
+                                    <th>{{$onion->getAttribute('lom_bag_number')}}</th>
+                                    <th>{{$onion->getAttribute('total_weight')}}</th>
+                                </tr>
+                            @endforeach
 
-                        </tbody>
-                    </table>
-                    <table class="table mx-2 mr-0 table-dark">
-                        <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Son Satılan Kartoflar</th>
-                            <th scope="col">Kisə Sayı</th>
-                            <th scope="col">Qalıq Çəki (kq)</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($potatoes as $potato)
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12 col-md-7 p-0">
+                        <table class="table mx-2 mr-0 table-dark">
+                            <thead>
                             <tr>
-                                <th scope="row">{{$potato->getAttribute('id')}}</th>
-                                <td>{{$potato->getAttribute('info')}}</td>
-                                <td>{{$potato->getAttribute('total_weight')}}</td>
-                                <td>{{$potato->getAttribute('total_weight')}}</td>
+                                <th scope="col">#</th>
+                                <th scope="col">Son Satılan Kartoflar</th>
+                                <th scope="col">Kisə Sayı</th>
+                                <th scope="col">Çəki (kq)</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach($potatoes as $potato)
+                                    <tr>
+                                        <th scope="row">{{$potato->getAttribute('id')}}</th>
+                                        <td>
+                                            <a class="text-white" href="{{route('sellings.create', ['type_id' => $potato->getAttribute('id'), 'type' => 'potato'])}}">
+                                                {{$potato->getAttribute('info')}}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td>Adi</td>
+                                                    <td>Sayi</td>
+                                                    <td>Kisə həcmi (kg)</td>
+                                                    <td>Qaliq həcm (kg)</td>
+                                                </tr>
+                                                @foreach($potato->sacs as $sac)
+                                                    <tr>
+                                                        <td>{{$sac->name}}</td>
+                                                        <td>{{$sac->sac_count}}</td>
+                                                        <td>{{$sac->sac_weight}}</td>
+                                                        <td>{{$sac->total_weight}}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </table>
+                                        </td>
+                                        <td>{{$potato->getAttribute('total_weight')}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="col-12 col-md-4 card">
-                    <h5 class="card-title">Cibimdəki Pul</h5>
+                <div class="col-12 text-right">
+                    <h5 class="card-title text-danger">Günlük cibimdəki Pul</h5>
                     <p class="card-text" style="font-size: 16px">{{$daily_net_income}} AZN</p>
                 </div>
             </div>
