@@ -32,7 +32,7 @@ use Illuminate\Http\Request;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], function () {
-    Route::redirect('/', 'Admin/dashboard');
+    Route::redirect('/', config('app.url') . '/Admin/dashboard');
     Route::resource('dashboard', DashboardController::class);
     Route::resource('onions', OnionController::class);
     Route::resource('potatoes', PotatoController::class);
