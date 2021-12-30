@@ -50,13 +50,15 @@ class PotatoController extends Controller
                 $validated['sacs'][$index]['total_weight'] = $validated['sacs'][$index]['sac_count'] * $validated['sacs'][$index]['sac_weight'];
                 $total += $validated['sacs'][$index]['total_weight'];
             }
+        }
 
-            if($total <= $potato->getAttribute('total_weight')) {
-                $potato->save();
-                $potato->sacs()->createMany($validated['sacs']);
-            }else {
-                 return back()->with('message', 'Daxil etdiyiniz kisə həcmi qədər həcm mövcud deyil');
-            }
+        if($total == 0) {
+            $potato->save();
+        } elseif($total <= $potato->getAttribute('total_weight')) {
+            $potato->save();
+            $potato->sacs()->createMany($validated['sacs']);
+        }else {
+            return back()->with('message', 'Daxil etdiyiniz kisə həcmi qədər həcm mövcud deyil');
         }
 
         foreach ($validated as $key => $value) {
