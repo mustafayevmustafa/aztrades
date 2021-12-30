@@ -27,6 +27,7 @@ class PotatoRequest extends FormRequest
             'country_id' => 'required|integer',
             'is_trash' => 'nullable',
             'sacs' => 'nullable|array',
+            'sacs.*.id'   => 'nullable|integer',
             'sacs.*.name'   => 'required|string',
             'sacs.*.sac_count'   => 'required|string',
             'sacs.*.sac_weight'   => 'required|string',

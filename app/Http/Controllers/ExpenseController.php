@@ -24,11 +24,12 @@ class ExpenseController extends Controller
 
     public function index(Request $request)
     {
-        $filters = $request->only(['expense_type_id']);
+        $filters = $request->only(['expense_type_id', 'all_except']);
 
         return view('Admin.expenses.index')->with([
             'expenses' => Expense::query()
                 ->when(array_key_exists('expense_type_id', $filters), fn ($q) => $q->where('expense_type_id', $filters['expense_type_id']))
+                ->when(array_key_exists('all_except', $filters), fn ($q) => $q->where('expense_type_id', '!=', $filters['all_except']))
                 ->latest()
                 ->latest('expense')
                 ->get()

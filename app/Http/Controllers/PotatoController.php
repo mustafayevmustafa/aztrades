@@ -47,7 +47,7 @@ class PotatoController extends Controller
         $total = 0;
         if($request->has('sacs')){
             foreach ($validated['sacs'] ?? [] as $index => $sac) {
-                $validated['sacs'][$index]['name'] .= " (#{$potato->getAttribute('id')})";
+                $validated['sacs'][$index]['name'] .= " (#{$index})";
                 $validated['sacs'][$index]['total_weight'] = $validated['sacs'][$index]['sac_count'] * $validated['sacs'][$index]['sac_weight'];
                 $total += $validated['sacs'][$index]['total_weight'];
             }
@@ -113,7 +113,12 @@ class PotatoController extends Controller
         // destroy should appear before create or update
         PotatoSac::destroy($potato->sacs()->pluck('id')->diff($sacs->pluck('id')));
 
-        $sacs->each(fn($sac) => $potato->sacs()->updateOrCreate(['id' => $sac['id']], $sac));
+        $sacs->each(function($sac, $index) use ($potato){
+            $sac['total_weight'] = $sac['sac_count'] * $sac['sac_weight'];
+            $sac['name'] = strpos($sac['name'], "#") > 0 ? substr($sac['name'], 0, strpos($sac['name'], "#") - 1) . " (#{$index})" : $sac['name'] . " (#{$index})";
+
+            $potato->sacs()->updateOrCreate(['id' => $sac['id']], $sac);
+        });
 
         foreach ($validated as $key => $value) {
             if (!str_contains($key, 'cost')) continue;

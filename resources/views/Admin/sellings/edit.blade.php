@@ -29,7 +29,7 @@
                             <h4><strong>Lom Kisə Sayı:</strong> {{$type->lom_bag_number}}</h4>
                         @else
                             @foreach($type->sacs as $sac)
-                                <h4><strong>{{$sac->name}}:</strong> Sayı: {{$sac->sac_count}}, Kisə həcmi: {{$sac->total_weight}} kg</h4>
+                                <h4><strong>{{$sac->name}}:</strong> Sayı: {{$sac->sac_count}}, Kisə həcmi: {{$sac->sac_weight}} kg, Ümumi həcm: {{$sac->total_weight}} kg</h4>
                             @endforeach
                         @endif
 
