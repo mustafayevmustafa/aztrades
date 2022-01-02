@@ -39,7 +39,7 @@
 
                             <div class="form-group col-12 col-md-6">
                                 <label for="daterange-filter">Tarixə görə filterlə</label>
-                                <input type="text" name="daterange" class="form-control" id="daterange-filter" value="{{request()->get('daterange')}}">
+                                <input type="text" name="daterange" class="form-control" id="daterange-filter" value="{{request()->get('daterange')}}" readonly>
                             </div>
 
                             <div class="col-12 my-3">
