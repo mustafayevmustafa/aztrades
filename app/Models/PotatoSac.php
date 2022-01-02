@@ -23,6 +23,10 @@ class PotatoSac extends Model
         self::creating(function (PotatoSac $potatoSac){
             $potatoSac->setAttribute('old_sac_count', $potatoSac->getAttribute('sac_count'));
         });
+
+        self::updating(function (PotatoSac $potatoSac){
+            $potatoSac->setAttribute('old_sac_count', $potatoSac->getAttribute('sac_count'));
+        });
     }
 
     public function potato(): BelongsTo

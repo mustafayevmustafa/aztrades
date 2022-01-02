@@ -41,6 +41,11 @@ class Onion extends Model
             $old_bag_numbers = "{$onion->getAttribute('red_bag_number')},{$onion->getAttribute('yellow_bag_number')},{$onion->getAttribute('lom_bag_number')}";
             $onion->setAttribute('old_bag_numbers', $old_bag_numbers);
         });
+
+        self::updating(function (Onion $onion){
+            $old_bag_numbers = "{$onion->getAttribute('red_bag_number')},{$onion->getAttribute('yellow_bag_number')},{$onion->getAttribute('lom_bag_number')}";
+            $onion->setAttribute('old_bag_numbers', $old_bag_numbers);
+        });
     }
 
     public function scopeHasGoods($query)
