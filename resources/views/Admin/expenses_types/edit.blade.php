@@ -15,9 +15,9 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-3">
                         <a class="btn btn-outline-primary" href="{{route('expenses_types.index')}}"><i class="mdi mdi-arrow-left"></i></a>
-                        @if (is_null($action))
-                            <a class="btn btn-outline-primary" href="{{route('expenses_types.edit', $data)}}">Edit</a>
-                        @endif
+{{--                        @if (is_null($action))--}}
+{{--                            <a class="btn btn-outline-primary" href="{{route('expenses_types.edit', $data)}}">Edit</a>--}}
+{{--                        @endif--}}
                     </div>
                     <form action="{{ $action }}" method="POST">
                         @csrf @method($method)
