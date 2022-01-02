@@ -14,7 +14,16 @@ class PotatoSac extends Model
 
     protected $touches = ['potato'];
 
-    protected $fillable = ['name', 'sac_count', 'sac_weight', 'total_weight'];
+    protected $fillable = ['name', 'sac_count', 'old_sac_count', 'sac_weight', 'total_weight'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::creating(function (PotatoSac $potatoSac){
+            $potatoSac->setAttribute('old_sac_count', $potatoSac->getAttribute('sac_count'));
+        });
+    }
 
     public function potato(): BelongsTo
     {

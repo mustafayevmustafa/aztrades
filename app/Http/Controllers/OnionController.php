@@ -42,7 +42,9 @@ class OnionController extends Controller
             'action' => route('onions.store'),
             'method' => "POST",
             'data'   => new Onion(),
-            'cities' => City::get()
+            'cities' => City::get(),
+            'old_values' => [0, 0, 0]
+
         ]);
     }
 
@@ -74,7 +76,8 @@ class OnionController extends Controller
             'action' => null,
             'method' => null,
             'data'   => $onion,
-            'cities' => City::get()
+            'cities' => City::get(),
+            'old_values' => explode(',', $onion->getAttribute('old_bag_numbers'))
         ]);
     }
 
@@ -84,7 +87,8 @@ class OnionController extends Controller
             'action' => route('onions.update', $onion),
             'method' => "PUT",
             'data'   => $onion,
-            'cities' => City::get()
+            'cities' => City::get(),
+            'old_values' => explode(',', $onion->getAttribute('old_bag_numbers'))
         ]);
     }
 

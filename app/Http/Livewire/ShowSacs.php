@@ -13,12 +13,12 @@ class ShowSacs extends Component
 
     public function mount()
     {
-        $this->sacs = $this->potato ? $this->potato->sacs()->get(['id', 'name', 'sac_count', 'sac_weight', 'total_weight'])->toArray() : [];
+        $this->sacs = $this->potato ? $this->potato->sacs()->get(['id', 'name', 'sac_count', 'old_sac_count', 'sac_weight', 'total_weight'])->toArray() : [];
     }
 
     public function addSac()
     {
-        $newArr = ['id' => null, 'name' => null, 'sac_count' => null, 'sac_weight' => null, 'total_weight' => null];
+        $newArr = ['id' => null, 'name' => null, 'sac_count' => null, 'old_sac_count' => null, 'sac_weight' => null, 'total_weight' => null];
         $this->sacs[] = $newArr;
     }
 

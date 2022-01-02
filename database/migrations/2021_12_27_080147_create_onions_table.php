@@ -17,9 +17,10 @@ class CreateOnionsTable extends Migration
             $table->float("driver_cost")->nullable();
             $table->float("supply_cost")->nullable();
             $table->float("cost")->nullable();
-            $table->integer("red_bag_number")->nullable();
-            $table->integer("yellow_bag_number")->nullable();
-            $table->integer("lom_bag_number")->nullable();
+            $table->integer("red_bag_number")->nullable()->default(0);
+            $table->integer("yellow_bag_number")->nullable()->default(0);
+            $table->integer("lom_bag_number")->nullable()->default(0);
+            $table->string('old_bag_numbers')->nullable();
             $table->float("total_weight")->nullable()->default(0);
             $table->boolean("is_trash")->default(false);
             $table->timestamps();

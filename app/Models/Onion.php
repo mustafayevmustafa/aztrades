@@ -23,6 +23,7 @@ class Onion extends Model
         'red_bag_number',
         'yellow_bag_number',
         'lom_bag_number',
+        'old_bag_numbers',
         'total_weight',
         'is_trash',
         'city_id'
@@ -31,6 +32,16 @@ class Onion extends Model
     protected $casts = [
         'is_trash' => 'boolean'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::creating(function (Onion $onion){
+            $old_bag_numbers = "{$onion->getAttribute('red_bag_number')},{$onion->getAttribute('yellow_bag_number')},{$onion->getAttribute('lom_bag_number')}";
+            $onion->setAttribute('old_bag_numbers', $old_bag_numbers);
+        });
+    }
 
     public function scopeHasGoods($query)
     {

@@ -11,7 +11,18 @@
                 <div class="row d-flex align-items-center m-0">
                     <input type="hidden"  name="sacs[{{$index}}][id]"    value="{{$sac['id']}}" />
                     <x-forms.input        name="sacs[{{$index}}][name]" :value="$sac['name']" label="Kisə adı"/>
-                    <x-forms.input        name="sacs[{{$index}}][sac_count]"     :value="$sac['sac_count']" label="Kisə sayı"/>
+                    <div class="form-group mr-3 col-12 col-md-2">
+                        <label for="data-sacs[{{$index}}][sac_count]">
+                            Kisə sayı
+                        </label>
+                        <input type="text" class="form-control" id="data-sacs[{{$index}}][sac_count]" name="sacs[{{$index}}][sac_count]" value="{{ old("sacs[$index][sac_weight]") ?? $sac['sac_count'] }}">
+                        <div class="position-absolute">
+                            <small class="text-primary">Daxil olan: {{$sac['old_sac_count'] ?? 0}}</small>
+                        </div>
+                        @error("sacs[$index][sac_count]")
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
                     <x-forms.input        name="sacs[{{$index}}][sac_weight]"    :value="$sac['sac_weight']" label="Kisə həcmi (kg)"/>
                     <x-forms.input        name="sacs[{{$index}}][total_weight]"  :value="$sac['total_weight']" label="Kisə həcmi (kg)" :status="false" info="Kisə yadda saxlanan zaman avtomatik olaraq hesablanacaqdır"/>
                     @if($action)
