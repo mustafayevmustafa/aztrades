@@ -17,9 +17,6 @@
     <link href="{{ secure_asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="{{mix('css/app.css')}}">
-
-    <!-- SweetAlert2 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
     <style>
         .pagination {
             justify-content: center;
@@ -62,8 +59,17 @@
                 $('[data-toggle="tooltip"]').tooltip()
             })
 
+            $('input[name="daterange"]').daterangepicker({
+                    opens: 'left',
+                    locale: {
+                        format: "YYYY-MM-DD HH:mm",
+                    },
+                }, function (start, end, label) {
+                }
+            );
+
             function deleteConfirmation(id, model) {
-                swal({
+                Swal.fire({
                     title: "Delete?",
                     text: "Please ensure and then confirm!",
                     type: "warning",
@@ -86,13 +92,13 @@
                                     setTimeout(function() {
                                         location.reload();
                                     }, 1000);
-                                    swal("Done!", "", "success");
+                                    Swal.fire("Done!", "", "success");
                                 } else {
-                                    swal("Error!", "", "error");
+                                    Swal.fire("Error!", "", "error");
                                 }
                             },
                             error: function(err) {
-                                swal("Error!", "Something went wrong!", "error");
+                                Swal.fire("Error!", "Something went wrong!", "error");
                             }
                         });
 

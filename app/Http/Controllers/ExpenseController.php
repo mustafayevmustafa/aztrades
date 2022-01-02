@@ -24,15 +24,19 @@ class ExpenseController extends Controller
 
     public function index(Request $request)
     {
-        $filters = $request->only(['expense_type_id', 'all_except']);
+        $filters = $request->only(['expense_type_id', 'all_except', 'type', 'daterange']);
+        $daterange = array_key_exists('daterange', $filters) ? explode(' - ', $filters['daterange']) : [];
 
         return view('Admin.expenses.index')->with([
             'expenses' => Expense::query()
                 ->when(array_key_exists('expense_type_id', $filters), fn ($q) => $q->where('expense_type_id', $filters['expense_type_id']))
                 ->when(array_key_exists('all_except', $filters), fn ($q) => $q->where('expense_type_id', '!=', $filters['all_except']))
+                ->when(array_key_exists('type', $filters) && $filters['type'], fn ($q) => $q->where('expense_type_id', $filters['type']))
+                ->when(array_key_exists('daterange', $filters), fn ($q) => $q->whereBetween('created_at', [$daterange[0], $daterange[1]]))
                 ->latest()
                 ->latest('expense')
-                ->paginate(25)
+                ->paginate(25),
+            'expenseTypes' => ExpensesType::expenseTypes()
         ]);
     }
 
@@ -42,7 +46,7 @@ class ExpenseController extends Controller
             'action' => route('expenses.store'),
             'method' => null,
             'data'   => new Expense(),
-            'types'  => ExpensesType::isNotCost()->get()
+            'types'  => ExpensesType::expenseTypes()
         ]);
     }
 
@@ -61,7 +65,7 @@ class ExpenseController extends Controller
             'action' => null,
             'method' => null,
             'data'   => $expense,
-            'types'  => ExpensesType::isNotCost()->get()
+            'types'  => ExpensesType::expenseTypes()
         ]);
     }
 
@@ -71,7 +75,7 @@ class ExpenseController extends Controller
             'action' => route('expenses.update', $expense),
             'method' => "PUT",
             'data'   => $expense,
-            'types'  => ExpensesType::isNotCost()->get()
+            'types'  => ExpensesType::expenseTypes()
         ]);
     }
 

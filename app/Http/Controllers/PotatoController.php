@@ -77,7 +77,7 @@ class PotatoController extends Controller
 
             if(!is_null($value)) {
                 Expense::create([
-                    'expense_type_id' => ExpensesType::costTypes()[$key],
+                    'expense_type_id' => ExpensesType::expenseTypes()[$key],
                     'expense' => $value,
                     'goods_type' => Potato::class,
                     'goods_type_id' => $potato->getAttribute('id'),
@@ -136,7 +136,7 @@ class PotatoController extends Controller
             if(!is_null($value)) {
                 Expense::updateOrCreate(
                     [
-                        'expense_type_id' => ExpensesType::costTypes()[$key],
+                        'expense_type_id' => ExpensesType::expenseTypes()[$key],
                         'goods_type' => Potato::class,
                         'goods_type_id' => $potato->getAttribute('id')
                     ],

@@ -61,7 +61,7 @@ class Potato extends Model
 
     public function getInfoAttribute(): string
     {
-        return "{$this->getAttribute('from_whom')} (Partiyasi: {$this->getAttribute('party')}) ({$this->getRelationValue('country')->getAttribute('name')}) (Partiya: {$this->getAttribute('party')})";
+        return "{$this->getAttribute('from_whom')} ({$this->getRelationValue('country')->getAttribute('name')}) (Partiya: {$this->getAttribute('party')})";
     }
 
     public function expenses()

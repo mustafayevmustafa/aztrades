@@ -21,5 +21,9 @@
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1"
     },
-    "dependencies": {}
+    "dependencies": {
+        "daterangepicker": "^3.1.0",
+        "moment": "^2.29.1",
+        "sweetalert2": "^11.3.3"
+    }
 }

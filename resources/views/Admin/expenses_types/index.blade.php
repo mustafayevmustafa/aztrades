@@ -15,9 +15,9 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
-                        <a class="btn btn-outline-success" href="{{route('expenses_types.create')}}">Xərclərin Tipi Əlavə Et</a>
-                    </div>
+{{--                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">--}}
+{{--                        <a class="btn btn-outline-success" href="{{route('expenses_types.create')}}">Xərclərin Tipi Əlavə Et</a>--}}
+{{--                    </div>--}}
                     @if (session('success'))
                         <div class="alert alert-success mt-2">
                             {{ session('success') }}
@@ -42,8 +42,8 @@
                         <td>{{ $type->getAttribute('created_at') }}</td>
                         <td>
                             <a href="{{ route('expenses_types.show', $type) }}" class="btn btn-outline-success">Show</a>
-                            <a href="{{ route('expenses_types.edit', $type) }}" class="btn btn-outline-primary">Edit</a>
-                            <button type="button" class="btn btn-outline-danger" onclick="deleteConfirmation({{ $type->getAttribute('id') }}, 'expenses_types')">DELETE</button>
+{{--                            <a href="{{ route('expenses_types.edit', $type) }}" class="btn btn-outline-primary">Edit</a>--}}
+{{--                            <button type="button" class="btn btn-outline-danger" onclick="deleteConfirmation({{ $type->getAttribute('id') }}, 'expenses_types')">DELETE</button>--}}
                         </td>
                     </tr>
                 @endforeach

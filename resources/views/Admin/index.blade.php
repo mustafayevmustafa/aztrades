@@ -93,7 +93,7 @@
                     <a href="{{route('sellings.index', ['status' => true])}}" class="btn btn-primary mt-md-0 mx-2 ml-0 btn-block">Borca Gedən</a>
                     <a href="{{route('sellings.index', ['status' => false, 'was_debt' => true])}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Borcdan Gələn</a>
                     <a href="{{route('expenses.index', ['expense_type_id' => \App\Models\ExpensesType::warehouse_cost])}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Sklad Xərci</a>
-                    <a href="{{route('expenses.index', ['all_except' => \App\Models\ExpensesType::other_cost])}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Digər Xərc</a>
+                    <a href="{{route('expenses.index', ['all_except' => \App\Models\ExpensesType::warehouse_cost])}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Digər Xərc</a>
                 </div>
 
                 @if($setting->getAttribute('is_active'))

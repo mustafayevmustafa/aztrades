@@ -24,20 +24,24 @@ class ExpensesTypeController extends Controller
 
     public function create()
     {
-        return view('Admin.expenses_types.edit', [
-            'action' => route('expenses_types.store'),
-            'method' => null,
-            'data'   => new ExpensesType()
-        ]);
+        abort(503);
+
+//        return view('Admin.expenses_types.edit', [
+//            'action' => route('expenses_types.store'),
+//            'method' => null,
+//            'data'   => new ExpensesType()
+//        ]);
     }
 
     public function store(ExpensesTypeRequest $request): RedirectResponse
     {
-        $validated = $request->validated();
+        abort(503);
 
-        $expenses_type = ExpensesType::create($validated);
-
-        return redirect()->route('expenses_types.index')->with('success', "Expense type {$expenses_type ->getAttribute('name')} created successfully!");
+//        $validated = $request->validated();
+//
+//        $expenses_type = ExpensesType::create($validated);
+//
+//        return redirect()->route('expenses_types.index')->with('success', "Expense type {$expenses_type ->getAttribute('name')} created successfully!");
     }
 
     public function show(ExpensesType $expensesType)
@@ -51,28 +55,33 @@ class ExpensesTypeController extends Controller
 
     public function edit(ExpensesType $expensesType)
     {
-        return view('Admin.expenses_types.edit', [
-            'action' => route('expenses_types.update', $expensesType),
-            'method' => "PUT",
-            'data'   => $expensesType
-        ]);
+        abort(503);
+
+//        return view('Admin.expenses_types.edit', [
+//            'action' => route('expenses_types.update', $expensesType),
+//            'method' => "PUT",
+//            'data'   => $expensesType
+//        ]);
     }
 
     public function update(ExpensesTypeRequest $request, ExpensesType $expensesType): RedirectResponse
     {
-        $validated = $request->validated();
+        abort(503);
 
-        $expensesType->update($validated);
-
-        return redirect()->route('expenses_types.index')->with('success', "Expense type {$expensesType->getAttribute('name')} updated successfully!");
+//        $validated = $request->validated();
+//
+//        $expensesType->update($validated);
+//
+//        return redirect()->route('expenses_types.index')->with('success', "Expense type {$expensesType->getAttribute('name')} updated successfully!");
     }
 
     public function destroy(ExpensesType $expensesType): JsonResponse
     {
-        if($expensesType->delete()){
-            return response()->json(['code' => 200]);
-        }else{
-            return response()->json(['code' => 400]);
-        }
+        abort(503);
+//        if($expensesType->delete()){
+//            return response()->json(['code' => 200]);
+//        }else{
+//            return response()->json(['code' => 400]);
+//        }
     }
 }

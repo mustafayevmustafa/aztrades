@@ -18,17 +18,11 @@ class ExpensesType extends Model
     public const other_cost = 5;
     public const warehouse_cost = 6;
     public const cost = 7;
+    public const debt = 8;
 
-    public static function costTypes(): array
+    public static function expenseTypes(): array
     {
-        return [
-            'driver_cost' => self::driver_cost,
-            'custom_cost' => self::custom_cost,
-            'supply_cost' => self::supply_cost,
-            'market_cost' => self::market_cost,
-            'other_cost'  => self::other_cost,
-            'cost'        => self::cost
-        ];
+        return ExpensesType::pluck('id', 'key')->toArray();
     }
 
     protected $fillable = ['name', 'key'];
@@ -37,5 +31,4 @@ class ExpensesType extends Model
     {
         return $query->where('key', '!=', 'cost');
     }
-
 }

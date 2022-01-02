@@ -79,7 +79,7 @@
 @endsection
 @section('script')
     <script>
-        $('#is-trash-filter').change(function (){
+        $('#select').change(function (){
             this.form.submit();
         });
     </script>

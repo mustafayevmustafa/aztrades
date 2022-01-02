@@ -82,3 +82,10 @@
         </div>
     </div>
 @endsection
+@section('script')
+    <script>
+        $('select').change(function (){
+            this.form.submit();
+        });
+    </script>
+@endsection
