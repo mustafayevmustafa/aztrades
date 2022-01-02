@@ -49,7 +49,7 @@
                         <td>
                             <a href="{{ route('expenses.show', $expense) }}" class="btn btn-outline-success">Show</a>
                             <a href="{{ route('expenses.edit', $expense) }}" class="btn btn-outline-primary">Edit</a>
-                            <button class="btn btn-outline-danger" onclick="deleteConfirmation({{ $expense->getAttribute('id') }}, 'expenses')">DELETE</button>
+                            <button type="button" class="btn btn-outline-danger" onclick="deleteConfirmation({{ $expense->getAttribute('id') }}, 'expenses')">DELETE</button>
                         </td>
                     </tr>
                 @endforeach

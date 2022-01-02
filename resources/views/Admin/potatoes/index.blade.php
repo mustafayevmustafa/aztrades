@@ -58,7 +58,7 @@
                                     <td class="text-nowrap">
                                         <a href="{{ route('potatoes.show', $potato) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
                                         <a href="{{ route('potatoes.edit', $potato) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
-                                        <button onclick="deleteConfirmation({{ $potato->getAttribute('id') }}, 'potatoes')" class="btn btn-link p-0"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
+                                        <button type="button" onclick="deleteConfirmation({{ $potato->getAttribute('id') }}, 'potatoes')" class="btn p-0"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
                                     </td>
                                 </tr>
                             @empty

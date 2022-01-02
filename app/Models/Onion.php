@@ -57,7 +57,7 @@ class Onion extends Model
 
     public function getInfoAttribute(): string
     {
-        return "{$this->getAttribute('from_whom')} ({$this->getAttribute('car_number')}) ({$this->getRelationValue('city')->getAttribute('name')} #{$this->getAttribute('id')})";
+        return "{$this->getAttribute('from_whom')} ({$this->getAttribute('car_number')}) ({$this->getRelationValue('city')->getAttribute('name')})";
     }
 
     public function expenses()

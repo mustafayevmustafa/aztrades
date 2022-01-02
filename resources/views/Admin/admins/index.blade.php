@@ -38,7 +38,7 @@
                                 <td>
                                     <a href="{{ route('admins.show', $user) }}" class="btn"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
                                     <a href="{{ route('admins.edit', $user) }}" class="btn"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
-                                    <button class="btn" onclick="deleteConfirmation({{ $user->getAttribute('id') }}, 'admins')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
+                                    <button type="button" class="btn" onclick="deleteConfirmation({{ $user->getAttribute('id') }}, 'admins')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
                                 </td>
                             </tr>
                         @empty

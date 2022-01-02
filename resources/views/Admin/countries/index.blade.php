@@ -40,7 +40,7 @@
                                 <a href="{{ route('countries.show', $country) }}" class="btn btn-outline-success">Show</a>
 
                                 <a href="{{ route('countries.edit', $country) }}" class="btn btn-outline-primary">Edit</a>
-                                <button class="btn btn-outline-danger" onclick="deleteConfirmation({{ $country->getAttribute('id') }}, 'countries')">DELETE</button>
+                                <button type="button" class="btn btn-outline-danger" onclick="deleteConfirmation({{ $country->getAttribute('id') }}, 'countries')">DELETE</button>
                             </td>
                         </tr>
                     @endforeach
