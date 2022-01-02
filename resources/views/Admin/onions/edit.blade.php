@@ -111,7 +111,7 @@
                         <div class="form-group col-12 col-md-6">
                             <label for="post-title">Qırmızı Kisə Sayı</label>
                             <input type="number" min="0" step="1" value="{{ $data->getAttribute('red_bag_number') }}" name="red_bag_number" class="form-control" placeholder="Qırmızı kisə sayını daxil edin">
-                            <small class="text-primary">Daxil olan say: {{$old_values[0] ?? 0}}</small>
+                            <small class="text-primary">Daxil olan: {{$old_values[0] ?? 0}}</small>
                             @error('red_bag_number')
                                 <p class="text-danger">
                                     {{ $message }}
@@ -122,7 +122,7 @@
                         <div class="form-group col-12 col-md-6">
                             <label for="post-title">Sarı Kisə Sayı</label>
                             <input type="number" min="0" step="1" value="{{ $data->getAttribute('yellow_bag_number') }}" name="yellow_bag_number" class="form-control" placeholder="Sarı kisə sayını daxil edin">
-                            <small class="text-primary">Daxil olan say: {{$old_values[1] ?? 0}}</small>
+                            <small class="text-primary">Daxil olan: {{$old_values[1] ?? 0}}</small>
                             @error('yellow_bag_number')
                                 <p class="text-danger">
                                     {{ $message }}
@@ -133,7 +133,7 @@
                         <div class="form-group col-12 col-md-6">
                             <label for="post-title">Lom Kisə Sayı</label>
                             <input type="number" min="0" step="1" value="{{ $data->getAttribute('lom_bag_number') }}" name="lom_bag_number" class="form-control" placeholder="Lom kisə sayını daxil edin">
-                            <small class="text-primary">Daxil olan say: {{$old_values[2] ?? 0}}</small>
+                            <small class="text-primary">Daxil olan: {{$old_values[2] ?? 0}}</small>
                             @error('lom_bag_number')
                                 <p class="text-danger">
                                     {{ $message }}
