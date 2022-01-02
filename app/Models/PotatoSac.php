@@ -12,6 +12,8 @@ class PotatoSac extends Model
 {
     use SoftDeletes;
 
+    protected $touches = ['potato'];
+
     protected $fillable = ['name', 'sac_count', 'sac_weight', 'total_weight'];
 
     public function potato(): BelongsTo
