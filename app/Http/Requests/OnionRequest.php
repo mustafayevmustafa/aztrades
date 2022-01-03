@@ -20,7 +20,11 @@ class OnionRequest extends FormRequest
             'lom_bag_number' => 'nullable|integer',
             'is_trash' => 'nullable',
             'total_weight' => 'nullable|numeric',
-            'city_id' => 'required|integer'
+            'city_id' => 'nullable|integer',
+            'is_waste' => 'nullable|integer',
+            'waste_weight' => 'nullable|numeric',
+            'waste_sac_name' => 'nullable|string',
+            'waste_sac_count' => 'nullable|integer',
         ];
     }
 }

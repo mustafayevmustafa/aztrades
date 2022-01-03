@@ -64,8 +64,26 @@ class Potato extends Model
         return "{$this->getAttribute('from_whom')} ({$this->getRelationValue('country')->getAttribute('name')}) (Partiya: {$this->getAttribute('party')})";
     }
 
+    public function getLeastBagCountAttribute(): int
+    {
+        $least = PHP_INT_MAX;
+
+        foreach ($this->getRelationValue('sacs') as $sac) {
+            if($least > $sac->getAttribute('sac_count')) {
+                $least = $sac->getAttribute('sac_count');
+            }
+        }
+
+        return $least;
+    }
+
     public function expenses()
     {
         return  Expense::where('goods_type', Potato::class)->where('goods_type_id', $this->getAttribute('id'));
+    }
+
+    public function waste(): MorphMany
+    {
+        return $this->morphMany(Waste::class, 'wastable');
     }
 }

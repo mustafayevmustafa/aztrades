@@ -24,13 +24,17 @@ class PotatoRequest extends FormRequest
             'other_cost' => 'nullable|numeric',
             'total_weight' => 'nullable|numeric',
             'party' => 'nullable|string',
-            'country_id' => 'required|integer',
+            'country_id' => 'nullable|integer',
             'is_trash' => 'nullable',
             'sacs' => 'nullable|array',
             'sacs.*.id'   => 'nullable|integer',
             'sacs.*.name'   => 'required|string',
             'sacs.*.sac_count'   => 'required|string',
             'sacs.*.sac_weight'   => 'required|string',
+            'is_waste' => 'nullable|integer',
+            'waste_weight' => 'nullable|numeric',
+            'waste_sac_name' => 'nullable|integer',
+            'waste_sac_count' => 'nullable|integer',
         ];
     }
 }

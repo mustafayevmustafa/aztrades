@@ -87,7 +87,7 @@ class PotatoController extends Controller
             'method' => null,
             'data'   => $potato,
             'countries' => Country::get(),
-
+            'bags' => $potato->getRelationValue('sacs')->pluck('name', 'id')
         ]);
     }
 
@@ -98,12 +98,47 @@ class PotatoController extends Controller
             'method' => "PUT",
             'data'   => $potato,
             'countries' => Country::get(),
+            'bags' => $potato->getRelationValue('sacs')->pluck('name', 'id')
         ]);
     }
 
     public function update(PotatoRequest $request, Potato $potato): RedirectResponse
     {
         $validated = $request->validated();
+
+        if (array_key_exists('is_waste', $validated)) {
+            if(is_null($validated['waste_weight']) && is_null($validated['waste_sac_count'])) {
+                return redirect()->route('potatoes.show', $potato)->with('error', "Atxod elave etmek ucun kise ve ya ceki daxil edilmelidir!");
+            }
+
+            $wasteData = $request->only(['waste_sac_count', 'waste_sac_name', 'waste_weight']);
+            $wasteData['waste_sac_name'] = optional(PotatoSac::find($wasteData['waste_sac_name']))->getAttribute('name') ?? null;
+
+            $wastableData = [
+                'total_weight' => $potato->getAttribute('total_weight') - $wasteData['waste_weight'],
+            ];
+
+            if (!is_null($validated['waste_sac_name'])){
+                $sac = PotatoSac::find($request->get('waste_sac_name'));
+                $sac_count = $sac->sac_count - $wasteData['waste_sac_count'];
+                $sac_weight = $wasteData['waste_weight'] > 0 ? $sac->total_weight - $wasteData['waste_weight'] : $sac_count * $sac->sac_weight;
+
+                if($sac_weight < 0) {
+                    return redirect()->route('potatoes.show', $potato)->with('error', "Bu kisede secdiyiniz qeder hecm yoxdur!");
+                }
+
+                $sac->update([
+                    'total_weight' => $sac_weight,
+                    'sac_count' => $sac_count,
+                ]);
+            }
+
+            $potato->waste()->create($wasteData);
+
+            $potato->update($wastableData);
+
+            return redirect()->route('potatoes.show', $potato)->with('success', "Waste added successfully!");
+        }
 
         $validated['state'] = $request->has('state');
 

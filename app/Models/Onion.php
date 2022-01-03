@@ -43,9 +43,20 @@ class Onion extends Model
         });
 
         self::updating(function (Onion $onion){
-            $old_bag_numbers = "{$onion->getAttribute('red_bag_number')},{$onion->getAttribute('yellow_bag_number')},{$onion->getAttribute('lom_bag_number')}";
-            $onion->setAttribute('old_bag_numbers', $old_bag_numbers);
+            if (!\request()->has('is_waste')) {
+                $old_bag_numbers = "{$onion->getAttribute('red_bag_number')},{$onion->getAttribute('yellow_bag_number')},{$onion->getAttribute('lom_bag_number')}";
+                $onion->setAttribute('old_bag_numbers', $old_bag_numbers);
+            }
         });
+    }
+
+    public static function bags(): array
+    {
+        return [
+            'yellow_bag_number' => 'Sarı Kisə',
+            'red_bag_number' => 'Qırmızı Kisə',
+            'lom_bag_number' => 'Lom Kisə'
+        ];
     }
 
     public function scopeHasGoods($query)
@@ -76,8 +87,28 @@ class Onion extends Model
         return "{$this->getAttribute('from_whom')} ({$this->getAttribute('car_number')}) ({$this->getRelationValue('city')->getAttribute('name')})";
     }
 
+    public function getLeastBagCountAttribute(): int
+    {
+        $least = $this->getAttribute('red_bag_number');
+
+        if ($least > $this->getAttribute('yellow_bag_number')) {
+            $least = $this->getAttribute('yellow_bag_number');
+        }
+
+        if ($least > $this->getAttribute('lom_bag_number')) {
+            $least = $this->getAttribute('lom_bag_number');
+        }
+
+        return $least;
+    }
+
     public function expenses()
     {
         return  Expense::where('goods_type', Onion::class)->where('goods_type_id', $this->getAttribute('id'));
+    }
+
+    public function waste(): MorphMany
+    {
+        return $this->morphMany(Waste::class, 'wastable');
     }
 }

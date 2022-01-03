@@ -45,7 +45,6 @@ class OnionController extends Controller
             'data'   => new Onion(),
             'cities' => City::get(),
             'old_values' => [0, 0, 0]
-
         ]);
     }
 
@@ -78,7 +77,8 @@ class OnionController extends Controller
             'method' => null,
             'data'   => $onion,
             'cities' => City::get(),
-            'old_values' => explode(',', $onion->getAttribute('old_bag_numbers'))
+            'old_values' => explode(',', $onion->getAttribute('old_bag_numbers')),
+            'bags' => Onion::bags()
         ]);
     }
 
@@ -89,13 +89,37 @@ class OnionController extends Controller
             'method' => "PUT",
             'data'   => $onion,
             'cities' => City::get(),
-            'old_values' => explode(',', $onion->getAttribute('old_bag_numbers'))
+            'old_values' => explode(',', $onion->getAttribute('old_bag_numbers')),
+            'bags' => Onion::bags()
         ]);
     }
 
     public function update(OnionRequest $request, Onion $onion): RedirectResponse
     {
         $validated = $request->validated();
+
+        if (array_key_exists('is_waste', $validated)) {
+            if(is_null($validated['waste_weight']) && is_null($validated['waste_sac_count'])) {
+                return redirect()->route('onions.show', $onion)->with('error', "Atxod elave etmek ucun kise ve ya ceki daxil edilmelidir!");
+            }
+
+            $wasteData = $request->only(['waste_sac_count', 'waste_sac_name', 'waste_weight']);
+            $wasteData['waste_sac_name'] = Onion::bags()[$wasteData['waste_sac_name']] ?? null;
+
+            $onion->waste()->create($wasteData);
+
+            $wastableData = [
+                'total_weight' => $onion->getAttribute('total_weight') - $wasteData['waste_weight'],
+            ];
+
+            if($request->get('waste_sac_name')) {
+                $wastableData[$request->get('waste_sac_name')] = $onion->getAttribute($request->get('waste_sac_name')) - $wasteData['waste_sac_count'];
+            }
+
+            $onion->update($wastableData);
+
+            return redirect()->route('onions.show', $onion)->with('success', "Waste added successfully!");
+        }
 
         $validated['is_trash'] = $request->has('is_trash');
 
