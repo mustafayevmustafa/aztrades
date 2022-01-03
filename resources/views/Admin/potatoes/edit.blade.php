@@ -14,12 +14,70 @@
                 <div class="card-body p-0">
                     <div class="d-flex justify-content-between mb-3">
                         <a class="btn btn-outline-primary" href="{{route('potatoes.index')}}"><i class="mdi mdi-arrow-left"></i></a>
-                        @if (is_null($action))
-                            <a class="btn btn-outline-primary" href="{{route('potatoes.edit', $data)}}">Edit</a>
-                        @endif
+
+                        <div>
+                            @if($action != 'POST')
+                                <button type="button" class="btn btn-outline-danger mr-2" data-toggle="modal" data-target="#wasteModal">
+                                    Atxod elave et
+                                </button>
+                            @endif
+                            @if (is_null($action))
+                                <a class="btn btn-outline-primary" href="{{route('potatoes.edit', $data)}}">Edit</a>
+                            @endif
+                        </div>
                     </div>
 
-                    <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
+                    @if (session('error'))
+                        <div class="alert alert-danger mt-2">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
+                    @if($action != 'POST')
+                        <div class="modal fade" id="wasteModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Atxod elave et</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form action="{{route('potatoes.update', $data)}}" method="POST">
+                                        @csrf @method('PUT')
+                                        <input type="hidden" value="1" name="is_waste">
+                                        <div class="modal-body">
+                                            <div class="form-group col-12">
+                                                <label for="">Kisə</label>
+                                                <select name="waste_sac_name" class="form-control">
+                                                    <option value="">Kisə Seçin</option>
+                                                    @foreach($bags as $key => $bag)
+                                                        <option value="{{$key}}">{{$bag}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group col-12">
+                                                <label for="">Kisə sayi</label>
+                                                <input type="number" min="1" max="{{$data->getAttribute('least_bag_count')}}" step="1" class="form-control" name="waste_sac_count">
+                                            </div>
+
+                                            <div class="form-group col-12">
+                                                <label for="">Ceki (kg)</label>
+                                                <input type="number" min="1" max="{{$data->getAttribute('total_weight')}}" step="1" class="form-control" name="waste_weight">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Bagla</button>
+                                            <button type="submit" class="btn btn-primary">Yadda saxla</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    <form action="{{ $action }}" method="POST" id="manageForm">
                       @csrf @method($method)
 
                       @if (session('message'))
@@ -189,7 +247,7 @@
 @section('script')
     @if (is_null($action))
         <script>
-            $('form :input').attr('disabled', true)
+            $('#manageForm :input').attr('disabled', true)
         </script>
     @endif
 @endsection

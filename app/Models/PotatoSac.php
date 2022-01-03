@@ -25,7 +25,9 @@ class PotatoSac extends Model
         });
 
         self::updating(function (PotatoSac $potatoSac){
-            $potatoSac->setAttribute('old_sac_count', $potatoSac->getAttribute('sac_count'));
+            if (!\request()->has('is_waste')) {
+                $potatoSac->setAttribute('old_sac_count', $potatoSac->getAttribute('sac_count'));
+            }
         });
     }
 

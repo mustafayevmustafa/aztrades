@@ -12,6 +12,7 @@ use App\Http\Controllers\SellingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OnionController;
 use App\Http\Controllers\PotatoController;
+use App\Http\Controllers\WasteController;
 use App\Http\Middleware\Localization;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,7 @@ Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], 
     Route::resource('roles', RoleController::class);
     Route::resource('expenses_types', ExpensesTypeController::class);
     Route::resource('expenses', ExpenseController::class);
+    Route::get('waste', WasteController::class)->name('waste.index');
 
     Route::get('/toggle-active', function (){
         $setting = Setting::first();

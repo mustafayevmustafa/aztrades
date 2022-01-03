@@ -55,7 +55,7 @@ class SellingController extends Controller
             'data'   => new Selling(),
             'type'   => $type,
             'sacs'   => $type->getTable() == 'onions' ?
-                ['yellow_bag_number' => 'Sarı Kisə', 'red_bag_number' => 'Qırmızı Kisə', 'lom_bag_number' => 'Lom Kisə'] :
+                Onion::bags() :
                 $type->sacs->pluck('name', 'id'),
         ]);
     }
@@ -139,7 +139,7 @@ class SellingController extends Controller
             'data'   => $selling,
             'type' => $sellingable,
             'sacs'   => $sellingable->getTable() == 'onions' ?
-                ['yellow_bag_number' => 'Sarı Kisə', 'red_bag_number' => 'Qırmızı Kisə', 'lom_bag_number' => 'Lom Kisə'] :
+                Onion::bags() :
                 $sellingable->sacs->pluck('name', 'id'),
         ]);
     }
@@ -154,7 +154,7 @@ class SellingController extends Controller
             'data'   => $selling,
             'type' => $selling->getRelationValue('sellingable'),
             'sacs'   => $sellingable->getTable() == 'onions' ?
-                ['yellow_bag_number' => 'Sarı Kisə', 'red_bag_number' => 'Qırmızı Kisə', 'lom_bag_number' => 'Lom Kisə'] :
+                Onion::bags() :
                 $sellingable->sacs->pluck('name', 'id'),
         ]);
     }

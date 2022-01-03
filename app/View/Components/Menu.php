@@ -33,6 +33,11 @@ class Menu extends Component
                 'icon' => 'mdi mdi-teamviewer',
             ],
             (object) [
+                'name' => 'Atxodlar',
+                'url' => route('waste.index'),
+                'icon' => 'mdi mdi-teamviewer',
+            ],
+            (object) [
                 'name' => 'Icazələr',
                 'url' => route('roles.index'),
                 'icon' => 'mdi-account-key',
