@@ -23,7 +23,8 @@ class SellingController extends Controller
 
     public function index(Request $request)
     {
-        $filters = $request->only(['status', 'was_debt']);
+        $filters = $request->only(['status', 'was_debt', 'type', 'daterange', 'customer']);
+        $daterange = array_key_exists('daterange', $filters) ? explode(' - ', $filters['daterange']) : [];
 
         return view('Admin.sellings.index')->with([
             'sellings' => Selling::query()
@@ -36,8 +37,12 @@ class SellingController extends Controller
                     $filters['status'] == 1,
                     fn ($q) => $q->where('status', $filters['status'])
                 )
+                ->when(array_key_exists('type', $filters) && is_numeric($filters['type']), fn ($q) => $q->where('status', $filters['type']))
+                ->when(array_key_exists('daterange', $filters), fn ($q) => $q->whereBetween('created_at', [$daterange[0], $daterange[1]]))
+                ->when(array_key_exists('customer', $filters), fn ($q) => $q->where('customer', 'LIKE', "%{$filters['customer']}%"))
                 ->latest()
-                ->paginate(25)
+                ->paginate(25),
+            'type' => Selling::type(),
         ]);
     }
 
