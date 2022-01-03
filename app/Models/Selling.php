@@ -31,6 +31,11 @@ class Selling extends Model
         'was_debt' => 'boolean',
     ];
 
+    public static function type(): array
+    {
+        return ['Nəgd', 'Borc'];
+    }
+
     public function sellingable(): MorphTo
     {
         return $this->morphTo();
