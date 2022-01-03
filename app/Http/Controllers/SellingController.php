@@ -56,7 +56,7 @@ class SellingController extends Controller
             'type'   => $type,
             'sacs'   => $type->getTable() == 'onions' ?
                 ['yellow_bag_number' => 'Sarı Kisə', 'red_bag_number' => 'Qırmızı Kisə', 'lom_bag_number' => 'Lom Kisə'] :
-                $type->sacs->pluck('name'),
+                $type->sacs->pluck('name', 'id'),
         ]);
     }
 
@@ -93,14 +93,9 @@ class SellingController extends Controller
                     break;
 
                 case 'potatoes':
-                    $sac = $sellingable->sacs()->where('potato_id', $validated['type_id'])->where('name', $validated['sac_name'])->first();
+                    $sac = $sellingable->sacs()->where('potato_id', $validated['type_id'])->where('id', $validated['sac_name'])->first();
 
                     if ($sac->getAttribute('sac_count') < $validated['sac_count'] || $sac->getAttribute('total_weight') < $validated['weight']) {
-                        $error = true;
-                        break;
-                    }
-
-                    if ($sellingable->sacs->sum('total_weight') < $validated['weight']) {
                         $error = true;
                         break;
                     }
@@ -113,15 +108,19 @@ class SellingController extends Controller
             return back()->with('message', 'Seçdiyiniz kisədə o qədər say və ya həcm mövcud deyil');
         }
 
-        $selling->sellingable()->update($sellingableData);
-
         if($sellingable->getTable() == 'potatoes' && !is_null($validated['sac_name']) && $validated['sac_count'] > 0) {
             $sac_count = $sac->sac_count - $validated['sac_count'];
+            $sac_weight = $validated['weight'] > 0 ? $sac->total_weight - $validated['weight'] : $sac_count * $sac->sac_weight;
             $sac->update([
                 'sac_count' => $sac_count,
-                'total_weight' => $validated['weight'] > 0 ? $sac->total_weight - $validated['weight'] : $sac_count * $sac->sac_weight,
+                'total_weight' => $sac_weight,
             ]);
+
+            $sellingableData['total_weight'] = $sac_weight;
         }
+
+        $selling->sellingable()->update($sellingableData);
+
         $selling->save();
 
         return redirect()->route('sellings.index')->with('success', "Satış uğurlu oldu");
@@ -138,7 +137,7 @@ class SellingController extends Controller
             'type' => $sellingable,
             'sacs'   => $sellingable->getTable() == 'onions' ?
                 ['yellow_bag_number' => 'Sarı Kisə', 'red_bag_number' => 'Qırmızı Kisə', 'lom_bag_number' => 'Lom Kisə'] :
-                $sellingable->sacs->pluck('name'),
+                $sellingable->sacs->pluck('name', 'id'),
         ]);
     }
 
@@ -153,7 +152,7 @@ class SellingController extends Controller
             'type' => $selling->getRelationValue('sellingable'),
             'sacs'   => $sellingable->getTable() == 'onions' ?
                 ['yellow_bag_number' => 'Sarı Kisə', 'red_bag_number' => 'Qırmızı Kisə', 'lom_bag_number' => 'Lom Kisə'] :
-                $sellingable->sacs->pluck('name'),
+                $sellingable->sacs->pluck('name', 'id'),
         ]);
     }
 

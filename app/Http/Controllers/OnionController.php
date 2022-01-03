@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\Expense;
 use App\Models\ExpensesType;
 use App\Models\Onion;
+use App\Models\Selling;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -124,6 +125,7 @@ class OnionController extends Controller
     {
         if($onion->delete()){
             $onion->expenses()->delete();
+            Selling::where('sellingable_type', Onion::class)->where('sellingable_id', $onion->getAttribute('id'))->delete();
             return response()->json(['code' => 200]);
         }else{
             return response()->json(['code' => 400]);

@@ -9,6 +9,7 @@ use App\Models\ExpensesType;
 use App\Models\Onion;
 use App\Models\Potato;
 use App\Models\PotatoSac;
+use App\Models\Selling;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -54,23 +55,14 @@ class PotatoController extends Controller
 
         $potato = new Potato($validated);
 
-        $total = 0;
         if($request->has('sacs')){
             foreach ($validated['sacs'] ?? [] as $index => $sac) {
-                $validated['sacs'][$index]['name'] .= " (#{$index})";
                 $validated['sacs'][$index]['total_weight'] = $validated['sacs'][$index]['sac_count'] * $validated['sacs'][$index]['sac_weight'];
-                $total += $validated['sacs'][$index]['total_weight'];
             }
         }
 
-        if($total == 0) {
-            $potato->save();
-        } elseif($total <= $potato->getAttribute('total_weight')) {
-            $potato->save();
-            $potato->sacs()->createMany($validated['sacs']);
-        }else {
-            return back()->with('message', 'Daxil etdiyiniz kisə həcmi qədər həcm mövcud deyil');
-        }
+        $potato->save();
+        $potato->sacs()->createMany($validated['sacs'] ?? []);
 
         foreach ($validated as $key => $value) {
             if (!str_contains($key, 'cost')) continue;
@@ -125,7 +117,6 @@ class PotatoController extends Controller
 
         $sacs->each(function($sac, $index) use ($potato){
             $sac['total_weight'] = $sac['sac_count'] * $sac['sac_weight'];
-            $sac['name'] = strpos($sac['name'], "#") > 0 ? substr($sac['name'], 0, strpos($sac['name'], "#") - 1) . " (#{$index})" : $sac['name'] . " (#{$index})";
 
             $potato->sacs()->updateOrCreate(['id' => $sac['id']], $sac);
         });
@@ -154,6 +145,7 @@ class PotatoController extends Controller
     {
         if($potato->delete()){
             $potato->expenses()->delete();
+            Selling::where('sellingable_type', Potato::class)->where('sellingable_id', $potato->getAttribute('id'))->delete();
             return response()->json(['code' => 200]);
         }else{
             return response()->json(['code' => 400]);

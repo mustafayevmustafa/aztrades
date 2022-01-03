@@ -81,8 +81,7 @@
                             <select name="sac_name" class="form-control">
                                 <option value="">Kisə seç</option>
                                 @foreach($sacs as $index => $sac)
-                                    @php($key = $type->getTable() == 'onions' ? $index : $sac)
-                                    <option value="{{$key}}" @if($data->getAttribute('sac_name') == $key) selected @endif>{{$sac}}</option>
+                                    <option value="{{$index}}" @if($data->getAttribute('sac_name') == $index) selected @endif>{{$sac}}</option>
                                 @endforeach
                             </select>
                             @if($method == 'PUT')
