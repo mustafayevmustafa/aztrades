@@ -117,7 +117,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($onions as $onion)
+                            @foreach($onions->slice(0,5) as $onion)
                                 <tr>
                                     <th>{{$onion->getAttribute('id')}}</th>
                                     <th>
@@ -146,7 +146,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($potatoes as $potato)
+                                @foreach($potatoes->slice(0,5) as $potato)
                                     <tr>
                                         <th scope="row">{{$potato->getAttribute('id')}}</th>
                                         <td>

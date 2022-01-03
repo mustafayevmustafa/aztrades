@@ -33,7 +33,7 @@
                         </div>
                     @endif
 
-                    @if($action != 'POST')
+                    @if($method != 'POST')
                         <div class="modal fade" id="wasteModal">
                             <div class="modal-dialog">
                                 <div class="modal-content">
