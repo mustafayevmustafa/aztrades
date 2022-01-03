@@ -109,6 +109,7 @@ class SellingController extends Controller
         }
 
         if($sellingable->getTable() == 'potatoes' && !is_null($validated['sac_name']) && $validated['sac_count'] > 0) {
+
             $sac_count = $sac->sac_count - $validated['sac_count'];
             $sac_weight = $validated['weight'] > 0 ? $sac->total_weight - $validated['weight'] : $sac_count * $sac->sac_weight;
             $sac->update([
@@ -116,7 +117,9 @@ class SellingController extends Controller
                 'total_weight' => $sac_weight,
             ]);
 
-            $sellingableData['total_weight'] = $sac_weight;
+            if ($validated['weight'] == 0) {
+                $sellingableData['total_weight'] = $sellingable->getAttribute('total_weight') - ($validated['sac_count'] * $sac->sac_weight);
+            }
         }
 
         $selling->sellingable()->update($sellingableData);
