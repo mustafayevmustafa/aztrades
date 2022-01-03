@@ -27,7 +27,7 @@
                             <select name="expense_type_id" class="form-control">
                                 <option value="">Xərcin növünü seçin</option>
                                 @foreach($types as $key => $id)
-                                    <option value="{{$id}}" @if($data->getAttribute('expense_type_id') == $id) selected @endif>@lang('translates.expenseTypes.' . $id)</option>
+                                    <option value="{{$id}}" @if($data->getAttribute('expense_type_id') == $id || request()->get('type') == $id) selected @endif>@lang('translates.expenseTypes.' . $id)</option>
                                 @endforeach
                             </select>
                             @error('expense_type_id')

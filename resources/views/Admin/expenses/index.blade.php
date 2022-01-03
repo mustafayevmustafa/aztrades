@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
-                        <a class="btn btn-outline-success" href="{{route('expenses.create')}}">Xərc Əlavə Et</a>
+                        <a class="btn btn-outline-success" href="{{route('expenses.create', ['type' => request()->get('type') ?? request()->get('expense_type_id')])}}">Xərc Əlavə Et</a>
                     </div>
 
                     @if (session('success'))
