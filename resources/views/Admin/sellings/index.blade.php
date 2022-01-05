@@ -25,7 +25,7 @@
                                 <label for="is-trash-filter">Gəlir növünə görə filterlə</label>
                                 <select class="form-control" id="is-trash-filter" name="type">
                                     <option value="">Növü seç</option>
-                                    @foreach($type as $index => $_type)
+                                    @foreach($types as $index => $_type)
                                         <option value="{{$index}}" @if($index === (int) request()->get('type') && is_numeric(request()->get('type'))) selected @endif>{{$_type}}</option>
                                     @endforeach
                                 </select>
