@@ -17,6 +17,8 @@ class ExpenseRequest extends FormRequest
             'expense_type_id' => 'required|integer',
             'expense' => 'required|numeric',
             'note' => 'nullable|string',
+            'back' => 'nullable|string',
+            'is_returned' => 'nullable|string'
         ];
     }
 }

@@ -44,7 +44,7 @@
                                 <th scope="col">Xərcin növu</th>
                                 <th scope="col">Xərcin malın növu</th>
                                 <th scope="col">Qeyd</th>
-                                <th scope="col">Xərc (AZN)</th>
+                                <th scope="col">Borc (AZN)</th>
                                 <th scope="col">Tarix</th>
                                 <th scope="col">Əməliyyatlar</th>
                             </tr>

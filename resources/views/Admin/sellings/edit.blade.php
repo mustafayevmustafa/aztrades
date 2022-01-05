@@ -121,7 +121,7 @@
 
                         <div class="form-group">
                             <label for="post-title">Qiymət (AZN)</label>
-                            <input type="number" min="0" step=".1" value="{{ $data->getAttribute('price') }}" name="price" class="form-control" id="post-title" placeholder="Qiymət">
+                            <input type="number" min="0.1" step=".1" value="{{ $data->getAttribute('price') }}" name="price" class="form-control" id="post-title" placeholder="Qiymət">
                             @error('price')
                             <p class="text-danger">
                                 {{ $message }}
@@ -139,7 +139,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group form-check">
+                        <div class="form-group col-12 form-check">
                             <input type="checkbox"  name="status" class="form-check-input" id="data-status" @if($data->getAttribute('status')) checked @endif>
                             <label class="form-check-label" for="data-status">Borc</label>
                         </div>

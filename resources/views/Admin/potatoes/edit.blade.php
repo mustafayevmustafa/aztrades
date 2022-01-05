@@ -217,7 +217,7 @@
                           <div class="col-12 col-md-4">
                               <div class="form-group">
                                   <label >Ümumi Çəkisi (kg)</label>
-                                  <input type="number" value="{{ $data->getAttribute('total_weight') }}" name="total_weight" class="form-control"  placeholder="Ümumi çəkisini daxil edin">
+                                  <input type="number" min="0.1" step=".1" value="{{ $data->getAttribute('total_weight') }}" name="total_weight" class="form-control"  placeholder="Ümumi çəkisini daxil edin">
                                   @error('total_weight')
                                   <p class="text-danger">
                                       {{ $message }}

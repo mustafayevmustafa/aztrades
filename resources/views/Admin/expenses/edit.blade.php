@@ -22,6 +22,10 @@
                     <form action="{{ $action }}" method="POST">
                         @csrf @method($method)
 
+                        @if(!is_null($action))
+                            <input type="hidden" name="back" value="{{$back}}">
+                        @endif
+
                         @if($data->getAttribute('expense_type_id') == \App\Models\ExpensesType::debt || request()->get('type') == \App\Models\ExpensesType::debt)
                             <input type="hidden" name="expense_type_id" value="{{\App\Models\ExpensesType::debt}}">
                         @else
@@ -43,7 +47,7 @@
 
                         <div class="form-group">
                             <label>@if($data->getAttribute('expense_type_id') == \App\Models\ExpensesType::debt || request()->get('type') == \App\Models\ExpensesType::debt) Borc (AZN) @else Xərc (AZN) @endif</label>
-                            <input type="number" min="0" step=".1" value="{{ $data->getAttribute('expense') }}" name="expense" class="form-control"  placeholder="Qiymeti daxil edin">
+                            <input type="number" min="0.1" step=".1" value="{{ $data->getAttribute('expense') }}" name="expense" class="form-control"  placeholder="Qiymeti daxil edin">
                             @error('expense')
                                 <p class="text-danger">
                                     {{ $message }}
@@ -60,6 +64,13 @@
                             </p>
                             @enderror
                         </div>
+
+                        @if($method != 'POST' && $data->getAttribute('expense_type_id') == \App\Models\ExpensesType::debt)
+                            <div class="form-group col-12 form-check">
+                                <input type="checkbox"  name="is_returned" class="form-check-input" id="data-is_returned" @if($data->getAttribute('is_returned')) checked @endif>
+                                <label class="form-check-label" for="data-is_returned">Qaytarilib</label>
+                            </div>
+                        @endif
 
                         @if ($action)
                             <button type="submit" class="btn btn-primary">Yadda saxla</button>

@@ -29,6 +29,7 @@ class ExpenseController extends Controller
 
         return view('Admin.expenses.index')->with([
             'expenses' => Expense::query()
+                ->where('expense_type_id', '!=', ExpensesType::debt)
                 ->when(array_key_exists('expense_type_id', $filters), fn ($q) => $q->where('expense_type_id', $filters['expense_type_id']))
                 ->when(array_key_exists('all_except', $filters), fn ($q) => $q->where('expense_type_id', '!=', $filters['all_except']))
                 ->when(array_key_exists('type', $filters) && $filters['type'], fn ($q) => $q->where('expense_type_id', $filters['type']))
@@ -44,11 +45,14 @@ class ExpenseController extends Controller
     {
         abort_if(\request()->has('type') && is_null(ExpensesType::find(\request()->get('type'))), 404);
 
+        $back = back()->getTargetUrl();
+
         return view('Admin.expenses.edit', [
             'action' => route('expenses.store'),
             'method' => null,
             'data'   => new Expense(),
-            'types'  => ExpensesType::expenseTypes(true, 8)
+            'types'  => ExpensesType::expenseTypes(true, 8),
+            'back'   => $back
         ]);
     }
 
@@ -58,7 +62,7 @@ class ExpenseController extends Controller
 
         Expense::create($validated);
 
-        return redirect()->route('expenses.index')->with('success', "Expense created successfully!");
+        return redirect()->to($validated['back'])->with('success', "Expense created successfully!");
     }
 
     public function show(Expense $expense)
@@ -73,11 +77,14 @@ class ExpenseController extends Controller
 
     public function edit(Expense $expense)
     {
+        $back = back()->getTargetUrl();
+
         return view('Admin.expenses.edit', [
             'action' => route('expenses.update', $expense),
             'method' => "PUT",
             'data'   => $expense,
-            'types'  => ExpensesType::expenseTypes()
+            'types'  => ExpensesType::expenseTypes(),
+            'back'   => $back
         ]);
     }
 
@@ -87,7 +94,7 @@ class ExpenseController extends Controller
 
         $expense->update($validated);
 
-        return redirect()->route('expenses.index')->with('success', "Expense updated successfully!");
+        return redirect()->to($validated['back'])->with('success', "Expense updated successfully!");
     }
 
     public function destroy(Expense $expense): JsonResponse

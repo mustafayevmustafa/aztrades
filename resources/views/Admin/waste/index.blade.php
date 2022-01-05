@@ -32,7 +32,7 @@
                             <th scope="col">Kisə adi</th>
                             <th scope="col">Kisə sayi</th>
                             <th scope="col">Tarix</th>
-                            <th scope="col">Actions</th>
+{{--                            <th scope="col">Actions</th>--}}
                         </tr>
                         </thead>
                         <tbody>
