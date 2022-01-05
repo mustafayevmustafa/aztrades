@@ -31,7 +31,7 @@ class Selling extends Model
         'was_debt' => 'boolean',
     ];
 
-    public static function type(): array
+    public static function camel_case(): array
     {
         return ['Nəgd', 'Borc'];
     }

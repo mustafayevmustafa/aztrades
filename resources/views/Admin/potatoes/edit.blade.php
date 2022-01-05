@@ -16,7 +16,7 @@
                         <a class="btn btn-outline-primary" href="{{route('potatoes.index')}}"><i class="mdi mdi-arrow-left"></i></a>
 
                         <div>
-                            @if($action != 'POST')
+                            @if($method != 'POST')
                                 <button type="button" class="btn btn-outline-danger mr-2" data-toggle="modal" data-target="#wasteModal">
                                     Atxod elave et
                                 </button>

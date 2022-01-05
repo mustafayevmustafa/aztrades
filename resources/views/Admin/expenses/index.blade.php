@@ -64,7 +64,7 @@
                             @foreach ($expenses as $expense)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $expense->getRelationValue('type')->getAttribute('name') }}</td>
+                                    <td>{{ $expense->getRelationValue('camel_case')->getAttribute('name') }}</td>
                                     <td>{{ $expense->goodsType()->exists() ? ($expense->getRelationValue('goodsType')->getTable() == 'onions' ? 'Soğan' : 'Kartof') : 'Digər' }}</td>
                                     <td>{{ $expense->goodsType()->exists() ? $expense->getRelationValue('goodsType')->getAttribute('info') : 'Digər'}}</td>
                                     <td>{{ $expense->getAttribute('note') }}</td>
