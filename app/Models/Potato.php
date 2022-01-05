@@ -38,9 +38,9 @@ class Potato extends Model implements Recordable
             ->orWhereHas('sacs');
     }
 
-    public function scopeNotTrash($query)
+    public function scopeIsActive($query)
     {
-        return $query->where('is_trash', false);
+        return $query->where('status', true);
     }
 
     public function sacs(): HasMany

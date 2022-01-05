@@ -66,9 +66,9 @@ class Onion extends Model implements Recordable
             ->orWhere('lom_bag_number', '!=', 0);
     }
 
-    public function scopeNotTrash($query)
+    public function scopeIsActive($query)
     {
-        return $query->where('is_trash', false);
+        return $query->where('status', true);
     }
 
     public function sellings(): MorphMany

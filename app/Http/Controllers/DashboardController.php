@@ -17,8 +17,8 @@ class DashboardController extends Controller
 
         return view('Admin.index')->with([
             // goods
-            'onions' => Onion::latest('updated_at')->get(),
-            'potatoes' => Potato::latest('updated_at')->get(),
+            'onions' => Onion::isActive()->latest('updated_at')->get(),
+            'potatoes' => Potato::isActive()->latest('updated_at')->get(),
             // total data
             'total_net_income' => $total_net_income,
             'total_income' => Selling::where('status', false)->get()->sum('price'),
