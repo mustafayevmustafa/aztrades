@@ -43,7 +43,7 @@ class PotatoController extends Controller
     {
         return view('Admin.potatoes.edit', [
             'action' => route('potatoes.store'),
-            'method' => null,
+            'method' => 'POST',
             'data'   => new Potato(),
             'countries' => Country::get(),
         ]);
