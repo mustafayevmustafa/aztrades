@@ -42,6 +42,11 @@
                                 <input type="text" name="daterange" class="form-control" id="daterange-filter" value="{{request()->get('daterange')}}" readonly>
                             </div>
 
+                            <div class="form-group col-12 col-md-6">
+                                <label for="note-filter">Qeyde görə filterlə</label>
+                                <input type="text" name="note" class="form-control" id="note-filter" value="{{request()->get('note')}}">
+                            </div>
+
                             <div class="col-12 my-3">
                                 <button type="submit" class="btn btn-outline-primary">Filterlə</button>
                             </div>

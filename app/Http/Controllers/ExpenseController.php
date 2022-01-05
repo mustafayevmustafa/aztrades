@@ -24,7 +24,7 @@ class ExpenseController extends Controller
 
     public function index(Request $request)
     {
-        $filters = $request->only(['expense_type_id', 'all_except', 'type', 'daterange']);
+        $filters = $request->only(['expense_type_id', 'all_except', 'type', 'daterange', 'note']);
         $daterange = array_key_exists('daterange', $filters) ? explode(' - ', $filters['daterange']) : [];
 
         return view('Admin.expenses.index')->with([
@@ -34,6 +34,7 @@ class ExpenseController extends Controller
                 ->when(array_key_exists('all_except', $filters), fn ($q) => $q->where('expense_type_id', '!=', $filters['all_except']))
                 ->when(array_key_exists('type', $filters) && $filters['type'], fn ($q) => $q->where('expense_type_id', $filters['type']))
                 ->when(array_key_exists('daterange', $filters), fn ($q) => $q->whereBetween('created_at', [$daterange[0], $daterange[1]]))
+                ->when(array_key_exists('note', $filters), fn ($q) => $q->where('note', 'LIKE', "%{$filters['note']}%"))
                 ->latest()
                 ->latest('expense')
                 ->paginate(25),
