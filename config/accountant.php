@@ -107,6 +107,11 @@ return [
         'restored',
         'deleted',
         'forceDeleted',
+        'synced',
+        'attached',
+        'detached',
+        'existingPivotUpdated',
+        'toggled'
     ],
 
     /*
