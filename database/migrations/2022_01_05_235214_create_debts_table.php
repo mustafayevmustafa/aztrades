@@ -11,6 +11,7 @@ class CreateDebtsTable extends Migration
         Schema::create('debts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

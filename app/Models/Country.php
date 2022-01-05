@@ -7,9 +7,9 @@ use Altek\Eventually\Eventually;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Country extends Model
+class Country extends Model implements Recordable
 {
-    use SoftDeletes;
+    use SoftDeletes, \Altek\Accountant\Recordable;
 
    protected $fillable = ['name'];
 }

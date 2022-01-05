@@ -3,16 +3,15 @@
 namespace App\Models;
 
 use Altek\Accountant\Contracts\Recordable;
-use Altek\Eventually\Eventually;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Potato extends Model
+class Potato extends Model implements Recordable
 {
-    use SoftDeletes;
+    use SoftDeletes, \Altek\Accountant\Recordable;
 
     protected $fillable = [
         'from_whom',

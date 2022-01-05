@@ -3,14 +3,13 @@
 namespace App\Models;
 
 use Altek\Accountant\Contracts\Recordable;
-use Altek\Eventually\Eventually;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Expense extends Model
+class Expense extends Model implements Recordable
 {
-    use SoftDeletes;
+    use SoftDeletes, \Altek\Accountant\Recordable;
 
     protected $fillable = ['expense_type_id', 'note', 'expense', 'goods_type', 'goods_type_id'];
 

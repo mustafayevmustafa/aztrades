@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Recordable
 {
-    use SoftDeletes;
+    use SoftDeletes, \Altek\Accountant\Recordable, Eventually;
 
 	protected $table = 'users';
 

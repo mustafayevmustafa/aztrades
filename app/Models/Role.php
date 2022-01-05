@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Role extends Model
+class Role extends Model implements Recordable
 {
-    use SoftDeletes;
+    use SoftDeletes, \Altek\Accountant\Recordable, Eventually;
 
     protected $fillable = ['name'];
 
