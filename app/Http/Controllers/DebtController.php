@@ -17,8 +17,8 @@ class DebtController extends Controller
             'expenses' => Expense::query()
                 ->where('expense_type_id', ExpensesType::debt)
                 ->when(array_key_exists('daterange', $filters), fn ($q) => $q->whereBetween('created_at', [$daterange[0], $daterange[1]]))
-                ->when(array_key_exists('note', $filters), fn ($q) => $q->where('note', 'LIKE', "%{$filters['note']}%"))
-                ->when(array_key_exists('is_returned', $filters), fn ($q) => $q->where('is_returned', $filters['is_returned']))
+                ->when(array_key_exists('note', $filters) && !empty($filters['note']), fn ($q) => $q->where('note', 'LIKE', "%{$filters['note']}%"))
+                ->when(array_key_exists('is_returned', $filters) && !is_null($filters['is_returned']), fn ($q) => $q->where('is_returned', $filters['is_returned']))
                 ->latest()
                 ->latest('expense')
                 ->paginate(25),

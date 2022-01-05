@@ -39,4 +39,13 @@ class Selling extends Model implements Recordable
     {
         return $this->morphTo();
     }
+
+    public function debt(): Expense
+    {
+        if ($this->getAttribute('was_debt')) {
+            return Expense::where('goods_type', $this->getAttribute('sellingable_type'))->where('goods_type_id', $this->getAttribute('sellingable_id'))->first();
+        }
+
+        return new Expense();
+    }
 }

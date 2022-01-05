@@ -27,4 +27,13 @@ class Expense extends Model implements Recordable
         return $this->belongsTo($type, 'goods_type_id')->withDefault();
     }
 
+
+    public function selling(): Selling
+    {
+        if ($this->getAttribute('expense_type_id') == ExpensesType::debt && !is_null($this->getAttribute('goods_type'))) {
+            return Selling::where('sellingable_type', $this->getAttribute('goods_type'))->where('sellingable_id', $this->getAttribute('goods_type_id'))->first();
+        }
+
+        return new Selling();
+    }
 }

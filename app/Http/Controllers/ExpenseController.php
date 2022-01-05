@@ -94,6 +94,12 @@ class ExpenseController extends Controller
         $validated = $request->validated();
         $validated['is_returned'] = $request->has('is_returned');
 
+        if($validated['is_returned']) {
+            $expense->selling()->update([
+                'status' => false
+            ]);
+        }
+
         $expense->update($validated);
 
         return redirect()->to($validated['back'])->with('success', "Expense updated successfully!");

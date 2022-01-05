@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SellingsRequest;
+use App\Models\Expense;
+use App\Models\ExpensesType;
 use App\Models\Onion;
 use App\Models\Potato;
 use App\Models\Selling;
@@ -129,7 +131,18 @@ class SellingController extends Controller
 
         $selling->sellingable()->update($sellingableData);
 
+        if($validated['was_debt']) {
+            Expense::create([
+                'expense_type_id' => ExpensesType::debt,
+                'goods_type' => Onion::class,
+                'goods_type_id' => $selling->getAttribute('sellingable_id'),
+                'expense' => $validated['price'],
+                'note' => $validated['content']
+            ]);
+        }
+
         $selling->save();
+
 
         return redirect()->route('sellings.index')->with('success', "Satış uğurlu oldu");
     }
@@ -168,6 +181,12 @@ class SellingController extends Controller
     {
         $validated = $request->validated();
         $validated['status'] = $request->has('status');
+
+        if($selling->getAttribute('was_debt') && !$validated['status']) {
+            $selling->debt()->update([
+                'is_returned' => true
+            ]);
+        }
 
         if(is_null($validated['sac_name'])) $validated['sac_count'] = null;
 
