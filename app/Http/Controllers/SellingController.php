@@ -42,7 +42,6 @@ class SellingController extends Controller
                 ->when(array_key_exists('customer', $filters), fn ($q) => $q->where('customer', 'LIKE', "%{$filters['customer']}%"))
                 ->latest()
                 ->paginate(25),
-            'type' => Selling::camel_case(),
         ]);
     }
 
