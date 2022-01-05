@@ -33,7 +33,7 @@
                                 </div>
 
                                 <div class="col-6 col-md-3">
-                                    <h5 class="card-title">Borcdan gozlənilən gəlir</h5>
+                                    <h5 class="card-title">Borcdan gozlənilən pul</h5>
                                     <p class="card-text" style="font-size: 16px">{{$daily_waiting_income}} AZN</p>
                                 </div>
 
@@ -56,7 +56,7 @@
                                 </div>
 
                                 <div class="col-6 col-md-3">
-                                    <h5 class="card-title">Borcdan gozlənilən gəlir</h5>
+                                    <h5 class="card-title">Borcdan gozlənilən pul</h5>
                                     <p class="card-text" style="font-size: 16px">{{$monthly_waiting_income}} AZN</p>
                                 </div>
 
@@ -79,7 +79,7 @@
                                 </div>
 
                                 <div class="col-6 col-md-3">
-                                    <h5 class="card-title">Borcdan gozlənilən gelir</h5>
+                                    <h5 class="card-title">Borcdan gozlənilən pul</h5>
                                     <p class="card-text" style="font-size: 16px">{{$total_waiting_income}} AZN</p>
                                 </div>
 
