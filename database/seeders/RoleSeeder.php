@@ -19,11 +19,8 @@ class RoleSeeder extends Seeder
                 'name' => 'Admin',
             ],
             [
-                'name' => 'Creator',
+                'name' => 'Satici',
             ],
-            [
-                'name' => 'Editor',
-            ]
         ]);
     }
 }

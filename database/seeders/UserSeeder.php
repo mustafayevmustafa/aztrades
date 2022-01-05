@@ -19,10 +19,7 @@ class UserSeeder extends Seeder
         $user = User::create(['name' => 'Admin','email' => 'admin@admin.com', 'email_verified_at' => now(), 'password' => Hash::make('admin12345'), 'remember_token' => Str::random(10)]);
         $user->roles()->sync([1]);
 
-        $user = User::create(['name' => 'Creator','email' => 'creator@admin.com', 'email_verified_at' => now(), 'password' => Hash::make('creator123'), 'remember_token' => Str::random(10)]);
+        $user = User::create(['name' => 'Satici','email' => 'seller@admin.com', 'email_verified_at' => now(), 'password' => Hash::make('seller12345'), 'remember_token' => Str::random(10)]);
         $user->roles()->sync([2]);
-
-        $user = User::create(['name' => 'Editor','email' => 'editor@admin.com', 'email_verified_at' => now(), 'password' => Hash::make('editor123'), 'remember_token' => Str::random(10)]);
-        $user->roles()->sync([3]);
     }
 }
