@@ -25,11 +25,11 @@ class Potato extends Model implements Recordable
         'total_weight',
         'country_id',
         'party',
-        'is_trash',
+        'status',
     ];
 
     protected $casts = [
-        'is_trash' => 'boolean'
+        'status' => 'boolean'
     ];
 
     public function scopeHasGoods($query)

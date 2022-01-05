@@ -205,12 +205,12 @@
                             @enderror
                         </div>
 
-{{--                        @if ($method != "POST")--}}
-{{--                            <div class="form-group form-check">--}}
-{{--                                <input id="data-status" type="checkbox" {{ $data->getAttribute('is_trash') == true ? 'checked' : '' }}  name="is_trash" class="form-check-input">--}}
-{{--                                <label class="form-check-label" for="data-status">Atxot Mal</label>--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
+                        @if ($method != "POST")
+                            <div class="form-group col-12 form-check">
+                                <input id="data-status" type="checkbox" {{ $data->getAttribute('status') == true ? 'checked' : '' }}  name="status" class="form-check-input">
+                                <label class="form-check-label" for="data-status">Aktiv</label>
+                            </div>
+                        @endif
 
                         @if ($action)
                             <div class="col-12">

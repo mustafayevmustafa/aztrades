@@ -24,17 +24,17 @@ class PotatoController extends Controller
 
     public function index(Request $request)
     {
-        $is_trash = $request->get('is_trash', 0);
+        $status = $request->get('status', 1);
 
-        $types = ['Aktiv mallar', 'Atxod mallar'];
+        $types = ['Deaktiv mallar', 'Aktiv mallar'];
 
         return view('Admin.potatoes.index')->with([
             'potatoes' => Potato::query()
-                ->when($is_trash == 0, fn($q) => $q->where('is_trash', 0))
-                ->when($is_trash == 1, fn($q) => $q->where('is_trash', 1))
+                ->when($status == 0, fn($q) => $q->where('status', 0))
+                ->when($status == 1, fn($q) => $q->where('status', 1))
                 ->latest()
                 ->paginate(25),
-            'is_trash' => $is_trash,
+            'status' => $status,
             'types' => $types
         ]);
     }
@@ -140,7 +140,7 @@ class PotatoController extends Controller
             return redirect()->route('potatoes.show', $potato)->with('success', "Waste added successfully!");
         }
 
-        $validated['state'] = $request->has('state');
+        $validated['status'] = $request->has('status');
 
         $potato->update($validated);
 

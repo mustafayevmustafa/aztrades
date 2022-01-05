@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DebtController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ExpensesTypeController;
 use App\Http\Controllers\RoleController;
@@ -44,6 +45,7 @@ Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], 
     Route::resource('roles', RoleController::class);
     Route::resource('expenses_types', ExpensesTypeController::class);
     Route::resource('expenses', ExpenseController::class);
+    Route::get('debts', DebtController::class)->name('debts.index');
     Route::get('waste', WasteController::class)->name('waste.index');
 
     Route::get('/toggle-active', function (){

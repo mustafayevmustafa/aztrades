@@ -19,15 +19,19 @@ class ExpensesType extends Model implements Recordable
     public const cost = 7;
     public const debt = 8;
 
-    public static function expenseTypes(): array
+    public static function expenseTypes($exceptCost = false, $without = null): array
     {
-        return ExpensesType::pluck('id', 'key')->toArray();
+        return ExpensesType::query()
+            ->when($without, fn($q) => $q->where('id', '!=', $without))
+            ->when($exceptCost, fn($q) => $q->isNotCost())
+            ->pluck('id', 'key')
+            ->toArray();
     }
 
     protected $fillable = ['name', 'key'];
 
     public function scopeIsNotCost($query)
     {
-        return $query->where('key', '!=', 'cost');
+        return $query->where('id', '!=', self::cost);
     }
 }

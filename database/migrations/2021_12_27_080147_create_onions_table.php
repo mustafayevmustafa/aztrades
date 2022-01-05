@@ -22,7 +22,7 @@ class CreateOnionsTable extends Migration
             $table->integer("lom_bag_number")->nullable()->default(0);
             $table->string('old_bag_numbers')->nullable();
             $table->float("total_weight")->nullable()->default(0);
-            $table->boolean("is_trash")->default(false);
+            $table->boolean("status")->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

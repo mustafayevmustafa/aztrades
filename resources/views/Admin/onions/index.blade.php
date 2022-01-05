@@ -26,9 +26,9 @@
                     <form action="{{route('onions.index')}}">
                         <div class="form-group col-12 col-md-6 p-0">
                             <label for="is-trash-filter">Malin statusu uzre filterle</label>
-                            <select class="form-control" id="is-trash-filter" name="is_trash">
+                            <select class="form-control" id="is-trash-filter" name="status">
                                 @foreach($types as $index => $type)
-                                    <option value="{{$index}}" @if($is_trash == $index) selected @endif>{{$type}}</option>
+                                    <option value="{{$index}}" @if($status == $index) selected @endif>{{$type}}</option>
                                 @endforeach
                             </select>
                         </div>

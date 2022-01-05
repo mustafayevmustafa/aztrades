@@ -18,7 +18,7 @@ class OnionRequest extends FormRequest
             'red_bag_number' => 'nullable|integer',
             'yellow_bag_number' => 'nullable|integer',
             'lom_bag_number' => 'nullable|integer',
-            'is_trash' => 'nullable',
+            'status' => 'nullable',
             'total_weight' => 'nullable|numeric',
             'city_id' => 'nullable|integer',
             'is_waste' => 'nullable|integer',

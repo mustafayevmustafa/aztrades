@@ -226,6 +226,13 @@
                               </div>
                           </div>
 
+                          @if ($method != "POST")
+                              <div class="form-group col-12 form-check">
+                                  <input id="data-status" type="checkbox" {{ $data->getAttribute('status') == true ? 'checked' : '' }}  name="status" class="form-check-input">
+                                  <label class="form-check-label" for="data-status">Aktiv</label>
+                              </div>
+                          @endif
+
                           <div class="col-12 ">
                               <div class="my-3">
                                   <h4>Kartof kisələri</h4>

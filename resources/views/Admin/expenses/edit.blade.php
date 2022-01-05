@@ -22,24 +22,28 @@
                     <form action="{{ $action }}" method="POST">
                         @csrf @method($method)
 
-                        <div class="form-group">
-                            <label for="">Xərcin növü</label>
-                            <select name="expense_type_id" class="form-control">
-                                <option value="">Xərcin növünü seçin</option>
-                                @foreach($types as $key => $id)
-                                    <option value="{{$id}}" @if($data->getAttribute('expense_type_id') == $id || request()->get('type') == $id) selected @endif>@lang('translates.expenseTypes.' . $id)</option>
-                                @endforeach
-                            </select>
-                            @error('expense_type_id')
+                        @if($data->getAttribute('expense_type_id') == \App\Models\ExpensesType::debt || request()->get('type') == \App\Models\ExpensesType::debt)
+                            <input type="hidden" name="expense_type_id" value="{{\App\Models\ExpensesType::debt}}">
+                        @else
+                            <div class="form-group">
+                                <label for="">Xərcin növü</label>
+                                <select name="expense_type_id" class="form-control">
+                                    <option value="">Xərcin növünü seçin</option>
+                                    @foreach($types as $key => $id)
+                                        <option value="{{$id}}" @if($data->getAttribute('expense_type_id') == $id || request()->get('type') == $id) selected @endif>@lang('translates.expenseTypes.' . $id)</option>
+                                    @endforeach
+                                </select>
+                                @error('expense_type_id')
                                 <p class="text-danger">
                                     {{ $message }}
                                 </p>
-                            @enderror
-                        </div>
+                                @enderror
+                            </div>
+                        @endif
 
                         <div class="form-group">
-                            <label>Xərc (AZN)</label>
-                            <input type="number" min="0" step=".1" value="{{ $data->getAttribute('expense') }}" name="expense" class="form-control"  placeholder="Xərci daxil edin">
+                            <label>@if($data->getAttribute('expense_type_id') == \App\Models\ExpensesType::debt || request()->get('type') == \App\Models\ExpensesType::debt) Borc (AZN) @else Xərc (AZN) @endif</label>
+                            <input type="number" min="0" step=".1" value="{{ $data->getAttribute('expense') }}" name="expense" class="form-control"  placeholder="Qiymeti daxil edin">
                             @error('expense')
                                 <p class="text-danger">
                                     {{ $message }}

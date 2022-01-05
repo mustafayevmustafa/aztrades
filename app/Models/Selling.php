@@ -30,6 +30,11 @@ class Selling extends Model implements Recordable
         'was_debt' => 'boolean',
     ];
 
+    public static function flowType(): array
+    {
+        return ['Nəgd', 'Borc'];
+    }
+
     public function sellingable(): MorphTo
     {
         return $this->morphTo();

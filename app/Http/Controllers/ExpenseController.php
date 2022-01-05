@@ -36,17 +36,19 @@ class ExpenseController extends Controller
                 ->latest()
                 ->latest('expense')
                 ->paginate(25),
-            'expenseTypes' => ExpensesType::expenseTypes()
+            'expenseTypes' => ExpensesType::expenseTypes(false,8)
         ]);
     }
 
     public function create()
     {
+        abort_if(\request()->has('type') && is_null(ExpensesType::find(\request()->get('type'))), 404);
+
         return view('Admin.expenses.edit', [
             'action' => route('expenses.store'),
             'method' => null,
             'data'   => new Expense(),
-            'types'  => ExpensesType::expenseTypes()
+            'types'  => ExpensesType::expenseTypes(true, 8)
         ]);
     }
 

@@ -22,17 +22,17 @@ class OnionController extends Controller
 
     public function index(Request $request)
     {
-        $is_trash = $request->get('is_trash', 0);
+        $status = $request->get('status', 1);
 
-        $types = ['Aktiv mallar', 'Atxod mallar'];
+        $types = ['Deaktiv mallar', 'Aktiv mallar'];
 
         return view('Admin.onions.index')->with([
             'onions' => Onion::query()
-                ->when($is_trash == 0, fn($q) => $q->where('is_trash', 0))
-                ->when($is_trash == 1, fn($q) => $q->where('is_trash', 1))
+                ->when($status == 0, fn($q) => $q->where('status', 0))
+                ->when($status == 1, fn($q) => $q->where('status', 1))
                 ->latest()
                 ->paginate(25),
-            'is_trash' => $is_trash,
+            'status' => $status,
             'types' => $types
         ]);
     }
@@ -121,7 +121,7 @@ class OnionController extends Controller
             return redirect()->route('onions.show', $onion)->with('success', "Waste added successfully!");
         }
 
-        $validated['is_trash'] = $request->has('is_trash');
+        $validated['status'] = $request->has('status');
 
         $onion->update($validated);
 

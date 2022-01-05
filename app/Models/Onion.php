@@ -24,12 +24,12 @@ class Onion extends Model implements Recordable
         'lom_bag_number',
         'old_bag_numbers',
         'total_weight',
-        'is_trash',
-        'city_id'
+        'city_id',
+        'status',
     ];
 
     protected $casts = [
-        'is_trash' => 'boolean'
+        'status' => 'boolean'
     ];
 
     protected static function boot()

@@ -20,7 +20,6 @@
                     @endif
 
                     <form action="{{route('sellings.index')}}">
-{{--                        @dd(request()->get('type'))--}}
                         <div class="row">
                             <div class="form-group col-12 col-md-6">
                                 <label for="is-trash-filter">Gəlir növünə görə filterlə</label>
