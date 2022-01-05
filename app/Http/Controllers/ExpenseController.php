@@ -92,6 +92,7 @@ class ExpenseController extends Controller
     public function update(ExpenseRequest $request, Expense $expense): RedirectResponse
     {
         $validated = $request->validated();
+        $validated['is_returned'] = $request->has('is_returned');
 
         $expense->update($validated);
 

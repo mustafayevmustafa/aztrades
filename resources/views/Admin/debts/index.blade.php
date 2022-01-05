@@ -60,6 +60,7 @@
                                 <th scope="col">Xərcin malın növu</th>
                                 <th scope="col">Qeyd</th>
                                 <th scope="col">Borc (AZN)</th>
+                                <th scope="col">Qaytarilib</th>
                                 <th scope="col">Tarix</th>
                                 <th scope="col">Əməliyyatlar</th>
                             </tr>
@@ -72,6 +73,7 @@
                                     <td>{{ $expense->goodsType()->exists() ? $expense->getRelationValue('goodsType')->getAttribute('info') : 'Digər'}}</td>
                                     <td>{{ $expense->getAttribute('note') }}</td>
                                     <td>{{ $expense->getAttribute('expense') }}</td>
+                                    <td>{{ $expense->getAttribute('is_returned') ? 'Beli' : 'Xeyir' }}</td>
                                     <td>{{ $expense->getAttribute('created_at') }}</td>
                                     <td>
                                         <a href="{{ route('expenses.show', $expense) }}" class="btn btn-outline-success">Show</a>

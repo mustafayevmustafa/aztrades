@@ -22,7 +22,7 @@ class DebtController extends Controller
                 ->latest()
                 ->latest('expense')
                 ->paginate(25),
-            'types' => ['Borcda', 'Borcdan gelen']
+            'types' => ['Borca geden', 'Borcdan gelen']
         ]);
     }
 
