@@ -30,4 +30,13 @@ class User extends Authenticatable implements Recordable
     {
         return $this->belongsToMany(Role::class, 'role_user');
     }
+
+    public function isAdmin(): bool
+    {
+        if ($this->getRelationValue('roles')->contains('id', Role::ADMIN)) {
+            return true;
+        }
+
+        return false;
+    }
 }

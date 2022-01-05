@@ -108,6 +108,6 @@ return [
 
     'password_timeout' => 10800,
 
-    'gates' => ['create', 'update', 'delete'],
+    'gates' => ['disable'],
 
 ];

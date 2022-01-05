@@ -11,24 +11,15 @@ class RolePolicy
 
     public function before(User $user): ?bool
     {
-        if ($user->getRelationValue('roles')->contains('id', 1)) {
+        if ($user->isAdmin()) {
             return true;
         }
+
         return null;
     }
 
-    public function create(User $user): bool
+    public function disable(User $user): bool
     {
-        return $user->getRelationValue('roles')->contains('id', 2);
-    }
-
-    public function update(User $user): bool
-    {
-        return $user->getRelationValue('roles')->contains('id', 3);
-    }
-
-    public function delete(?User $user): bool
-    {
-        return false;
+        return $user->isAdmin();
     }
 }

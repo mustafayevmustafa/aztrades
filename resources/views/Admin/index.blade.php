@@ -14,7 +14,9 @@
             <div class="card">
                 <div class="card-body px-2">
                     <h3 class="text-center">AZTRADE COMPANY SATIŞ MƏRKƏZİ</h3>
-                    <a href="{{route('settings.toggle-state')}}" class="btn @if($setting->getAttribute('is_active')) btn-outline-danger @else btn-outline-success @endif">Satışı @if($setting->getAttribute('is_active')) bağla @else aç @endif</a>
+                    @can('disable')
+                        <a href="{{route('settings.toggle-state')}}" class="btn @if($setting->getAttribute('is_active')) btn-outline-danger @else btn-outline-success @endif">Satışı @if($setting->getAttribute('is_active')) bağla @else aç @endif</a>
+                    @endcan
                     <button class="btn btn-outline-primary" id="show-statistics">Statistikanı görsət</button>
                     <div id="statistics" class="d-none text-center">
                         <div class="my-4">

@@ -12,6 +12,8 @@ class Role extends Model implements Recordable
 {
     use SoftDeletes, \Altek\Accountant\Recordable, Eventually;
 
+    public const ADMIN = 1;
+
     protected $fillable = ['name'];
 
     public function users(): BelongsToMany
