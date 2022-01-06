@@ -12,9 +12,26 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $total_net_income = Selling::where('status', false)->get()->sum('price') - Expense::where('is_returned', false)->get()->sum('expense');
-        $monthly_net_income = Selling::where('status', false)->whereMonth('created_at', now()->month)->get()->sum('price') - Expense::where('is_returned', false)->whereMonth('created_at', now()->month)->get()->sum('expense');
-        $daily_net_income = Selling::where('status', false)->whereDate('created_at', now())->get()->sum('price') - Expense::where('is_returned', false)->whereDate('created_at', now())->get()->sum('expense');
+        $total_net_income = Selling::where('status', false)->get()->sum('price') -
+            Expense::where('is_returned', false)->where(function ($q){
+                $q->whereNotNull('goods_type')->where('expense_type_id', '!=', ExpensesType::debt);
+            })->orWhere(function ($q){
+                $q->whereNull('goods_type');
+            })->get()->sum('expense');
+
+        $monthly_net_income = Selling::where('status', false)->whereMonth('created_at', now()->month)->get()->sum('price') -
+            Expense::where('is_returned', false)->where(function ($q){
+                $q->whereNotNull('goods_type')->where('expense_type_id', '!=', ExpensesType::debt);
+            })->orWhere(function ($q){
+                $q->whereNull('goods_type');
+            })->whereMonth('created_at', now()->month)->get()->sum('expense');
+
+        $daily_net_income = Selling::where('status', false)->whereDate('created_at', now())->get()->sum('price') -
+            Expense::where('is_returned', false)->where(function ($q){
+                $q->whereNotNull('goods_type')->where('expense_type_id', '!=', ExpensesType::debt);
+            })->orWhere(function ($q){
+                $q->whereNull('goods_type');
+            })->whereDate('created_at', now())->get()->sum('expense');
 
         return view('Admin.index')->with([
             // goods
