@@ -46,21 +46,17 @@
                         <div class="my-4">
                             <h4>Aylıq</h4>
                             <div class="row text-center m-0 my-4">
-                                <div class="col-6 col-md-3">
-                                    <h5 class="card-title">Cibimdəki pul</h5>
-                                    <p class="card-text" style="font-size: 16px">{{$monthly_net_income}} AZN</p>
-                                </div>
-                                <div class="col-6 col-md-3">
+                                <div class="col-6 col-md-4">
                                     <h5 class="card-title">Gəlir</h5>
                                     <p class="card-text" style="font-size: 16px">{{$monthly_income}} AZN</p>
                                 </div>
 
-                                <div class="col-6 col-md-3">
+                                <div class="col-6 col-md-4">
                                     <h5 class="card-title">Borcdan gozlənilən pul</h5>
                                     <p class="card-text" style="font-size: 16px">{{$monthly_waiting_income}} AZN</p>
                                 </div>
 
-                                <div class="col-6 col-md-3">
+                                <div class="col-6 col-md-4">
                                     <h5 class="card-title">Xercler</h5>
                                     <p class="card-text" style="font-size: 16px">{{$monthly_expense}} AZN</p>
                                 </div>
@@ -69,21 +65,17 @@
                         <div class="my-4">
                             <h4>Ümumi</h4>
                             <div class="row text-center m-0 my-4">
-                                <div class="col-6 col-md-3">
-                                    <h5 class="card-title">Cibimdəki pul</h5>
-                                    <p class="card-text" style="font-size: 16px">{{$total_net_income}} AZN</p>
-                                </div>
-                                <div class="col-6 col-md-3">
+                                <div class="col-6 col-md-4">
                                     <h5 class="card-title">Gəlir</h5>
                                     <p class="card-text" style="font-size: 16px">{{$total_income}} AZN</p>
                                 </div>
 
-                                <div class="col-6 col-md-3">
+                                <div class="col-6 col-md-4">
                                     <h5 class="card-title">Borcdan gozlənilən pul</h5>
                                     <p class="card-text" style="font-size: 16px">{{$total_waiting_income}} AZN</p>
                                 </div>
 
-                                <div class="col-6 col-md-3">
+                                <div class="col-6 col-md-4">
                                     <h5 class="card-title">Xercler</h5>
                                     <p class="card-text" style="font-size: 16px">{{$total_expense}} AZN</p>
                                 </div>

@@ -35,6 +35,7 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], function () {
     Route::redirect('/', config('app.url') . '/Admin/dashboard');
+
     Route::resource('dashboard', DashboardController::class);
     Route::resource('onions', OnionController::class);
     Route::resource('potatoes', PotatoController::class);
@@ -45,15 +46,11 @@ Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], 
     Route::resource('roles', RoleController::class);
     Route::resource('expenses_types', ExpensesTypeController::class);
     Route::resource('expenses', ExpenseController::class);
+
     Route::get('debts', DebtController::class)->name('debts.index');
     Route::get('waste', WasteController::class)->name('waste.index');
 
-    Route::get('/toggle-active', function (){
-        $setting = Setting::first();
-        Setting::first()->update(['is_active' => !$setting->getAttribute('is_active')]);
-
-        return back();
-    })->name('settings.toggle-state');
+    Route::get('/toggle-active', [DashboardController::class, 'toggleActive'])->name('settings.toggle-state');
 });
 
 Auth::routes([
