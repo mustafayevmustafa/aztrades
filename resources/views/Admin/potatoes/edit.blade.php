@@ -268,7 +268,7 @@
                                           </div>
 
                                           <div class="col-12 col-md-4">
-                                              <p class="font-weight-bold" style="font-size: 16px">Satislar</p>
+                                              <p class="font-weight-bold" style="font-size: 16px">Dovriyye</p>
                                               @foreach($sellings->groupBy(fn ($data) => $data->getAttribute('sac_name')) as $name => $_waste)
                                                   <div class="my-2">
                                                       <p class="font-weight-bold">@if(is_numeric($name)) {{\App\Models\PotatoSac::find($name)->getAttribute('name')}} @else Ceki ile @endif </p>
