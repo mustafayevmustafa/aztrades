@@ -10,7 +10,7 @@ class CreateClosedRatesTable extends Migration
     {
         Schema::create('closed_rates', function (Blueprint $table) {
             $table->id();
-            $table->float('value')->nullable();
+            $table->double('value', 8, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

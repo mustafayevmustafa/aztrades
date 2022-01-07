@@ -24,7 +24,7 @@ class PotatoSac extends Model implements Recordable
         });
 
         self::updating(function (PotatoSac $potatoSac){
-            if (!\request()->has('is_waste')) {
+            if (!\request()->has('is_waste') && request()->method() != 'POST') {
                 $potatoSac->setAttribute('old_sac_count', $potatoSac->getAttribute('sac_count'));
             }
         });

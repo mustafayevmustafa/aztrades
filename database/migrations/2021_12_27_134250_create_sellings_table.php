@@ -14,7 +14,7 @@ class CreateSellingsTable extends Migration
             $table->string("type")->nullable();
             $table->morphs('sellingable');
             $table->float("weight")->nullable();
-            $table->float("price")->nullable();
+            $table->double("price", 8, 2)->nullable();
             $table->string("sac_name")->nullable();
             $table->integer("sac_count")->nullable();
             $table->boolean("status")->default(false);

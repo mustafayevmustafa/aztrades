@@ -14,9 +14,9 @@ class CreateOnionsTable extends Migration
             $table->string("from_whom")->nullable();
             $table->string("car_number")->nullable();
             $table->string("driver_name")->nullable();
-            $table->float("driver_cost")->nullable();
-            $table->float("supply_cost")->nullable();
-            $table->float("cost")->nullable();
+            $table->double("driver_cost", 8, 2)->nullable();
+            $table->double("supply_cost", 8, 2)->nullable();
+            $table->double("cost", 8, 2)->nullable();
             $table->integer("red_bag_number")->nullable()->default(0);
             $table->integer("yellow_bag_number")->nullable()->default(0);
             $table->integer("lom_bag_number")->nullable()->default(0);

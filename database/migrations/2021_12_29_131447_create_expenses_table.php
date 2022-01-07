@@ -13,7 +13,7 @@ class CreateExpensesTable extends Migration
             $table->integer('expense_type_id')->nullable()->index();
             $table->string('goods_type')->nullable()->index();
             $table->integer('goods_type_id')->nullable()->index();
-            $table->float('expense')->nullable();
+            $table->double('expense', 8, 2)->nullable();
             $table->text('note')->nullable();
             $table->boolean('is_returned')->default(false);
             $table->timestamps();
