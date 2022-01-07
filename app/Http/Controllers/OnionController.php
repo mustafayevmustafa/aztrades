@@ -82,7 +82,7 @@ class OnionController extends Controller
             'old_values' => explode(',', $onion->getAttribute('old_bag_numbers')),
             'bags' => Onion::bags(),
             'waste' => $onion->waste()->orderByDesc('created_at')->get(),
-            'sellings' => $onion->sellings()->where('status', false)->orderByDesc('created_at')->get(),
+            'sellings' => $onion->sellings()->orderByDesc('created_at')->get(),
         ]);
     }
 
@@ -96,7 +96,7 @@ class OnionController extends Controller
             'old_values' => explode(',', $onion->getAttribute('old_bag_numbers')),
             'bags' => Onion::bags(),
             'waste' => $onion->waste()->orderByDesc('created_at')->get(),
-            'sellings' => $onion->sellings()->where('status', true)->orderByDesc('created_at')->get()
+            'sellings' => $onion->sellings()->orderByDesc('created_at')->get()
         ]);
     }
 
