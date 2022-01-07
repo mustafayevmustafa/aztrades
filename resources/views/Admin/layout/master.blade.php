@@ -62,7 +62,7 @@
             $('input[name="daterange"]').daterangepicker({
                     opens: 'left',
                     locale: {
-                        format: "YYYY-MM-DD HH:mm",
+                        format: "YYYY-MM-DD",
                     },
                 }, function (start, end, label) {
                 }

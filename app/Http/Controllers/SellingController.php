@@ -9,6 +9,7 @@ use App\Models\Onion;
 use App\Models\Potato;
 use App\Models\Selling;
 use App\Models\Setting;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -40,7 +41,7 @@ class SellingController extends Controller
                     fn ($q) => $q->where('status', $filters['status'])
                 )
                 ->when(array_key_exists('type', $filters) && is_numeric($filters['type']), fn ($q) => $q->where('status', $filters['type']))
-                ->when(array_key_exists('daterange', $filters), fn ($q) => $q->whereBetween('created_at', [$daterange[0], $daterange[1]]))
+                ->when(array_key_exists('daterange', $filters), fn ($q) => $q->whereBetween('created_at', [Carbon::parse($daterange[0])->startOfDay(), Carbon::parse($daterange[1])->endOfDay()]))
                 ->when(array_key_exists('customer', $filters), fn ($q) => $q->where('customer', 'LIKE', "%{$filters['customer']}%"))
                 ->latest()
                 ->paginate(25),

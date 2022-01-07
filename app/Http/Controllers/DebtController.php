@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Expense;
 use App\Models\ExpensesType;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DebtController extends Controller
@@ -16,7 +17,7 @@ class DebtController extends Controller
         return view('Admin.debts.index')->with([
             'expenses' => Expense::query()
                 ->where('expense_type_id', ExpensesType::debt)
-                ->when(array_key_exists('daterange', $filters), fn ($q) => $q->whereBetween('created_at', [$daterange[0], $daterange[1]]))
+                ->when(array_key_exists('daterange', $filters), fn ($q) => $q->whereBetween('created_at', [Carbon::parse($daterange[0])->startOfDay(), Carbon::parse($daterange[1])->endOfDay()]))
                 ->when(array_key_exists('note', $filters) && !empty($filters['note']), fn ($q) => $q->where('note', 'LIKE', "%{$filters['note']}%"))
                 ->when(array_key_exists('is_returned', $filters) && !is_null($filters['is_returned']), fn ($q) => $q->where('is_returned', $filters['is_returned']))
                 ->latest()

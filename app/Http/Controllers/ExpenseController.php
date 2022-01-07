@@ -10,6 +10,7 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Expense;
 use App\Models\ExpensesType;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -32,9 +33,9 @@ class ExpenseController extends Controller
                 ->where('expense_type_id', '!=', ExpensesType::debt)
                 ->when(array_key_exists('expense_type_id', $filters), fn ($q) => $q->where('expense_type_id', $filters['expense_type_id']))
                 ->when(array_key_exists('all_except', $filters), fn ($q) => $q->where('expense_type_id', '!=', $filters['all_except']))
-                ->when(array_key_exists('type', $filters) && $filters['type'], fn ($q) => $q->where('expense_type_id', $filters['type']))
-                ->when(array_key_exists('daterange', $filters), fn ($q) => $q->whereBetween('created_at', [$daterange[0], $daterange[1]]))
-                ->when(array_key_exists('note', $filters), fn ($q) => $q->where('note', 'LIKE', "%{$filters['note']}%"))
+                ->when(array_key_exists('type', $filters) && is_numeric($filters['type']), fn ($q) => $q->where('expense_type_id', $filters['type']))
+                ->when(array_key_exists('daterange', $filters), fn ($q) => $q->whereBetween('created_at', [Carbon::parse($daterange[0])->startOfDay(), Carbon::parse($daterange[1])->endOfDay()]))
+                ->when(array_key_exists('note', $filters) && !is_null($filters['note']), fn ($q) => $q->where('note', 'LIKE', "%{$filters['note']}%"))
                 ->latest()
                 ->latest('expense')
                 ->paginate(25),
