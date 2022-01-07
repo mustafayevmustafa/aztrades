@@ -11,6 +11,7 @@ class CreateExpensesTable extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->integer('expense_type_id')->nullable()->index();
+            $table->string('customer')->nullable();
             $table->string('goods_type')->nullable()->index();
             $table->integer('goods_type_id')->nullable()->index();
             $table->double('expense', 8, 2)->nullable();

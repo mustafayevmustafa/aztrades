@@ -26,6 +26,16 @@
                             <input type="hidden" name="back" value="{{$back}}">
                         @endif
 
+                        <div class="form-group">
+                            <label>Musteri</label>
+                            <input type="text" value="{{ $data->getAttribute('customer') }}" name="customer" class="form-control"  placeholder="Musterini daxil edin">
+                            @error('customer')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                            @enderror
+                        </div>
+
                         @if($data->getAttribute('expense_type_id') == \App\Models\ExpensesType::debt || request()->get('type') == \App\Models\ExpensesType::debt)
                             <input type="hidden" name="expense_type_id" value="{{\App\Models\ExpensesType::debt}}">
                         @else

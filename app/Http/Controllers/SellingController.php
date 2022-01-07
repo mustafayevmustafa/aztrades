@@ -140,7 +140,8 @@ class SellingController extends Controller
                 'goods_type_id' => $selling->getAttribute('sellingable_id'),
                 'expense' => $validated['price'],
                 'note' => $validated['content'],
-                'debt_selling_id' => $selling->getAttribute('id')
+                'debt_selling_id' => $selling->getAttribute('id'),
+                'customer' => $selling->getAttribute('customer')
             ]);
         }
 
@@ -241,6 +242,7 @@ class SellingController extends Controller
     public function destroy(Selling $selling): JsonResponse
     {
         if($selling->delete()){
+            $selling->debt()->delete();
             return response()->json(['code' => 200]);
         }else{
             return response()->json(['code' => 400]);

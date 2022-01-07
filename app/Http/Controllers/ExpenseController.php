@@ -46,7 +46,7 @@ class ExpenseController extends Controller
     {
         abort_if(\request()->has('type') && is_null(ExpensesType::find(\request()->get('type'))), 404);
 
-        $back = back()->getTargetUrl();
+        $back = strpos(back()->getTargetUrl(), '?') != false ? substr(back()->getTargetUrl(), 0, strpos(back()->getTargetUrl(), '?')) : back()->getTargetUrl();
 
         return view('Admin.expenses.edit', [
             'action' => route('expenses.store'),
@@ -78,7 +78,7 @@ class ExpenseController extends Controller
 
     public function edit(Expense $expense)
     {
-        $back = back()->getTargetUrl();
+        $back = strpos(back()->getTargetUrl(), '?') != false ? substr(back()->getTargetUrl(), 0, strpos(back()->getTargetUrl(), '?')) : back()->getTargetUrl();
 
         return view('Admin.expenses.edit', [
             'action' => route('expenses.update', $expense),
@@ -98,7 +98,6 @@ class ExpenseController extends Controller
             'status' => !$validated['is_returned']
         ]);
 
-
         $expense->update($validated);
 
         return redirect()->to($validated['back'])->with('success', "Expense updated successfully!");
@@ -107,6 +106,7 @@ class ExpenseController extends Controller
     public function destroy(Expense $expense): JsonResponse
     {
         if($expense->delete()){
+            $expense->selling()->delete();
             return response()->json(['code' => 200]);
         }else{
             return response()->json(['code' => 400]);

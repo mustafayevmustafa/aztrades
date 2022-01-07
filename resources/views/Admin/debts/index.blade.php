@@ -56,8 +56,9 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Xərcin növu</th>
-                                <th scope="col">Xərcin malın növu</th>
+                                <th scope="col">Musteri</th>
+                                <th scope="col">Borcun növu</th>
+                                <th scope="col">Borc malın növu</th>
                                 <th scope="col">Qeyd</th>
                                 <th scope="col">Borc (AZN)</th>
                                 <th scope="col">Qaytarilib</th>
@@ -69,6 +70,7 @@
                             @foreach ($expenses as $expense)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $expense->getAttribute('customer') }}</td>
                                     <td>{{ $expense->goodsType()->exists() ? ($expense->getRelationValue('goodsType')->getTable() == 'onions' ? 'Soğan' : 'Kartof') : 'Digər' }}</td>
                                     <td>{{ $expense->goodsType()->exists() ? $expense->getRelationValue('goodsType')->getAttribute('info') : 'Digər'}}</td>
                                     <td>{{ $expense->getAttribute('note') }}</td>
