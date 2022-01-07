@@ -79,17 +79,19 @@
                             <div class="pl-0 form-group col-12">
                                 <div class="form-check">
                                     <input type="checkbox"  name="is_returned" class="form-check-input" id="data-is_returned" @if($data->getAttribute('is_returned')) checked @endif>
-                                    <label class="form-check-label" for="data-is_returned">Qaytarilib</label>
+                                    <label class="form-check-label" for="data-is_returned">Odenilib</label>
                                 </div>
                             </div>
                         @endif
 
-                        <div class="pl-0 form-group col-12">
-                            <div class="form-check">
-                                <input type="checkbox"  name="is_income" class="form-check-input" id="data-is_income" @if($data->getAttribute('is_income')) checked @endif>
-                                <label class="form-check-label" for="data-is_income">Borc aliram</label>
+                        @if($method == 'POST' || $data->getAttribute('is_income'))
+                            <div class="pl-0 form-group col-12">
+                                <div class="form-check">
+                                    <input type="checkbox"  name="is_income" class="form-check-input" id="data-is_income" @if($data->getAttribute('is_income')) checked @endif @if($method != 'POST') disabled @endif>
+                                    <label class="form-check-label" for="data-is_income">Borc almisam</label>
+                                </div>
                             </div>
-                        </div>
+                        @endif
 
                         @if ($action)
                             <button type="submit" class="btn btn-primary">Yadda saxla</button>

@@ -52,7 +52,7 @@ class ExpenseController extends Controller
 
         return view('Admin.expenses.edit', [
             'action' => route('expenses.store'),
-            'method' => null,
+            'method' => 'POST',
             'data'   => new Expense(),
             'types'  => ExpensesType::expenseTypes(true, 8),
             'back'   => $back
