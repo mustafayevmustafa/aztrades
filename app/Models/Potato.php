@@ -63,13 +63,17 @@ class Potato extends Model implements Recordable
         return "{$this->getAttribute('from_whom')} ({$this->getRelationValue('country')->getAttribute('name')}) (Partiya: {$this->getAttribute('party')})";
     }
 
-    public function getLeastBagCountAttribute(): int
+    public function getLeastBagCountAttribute(): ?int
     {
-        $least = PHP_INT_MAX;
+        $least = 0;
 
-        foreach ($this->getRelationValue('sacs') as $sac) {
-            if($least > $sac->getAttribute('sac_count')) {
-                $least = $sac->getAttribute('sac_count');
+        if ($this->sacs()->exists()) {
+            foreach ($this->getRelationValue('sacs') as $index => $sac) {
+                if ($index == 0) $least = $sac->getAttribute('sac_count');
+
+                if ($least > $sac->getAttribute('sac_count')) {
+                    $least = $sac->getAttribute('sac_count');
+                }
             }
         }
 

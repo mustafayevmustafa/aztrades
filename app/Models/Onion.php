@@ -86,7 +86,7 @@ class Onion extends Model implements Recordable
         return "{$this->getAttribute('from_whom')} ({$this->getAttribute('car_number')}) ({$this->getRelationValue('city')->getAttribute('name')})";
     }
 
-    public function getLeastBagCountAttribute(): int
+    public function getLeastBagCountAttribute(): ?int
     {
         $least = $this->getAttribute('red_bag_number');
 

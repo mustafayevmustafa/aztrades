@@ -131,18 +131,18 @@ class SellingController extends Controller
 
         $selling->sellingable()->update($sellingableData);
 
+        $selling->save();
+
         if($validated['was_debt']) {
             Expense::create([
                 'expense_type_id' => ExpensesType::debt,
                 'goods_type' => Onion::class,
                 'goods_type_id' => $selling->getAttribute('sellingable_id'),
                 'expense' => $validated['price'],
-                'note' => $validated['content']
+                'note' => $validated['content'],
+                'debt_selling_id' => $selling->getAttribute('id')
             ]);
         }
-
-        $selling->save();
-
 
         return redirect()->route('sellings.index')->with('success', "Satış uğurlu oldu");
     }
@@ -182,9 +182,9 @@ class SellingController extends Controller
         $validated = $request->validated();
         $validated['status'] = $request->has('status');
 
-        if($selling->getAttribute('was_debt') && !$validated['status']) {
+        if($selling->getAttribute('was_debt')) {
             $selling->debt()->update([
-                'is_returned' => true
+                'is_returned' => $validated['status']
             ]);
         }
 

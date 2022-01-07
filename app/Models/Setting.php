@@ -15,10 +15,12 @@ class Setting extends Model implements Recordable
 
     public static function getDailyNetIncome()
     {
-        return Selling::where('status', false)->whereDate('created_at', now())->get()->sum('price') -
-        Expense::where('is_returned', false)->where(function ($q){
-            $q->where(fn($q) => $q->whereNotNull('goods_type')->where('expense_type_id', '!=', ExpensesType::debt))
-                ->orWhereNull('goods_type');
-        })->whereDate('created_at', now())->get()->sum('expense') - ClosedRate::dailyClosedRates();
+        $selling = Selling::where('status', false)->whereDate('created_at', now())->get()->sum('price') -
+            Expense::where('is_returned', false)->where(function ($q){
+                $q->where(fn($q) => $q->whereNotNull('goods_type')->where('expense_type_id', '!=', ExpensesType::debt))
+                    ->orWhereNull('goods_type');
+            })->whereDate('created_at', now())->get()->sum('expense');
+
+        return $selling - ClosedRate::dailyClosedRatesSum();
     }
 }

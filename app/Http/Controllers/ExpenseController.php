@@ -94,11 +94,10 @@ class ExpenseController extends Controller
         $validated = $request->validated();
         $validated['is_returned'] = $request->has('is_returned');
 
-        if($validated['is_returned']) {
-            $expense->selling()->update([
-                'status' => false
-            ]);
-        }
+        $expense->selling()->update([
+            'status' => !$validated['is_returned']
+        ]);
+
 
         $expense->update($validated);
 

@@ -14,10 +14,33 @@
             <div class="card">
                 <div class="card-body px-2">
                     <h3 class="text-center">AZTRADE COMPANY SATIŞ MƏRKƏZİ</h3>
-                    @can('disable')
-                        <a href="{{route('settings.toggle-state')}}" class="btn @if($setting->getAttribute('is_active')) btn-outline-danger @else btn-outline-success @endif">Satışı @if($setting->getAttribute('is_active')) bağla @else aç @endif</a>
-                    @endcan
-                    <button class="btn btn-outline-primary" id="show-statistics">Statistikanı görsət</button>
+
+                    <div id="buttons" class="mt-4">
+                        @can('disable')
+                            <a href="{{route('settings.toggle-state')}}" class="btn @if($setting->getAttribute('is_active')) btn-outline-danger @else btn-outline-success @endif">Satışı @if($setting->getAttribute('is_active')) bağla @else aç @endif</a>
+                        @endcan
+                        <button class="btn btn-outline-primary" id="show-statistics">Statistikanı görsət</button>
+                        <button class="btn btn-outline-info" id="show-closed-rates">Baglanan satislari gorset</button>
+                    </div>
+
+                    <div id="closed-rates" class="d-none text-center">
+                        <table class="table table-bordered my-4">
+                            <thead>
+                                <tr>
+                                    <th>Pul (AZN)</th>
+                                    <th>Tarix</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($closed_rates as $closed_rate)
+                                <tr>
+                                    <td>{{$closed_rate->getAttribute('value')}}</td>
+                                    <td>{{$closed_rate->getAttribute('created_at')}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     <div id="statistics" class="d-none text-center">
                         <div class="my-4">
                             <h4>Günlük</h4>
@@ -244,6 +267,10 @@
     <script>
         $('#show-statistics').click(function (){
             $('#statistics').toggleClass('d-none');
+        });
+
+        $('#show-closed-rates').click(function (){
+            $('#closed-rates').toggleClass('d-none');
         });
     </script>
 @endsection

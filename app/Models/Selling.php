@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Altek\Accountant\Contracts\Recordable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -40,12 +41,8 @@ class Selling extends Model implements Recordable
         return $this->morphTo();
     }
 
-    public function debt(): Expense
+    public function debt(): HasOne
     {
-        if ($this->getAttribute('was_debt')) {
-            return Expense::where('goods_type', $this->getAttribute('sellingable_type'))->where('goods_type_id', $this->getAttribute('sellingable_id'))->first();
-        }
-
-        return new Expense();
+        return $this->hasOne(Expense::class, 'debt_selling_id')->withDefault();
     }
 }
