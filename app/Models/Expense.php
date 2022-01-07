@@ -11,7 +11,19 @@ class Expense extends Model implements Recordable
 {
     use SoftDeletes, \Altek\Accountant\Recordable;
 
-    protected $fillable = ['expense_type_id', 'note', 'expense', 'goods_type', 'goods_type_id', 'is_returned', 'debt_selling_id', 'customer'];
+    protected $fillable = [
+        'expense_type_id',
+        'note',
+        'expense',
+        'goods_type',
+        'goods_type_id',
+        'is_returned',
+        'is_income',
+        'debt_selling_id',
+        'customer'
+    ];
+
+    protected $casts = ['is_returned' => 'boolean', 'is_income' => 'boolean'];
 
     public function type(): BelongsTo
     {

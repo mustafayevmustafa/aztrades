@@ -60,6 +60,7 @@ class ExpenseController extends Controller
     public function store(ExpenseRequest $request): RedirectResponse
     {
         $validated = $request->validated();
+        $validated['is_income'] = $request->has('is_income');
 
         Expense::create($validated);
 

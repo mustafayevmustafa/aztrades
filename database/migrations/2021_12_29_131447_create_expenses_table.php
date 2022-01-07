@@ -17,6 +17,7 @@ class CreateExpensesTable extends Migration
             $table->double('expense', 8, 2)->nullable();
             $table->text('note')->nullable();
             $table->boolean('is_returned')->default(false);
+            $table->boolean('is_income')->default(false);
             $table->foreignId("debt_selling_id")->nullable()->index()->constrained('sellings');
             $table->timestamps();
             $table->softDeletes();

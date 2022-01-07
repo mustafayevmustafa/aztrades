@@ -22,17 +22,17 @@ class DashboardController extends Controller
             'onions' => Onion::isActive()->latest('updated_at')->get(),
             'potatoes' => Potato::isActive()->latest('updated_at')->get(),
             // total data
-            'total_income' => Selling::where('status', false)->get()->sum('price'),
-            'total_waiting_income' => Expense::where('is_returned', false)->where('expense_type_id', ExpensesType::debt)->get()->sum('expense'),
+            'total_income' => Selling::get()->sum('price'),
+            'total_waiting_income' => Expense::where('is_returned', false)->where('is_income', false)->where('expense_type_id', ExpensesType::debt)->get()->sum('expense'),
             'total_expense' => Expense::where('is_returned', false)->where('expense_type_id', '!=', ExpensesType::debt)->get()->sum('expense'),
             // monthly data
-            'monthly_income' => Selling::where('status', false)->whereMonth('created_at', now()->month)->get()->sum('price'),
-            'monthly_waiting_income' => Expense::where('is_returned', false)->where('expense_type_id', ExpensesType::debt)->whereMonth('created_at', now()->month)->get()->sum('expense'),
+            'monthly_income' => Selling::whereMonth('created_at', now()->month)->get()->sum('price'),
+            'monthly_waiting_income' => Expense::where('is_returned', false)->where('is_income', false)->where('expense_type_id', ExpensesType::debt)->whereMonth('created_at', now()->month)->get()->sum('expense'),
             'monthly_expense' => Expense::where('is_returned', false)->where('expense_type_id', '!=', ExpensesType::debt)->whereMonth('created_at', now()->month)->get()->sum('expense'),
             // daily data
             'daily_net_income' => Setting::getDailyNetIncome(),
-            'daily_income' => Selling::where('status', false)->whereDate('created_at', now())->get()->sum('price'),
-            'daily_waiting_income' => Expense::where('is_returned', false)->where('expense_type_id', ExpensesType::debt)->whereDate('created_at', now())->get()->sum('expense'),
+            'daily_income' => Selling::whereDate('created_at', now())->get()->sum('price'),
+            'daily_waiting_income' => Expense::where('is_returned', false)->where('is_income', false)->where('expense_type_id', ExpensesType::debt)->whereDate('created_at', now())->get()->sum('expense'),
             'daily_expense' => Expense::where('is_returned', false)->where('expense_type_id', '!=', ExpensesType::debt)->whereDate('created_at', now())->get()->sum('expense'),
         ]);
     }
