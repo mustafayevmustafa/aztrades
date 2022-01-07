@@ -218,6 +218,7 @@
                               <div class="form-group">
                                   <label >Ümumi Çəkisi (kg)</label>
                                   <input type="number" min="0.1" step=".1" value="{{ $data->getAttribute('total_weight') }}" name="total_weight" class="form-control"  placeholder="Ümumi çəkisini daxil edin">
+                                  <small class="text-primary">Daxil olan: {{$data->getAttribute('old_total_weight') ?? 0}}</small>
                                   @error('total_weight')
                                   <p class="text-danger">
                                       {{ $message }}
@@ -227,9 +228,11 @@
                           </div>
 
                           @if ($method != "POST")
-                              <div class="form-group col-12 form-check">
-                                  <input id="data-status" type="checkbox" {{ $data->getAttribute('status') == true ? 'checked' : '' }}  name="status" class="form-check-input">
-                                  <label class="form-check-label" for="data-status">Aktiv</label>
+                              <div class="form-group col-12">
+                                  <div class="form-check">
+                                      <input id="data-status" type="checkbox" {{ $data->getAttribute('status') == true ? 'checked' : '' }}  name="status" class="form-check-input">
+                                      <label class="form-check-label" for="data-status">Aktiv</label>
+                                  </div>
                               </div>
                           @endif
 
@@ -241,6 +244,64 @@
 
                               @if ($action)
                                   <button type="submit" class="btn btn-primary">Yadda saxla</button>
+                              @endif
+
+                              @if($method != 'POST')
+                                  <div class="col-12 my-4">
+                                      <h4>Statistika</h4>
+                                      <div class="row">
+                                          <div class="col-12 col-md-4">
+                                              <p class="font-weight-bold" style="font-size: 16px">Alislar</p>
+                                              @foreach($data->getRelationValue('sacs') as $sac)
+                                                  <div class="my-2">
+                                                      <p class="font-weight-bold">{{$sac->getAttribute('name')}}</p>
+                                                      <div>
+                                                          <p>Kise sayi: {{$sac->getAttribute('old_sac_count')}}</p>
+                                                          <p>Kise hecmi: {{$sac->getAttribute('sac_weight') * $sac->getAttribute('old_sac_count')}}</p>
+                                                      </div>
+                                                  </div>
+                                              @endforeach
+                                              <hr>
+                                              Hamisi:
+                                              <span class="font-weight-bold">Ceki: {{$data->getAttribute('old_total_weight') ?? 0}} kg</span>,
+                                              <span class="font-weight-bold">Kise saylari: {{$data->getRelationValue('sacs')->sum('old_sac_count')}}</span>
+                                          </div>
+
+                                          <div class="col-12 col-md-4">
+                                              <p class="font-weight-bold" style="font-size: 16px">Satislar</p>
+                                              @foreach($sellings->groupBy(fn ($data) => $data->getAttribute('sac_name')) as $name => $_waste)
+                                                  <div class="my-2">
+                                                      <p class="font-weight-bold">@if(is_numeric($name)) {{\App\Models\PotatoSac::find($name)->getAttribute('name')}} @else Ceki ile @endif </p>
+                                                      <div>
+                                                          <p>Ceki: {{$_waste->sum('weight') ?? 0}} kg</p>
+                                                          <p>Kise sayi: {{$_waste->sum('sac_count')}}</p>
+                                                      </div>
+                                                  </div>
+                                              @endforeach
+                                              <hr>
+                                              Hamisi:
+                                              <span class="font-weight-bold">Ceki: {{$sellings->sum('weight') ?? 0}} kg</span>,
+                                              <span class="font-weight-bold">Kise saylari: {{$sellings->sum('sac_count') ?? 0}}</span>
+                                          </div>
+
+                                          <div class="col-12 col-md-4">
+                                              <p class="font-weight-bold" style="font-size: 16px">Atxodlar</p>
+                                              @foreach($waste->groupBy(fn ($data) => $data->getAttribute('waste_sac_name')) as $name => $_waste)
+                                                  <div class="my-2">
+                                                      <p class="font-weight-bold">{{$name}}</p>
+                                                      <div>
+                                                          <p>Ceki: {{$_waste->sum('waste_weight') ?? 0}} kg</p>
+                                                          <p>Kise sayi: {{$_waste->sum('waste_sac_count')}}</p>
+                                                      </div>
+                                                  </div>
+                                              @endforeach
+                                              <hr>
+                                              Hamisi:
+                                              <span class="font-weight-bold">Ceki: {{$waste->sum('waste_weight') ?? 0}} kg</span>,
+                                              <span class="font-weight-bold">Kise saylari: {{$waste->sum('waste_sac_count') ?? 0}}</span>
+                                          </div>
+                                      </div>
+                                  </div>
                               @endif
                           </div>
                       </div>

@@ -76,9 +76,11 @@
                         </div>
 
                         @if($method != 'POST' && $data->getAttribute('expense_type_id') == \App\Models\ExpensesType::debt)
-                            <div class="form-group col-12 form-check">
-                                <input type="checkbox"  name="is_returned" class="form-check-input" id="data-is_returned" @if($data->getAttribute('is_returned')) checked @endif>
-                                <label class="form-check-label" for="data-is_returned">Qaytarilib</label>
+                            <div class="form-group col-12">
+                                <div class="form-check">
+                                    <input type="checkbox"  name="is_returned" class="form-check-input" id="data-is_returned" @if($data->getAttribute('is_returned')) checked @endif>
+                                    <label class="form-check-label" for="data-is_returned">Qaytarilib</label>
+                                </div>
                             </div>
                         @endif
 

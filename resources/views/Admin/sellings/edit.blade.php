@@ -140,9 +140,11 @@
                         </div>
 
                         @if(($method == 'PUT' && $data->getAttribute('was_debt')) || $method == 'POST')
-                            <div class="form-group col-12 form-check">
-                                <input type="checkbox"  name="status" class="form-check-input" id="data-status" @if($data->getAttribute('status')) checked @endif>
-                                <label class="form-check-label" for="data-status">Borc</label>
+                            <div class="form-group col-12">
+                                <div class="form-check">
+                                    <input type="checkbox"  name="status" class="form-check-input" id="data-status" @if($data->getAttribute('status')) checked @endif>
+                                    <label class="form-check-label" for="data-status">Borc</label>
+                                </div>
                             </div>
                         @endif
 

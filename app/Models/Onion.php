@@ -24,6 +24,7 @@ class Onion extends Model implements Recordable
         'lom_bag_number',
         'old_bag_numbers',
         'total_weight',
+        'old_total_weight',
         'city_id',
         'status',
     ];
@@ -39,12 +40,14 @@ class Onion extends Model implements Recordable
         self::creating(function (Onion $onion){
             $old_bag_numbers = "{$onion->getAttribute('red_bag_number')},{$onion->getAttribute('yellow_bag_number')},{$onion->getAttribute('lom_bag_number')}";
             $onion->setAttribute('old_bag_numbers', $old_bag_numbers);
+            $onion->setAttribute('old_total_weight', $onion->getAttribute('total_weight'));
         });
 
         self::updating(function (Onion $onion){
             if (!\request()->has('is_waste')) {
                 $old_bag_numbers = "{$onion->getAttribute('red_bag_number')},{$onion->getAttribute('yellow_bag_number')},{$onion->getAttribute('lom_bag_number')}";
                 $onion->setAttribute('old_bag_numbers', $old_bag_numbers);
+                $onion->setAttribute('old_total_weight', $onion->getAttribute('total_weight'));
             }
         });
     }

@@ -23,6 +23,7 @@ class Potato extends Model implements Recordable
         'market_cost',
         'other_cost',
         'total_weight',
+        'old_total_weight',
         'country_id',
         'party',
         'status',
@@ -31,6 +32,21 @@ class Potato extends Model implements Recordable
     protected $casts = [
         'status' => 'boolean'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::creating(function (Potato $potato){
+            $potato->setAttribute('old_total_weight', $potato->getAttribute('total_weight'));
+        });
+
+        self::updating(function (Potato $potato){
+            if (!\request()->has('is_waste')) {
+                $potato->setAttribute('old_total_weight', $potato->getAttribute('total_weight'));
+            }
+        });
+    }
 
     public function scopeHasGoods($query)
     {

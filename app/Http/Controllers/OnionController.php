@@ -8,6 +8,7 @@ use App\Models\Expense;
 use App\Models\ExpensesType;
 use App\Models\Onion;
 use App\Models\Selling;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -79,7 +80,9 @@ class OnionController extends Controller
             'data'   => $onion,
             'cities' => City::get(),
             'old_values' => explode(',', $onion->getAttribute('old_bag_numbers')),
-            'bags' => Onion::bags()
+            'bags' => Onion::bags(),
+            'waste' => $onion->waste()->orderByDesc('created_at')->get(),
+            'sellings' => $onion->sellings()->where('status', false)->orderByDesc('created_at')->get(),
         ]);
     }
 
@@ -91,7 +94,9 @@ class OnionController extends Controller
             'data'   => $onion,
             'cities' => City::get(),
             'old_values' => explode(',', $onion->getAttribute('old_bag_numbers')),
-            'bags' => Onion::bags()
+            'bags' => Onion::bags(),
+            'waste' => $onion->waste()->orderByDesc('created_at')->get(),
+            'sellings' => $onion->sellings()->where('status', true)->orderByDesc('created_at')->get()
         ]);
     }
 

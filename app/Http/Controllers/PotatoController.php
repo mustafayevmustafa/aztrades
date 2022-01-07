@@ -88,7 +88,9 @@ class PotatoController extends Controller
             'method' => null,
             'data'   => $potato,
             'countries' => Country::get(),
-            'bags' => $potato->getRelationValue('sacs')->pluck('name', 'id')
+            'bags' => $potato->getRelationValue('sacs')->pluck('name', 'id'),
+            'waste' => $potato->waste()->orderByDesc('created_at')->get(),
+            'sellings' => $potato->sellings()->where('status', false)->orderByDesc('created_at')->get(),
         ]);
     }
 
@@ -99,7 +101,9 @@ class PotatoController extends Controller
             'method' => "PUT",
             'data'   => $potato,
             'countries' => Country::get(),
-            'bags' => $potato->getRelationValue('sacs')->pluck('name', 'id')
+            'bags' => $potato->getRelationValue('sacs')->pluck('name', 'id'),
+            'waste' => $potato->waste()->orderByDesc('created_at')->get(),
+            'sellings' => $potato->sellings()->where('status', false)->orderByDesc('created_at')->get(),
         ]);
     }
 

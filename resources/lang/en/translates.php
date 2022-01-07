@@ -10,5 +10,11 @@ return [
         'Sklad xərci',
         'Maya dəyəri',
         'Borc'
+    ],
+
+    'onions_bags' => [
+        'red_bag_number' => 'Qirmizi kise',
+        'yellow_bag_number' => 'Sari kise',
+        'lom_bag_number' => 'Lom kise',
     ]
 ];
