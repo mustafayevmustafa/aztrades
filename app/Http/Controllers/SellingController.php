@@ -184,7 +184,7 @@ class SellingController extends Controller
 
         if($selling->getAttribute('was_debt')) {
             $selling->debt()->update([
-                'is_returned' => $validated['status']
+                'is_returned' => !$validated['status']
             ]);
         }
 

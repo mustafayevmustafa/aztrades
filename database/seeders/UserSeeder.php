@@ -16,10 +16,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create(['name' => 'Admin','email' => 'admin@admin.com', 'email_verified_at' => now(), 'password' => Hash::make('admin12345'), 'remember_token' => Str::random(10)]);
+        $user = User::create(['name' => 'Admin','email' => 'admin@aztradecompany.az', 'email_verified_at' => now(), 'password' => Hash::make('admin12345'), 'remember_token' => Str::random(10)]);
         $user->roles()->sync([1]);
 
-        $user = User::create(['name' => 'Satici','email' => 'seller@admin.com', 'email_verified_at' => now(), 'password' => Hash::make('seller12345'), 'remember_token' => Str::random(10)]);
+        $user = User::create(['name' => 'Satici','email' => 'seller@aztradecompany.az', 'email_verified_at' => now(), 'password' => Hash::make('seller12345'), 'remember_token' => Str::random(10)]);
         $user->roles()->sync([2]);
     }
 }
