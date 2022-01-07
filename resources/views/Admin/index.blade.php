@@ -51,7 +51,7 @@
                                 </div>
 
                                 <div class="col-6 col-md-3">
-                                    <h5 class="card-title">Gəlir</h5>
+                                    <h5 class="card-title">Dovriyye</h5>
                                     <p class="card-text" style="font-size: 16px">{{$daily_income}} AZN</p>
                                 </div>
 
@@ -70,7 +70,7 @@
                             <h4>Aylıq</h4>
                             <div class="row text-center m-0 my-4">
                                 <div class="col-6 col-md-4">
-                                    <h5 class="card-title">Gəlir</h5>
+                                    <h5 class="card-title">Dovriyye</h5>
                                     <p class="card-text" style="font-size: 16px">{{$monthly_income}} AZN</p>
                                 </div>
 
@@ -89,7 +89,7 @@
                             <h4>Ümumi</h4>
                             <div class="row text-center m-0 my-4">
                                 <div class="col-6 col-md-4">
-                                    <h5 class="card-title">Gəlir</h5>
+                                    <h5 class="card-title">Dovriyye</h5>
                                     <p class="card-text" style="font-size: 16px">{{$total_income}} AZN</p>
                                 </div>
 
