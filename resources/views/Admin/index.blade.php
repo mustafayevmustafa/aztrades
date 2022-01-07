@@ -30,7 +30,7 @@
                                 <tr>
                                     <th>Cibimdəki pul (AZN)</th>
                                     <th>Dovriyye (AZN)</th>
-                                    <th>Borca aligim pul (AZN)</th>
+                                    <th>Borca aldigim pul (AZN)</th>
                                     <th>Borcdan gozlənilən pul (AZN)</th>
                                     <th>Xercler (AZN)</th>
                                     <th>Tarix</th>
@@ -65,7 +65,7 @@
                                 </div>
 
                                 <div class="col-6 col-md-3">
-                                    <h5 class="card-title">Borca aligim pul</h5>
+                                    <h5 class="card-title">Borca aldigim pul</h5>
                                     <p class="card-text" style="font-size: 16px">{{$daily_waiting_income_debt}} AZN</p>
                                 </div>
 

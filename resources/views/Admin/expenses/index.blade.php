@@ -43,6 +43,11 @@
                             </div>
 
                             <div class="form-group col-12 col-md-6">
+                                <label for="customer-filter">Musteriye görə filterlə</label>
+                                <input type="text" name="customer" class="form-control" id="customer-filter" value="{{request()->get('customer')}}">
+                            </div>
+
+                            <div class="form-group col-12 col-md-6">
                                 <label for="note-filter">Qeyde görə filterlə</label>
                                 <input type="text" name="note" class="form-control" id="note-filter" value="{{request()->get('note')}}">
                             </div>
