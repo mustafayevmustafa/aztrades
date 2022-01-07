@@ -23,7 +23,8 @@
                         <button class="btn btn-outline-info" id="show-closed-rates">Baglanan satislari gorset</button>
                     </div>
 
-                    <div id="closed-rates" class="d-none text-center">
+                    <div id="closed-rates" class="d-none text-center my-4">
+                        <h4 class="font-weight-bold">Baglanan satislar</h4>
                         <table class="table table-responsive-sm table-bordered my-4">
                             <thead>
                                 <tr>
@@ -49,7 +50,7 @@
                     </div>
                     <div id="statistics" class="d-none text-center">
                         <div class="my-4">
-                            <h4>Günlük</h4>
+                            <h4 class="font-weight-bold">Günlük</h4>
                             <div class="row text-center m-0 my-4">
                                 <div class="col-6 col-md-3">
                                     <h5 class="card-title">Cibimdəki pul</h5>
@@ -73,7 +74,7 @@
                             </div>
                         </div>
                         <div class="my-4">
-                            <h4>Aylıq</h4>
+                            <h4 class="font-weight-bold">Aylıq</h4>
                             <div class="row text-center m-0 my-4">
                                 <div class="col-6 col-md-4">
                                     <h5 class="card-title">Dovriyye</h5>
@@ -92,7 +93,7 @@
                             </div>
                         </div>
                         <div class="my-4">
-                            <h4>Ümumi</h4>
+                            <h4 class="font-weight-bold">Ümumi</h4>
                             <div class="row text-center m-0 my-4">
                                 <div class="col-6 col-md-4">
                                     <h5 class="card-title">Dovriyye</h5>
