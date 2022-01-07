@@ -34,6 +34,11 @@ class Setting extends Model implements Recordable
         return (Expense::where('is_returned', false)->where('is_income', false)->where('expense_type_id', ExpensesType::debt)->whereDate('created_at', now())->get()->sum('expense') - ClosedRate::dailyClosedRates()->sum('waiting_debts')) ?? 0;
     }
 
+    public function dailyWaitingIncomeDebts(): float
+    {
+        return (Expense::where('is_returned', false)->where('is_income', true)->where('expense_type_id', ExpensesType::debt)->whereDate('created_at', now())->get()->sum('expense') - ClosedRate::dailyClosedRates()->sum('waiting_income_debts')) ?? 0;
+    }
+
     public function dailyExpenses(): float
     {
         return (Expense::where('is_returned', false)->where('expense_type_id', '!=', ExpensesType::debt)->whereDate('created_at', now())->get()->sum('expense') - ClosedRate::dailyClosedRates()->sum('expenses')) ?? 0;

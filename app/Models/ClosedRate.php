@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClosedRate extends Model
 {
-    protected $fillable = ['pocket', 'turnover', 'waiting_debts', 'expenses'];
+    protected $fillable = ['pocket', 'turnover', 'waiting_debts', 'expenses', 'waiting_income_debts'];
 
     public static function dailyClosedRates()
     {
-        return ClosedRate::whereDate('created_at', now())->get();
+        return ClosedRate::whereDate('created_at', now())->latest()->get();
     }
 }

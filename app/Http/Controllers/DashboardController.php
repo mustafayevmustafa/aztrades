@@ -23,16 +23,15 @@ class DashboardController extends Controller
             'potatoes' => Potato::isActive()->latest('updated_at')->get(),
             // total data
             'total_income' => Selling::get()->sum('price'),
-            'total_waiting_income' => Expense::where('is_returned', false)->where('is_income', false)->where('expense_type_id', ExpensesType::debt)->get()->sum('expense'),
             'total_expense' => Expense::where('is_returned', false)->where('expense_type_id', '!=', ExpensesType::debt)->get()->sum('expense'),
             // monthly data
             'monthly_income' => Selling::whereMonth('created_at', now()->month)->get()->sum('price'),
-            'monthly_waiting_income' => Expense::where('is_returned', false)->where('is_income', false)->where('expense_type_id', ExpensesType::debt)->whereMonth('created_at', now()->month)->get()->sum('expense'),
             'monthly_expense' => Expense::where('is_returned', false)->where('expense_type_id', '!=', ExpensesType::debt)->whereMonth('created_at', now()->month)->get()->sum('expense'),
             // daily data
             'daily_net_income' => Setting::dailyNetIncome(),
             'daily_income' => Setting::dailyTurnover(),
             'daily_waiting_income' => Setting::dailyWaitingDebts(),
+            'daily_waiting_income_debt' => Setting::dailyWaitingDebts(),
             'daily_expense' => Setting::dailyExpenses(),
         ]);
     }
@@ -47,6 +46,7 @@ class DashboardController extends Controller
                 'pocket' => Setting::dailyNetIncome(),
                 'turnover' => Setting::dailyTurnover(),
                 'waiting_debts' => Setting::dailyWaitingDebts(),
+                'waiting_income_debts' => Setting::dailyWaitingIncomeDebts(),
                 'expenses' => Setting::dailyExpenses(),
             ]);
         }
