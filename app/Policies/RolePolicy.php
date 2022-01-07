@@ -22,4 +22,14 @@ class RolePolicy
     {
         return $user->isAdmin();
     }
+
+    public function admin(User $user): bool
+    {
+        return $user->isAdmin();
+    }
+
+    public function generally(): bool
+    {
+        return true;
+    }
 }

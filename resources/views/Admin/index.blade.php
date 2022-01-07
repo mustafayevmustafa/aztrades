@@ -24,7 +24,7 @@
                     </div>
 
                     <div id="closed-rates" class="d-none text-center">
-                        <table class="table table-bordered my-4">
+                        <table class="table table-responsive-sm table-bordered my-4">
                             <thead>
                                 <tr>
                                     <th>Pul (AZN)</th>

@@ -23,7 +23,7 @@
                             {{ session('success') }}
                         </div>
                     @endif
-              <table class="table">
+              <table class="table table-responsive-sm">
                 <thead>
                 <tr>
                     <th scope="col">#</th>

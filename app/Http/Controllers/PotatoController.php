@@ -20,6 +20,7 @@ class PotatoController extends Controller
     {
         parent::__construct();
         $this->middleware('auth');
+        $this->middleware('can:admin')->except('update');
     }
 
     public function index(Request $request)

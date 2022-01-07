@@ -30,7 +30,7 @@
                             </select>
                         </div>
 
-                        <table class="table table-responsive">
+                        <table class="table table-responsive-sm">
                             <thead>
                             <tr>
                                 <th class="text-nowrap" scope="col">#</th>
