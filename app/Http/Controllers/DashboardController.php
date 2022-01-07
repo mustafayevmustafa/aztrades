@@ -30,10 +30,10 @@ class DashboardController extends Controller
             'monthly_waiting_income' => Expense::where('is_returned', false)->where('is_income', false)->where('expense_type_id', ExpensesType::debt)->whereMonth('created_at', now()->month)->get()->sum('expense'),
             'monthly_expense' => Expense::where('is_returned', false)->where('expense_type_id', '!=', ExpensesType::debt)->whereMonth('created_at', now()->month)->get()->sum('expense'),
             // daily data
-            'daily_net_income' => Setting::getDailyNetIncome(),
-            'daily_income' => Selling::whereDate('created_at', now())->get()->sum('price'),
-            'daily_waiting_income' => Expense::where('is_returned', false)->where('is_income', false)->where('expense_type_id', ExpensesType::debt)->whereDate('created_at', now())->get()->sum('expense'),
-            'daily_expense' => Expense::where('is_returned', false)->where('expense_type_id', '!=', ExpensesType::debt)->whereDate('created_at', now())->get()->sum('expense'),
+            'daily_net_income' => Setting::dailyNetIncome(),
+            'daily_income' => Setting::dailyTurnover(),
+            'daily_waiting_income' => Setting::dailyWaitingDebts(),
+            'daily_expense' => Setting::dailyExpenses(),
         ]);
     }
 
@@ -42,8 +42,13 @@ class DashboardController extends Controller
         $setting = Setting::first();
         $setting->update(['is_active' => !$setting->getAttribute('is_active')]);
 
-        if (!$setting->getAttribute('is_active') && Setting::getDailyNetIncome() != 0) {
-            ClosedRate::create(['value' => Setting::getDailyNetIncome()]);
+        if (!$setting->getAttribute('is_active') && Setting::dailyNetIncome() != 0) {
+            ClosedRate::create([
+                'pocket' => Setting::dailyNetIncome(),
+                'turnover' => Setting::dailyTurnover(),
+                'waiting_debts' => Setting::dailyWaitingDebts(),
+                'expenses' => Setting::dailyExpenses(),
+            ]);
         }
 
         return back();

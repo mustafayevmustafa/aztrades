@@ -6,12 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClosedRate extends Model
 {
-    protected $fillable = ['value'];
-
-    public static function dailyClosedRatesSum()
-    {
-        return ClosedRate::whereDate('created_at', now())->get()->sum('value');
-    }
+    protected $fillable = ['pocket', 'turnover', 'waiting_debts', 'expenses'];
 
     public static function dailyClosedRates()
     {

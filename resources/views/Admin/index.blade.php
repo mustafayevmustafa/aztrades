@@ -27,14 +27,20 @@
                         <table class="table table-responsive-sm table-bordered my-4">
                             <thead>
                                 <tr>
-                                    <th>Pul (AZN)</th>
+                                    <th>Cibimdəki pul (AZN)</th>
+                                    <th>Dovriyye (AZN)</th>
+                                    <th>Borcdan gozlənilən pul (AZN)</th>
+                                    <th>Xercler (AZN)</th>
                                     <th>Tarix</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach($closed_rates as $closed_rate)
                                 <tr>
-                                    <td>{{$closed_rate->getAttribute('value')}}</td>
+                                    <td>{{$closed_rate->getAttribute('pocket')}}</td>
+                                    <td>{{$closed_rate->getAttribute('turnover')}}</td>
+                                    <td>{{$closed_rate->getAttribute('waiting_debts')}}</td>
+                                    <td>{{$closed_rate->getAttribute('expenses')}}</td>
                                     <td>{{$closed_rate->getAttribute('created_at')}}</td>
                                 </tr>
                             @endforeach
