@@ -31,8 +31,14 @@ class Setting extends Model implements Recordable
 
     public function dailyWaitingDebts(): float
     {
-        return (Expense::where('is_income', false)->where('expense_type_id', ExpensesType::debt)->whereDate('created_at', now())->get()->sum('expense') - ClosedRate::dailyClosedRates()->sum('waiting_debts')) ?? 0;
+        return (Expense::where('is_income', false)->whereNull('goods_type')->where('expense_type_id', ExpensesType::debt)->whereDate('created_at', now())->get()->sum('expense') - ClosedRate::dailyClosedRates()->sum('waiting_debts')) ?? 0;
     }
+
+    public function dailyWaitingIncomeGoods(): float
+    {
+        return (Expense::where('is_income', false)->whereNotNull('goods_type')->where('expense_type_id', ExpensesType::debt)->whereDate('created_at', now())->get()->sum('expense') - ClosedRate::dailyClosedRates()->sum('waiting_income_goods')) ?? 0;
+    }
+
 
     public function dailyWaitingIncomeDebts(): float
     {

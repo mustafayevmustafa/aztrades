@@ -14,6 +14,7 @@ class CreateClosedRatesTable extends Migration
             $table->double('turnover', 8, 2)->nullable();
             $table->double('waiting_debts', 8, 2)->nullable();
             $table->double('waiting_income_debts', 8, 2)->nullable();
+            $table->double('waiting_income_goods', 8, 2)->nullable();
             $table->double('expenses', 8, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();

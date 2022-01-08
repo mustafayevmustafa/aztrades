@@ -32,6 +32,7 @@ class DashboardController extends Controller
             'daily_income' => Setting::dailyTurnover(),
             'daily_waiting_income' => Setting::dailyWaitingDebts(),
             'daily_waiting_income_debt' => Setting::dailyWaitingIncomeDebts(),
+            'daily_waiting_income_goods' => Setting::dailyWaitingIncomeGoods(),
             'daily_expense' => Setting::dailyExpenses(),
         ]);
     }
@@ -47,6 +48,7 @@ class DashboardController extends Controller
                 'turnover' => Setting::dailyTurnover(),
                 'waiting_debts' => Setting::dailyWaitingDebts(),
                 'waiting_income_debts' => Setting::dailyWaitingIncomeDebts(),
+                'waiting_income_goods' => Setting::dailyWaitingIncomeGoods(),
                 'expenses' => Setting::dailyExpenses(),
             ]);
         }

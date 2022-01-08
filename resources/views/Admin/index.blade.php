@@ -30,6 +30,7 @@
                                 <tr>
                                     <th>Cibimdəki pul (AZN)</th>
                                     <th>Dovriyye (AZN)</th>
+                                    <th>Borca geden mallar (AZN)</th>
                                     <th>Borca aldigim pul (AZN)</th>
                                     <th>Borcdan gozlənilən pul (AZN)</th>
                                     <th>Xercler (AZN)</th>
@@ -41,6 +42,7 @@
                                 <tr>
                                     <td>{{$closed_rate->getAttribute('pocket')}}</td>
                                     <td>{{$closed_rate->getAttribute('turnover')}}</td>
+                                    <td>{{$closed_rate->getAttribute('waiting_income_goods')}}</td>
                                     <td>{{$closed_rate->getAttribute('waiting_income_debts')}}</td>
                                     <td>{{$closed_rate->getAttribute('waiting_debts')}}</td>
                                     <td>{{$closed_rate->getAttribute('expenses')}}</td>
@@ -54,27 +56,32 @@
                         <div class="my-4">
                             <h4 class="font-weight-bold">Günlük</h4>
                             <div class="row text-center m-0 my-4">
-                                <div class="col-6 col-md-2">
+                                <div class="col-6 col-md-4 my-2">
                                     <h5 class="card-title">Cibimdəki pul</h5>
                                     <p class="card-text" style="font-size: 16px">{{$daily_net_income}} AZN</p>
                                 </div>
 
-                                <div class="col-6 col-md-2">
+                                <div class="col-6 col-md-4 my-2">
                                     <h5 class="card-title">Dovriyye</h5>
                                     <p class="card-text" style="font-size: 16px">{{$daily_income}} AZN</p>
                                 </div>
 
-                                <div class="col-6 col-md-3">
+                                <div class="col-6 col-md-4 my-2">
+                                    <h5 class="card-title">Borca geden mallar</h5>
+                                    <p class="card-text" style="font-size: 16px">{{$daily_waiting_income_goods}} AZN</p>
+                                </div>
+
+                                <div class="col-6 col-md-4 my-2">
                                     <h5 class="card-title">Borcdan gelen pul</h5>
                                     <p class="card-text" style="font-size: 16px">{{$daily_waiting_income_debt}} AZN</p>
                                 </div>
 
-                               <div class="col-6 col-md-3">
+                               <div class="col-6 col-md-4 my-2">
                                     <h5 class="card-title">Borca geden pul</h5>
                                     <p class="card-text" style="font-size: 16px">{{$daily_waiting_income}} AZN</p>
                                 </div>
 
-                                <div class="col-6 col-md-2">
+                                <div class="col-6 col-md-4 my-2">
                                     <h5 class="card-title">Xercler</h5>
                                     <p class="card-text" style="font-size: 16px">{{$daily_expense}} AZN</p>
                                 </div>
