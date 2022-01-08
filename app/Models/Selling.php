@@ -15,7 +15,6 @@ class Selling extends Model implements Recordable
     protected $fillable = [
         'customer',
         'content',
-        'status',
         'was_debt',
         'weight',
         'price',
@@ -27,7 +26,6 @@ class Selling extends Model implements Recordable
     ];
 
     protected $casts = [
-        'status' => 'boolean',
         'was_debt' => 'boolean',
     ];
 

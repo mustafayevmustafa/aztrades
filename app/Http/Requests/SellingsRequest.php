@@ -18,7 +18,7 @@ class SellingsRequest extends FormRequest
         return [
             'customer' => 'nullable|string',
             'content' => 'nullable|string',
-            'status' => 'nullable',
+            'was_debt' => 'nullable',
             'weight' => 'nullable|numeric',
             'price' => 'required|numeric',
             'sac_name' => 'nullable|string',

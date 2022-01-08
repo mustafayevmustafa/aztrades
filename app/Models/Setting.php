@@ -15,7 +15,7 @@ class Setting extends Model implements Recordable
 
     public static function dailyNetIncome(): float
     {
-        $selling = Selling::where('status', false)->whereDate('created_at', now())->get()->sum('price') -
+        $selling = Selling::where('was_debt', false)->whereDate('created_at', now())->get()->sum('price') -
             Expense::where('is_income', false)->where(function ($q){
                 $q->where(fn($q) => $q->whereNotNull('goods_type')->where('expense_type_id', '!=', ExpensesType::debt))
                     ->orWhereNull('goods_type');

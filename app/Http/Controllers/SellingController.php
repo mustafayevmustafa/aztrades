@@ -26,21 +26,12 @@ class SellingController extends Controller
 
     public function index(Request $request)
     {
-        $filters = $request->only(['status', 'was_debt', 'type', 'daterange', 'customer']);
+        $filters = $request->only(['type', 'daterange', 'customer']);
         $daterange = array_key_exists('daterange', $filters) ? explode(' - ', $filters['daterange']) : [];
 
         return view('Admin.sellings.index')->with([
             'sellings' => Selling::query()
-                ->when(array_key_exists('status', $filters) &&
-                    array_key_exists('was_debt', $filters) &&
-                    $filters['status'] == 0 && $filters['was_debt'] == 1 ,
-                    fn ($q) => $q->where('status', $filters['status'])->where('was_debt', $filters['was_debt'])
-                )
-                ->when(array_key_exists('status', $filters) &&
-                    $filters['status'] == 1,
-                    fn ($q) => $q->where('status', $filters['status'])
-                )
-                ->when(array_key_exists('type', $filters) && is_numeric($filters['type']), fn ($q) => $q->where('status', $filters['type']))
+                ->when(array_key_exists('type', $filters) && is_numeric($filters['type']), fn ($q) => $q->where('was_debt', $filters['type']))
                 ->when(array_key_exists('daterange', $filters), fn ($q) => $q->whereBetween('created_at', [Carbon::parse($daterange[0])->startOfDay(), Carbon::parse($daterange[1])->endOfDay()]))
                 ->when(array_key_exists('customer', $filters), fn ($q) => $q->where('customer', 'LIKE', "%{$filters['customer']}%"))
                 ->latest()
@@ -72,8 +63,7 @@ class SellingController extends Controller
     {
         $validated = $request->validated();
 
-        $validated['status'] = $request->has('status');
-        $validated['was_debt'] = $validated['status'];
+        $validated['was_debt'] = $request->has('was_debt');
 
         // Store sellingable model
         $validated['sellingable_type'] = $request->get('type') === 'onion' ? Onion::class : Potato::class;
@@ -181,7 +171,6 @@ class SellingController extends Controller
     public function update(SellingsRequest $request, Selling $selling): RedirectResponse
     {
         $validated = $request->validated();
-        $validated['status'] = $request->has('status');
 
         $selling->update($validated);
 

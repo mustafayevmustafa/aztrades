@@ -63,13 +63,13 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $selling->getAttribute('customer') }}</td>
-                                    <td>{{ $selling->getAttribute('type')== 'onion' ? "Soğan" : "Kartof" }}</td>
-                                    <td>{{ $selling->getAttribute('status') ? "Borc" : "Nagd" }}</td>
+                                    <td>{{ $selling->getAttribute('type') == 'onion' ? "Soğan" : "Kartof" }}</td>
+                                    <td>{{ $selling->getAttribute('was_debt') ? "Borc" : "Nagd" }}</td>
                                     <td>{{ $selling->getAttribute('price')}}</td>
                                     <td>{{ $selling->getAttribute('content') }}</td>
                                     <td>{{ $selling->getAttribute('created_at') }}</td>
                                     <td>
-                                        <a href="{{ route('sellings.edit', $selling) }}" class="btn"><i class="mdi mdi-18px mdi-pencil" style="color: blue"></i></a>
+                                        <a href="{{ route('sellings.show', $selling) }}" class="btn"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
                                         {{--                                    <a href="{{ route('sellings.edit', $selling) }}" class="btn"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>--}}
                                         <button type="button" class="btn" onclick="deleteConfirmation({{ $selling->getAttribute('id') }}, 'sellings')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
                                     </td>

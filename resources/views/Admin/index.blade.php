@@ -65,12 +65,12 @@
                                 </div>
 
                                 <div class="col-6 col-md-3">
-                                    <h5 class="card-title">Borca aldigim pul</h5>
+                                    <h5 class="card-title">Borcdan gelen pul</h5>
                                     <p class="card-text" style="font-size: 16px">{{$daily_waiting_income_debt}} AZN</p>
                                 </div>
 
                                <div class="col-6 col-md-3">
-                                    <h5 class="card-title">Borcdan gozlənilən pul</h5>
+                                    <h5 class="card-title">Borca geden pul</h5>
                                     <p class="card-text" style="font-size: 16px">{{$daily_waiting_income}} AZN</p>
                                 </div>
 

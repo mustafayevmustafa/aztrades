@@ -139,10 +139,10 @@
                             @enderror
                         </div>
 
-                        @if(($method == 'PUT' && $data->getAttribute('was_debt')) || $method == 'POST')
+                        @if(($data->getAttribute('was_debt')) || $method == 'POST')
                             <div class="form-group col-12">
                                 <div class="form-check">
-                                    <input type="checkbox"  name="status" class="form-check-input" id="data-status" @if($data->getAttribute('status')) checked @endif>
+                                    <input type="checkbox"  name="was_debt" class="form-check-input" id="data-status" @if($data->getAttribute('was_debt')) checked @endif @if($method != 'POST') readonly @endif>
                                     <label class="form-check-label" for="data-status">Borc</label>
                                 </div>
                             </div>
@@ -161,12 +161,7 @@
 @section('script')
     @if ($method != 'POST')
         <script>
-            $('form :input').attr('readonly', true);
-            $('form select').attr('disabled', true);
-            $('input[name="status"]').attr('disabled', false);
-            $('input[name="_method"]').attr('disabled', false);
-            $('input[name="_token"]').attr('disabled', false);
-            $('button[type="submit"]').attr('disabled', false);
+            $('form :input').attr('disabled', true);
         </script>
     @endif
 @endsection
