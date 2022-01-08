@@ -27,6 +27,8 @@ class UserController extends Controller
 
     public function create()
     {
+        abort(403);
+
         return view('Admin.users.edit', [
             'action' => route('users.store'),
             'method' => null,
@@ -36,6 +38,8 @@ class UserController extends Controller
 
     public function store(UserRequest $request): RedirectResponse
     {
+        abort(403);
+
         $validated = $request->validated();
 
         $user = User::create($validated);
@@ -45,6 +49,8 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        abort(403);
+
         return view('Admin.users.edit', [
             'action' => null,
             'method' => null,
@@ -54,6 +60,8 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
+        abort(403);
+
         return view('Admin.users.edit', [
             'action' => route('users.update', $user),
             'method' => "PUT",
@@ -63,6 +71,8 @@ class UserController extends Controller
 
     public function update(UserRequest $request, User $user): RedirectResponse
     {
+        abort(403);
+
         $validated = $request->validated();
 
         $user->update($validated);
@@ -72,6 +82,8 @@ class UserController extends Controller
 
     public function destroy(User $user): JsonResponse
     {
+        abort(403);
+
         if($user->delete()){
             return response()->json(['code' => 200]);
         }else{

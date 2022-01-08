@@ -36,9 +36,9 @@
                                 <td>{{ $user->getAttribute('name') }}</td>
                                 <td>{{ $user->getAttribute('email') }}</td>
                                 <td>
-                                    <a href="{{ route('users.show', $user) }}" class="btn"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
-                                    <a href="{{ route('users.edit', $user) }}" class="btn"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
-                                    <button type="button" class="btn" onclick="deleteConfirmation({{ $user->getAttribute('id') }}, 'users')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
+{{--                                    <a href="{{ route('users.show', $user) }}" class="btn"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>--}}
+{{--                                    <a href="{{ route('users.edit', $user) }}" class="btn"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>--}}
+{{--                                    <button type="button" class="btn" onclick="deleteConfirmation({{ $user->getAttribute('id') }}, 'users')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>--}}
                                 </td>
                             </tr>
                         @empty
