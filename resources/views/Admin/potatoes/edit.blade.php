@@ -59,12 +59,12 @@
 
                                             <div class="form-group col-12">
                                                 <label for="">Kisə sayi</label>
-                                                <input type="number" min="1" max="{{$data->getAttribute('least_bag_count')}}" step="1" class="form-control" name="waste_sac_count">
+                                                <input type="number" min="0" max="{{$data->getAttribute('least_bag_count')}}" step="1" class="form-control" name="waste_sac_count">
                                             </div>
 
                                             <div class="form-group col-12">
                                                 <label for="">Ceki (kg)</label>
-                                                <input type="number" min="1" max="{{$data->getAttribute('total_weight')}}" step="1" class="form-control" name="waste_weight">
+                                                <input type="number" min="0" max="{{$data->getAttribute('total_weight')}}" step="1" class="form-control" name="waste_weight">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -157,7 +157,7 @@
                           <div class="col-12 col-md-4">
                               <div class="form-group">
                                   <label >Sürücü Xərci (AZN)</label>
-                                  <input type="number" min="0.1" step=".1" value="{{ $data->getAttribute('driver_cost') }}" name="driver_cost" class="form-control"  placeholder="Sürücü xərcini daxil edin">
+                                  <input type="number" min="0" step=".1" value="{{ $data->getAttribute('driver_cost') }}" name="driver_cost" class="form-control"  placeholder="Sürücü xərcini daxil edin">
                                   @error('driver_cost')
                                   <p class="text-danger">
                                       {{ $message }}
@@ -169,7 +169,7 @@
                           <div class="col-12 col-md-4">
                               <div class="form-group">
                                   <label >Gömrük Xərci (AZN)</label>
-                                  <input type="number" min="0.1" step=".1" value="{{ $data->getAttribute('custom_cost') }}" name="custom_cost" class="form-control"  placeholder="Gömrük xərcini daxil edin">
+                                  <input type="number" min="0" step=".1" value="{{ $data->getAttribute('custom_cost') }}" name="custom_cost" class="form-control"  placeholder="Gömrük xərcini daxil edin">
                                   @error('custom_cost')
                                   <p class="text-danger">
                                       {{ $message }}
@@ -181,7 +181,7 @@
                           <div class="col-12 col-md-4">
                               <div class="form-group">
                                   <label >Maya Dəyəri (AZN)</label>
-                                  <input type="number" min="0.1" step=".1" value="{{ $data->getAttribute('cost') }}" name="cost" class="form-control"  placeholder="Maya dəyərini daxil edin">
+                                  <input type="number" min="0" step=".1" value="{{ $data->getAttribute('cost') }}" name="cost" class="form-control"  placeholder="Maya dəyərini daxil edin">
                                   @error('cost')
                                   <p class="text-danger">
                                       {{ $message }}
@@ -193,7 +193,7 @@
                           <div class="col-12 col-md-4">
                               <div class="form-group">
                                   <label >Bazar Xərci (AZN)</label>
-                                  <input type="number" min="0.1" step=".1" value="{{ $data->getAttribute('market_cost') }}" name="market_cost" class="form-control"  placeholder="Bazar xərcini daxil edin">
+                                  <input type="number" min="0" step=".1" value="{{ $data->getAttribute('market_cost') }}" name="market_cost" class="form-control"  placeholder="Bazar xərcini daxil edin">
                                   @error('market_cost')
                                   <p class="text-danger">
                                       {{ $message }}
@@ -205,7 +205,7 @@
                           <div class="col-12 col-md-4">
                               <div class="form-group">
                                   <label >Digər Xərc (AZN)</label>
-                                  <input type="number" min="0.1" step=".1" value="{{ $data->getAttribute('other_cost') }}" name="other_cost" class="form-control"  placeholder="Digər xərcini daxil edin"></br></br>
+                                  <input type="number" min="0" step=".1" value="{{ $data->getAttribute('other_cost') }}" name="other_cost" class="form-control"  placeholder="Digər xərcini daxil edin"></br></br>
                                   @error('other_cost')
                                   <p class="text-danger">
                                       {{ $message }}
@@ -217,7 +217,7 @@
                           <div class="col-12 col-md-4">
                               <div class="form-group">
                                   <label >Ümumi Çəkisi (kg)</label>
-                                  <input type="number" min="0.1" step=".1" value="{{ $data->getAttribute('total_weight') }}" name="total_weight" class="form-control"  placeholder="Ümumi çəkisini daxil edin">
+                                  <input type="number" min="0" step=".1" value="{{ $data->getAttribute('total_weight') }}" name="total_weight" class="form-control"  placeholder="Ümumi çəkisini daxil edin">
                                   <small class="text-primary">Daxil olan: {{$data->getAttribute('old_total_weight') ?? 0}}</small>
                                   @error('total_weight')
                                   <p class="text-danger">

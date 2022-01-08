@@ -66,12 +66,12 @@
 
                                             <div class="form-group col-12">
                                                 <label for="">Kisə sayi</label>
-                                                <input type="number" min="1" max="{{$data->getAttribute('least_bag_count')}}" step="1" class="form-control" name="waste_sac_count">
+                                                <input type="number" min="0" max="{{$data->getAttribute('least_bag_count')}}" step="1" class="form-control" name="waste_sac_count">
                                             </div>
 
                                             <div class="form-group col-12">
                                                 <label for="">Ceki (kg)</label>
-                                                <input type="number" min="1" max="{{$data->getAttribute('total_weight')}}" step="1" class="form-control" name="waste_weight">
+                                                <input type="number" min="0" max="{{$data->getAttribute('total_weight')}}" step="1" class="form-control" name="waste_weight">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -134,7 +134,7 @@
 
                         <div class="form-group col-12 col-md-6">
                             <label for="post-title">Sürücü Xərci (AZN)</label>
-                            <input type="number" min="0.1" step=".1" value="{{ $data->getAttribute('driver_cost') }}" name="driver_cost" class="form-control" placeholder="Sürücü xərcini daxil edin">
+                            <input type="number" min="0" step=".1" value="{{ $data->getAttribute('driver_cost') }}" name="driver_cost" class="form-control" placeholder="Sürücü xərcini daxil edin">
                             @error('supply_cost')
                             <p class="text-danger">
                                 {{ $message }}
@@ -144,7 +144,7 @@
 
                         <div class="form-group col-12 col-md-6">
                             <label for="post-title">Tədarük Xərci (AZN)</label>
-                            <input type="number" min="0.1" step=".1" value="{{ $data->getAttribute('supply_cost') }}" name="supply_cost" class="form-control" placeholder="Tədarük xərcini daxil edin">
+                            <input type="number" min="0" step=".1" value="{{ $data->getAttribute('supply_cost') }}" name="supply_cost" class="form-control" placeholder="Tədarük xərcini daxil edin">
                             @error('supply_cost')
                                 <p class="text-danger">
                                     {{ $message }}
@@ -154,7 +154,7 @@
 
                         <div class="form-group col-12 col-md-6">
                             <label for="post-title">Maya Dəyəri (AZN)</label>
-                            <input type="number" min="0.1" step=".1" value="{{ $data->getAttribute('cost') }}" name="cost" class="form-control" placeholder="Maya dəyərini">
+                            <input type="number" min="0" step=".1" value="{{ $data->getAttribute('cost') }}" name="cost" class="form-control" placeholder="Maya dəyərini">
                             @error('cost')
                             <p class="text-danger">
                                 {{ $message }}
@@ -164,7 +164,7 @@
 
                         <div class="form-group col-12 col-md-6">
                             <label for="post-title">Çəkisi (kg)</label>
-                            <input type="number" min="0.1" step=".1" value="{{ $data->getAttribute('total_weight') }}" name="total_weight" class="form-control" placeholder="Çəkisini daxil edin">
+                            <input type="number" min="0" step=".1" value="{{ $data->getAttribute('total_weight') }}" name="total_weight" class="form-control" placeholder="Çəkisini daxil edin">
                             <small class="text-primary">Daxil olan: {{$data->getAttribute('old_total_weight') ?? 0}}</small>
                             @error('total_weight')
                                 <p class="text-danger">
@@ -175,7 +175,7 @@
 
                         <div class="form-group col-12 col-md-6">
                             <label for="post-title">Qırmızı Kisə Sayı</label>
-                            <input type="number" min="1" step="1" value="{{ $data->getAttribute('red_bag_number') }}" name="red_bag_number" class="form-control" placeholder="Qırmızı kisə sayını daxil edin">
+                            <input type="number" min="0" step="1" value="{{ $data->getAttribute('red_bag_number') }}" name="red_bag_number" class="form-control" placeholder="Qırmızı kisə sayını daxil edin">
                             <small class="text-primary">Daxil olan: {{$old_values[0] ?? 0}}</small>
                             @error('red_bag_number')
                                 <p class="text-danger">
@@ -186,7 +186,7 @@
 
                         <div class="form-group col-12 col-md-6">
                             <label for="post-title">Sarı Kisə Sayı</label>
-                            <input type="number" min="1" step="1" value="{{ $data->getAttribute('yellow_bag_number') }}" name="yellow_bag_number" class="form-control" placeholder="Sarı kisə sayını daxil edin">
+                            <input type="number" min="0" step="1" value="{{ $data->getAttribute('yellow_bag_number') }}" name="yellow_bag_number" class="form-control" placeholder="Sarı kisə sayını daxil edin">
                             <small class="text-primary">Daxil olan: {{$old_values[1] ?? 0}}</small>
                             @error('yellow_bag_number')
                                 <p class="text-danger">
@@ -197,7 +197,7 @@
 
                         <div class="form-group col-12 col-md-6">
                             <label for="post-title">Lom Kisə Sayı</label>
-                            <input type="number" min="1" step="1" value="{{ $data->getAttribute('lom_bag_number') }}" name="lom_bag_number" class="form-control" placeholder="Lom kisə sayını daxil edin">
+                            <input type="number" min="0" step="1" value="{{ $data->getAttribute('lom_bag_number') }}" name="lom_bag_number" class="form-control" placeholder="Lom kisə sayını daxil edin">
                             <small class="text-primary">Daxil olan: {{$old_values[2] ?? 0}}</small>
                             @error('lom_bag_number')
                                 <p class="text-danger">

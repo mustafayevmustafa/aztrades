@@ -96,7 +96,7 @@
 
                         <div class="form-group">
                             <label for="post-title">Kisə Sayı</label>
-                            <input type="number" min="1" step="1" value="{{ $data->getAttribute('sac_count') }}" name="sac_count" class="form-control" id="post-title" placeholder="Kisə Sayı">
+                            <input type="number" min="0" step="1" value="{{ $data->getAttribute('sac_count') }}" name="sac_count" class="form-control" id="post-title" placeholder="Kisə Sayı">
                             @error('sac_count')
                             <p class="text-danger">
                                 {{ $message }}
@@ -110,7 +110,7 @@
                         )
                             <div class="form-group">
                                 <label for="post-title">Çəki (kq)</label>
-                                <input type="number" min="1" step=".1" value="{{ $data->getAttribute('weight') }}" name="weight" class="form-control" id="post-title" placeholder="Çəki (kq)">
+                                <input type="number" min="0" step=".1" value="{{ $data->getAttribute('weight') }}" name="weight" class="form-control" id="post-title" placeholder="Çəki (kq)">
                                 @error('weight')
                                 <p class="text-danger">
                                     {{ $message }}
@@ -121,7 +121,7 @@
 
                         <div class="form-group">
                             <label for="post-title">Qiymət (AZN)</label>
-                            <input type="number" min="0.1" step=".1" value="{{ $data->getAttribute('price') }}" name="price" class="form-control" id="post-title" placeholder="Qiymət">
+                            <input type="number" min="0" step=".1" value="{{ $data->getAttribute('price') }}" name="price" class="form-control" id="post-title" placeholder="Qiymət">
                             @error('price')
                             <p class="text-danger">
                                 {{ $message }}
