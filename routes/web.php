@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
@@ -42,7 +42,7 @@ Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], 
     Route::resource('countries', CountryController::class);
     Route::resource('cities', CityController::class);
     Route::resource('sellings', SellingController::class);
-    Route::resource('admins', AdminController::class);
+    Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('expenses_types', ExpensesTypeController::class);
     Route::resource('expenses', ExpenseController::class);
