@@ -11,61 +11,83 @@ class Menu extends Component
 
     public function __construct()
     {
-        $this->items = (array) [
+        $this->items = [
             (object) [
                 'name' => 'Məlumat Səhifəsi',
                 'url' => route('dashboard.index'),
                 'icon' => 'mdi-airplay',
-                'permission' => 'generally'
+                'permission' => 'generally',
+                'has_arrow' => false
             ],
 
             (object) [
                 'name' => 'Soğan',
                 'url' => route('onions.index'),
                 'icon' => 'mdi-google-chrome',
-                'permission' => 'admin'
+                'permission' => 'admin',
+                'has_arrow' => false,
             ],
 
             (object) [
                 'name' => 'Kartof',
                 'url' => route('potatoes.index'),
                 'icon' => 'mdi-football-australian',
-                'permission' => 'admin'
+                'permission' => 'admin',
+                'has_arrow' => false
             ],
 
             (object) [
                 'name' => 'Satışlar',
                 'url' => route('sellings.index'),
                 'icon' => 'mdi-cash-multiple',
-                'permission' => 'generally'
+                'permission' => 'generally',
+                'has_arrow' => false,
             ],
 
             (object) [
                 'name' => 'Borclar',
-                'url' => route('debts.index'),
+                'url' => 'javascript:void(0)',
                 'icon' => 'mdi-cash-usd',
-                'permission' => 'generally'
+                'permission' => 'generally',
+                'has_arrow' => true,
+                'inner' => [
+                    (object) [
+                        'name' => 'Borca geden',
+                        'url' => route('debts.expense'),
+                        'icon' => 'mdi-cash',
+                        'permission' => 'generally',
+                    ],
+                    (object) [
+                        'name' => 'Borcdan gelen',
+                        'url' => route('debts.income'),
+                        'icon' => 'mdi-cash',
+                        'permission' => 'generally',
+                    ],
+                ]
             ],
 
             (object) [
                 'name' => 'Atxodlar',
                 'url' => route('waste.index'),
                 'icon' => 'mdi-delete-variant',
-                'permission' => 'generally'
+                'permission' => 'generally',
+                'has_arrow' => false,
             ],
 
             (object) [
                 'name' => 'Rollar',
                 'url' => route('roles.index'),
                 'icon' => 'mdi-account-key',
-                'permission' => 'admin'
+                'permission' => 'admin',
+                'has_arrow' => false,
             ],
 
             (object) [
                 'name' => 'İstifadəcilər',
                 'url' => route('users.index'),
                 'icon' => 'mdi-account-multiple-plus',
-                'permission' => 'admin'
+                'permission' => 'admin',
+                'has_arrow' => false,
             ],
 
             (object) [
@@ -73,27 +95,31 @@ class Menu extends Component
                 'url' => route('expenses.index'),
                 'icon' => 'mdi-cash-multiple',
                 'permission' => 'generally',
+                'has_arrow' => false,
             ],
 
             (object) [
                 'name' => 'Xərclərin Növü',
                 'url' => route('expenses_types.index'),
                 'icon' => 'mdi-cash',
-                'permission' => 'admin'
+                'permission' => 'admin',
+                'has_arrow' => false,
             ],
 
             (object) [
                 'name' => 'Ölkə',
                 'url' => route('countries.index'),
                 'icon' => 'mdi mdi-earth',
-                'permission' => 'admin'
+                'permission' => 'admin',
+                'has_arrow' => false,
             ],
 
             (object) [
                 'name' => 'Şəhər',
                 'url' => route('cities.index'),
                 'icon' => 'mdi-map-marker',
-                'permission' => 'admin'
+                'permission' => 'admin',
+                'has_arrow' => false,
             ],
         ];
     }
@@ -108,10 +134,17 @@ class Menu extends Component
                     @can($item->permission)
                         @php($active = request()->url() == $item->url || request()->segment(2) == strtolower($item->name))
                          <li @class(['active' => $active])>
-                            <a href="{{$item->url}}" @class(['waves-effect', 'mm-active' => $active])>
+                            <a href="{{$item->url}}" @class(['waves-effect', 'mm-active' => $active, 'has-arrow' => $item->has_arrow])>
                                 <i class="mdi {{$item->icon}}"></i>
                                 <span>{{$item->name}}</span>
                             </a>
+                            @if($item->has_arrow)
+                                <ul class="sub-menu mm-collapse">
+                                    @foreach($item->inner as $inner)
+                                        <li><a href="{{$inner->url}}">{{$inner->name}}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
                         </li>
                     @endcan
                 @endforeach

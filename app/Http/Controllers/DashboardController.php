@@ -23,10 +23,10 @@ class DashboardController extends Controller
             'potatoes' => Potato::isActive()->latest('updated_at')->get(),
             // total data
             'total_income' => Selling::get()->sum('price'),
-            'total_expense' => Expense::where('is_returned', false)->where('expense_type_id', '!=', ExpensesType::debt)->get()->sum('expense'),
+            'total_expense' => Expense::where('is_income', false)->where('expense_type_id', '!=', ExpensesType::debt)->get()->sum('expense'),
             // monthly data
             'monthly_income' => Selling::whereMonth('created_at', now()->month)->get()->sum('price'),
-            'monthly_expense' => Expense::where('is_returned', false)->where('expense_type_id', '!=', ExpensesType::debt)->whereMonth('created_at', now()->month)->get()->sum('expense'),
+            'monthly_expense' => Expense::where('is_income', false)->where('expense_type_id', '!=', ExpensesType::debt)->whereMonth('created_at', now()->month)->get()->sum('expense'),
             // daily data
             'daily_net_income' => Setting::dailyNetIncome(),
             'daily_income' => Setting::dailyTurnover(),

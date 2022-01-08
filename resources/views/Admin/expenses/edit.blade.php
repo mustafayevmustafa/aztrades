@@ -75,22 +75,8 @@
                             @enderror
                         </div>
 
-                        @if($method != 'POST' && $data->getAttribute('expense_type_id') == \App\Models\ExpensesType::debt)
-                            <div class="pl-0 form-group col-12">
-                                <div class="form-check">
-                                    <input type="checkbox"  name="is_returned" class="form-check-input" id="data-is_returned" @if($data->getAttribute('is_returned')) checked @endif>
-                                    <label class="form-check-label" for="data-is_returned">Odenilib</label>
-                                </div>
-                            </div>
-                        @endif
-
-                        @if($method == 'POST' || $data->getAttribute('is_income'))
-                            <div class="pl-0 form-group col-12">
-                                <div class="form-check">
-                                    <input type="checkbox"  name="is_income" class="form-check-input" id="data-is_income" @if($data->getAttribute('is_income')) checked @endif @if($method != 'POST') disabled @endif>
-                                    <label class="form-check-label" for="data-is_income">Borc almisam</label>
-                                </div>
-                            </div>
+                        @if($method == 'POST' && request()->has('is_income'))
+                            <input type="hidden" name="is_income" value="{{request()->has('is_income')}}">
                         @endif
 
                         @if ($action)

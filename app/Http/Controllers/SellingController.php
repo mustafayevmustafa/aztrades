@@ -141,7 +141,6 @@ class SellingController extends Controller
                 'goods_type_id' => $selling->getAttribute('sellingable_id'),
                 'expense' => $validated['price'],
                 'note' => $validated['content'],
-                'debt_selling_id' => $selling->getAttribute('id'),
                 'customer' => $selling->getAttribute('customer')
             ]);
         }
@@ -183,12 +182,6 @@ class SellingController extends Controller
     {
         $validated = $request->validated();
         $validated['status'] = $request->has('status');
-
-        if($selling->getAttribute('was_debt')) {
-            $selling->debt()->update([
-                'is_returned' => !$validated['status']
-            ]);
-        }
 
         $selling->update($validated);
 

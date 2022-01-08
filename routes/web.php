@@ -47,7 +47,8 @@ Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], 
     Route::resource('expenses_types', ExpensesTypeController::class);
     Route::resource('expenses', ExpenseController::class);
 
-    Route::get('debts', DebtController::class)->name('debts.index');
+    Route::get('income-debts', [DebtController::class, 'incomeIndex'])->name('debts.income');
+    Route::get('expense-debts', [DebtController::class, 'expenseIndex'])->name('debts.expense');
     Route::get('waste', WasteController::class)->name('waste.index');
 
     Route::get('/toggle-active', [DashboardController::class, 'toggleActive'])->name('settings.toggle-state');

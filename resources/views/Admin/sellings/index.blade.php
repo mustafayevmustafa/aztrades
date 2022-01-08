@@ -1,7 +1,6 @@
 @extends('Admin.layout.master')
 
 @section('content')
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
@@ -46,7 +45,7 @@
                             </div>
                         </div>
 
-                        <table class="table table-responsive-sm" id="myTable">
+                        <table class="table table-responsive-sm">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -90,10 +89,6 @@
             </div>
         </div>
     </div>
-
-
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-
 @endsection
 @section('script')
     <script>
