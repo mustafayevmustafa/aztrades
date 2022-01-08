@@ -63,7 +63,7 @@ class Menu extends Component
 
             (object) [
                 'name' => 'İstifadəcilər',
-                'url' => route('admins.index'),
+                'url' => route('users.index'),
                 'icon' => 'mdi-account-multiple-plus',
                 'permission' => 'admin'
             ],
