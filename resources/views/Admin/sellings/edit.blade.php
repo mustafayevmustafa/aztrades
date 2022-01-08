@@ -136,7 +136,7 @@
                         </div>
 
                         @if(($data->getAttribute('was_debt')) || $method == 'POST')
-                            <div class="form-group col-12">
+                            <div class="pl-0 form-group col-12">
                                 <div class="form-check">
                                     <input type="checkbox"  name="was_debt" class="form-check-input" id="data-status" @if($data->getAttribute('was_debt')) checked @endif @if($method != 'POST') readonly @endif>
                                     <label class="form-check-label" for="data-status">Borc</label>

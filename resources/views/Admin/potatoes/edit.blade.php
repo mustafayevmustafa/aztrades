@@ -248,10 +248,10 @@
 
                               @if($method != 'POST')
                                   <div class="col-12 my-4">
-                                      <h4>Statistika</h4>
+                                      <h3>Statistika</h3>
                                       <div class="row">
-                                          <div class="col-12 col-md-4">
-                                              <p class="font-weight-bold" style="font-size: 16px">Alislar</p>
+                                          <div class="col-12 col-md-4 my-3">
+                                              <p class="font-weight-bold" style="font-size: 18px">Alislar</p>
                                               @foreach($data->getRelationValue('sacs') as $sac)
                                                   <div class="my-2">
                                                       <p class="font-weight-bold">{{$sac->getAttribute('name')}}</p>
@@ -261,31 +261,33 @@
                                                       </div>
                                                   </div>
                                               @endforeach
-                                              <hr>
-                                              Hamisi:
+
+                                              <br/>Hamisi:
                                               <span class="font-weight-bold">Ceki: {{$data->getAttribute('old_total_weight') ?? 0}} kg</span>,
                                               <span class="font-weight-bold">Kise saylari: {{$data->getRelationValue('sacs')->sum('old_sac_count')}}</span>
                                           </div>
-
-                                          <div class="col-12 col-md-4">
-                                              <p class="font-weight-bold" style="font-size: 16px">Dovriyye</p>
-                                              @foreach($sellings->groupBy(fn ($data) => $data->getAttribute('sac_name')) as $name => $_waste)
+                                          <hr>
+                                          <div class="col-12 col-md-4 my-3">
+                                              <p class="font-weight-bold" style="font-size: 18px">Dovriyye</p>
+                                              @foreach($sellings->groupBy(fn ($data) => $data->getAttribute('sac_name')) as $name => $selling)
                                                   <div class="my-2">
                                                       <p class="font-weight-bold">@if(is_numeric($name)) {{\App\Models\PotatoSac::find($name)->getAttribute('name')}} @else Ceki ile @endif </p>
                                                       <div>
-                                                          <p>Ceki: {{$_waste->sum('weight') ?? 0}} kg</p>
-                                                          <p>Kise sayi: {{$_waste->sum('sac_count')}}</p>
+                                                          <p>Ceki: {{$selling->sum('weight') ?? 0}} kg</p>
+                                                          <p>Kise sayi: {{$selling->sum('sac_count')}}</p>
+                                                          <p>Dovriyye: {{$selling->sum('price')}} AZN</p>
                                                       </div>
                                                   </div>
                                               @endforeach
-                                              <hr>
-                                              Hamisi:
+
+                                              <br/>Hamisi:
                                               <span class="font-weight-bold">Ceki: {{$sellings->sum('weight') ?? 0}} kg</span>,
                                               <span class="font-weight-bold">Kise saylari: {{$sellings->sum('sac_count') ?? 0}}</span>
+                                              <span class="font-weight-bold">Dovriyye: {{$sellings->sum('price') ?? 0}} AZN</span>
                                           </div>
-
-                                          <div class="col-12 col-md-4">
-                                              <p class="font-weight-bold" style="font-size: 16px">Atxodlar</p>
+                                          <hr>
+                                          <div class="col-12 col-md-4 my-3">
+                                              <p class="font-weight-bold" style="font-size: 18px">Atxodlar</p>
                                               @foreach($waste->groupBy(fn ($data) => $data->getAttribute('waste_sac_name')) as $name => $_waste)
                                                   <div class="my-2">
                                                       <p class="font-weight-bold">{{$name}}</p>
@@ -295,11 +297,12 @@
                                                       </div>
                                                   </div>
                                               @endforeach
-                                              <hr>
-                                              Hamisi:
+
+                                              <br/>Hamisi:
                                               <span class="font-weight-bold">Ceki: {{$waste->sum('waste_weight') ?? 0}} kg</span>,
                                               <span class="font-weight-bold">Kise saylari: {{$waste->sum('waste_sac_count') ?? 0}}</span>
                                           </div>
+                                          <hr>
                                       </div>
                                   </div>
                               @endif
