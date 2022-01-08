@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
-                        <a class="btn btn-outline-success" href="{{ route('users.create') }}">Istifadeci Əlavə Et</a>
+{{--                        <a class="btn btn-outline-success" href="{{ route('users.create') }}">Istifadeci Əlavə Et</a>--}}
                     </div>
                     @if (session('success'))
                         <div class="alert alert-success mt-2">
