@@ -25,7 +25,7 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Icazə</th>
+                            <th scope="col">Rollar</th>
                             <th scope="col">Actions</th>
                         </tr>
                         </thead>

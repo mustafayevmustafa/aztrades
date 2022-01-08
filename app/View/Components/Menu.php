@@ -55,7 +55,7 @@ class Menu extends Component
             ],
 
             (object) [
-                'name' => 'Icazələr',
+                'name' => 'Rollar',
                 'url' => route('roles.index'),
                 'icon' => 'mdi-account-key',
                 'permission' => 'admin'
