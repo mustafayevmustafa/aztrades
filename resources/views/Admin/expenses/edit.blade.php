@@ -76,7 +76,7 @@
                         </div>
 
                         @if($method == 'POST' && request()->has('is_income'))
-                            <input type="hidden" name="is_income" value="{{request()->has('is_income')}}">
+                            <input type="hidden" name="is_income" value="1">
                         @endif
 
                         @if ($action)
