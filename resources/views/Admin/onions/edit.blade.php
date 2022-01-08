@@ -207,7 +207,7 @@
                         </div>
 
                         @if ($method != "POST")
-                            <div class="pl-0 form-group col-12">
+                            <div class="form-group col-12">
                                 <div class="form-check">
                                     <input id="data-status" type="checkbox" {{ $data->getAttribute('status') == true ? 'checked' : '' }}  name="status" class="form-check-input">
                                     <label class="form-check-label" for="data-status">Aktiv</label>
