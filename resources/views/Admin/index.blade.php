@@ -125,8 +125,8 @@
                     </div>
                 @endif
 
-                <div class="card-body row">
-                    <div class="col-12 col-md-5 p-0 pr-md-1">
+                <div class="card-body row m-0 p-0">
+                    <div class="col-12 col-md-5 pl-0 pr-1">
                         <table class="table mx-2 ml-0 table-dark">
                             <thead>
                             <tr>
@@ -157,7 +157,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-12 col-md-7 p-0">
+                    <div class="col-12 col-md-7 pl-1">
                         <table class="table mx-2 mr-0 table-dark">
                             <thead>
                             <tr>
