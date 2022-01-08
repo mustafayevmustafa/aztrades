@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RoleRequest;
 use App\Models\Role;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
@@ -22,8 +22,11 @@ class RoleController extends Controller
             'roles' => Role::paginate(10)
         ]);
     }
+
     public function create()
     {
+        abort(403);
+
         return view('Admin.roles.edit', [
             'action' => route('roles.store'),
             'method' => null,
@@ -33,6 +36,8 @@ class RoleController extends Controller
 
     public function store(RoleRequest $request): RedirectResponse
     {
+        abort(403);
+
         $validated = $request->validated();
 
         $role = Role::create($validated);
@@ -42,6 +47,8 @@ class RoleController extends Controller
 
     public function show(Role $role)
     {
+        abort(403);
+
         return view('Admin.roles.edit', [
             'action' => null,
             'method' => null,
@@ -51,6 +58,8 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
+        abort(403);
+
         return view('Admin.roles.edit', [
             'action' => route('roles.update', $role),
             'method' => "PUT",
@@ -60,6 +69,8 @@ class RoleController extends Controller
 
     public function update(RoleRequest $request, Role $role): RedirectResponse
     {
+        abort(403);
+
         $validated = $request->validated();
 
         $role->update($validated);
@@ -67,8 +78,10 @@ class RoleController extends Controller
         return redirect()->route('roles.index')->with('success', "Roles {$role->getAttribute('name')} updated successfully!");
     }
 
-    public function destroy(Role $role): RedirectResponse
+    public function destroy(Role $role): JsonResponse
     {
+        abort(403);
+
         if($role->delete()){
             return response()->json(['code' => 200]);
         }else{
