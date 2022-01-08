@@ -7,6 +7,7 @@ use App\Models\Expense;
 use App\Models\ExpensesType;
 use App\Models\Onion;
 use App\Models\Potato;
+use App\Models\PotatoSac;
 use App\Models\Selling;
 use App\Models\Setting;
 use Carbon\Carbon;
@@ -244,6 +245,37 @@ class SellingController extends Controller
     {
         if($selling->delete()){
             $selling->debt()->delete();
+
+            $sellingable = $selling->getRelationValue('sellingable');
+
+            if(!is_null($selling->getAttribute('weight'))) {
+                $selling->sellingable()->update([
+                    'total_weight' => $sellingable->getAttribute('total_weight') + $selling->getAttribute('weight'),
+                ]);
+            }
+
+            if (!is_null($selling->getAttribute('sac_name'))) {
+                if ($selling->getAttribute('sellingable_type') == Onion::class) {
+                    $selling->sellingable()->update([
+                        $selling->getAttribute('sac_name') => $sellingable->getAttribute($selling->getAttribute('sac_name')) + $selling->getAttribute('sac_count'),
+                    ]);
+                } else if ($selling->getAttribute('sellingable_type') == Potato::class) {
+                    $sac = PotatoSac::find($selling->getAttribute('sac_name'));
+                    $sac_count = $sac->getAttribute('sac_count') + $selling->getAttribute('sac_count');
+
+                    if (is_null($selling->getAttribute('weight'))) {
+                        $selling->sellingable()->update([
+                            'total_weight' => $sellingable->getAttribute('total_weight') + ($sac->getAttribute('sac_weight') * $selling->getAttribute('sac_count')),
+                        ]);
+                    }
+
+                    $sac->update([
+                        'sac_count' => $sac_count,
+                        'total_weight' => $sac_count * $sac->getAttribute('sac_weight'),
+                    ]);
+                }
+            }
+
             return response()->json(['code' => 200]);
         }else{
             return response()->json(['code' => 400]);
