@@ -77,4 +77,9 @@ class Selling extends Model implements Recordable
     {
         return $this->morphTo();
     }
+
+    public function debt(): HasOne
+    {
+        return $this->hasOne(Expense::class, 'debt_selling_id')->withDefault();
+    }
 }

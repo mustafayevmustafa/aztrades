@@ -131,7 +131,8 @@ class SellingController extends Controller
                 'goods_type_id' => $selling->getAttribute('sellingable_id'),
                 'expense' => $validated['price'],
                 'note' => $validated['content'],
-                'customer' => $selling->getAttribute('customer')
+                'customer' => $selling->getAttribute('customer'),
+                'debt_selling_id' => $selling->getAttribute('id')
             ]);
         }
 

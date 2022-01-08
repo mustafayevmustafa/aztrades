@@ -18,7 +18,8 @@ class Expense extends Model implements Recordable
         'goods_type',
         'goods_type_id',
         'is_income',
-        'customer'
+        'customer',
+        'debt_selling_id'
     ];
 
     protected $casts = ['is_income' => 'boolean'];
@@ -74,5 +75,10 @@ class Expense extends Model implements Recordable
         if($this->getAttribute('goods_type') == Potato::class) $type = Potato::class;
 
         return $this->belongsTo($type, 'goods_type_id')->withDefault();
+    }
+
+    public function selling(): BelongsTo
+    {
+        return $this->belongsTo(Selling::class, 'debt_selling_id')->withDefault();
     }
 }
