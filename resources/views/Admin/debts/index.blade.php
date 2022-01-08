@@ -28,11 +28,11 @@
                     <form action="{{route('debts.index')}}">
                         <div class="row">
                             <div class="form-group col-12 col-md-6">
-                                <label for="is-returned-filter">Borc növünə görə filterlə</label>
-                                <select class="form-control" id="is-returned-filter" name="is_returned">
+                                <label for="is-income-filter">Borc növünə görə filterlə</label>
+                                <select class="form-control" id="is-income-filter" name="is_income">
                                     <option value="">Növü seç</option>
                                     @foreach($types as $index => $_type)
-                                        <option value="{{$index}}" @if($index === (int) request()->get('is_returned') && is_numeric(request()->get('is_returned'))) selected @endif>{{$_type}}</option>
+                                        <option value="{{$index}}" @if($index === (int) request()->get('is_income') && is_numeric(request()->get('is_income'))) selected @endif>{{$_type}}</option>
                                     @endforeach
                                 </select>
                             </div>
