@@ -14,9 +14,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-3">
-                        <a class="btn btn-outline-primary" href="{{route('admins.index')}}"><i class="mdi mdi-arrow-left"></i></a>
+                        <a class="btn btn-outline-primary" href="{{route('users.index')}}"><i class="mdi mdi-arrow-left"></i></a>
                         @if (is_null($action))
-                            <a class="btn btn-outline-primary" href="{{route('admins.edit', $data)}}">Edit</a>
+                            <a class="btn btn-outline-primary" href="{{route('users.edit', $data)}}">Edit</a>
                         @endif
                     </div>
                     <form action="{{$action}}" method="POST" enctype="multipart/form-data">

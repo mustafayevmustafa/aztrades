@@ -19,7 +19,7 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('Admin.admins.index')->with([
+        return view('Admin.users.index')->with([
             'users' => User::latest()->paginate(10)
         ]);
     }
@@ -27,8 +27,8 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('Admin.admins.edit', [
-            'action' => route('admins.store'),
+        return view('Admin.users.edit', [
+            'action' => route('users.store'),
             'method' => null,
             'data'   => null
         ]);
@@ -40,12 +40,12 @@ class UserController extends Controller
 
         $user = User::create($validated);
 
-        return redirect()->route('admins.index')->with('success', "User {$user->getAttribute('name')} reated successfully!");
+        return redirect()->route('users.index')->with('success', "User {$user->getAttribute('name')} reated successfully!");
     }
 
     public function show(User $user)
     {
-        return view('Admin.admins.edit', [
+        return view('Admin.users.edit', [
             'action' => null,
             'method' => null,
             'data'   => $user
@@ -54,8 +54,8 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('Admin.admins.edit', [
-            'action' => route('admins.update', $user),
+        return view('Admin.users.edit', [
+            'action' => route('users.update', $user),
             'method' => "PUT",
             'data'   => $user
         ]);
@@ -67,7 +67,7 @@ class UserController extends Controller
 
         $user->update($validated);
 
-        return redirect()->route('admins.index')->with('success', "User {$user->getAttribute('name')} updated successfully!");
+        return redirect()->route('users.index')->with('success', "User {$user->getAttribute('name')} updated successfully!");
     }
 
     public function destroy(User $user): JsonResponse

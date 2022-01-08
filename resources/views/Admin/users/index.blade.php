@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
-                        <a class="btn btn-outline-success" href="{{ route('admins.create') }}">Istifadeci Əlavə Et</a>
+                        <a class="btn btn-outline-success" href="{{ route('users.create') }}">Istifadeci Əlavə Et</a>
                     </div>
                     @if (session('success'))
                         <div class="alert alert-success mt-2">
@@ -36,9 +36,9 @@
                                 <td>{{ $user->getAttribute('name') }}</td>
                                 <td>{{ $user->getAttribute('email') }}</td>
                                 <td>
-                                    <a href="{{ route('admins.show', $user) }}" class="btn"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
-                                    <a href="{{ route('admins.edit', $user) }}" class="btn"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
-                                    <button type="button" class="btn" onclick="deleteConfirmation({{ $user->getAttribute('id') }}, 'admins')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
+                                    <a href="{{ route('users.show', $user) }}" class="btn"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
+                                    <a href="{{ route('users.edit', $user) }}" class="btn"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
+                                    <button type="button" class="btn" onclick="deleteConfirmation({{ $user->getAttribute('id') }}, 'users')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
                                 </td>
                             </tr>
                         @empty
