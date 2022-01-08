@@ -15,10 +15,6 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-3">
                         <a class="btn btn-outline-primary" href="{{route('sellings.index')}}"><i class="mdi mdi-arrow-left"></i></a>
-
-                        @if (is_null($action))
-                            <a class="btn btn-outline-primary" href="{{route('sellings.edit', $data)}}">Edit</a>
-                        @endif
                     </div>
 
                     <div class="my-3">

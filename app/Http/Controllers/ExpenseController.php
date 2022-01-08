@@ -81,6 +81,8 @@ class ExpenseController extends Controller
 
     public function edit(Expense $expense)
     {
+        abort(403);
+
         $back = strpos(back()->getTargetUrl(), '?') != false ? substr(back()->getTargetUrl(), 0, strpos(back()->getTargetUrl(), '?')) : back()->getTargetUrl();
 
         return view('Admin.expenses.edit', [
@@ -94,6 +96,8 @@ class ExpenseController extends Controller
 
     public function update(ExpenseRequest $request, Expense $expense): RedirectResponse
     {
+        abort(403);
+
         $validated = $request->validated();
 
         $expense->update($validated);
