@@ -7,7 +7,6 @@ use App\Models\Expense;
 use App\Models\ExpensesType;
 use App\Models\Onion;
 use App\Models\Potato;
-use App\Models\PotatoSac;
 use App\Models\Selling;
 use App\Models\Setting;
 use Carbon\Carbon;
@@ -191,51 +190,6 @@ class SellingController extends Controller
             ]);
         }
 
-        if(is_null($validated['sac_name'])) $validated['sac_count'] = null;
-
-        $sellingable = $selling->getRelationValue('sellingable'); // sellingable morph of the selling model
-
-        $error = false;
-
-        $weight_change = $validated['weight'] - $selling->getAttribute('weight');
-        $sellingableData['total_weight'] = $sellingable->getAttribute('total_weight') - $weight_change;
-
-        if($selling->getAttribute('sac_name') != $validated['sac_name'] && $validated['sac_count'] > 0) {
-            switch ($sellingable->getTable()) {
-                case 'onions':
-                    if ($sellingable->getAttribute($validated['sac_name']) < $validated['sac_count']) {
-                        $error = true;
-                        break;
-                    }
-
-                    $sac_count_change = $validated['sac_count'] - $selling->getAttribute('sac_count');
-                    $sellingableData[$validated['sac_name']] = $sellingable->getAttribute($validated['sac_name']) - $sac_count_change;
-                    break;
-
-                case 'potatoes':
-                    $sac = $sellingable->sacs()->where('potato_id', $validated['type_id'])->where('name', $validated['sac_name'])->first();
-
-                    if ($sac->getAttribute('sac_count') < $validated['sac_count']) {
-                        $error = true;
-                        break;
-                    }
-
-                    $potato_sac_weight_change = $validated['weight'] - $selling->getAttribute('weight');
-                    $potato_sac_count_change  = $validated['sac_count'] - $selling->getAttribute('sac_count');
-
-                    $sac->update([
-                        'sac_count' => $sac->sac_count - $potato_sac_count_change,
-                        'sac_weight' => $sac->sac_weight - $potato_sac_weight_change,
-                    ]);
-                    break;
-            }
-        }
-
-        if ($error) {
-            return back()->with('message', 'Seçdiyiniz kisədə o qədər say mövcud deyil');
-        }
-
-        $selling->sellingable()->update($sellingableData);
         $selling->update($validated);
 
         return redirect()->route('sellings.index')->with('success', "Satış  uğurla dəyişdirildi!");
@@ -244,38 +198,6 @@ class SellingController extends Controller
     public function destroy(Selling $selling): JsonResponse
     {
         if($selling->delete()){
-            $selling->debt()->delete();
-
-            $sellingable = $selling->getRelationValue('sellingable');
-
-            if(!is_null($selling->getAttribute('weight'))) {
-                $selling->sellingable()->update([
-                    'total_weight' => $sellingable->getAttribute('total_weight') + $selling->getAttribute('weight'),
-                ]);
-            }
-
-            if (!is_null($selling->getAttribute('sac_name'))) {
-                if ($selling->getAttribute('sellingable_type') == Onion::class) {
-                    $selling->sellingable()->update([
-                        $selling->getAttribute('sac_name') => $sellingable->getAttribute($selling->getAttribute('sac_name')) + $selling->getAttribute('sac_count'),
-                    ]);
-                } else if ($selling->getAttribute('sellingable_type') == Potato::class) {
-                    $sac = PotatoSac::find($selling->getAttribute('sac_name'));
-                    $sac_count = $sac->getAttribute('sac_count') + $selling->getAttribute('sac_count');
-
-                    if (is_null($selling->getAttribute('weight'))) {
-                        $selling->sellingable()->update([
-                            'total_weight' => $sellingable->getAttribute('total_weight') + ($sac->getAttribute('sac_weight') * $selling->getAttribute('sac_count')),
-                        ]);
-                    }
-
-                    $sac->update([
-                        'sac_count' => $sac_count,
-                        'total_weight' => $sac_count * $sac->getAttribute('sac_weight'),
-                    ]);
-                }
-            }
-
             return response()->json(['code' => 200]);
         }else{
             return response()->json(['code' => 400]);
