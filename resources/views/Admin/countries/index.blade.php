@@ -37,10 +37,9 @@
                             <td>{{ $country->getAttribute('name') }}</td>
                             <td>{{ $country->getAttribute('created_at') }}</td>
                             <td>
-                                <a href="{{ route('countries.show', $country) }}" class="btn btn-outline-success">Show</a>
-
-                                <a href="{{ route('countries.edit', $country) }}" class="btn btn-outline-primary">Edit</a>
-                                <button type="button" class="btn btn-outline-danger" onclick="deleteConfirmation({{ $country->getAttribute('id') }}, 'countries')">DELETE</button>
+                                <a href="{{ route('countries.show', $country) }}" class="btn"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
+                                <a href="{{ route('countries.edit', $country) }}" class="btn"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
+                                <button type="button" class="btn" onclick="deleteConfirmation({{ $country->getAttribute('id') }}, 'countries')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
                             </td>
                         </tr>
                     @endforeach

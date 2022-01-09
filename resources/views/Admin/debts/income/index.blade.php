@@ -67,11 +67,11 @@
                                     <td>{{ $expense->getAttribute('expense') }}</td>
                                     <td>{{ $expense->getAttribute('created_at') }}</td>
                                     <td>
-                                        <a href="{{ route('expenses.show', $expense) }}" class="btn btn-outline-success">Show</a>
+                                        <a href="{{ route('expenses.show', $expense) }}" class="btn"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
                                         @if (is_null($expense->getAttribute('goods_type')))
-                                            <a href="{{ route('expenses.edit', $expense) }}" class="btn btn-outline-primary">Edit</a>
+                                            <a href="{{ route('expenses.edit', $expense) }}" class="btn"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
                                         @endif
-                                        <button type="button" class="btn btn-outline-danger" onclick="deleteConfirmation({{ $expense->getAttribute('id') }}, 'expenses')">DELETE</button>
+                                        <button type="button" class="btn" onclick="deleteConfirmation({{ $expense->getAttribute('id') }}, 'expenses')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
                                     </td>
                                 </tr>
                             @endforeach
