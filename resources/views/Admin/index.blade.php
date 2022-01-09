@@ -165,7 +165,7 @@
                         </table>
                     </div>
                     <div class="col-12 col-md-7 p-0 pl-1">
-                        <table class="table table-info table-responsive-sm">
+                        <table class="table table-secondary table-responsive-sm">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
