@@ -75,7 +75,8 @@ class ExpenseController extends Controller
             'action' => null,
             'method' => null,
             'data'   => $expense,
-            'types'  => ExpensesType::expenseTypes()
+            'types'  => ExpensesType::expenseTypes(),
+            'selling' => $expense->getRelationValue('selling')
         ]);
     }
 
@@ -90,7 +91,8 @@ class ExpenseController extends Controller
             'method' => "PUT",
             'data'   => $expense,
             'types'  => ExpensesType::expenseTypes(),
-            'back'   => $back
+            'back'   => $back,
+            'selling' => $expense->getRelationValue('selling')
         ]);
     }
 

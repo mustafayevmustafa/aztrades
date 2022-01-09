@@ -73,6 +73,25 @@
                             @enderror
                         </div>
 
+                        @if(!is_null($selling))
+                            @if (is_null($selling->getAttriute('sac_name')))
+                                <div class="form-group">
+                                    <label>Ceki (kg)</label>
+                                    <input type="number" value="{{ $selling->getAttribute('weight') }}" class="form-control" disabled>
+                                </div>
+                            @else
+                                <div class="form-group">
+                                    <label>Kise adi</label>
+                                    <input type="text" value="{{ $selling->getAttribute('sac_name') }}" class="form-control" disabled>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Kise sayi</label>
+                                    <input type="number" value="{{ $selling->getAttribute('sac_count') }}" class="form-control" disabled>
+                                </div>
+                            @endif
+                        @endif
+
                         <div class="form-group">
                             <label>Qeyd</label>
                             <input type="text" value="{{ $data->getAttribute('note') }}" name="note" class="form-control"  placeholder="Qeyd daxil edin">
