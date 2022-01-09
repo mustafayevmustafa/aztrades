@@ -119,22 +119,22 @@
                     </div>
                 </div>
                 <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap justify-content-between">
-                    <a href="{{route('debts.expense')}}" class="btn btn-primary mt-md-0 mx-2 ml-0 btn-block">Borca Gedən</a>
-                    <a href="{{route('debts.income')}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Borcdan Gələn</a>
+                    <a href="{{route('debts.expense')}}" class="btn btn-danger mt-md-0 mx-2 ml-0 btn-block">Borca Gedən</a>
+                    <a href="{{route('debts.income')}}" class="btn btn-warning mt-md-0 mx-2 btn-block">Borcdan Gələn</a>
                     <a href="{{route('expenses.index', ['expense_type_id' => \App\Models\ExpensesType::warehouse_cost])}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Sklad Xərci</a>
-                    <a href="{{route('expenses.index', ['all_except' => \App\Models\ExpensesType::warehouse_cost])}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Digər Xərc</a>
+                    <a href="{{route('expenses.index', ['all_except' => \App\Models\ExpensesType::warehouse_cost])}}" class="btn btn-secondary mt-md-0 mx-2 btn-block">Digər Xərc</a>
                 </div>
 
                 @if($setting->getAttribute('is_active'))
                     <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap">
                         <button  type="button" class="btn btn-success btn-block mt-md-0 mx-2 ml-0" data-toggle="modal" data-target="#exampleModal">Sogan Sat</button>
-                        <button  type="button" class="btn btn-success btn-block mt-md-0 mx-2 ml-0" data-toggle="modal" data-target="#ModalPotato">Kartof Sat</button>
+                        <button  type="button" class="btn btn-info btn-block mt-md-0 mx-2 ml-0" data-toggle="modal" data-target="#ModalPotato">Kartof Sat</button>
                     </div>
                 @endif
 
                 <div class="card-body row m-0 p-0">
                     <div class="col-12 col-md-5 p-0">
-                        <table class="table table-dark table-responsive-sm">
+                        <table class="table table-success table-responsive-sm text-dark">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -150,7 +150,7 @@
                                 <tr>
                                     <th>{{$onion->getAttribute('id')}}</th>
                                     <th>
-                                        <a class="text-white @if(!$setting->getAttribute('is_active')) disabled @endif"  href="{{route('sellings.create', ['type_id' => $onion->getAttribute('id'), 'type' => 'onion'])}}">
+                                        <a class="text-dark @if(!$setting->getAttribute('is_active')) disabled @endif"  href="{{route('sellings.create', ['type_id' => $onion->getAttribute('id'), 'type' => 'onion'])}}">
                                             {{$onion->getAttribute('info')}}
                                         </a>
                                     </th>
@@ -165,7 +165,7 @@
                         </table>
                     </div>
                     <div class="col-12 col-md-7 p-0 pl-1">
-                        <table class="table table-dark table-responsive-sm">
+                        <table class="table table-info table-responsive-sm">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -179,7 +179,7 @@
                                     <tr>
                                         <th scope="row">{{$potato->getAttribute('id')}}</th>
                                         <td>
-                                            <a class="text-white @if(!$setting->getAttribute('is_active')) disabled @endif" href="{{route('sellings.create', ['type_id' => $potato->getAttribute('id'), 'type' => 'potato'])}}">
+                                            <a class="text-dark @if(!$setting->getAttribute('is_active')) disabled @endif" href="{{route('sellings.create', ['type_id' => $potato->getAttribute('id'), 'type' => 'potato'])}}">
                                                 {{$potato->getAttribute('info')}}
                                             </a>
                                         </td>
