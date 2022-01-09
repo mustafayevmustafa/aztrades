@@ -4,7 +4,15 @@
     <div class="row" xmlns:x-forms="http://www.w3.org/1999/html">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18">Xərclər | Borclar</h4>
+                <h4 class="page-title mb-0 font-size-18">
+                    @if (request()->get('type') == \App\Models\ExpensesType::debt && request()->has('is_income'))
+                        Borcdan gelen
+                    @elseif (request()->get('type') == \App\Models\ExpensesType::debt)
+                        Borca geden
+                    @else
+                        Xərclər
+                    @endif
+                </h4>
             </div>
         </div>
     </div>
