@@ -21,7 +21,7 @@ class SellingController extends Controller
         parent::__construct();
         $this->middleware('auth');
 
-        abort_if(!Setting::first()->getAttribute('is_active') && !auth()->user()->isAdmin(), 503);
+        abort_if(!Setting::first()->getAttribute('is_active'), 503);
     }
 
     public function index(Request $request)
