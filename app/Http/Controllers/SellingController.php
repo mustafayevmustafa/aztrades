@@ -20,12 +20,12 @@ class SellingController extends Controller
     {
         parent::__construct();
         $this->middleware('auth');
-
-        abort_if(!Setting::first()->getAttribute('is_active'), 503);
     }
 
     public function index(Request $request)
     {
+        abort_if(!Setting::first()->getAttribute('is_active') && !auth()->user()->isAdmin(), 503);
+
         $filters = $request->only(['type', 'daterange', 'customer']);
         $daterange = array_key_exists('daterange', $filters) ? explode(' - ', $filters['daterange']) : [];
 
@@ -42,6 +42,8 @@ class SellingController extends Controller
 
     public function create(Request $request)
     {
+        abort_if(!Setting::first()->getAttribute('is_active') && !auth()->user()->isAdmin(), 503);
+
         abort_if($request->get('type') !== 'onion' && $request->get('type') !== 'potato', 404);
 
         $type = $request->get('type') == 'onion' ?
@@ -61,6 +63,8 @@ class SellingController extends Controller
 
     public function store(SellingsRequest $request): RedirectResponse
     {
+        abort_if(!Setting::first()->getAttribute('is_active') && !auth()->user()->isAdmin(), 503);
+
         $validated = $request->validated();
 
         $validated['was_debt'] = $request->has('was_debt');
@@ -141,6 +145,8 @@ class SellingController extends Controller
 
     public function show(Selling $selling)
     {
+        abort_if(!Setting::first()->getAttribute('is_active') && !auth()->user()->isAdmin(), 503);
+
         $sellingable = $selling->getRelationValue('sellingable');
 
         return view('Admin.sellings.edit', [
@@ -154,32 +160,10 @@ class SellingController extends Controller
         ]);
     }
 
-    public function edit(Selling $selling)
-    {
-        $sellingable = $selling->getRelationValue('sellingable');
-
-        return view('Admin.sellings.edit', [
-            'action' => route('sellings.update', $selling),
-            'method' => "PUT",
-            'data'   => $selling,
-            'type' => $selling->getRelationValue('sellingable'),
-            'sacs'   => $sellingable->getTable() == 'onions' ?
-                Onion::bags() :
-                $sellingable->sacs->pluck('name', 'id'),
-        ]);
-    }
-
-    public function update(SellingsRequest $request, Selling $selling): RedirectResponse
-    {
-        $validated = $request->validated();
-
-        $selling->update($validated);
-
-        return redirect()->route('sellings.index')->with('success', "Satış  uğurla dəyişdirildi!");
-    }
-
     public function destroy(Selling $selling): JsonResponse
     {
+        abort_if(!Setting::first()->getAttribute('is_active') && !auth()->user()->isAdmin(), 503);
+
         if($selling->delete()){
             return response()->json(['code' => 200]);
         }else{

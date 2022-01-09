@@ -4,7 +4,7 @@
 
         <div class="user-wid text-center py-4">
             <div class="mt-3">
-                <p class="d-block text-dark font-weight-medium font-size-18 mb-2">{{ Auth::user()->name ?? 'Guest' }}
+                <p class="d-block text-dark font-weight-medium font-size-18 mb-2">{{ auth()->user()->getAttribute('name') ?? 'Ad yoxdur' }}
                 </p>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">

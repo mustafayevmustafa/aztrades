@@ -41,7 +41,7 @@ Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], 
     Route::resource('potatoes', PotatoController::class);
     Route::resource('countries', CountryController::class);
     Route::resource('cities', CityController::class);
-    Route::resource('sellings', SellingController::class);
+    Route::resource('sellings', SellingController::class)->except('edit',  'update');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('expenses_types', ExpensesTypeController::class);
