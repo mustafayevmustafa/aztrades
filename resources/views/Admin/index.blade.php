@@ -128,7 +128,7 @@
                 @if($setting->getAttribute('is_active'))
                     <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap">
                         <button  type="button" class="btn btn-success btn-block mt-md-0 mx-2 ml-0" data-toggle="modal" data-target="#exampleModal">Sogan Sat</button>
-                        <button  type="button" class="btn btn-info btn-block mt-md-0 mx-2 ml-0" data-toggle="modal" data-target="#ModalPotato">Kartof Sat</button>
+                        <button  type="button" class="btn btn-success btn-block mt-md-0 mx-2 ml-0" data-toggle="modal" data-target="#ModalPotato">Kartof Sat</button>
                     </div>
                 @endif
 
