@@ -209,7 +209,7 @@
                     </div>
                 </div>
                 <div class="col-12 text-right">
-                    <h5 class="card-title text-danger">Günlük cibimdəki Pul</h5>
+                    <h5 class="card-title text-danger">Cibimdəki Pul</h5>
                     <p class="card-text" style="font-size: 16px">{{$daily_net_income}} AZN</p>
                 </div>
             </div>
