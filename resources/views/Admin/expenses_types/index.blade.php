@@ -42,7 +42,7 @@
                         <td>{{ $type->getAttribute('created_at') }}</td>
                         <td>
                             <a href="{{ route('expenses_types.show', $type) }}" class="btn"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
-{{--                            <a href="{{ route('expenses_types.edit', $type) }}" class="btn btn-outline-primary">Edit</a>--}}
+{{--                            <a href="{{ route('expenses_types.edit', $type) }}" class="btn btn-outline-primary">Editle</a>--}}
 {{--                            <button type="button" class="btn btn-outline-danger" onclick="deleteConfirmation({{ $type->getAttribute('id') }}, 'expenses_types')">DELETE</button>--}}
                         </td>
                     </tr>

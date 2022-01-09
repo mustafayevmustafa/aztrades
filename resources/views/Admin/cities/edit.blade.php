@@ -16,7 +16,7 @@
                     <div class="d-flex justify-content-between mb-3">
                         <a class="btn btn-outline-primary" href="{{route('cities.index')}}"><i class="mdi mdi-arrow-left"></i></a>
                         @if (is_null($action))
-                            <a class="btn btn-outline-primary" href="{{route('cities.edit', $data)}}">Edit</a>
+                            <a class="btn btn-outline-primary" href="{{route('cities.edit', $data)}}">Editle</a>
                         @endif
 
                     </div>

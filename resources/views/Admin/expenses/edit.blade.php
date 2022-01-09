@@ -24,7 +24,7 @@
                     <div class="d-flex justify-content-between mb-3">
                         <a class="btn btn-outline-primary" href="{{route('expenses.index')}}"><i class="mdi mdi-arrow-left"></i></a>
 {{--                        @if (is_null($action))--}}
-{{--                            <a class="btn btn-outline-primary" href="{{route('expenses.edit', $data)}}">Edit</a>--}}
+{{--                            <a class="btn btn-outline-primary" href="{{route('expenses.edit', $data)}}">Editle</a>--}}
 {{--                        @endif--}}
                     </div>
                     <form action="{{ $action }}" method="POST">

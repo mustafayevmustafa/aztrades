@@ -22,7 +22,7 @@
                                 </button>
                             @endif
                             @if (is_null($action))
-                                <a class="btn btn-outline-primary" href="{{route('potatoes.edit', $data)}}">Edit</a>
+                                <a class="btn btn-outline-primary" href="{{route('potatoes.edit', $data)}}">Editle</a>
                             @endif
                         </div>
                     </div>

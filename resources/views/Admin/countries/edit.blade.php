@@ -18,7 +18,7 @@
                     <div class="d-flex justify-content-between mb-3">
                         <a class="btn btn-outline-primary" href="{{route('countries.index')}}"><i class="mdi mdi-arrow-left"></i></a>
                         @if (is_null($action))
-                            <a class="btn btn-outline-primary" href="{{route('countries.edit', $data)}}">Edit</a>
+                            <a class="btn btn-outline-primary" href="{{route('countries.edit', $data)}}">Editle</a>
                         @endif
                     </div>
                     <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
