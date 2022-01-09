@@ -73,7 +73,7 @@
                             @enderror
                         </div>
 
-                        @if(!is_null($selling))
+                        @if($data->selling()->exists())
                             @if (is_null($selling->getAttribute('sac_name')))
                                 <div class="form-group">
                                     <label>Ceki (kg)</label>
@@ -82,7 +82,7 @@
                             @else
                                 <div class="form-group">
                                     <label>Kise adi</label>
-                                    <input type="text" value="{{ $selling->getAttribute('sac_name') }}" class="form-control" disabled>
+                                    <input type="text" value="{{ $selling->getAttribute('type') == 'onion' ? trans('translates.onions_bags.' . $selling->getAttribute('sac_name')) : $selling->getAttribute('sac_name') }}" class="form-control" disabled>
                                 </div>
 
                                 <div class="form-group">
