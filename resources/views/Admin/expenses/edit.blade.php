@@ -74,7 +74,7 @@
                         </div>
 
                         @if(!is_null($selling))
-                            @if (is_null($selling->getAttriute('sac_name')))
+                            @if (is_null($selling->getAttribute('sac_name')))
                                 <div class="form-group">
                                     <label>Ceki (kg)</label>
                                     <input type="number" value="{{ $selling->getAttribute('weight') }}" class="form-control" disabled>
