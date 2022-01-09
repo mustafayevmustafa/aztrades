@@ -9,7 +9,7 @@ use App\Models\Onion;
 use App\Models\Potato;
 use App\Models\Selling;
 use App\Models\Setting;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
 
 class DashboardController extends Controller
 {
@@ -37,7 +37,7 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function toggleActive(): RedirectResponse
+    public function toggleActive(): JsonResponse
     {
         $setting = Setting::first();
         $setting->update(['is_active' => !$setting->getAttribute('is_active')]);
@@ -53,6 +53,6 @@ class DashboardController extends Controller
             ]);
         }
 
-        return back();
+        return response()->json(['code' => 200]);
     }
 }

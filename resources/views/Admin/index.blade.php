@@ -17,7 +17,7 @@
 
                     <div id="buttons" class="mt-4">
                         @can('disable')
-                            <a href="{{route('settings.toggle-state')}}" class="btn @if($setting->getAttribute('is_active')) btn-outline-danger @else btn-outline-success @endif">Satışı @if($setting->getAttribute('is_active')) bağla @else aç @endif</a>
+                            <button type="button" class="btn @if($setting->getAttribute('is_active')) btn-outline-danger @else btn-outline-success @endif" onclick="confirmRequest('{{route('settings.toggle-state')}}')">Satışı @if($setting->getAttribute('is_active')) bağla @else aç @endif</button>
                         @endcan
                         <button class="btn btn-outline-primary" id="show-statistics">Statistikanı görsət</button>
                         <button class="btn btn-outline-info" id="show-closed-rates">Baglanan satislari gorset</button>

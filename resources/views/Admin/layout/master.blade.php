@@ -68,14 +68,57 @@
                 }
             );
 
-            function deleteConfirmation(id, model) {
+            function confirmRequest(url, type = 'POST') {
                 Swal.fire({
-                    title: "Delete?",
-                    text: "Please ensure and then confirm!",
+                    title: "Eminsiniz?",
+                    text: "Zəhmət olmasa əmin olun və sonra təsdiq edin!",
                     type: "warning",
                     showCancelButton: !0,
-                    confirmButtonText: "Yes, delete it!",
-                    cancelButtonText: "No, cancel!",
+                    confirmButtonText: "Beli!",
+                    cancelButtonText: "Xeyr!",
+                    reverseButtons: !0
+                }).then(function(e) {
+                    if (e.value === true) {
+                        const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                        $.ajax({
+                            type: type,
+                            url: url,
+                            data: {
+                                _token: CSRF_TOKEN
+                            },
+                            dataType: 'JSON',
+                            success: function(results) {
+                                if (results.code === 200) {
+                                    setTimeout(function() {
+                                        location.reload();
+                                    }, 1000);
+                                    Swal.fire("Uğurlu!", "", "success");
+                                } else {
+                                    Swal.fire("Xeta!", "", "error");
+                                }
+                            },
+                            error: function(err) {
+                                Swal.fire("Xeta!", "Nəsə xəta baş verdi!", "error");
+                            }
+                        });
+
+                    } else {
+                        e.dismiss;
+                    }
+
+                }, function(dismiss) {
+                    return false;
+                })
+            }
+
+            function deleteConfirmation(id, model) {
+                Swal.fire({
+                    title: "Sil?",
+                    text: "Zəhmət olmasa əmin olun və sonra təsdiq edin!",
+                    type: "warning",
+                    showCancelButton: !0,
+                    confirmButtonText: "Beli, sil!",
+                    cancelButtonText: "Xeyr, silme!",
                     reverseButtons: !0
                 }).then(function(e) {
                     if (e.value === true) {
@@ -92,13 +135,13 @@
                                     setTimeout(function() {
                                         location.reload();
                                     }, 1000);
-                                    Swal.fire("Done!", "", "success");
+                                    Swal.fire("Uğurlu!", "", "success");
                                 } else {
-                                    Swal.fire("Error!", "", "error");
+                                    Swal.fire("Xeta!", "", "error");
                                 }
                             },
                             error: function(err) {
-                                Swal.fire("Error!", "Something went wrong!", "error");
+                                Swal.fire("Xeta!", "Nəsə xəta baş verdi!", "error");
                             }
                         });
 
