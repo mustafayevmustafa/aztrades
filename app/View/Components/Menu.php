@@ -19,6 +19,13 @@ class Menu extends Component
                 'permission' => 'generally',
                 'has_arrow' => false
             ],
+            (object) [
+                'name' => 'Qeydlər',
+                'url' => route('notes.index'),
+                'icon' => 'mdi-comment-text',
+                'permission' => 'generally',
+                'has_arrow' => false
+            ],
 
             (object) [
                 'name' => 'Soğan',
