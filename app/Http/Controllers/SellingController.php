@@ -165,6 +165,7 @@ class SellingController extends Controller
         abort_if(!Setting::first()->getAttribute('is_active') && !auth()->user()->isAdmin(), 503);
 
         if($selling->delete()){
+            $selling->debt()->delete();
             return response()->json(['code' => 200]);
         }else{
             return response()->json(['code' => 400]);

@@ -73,7 +73,7 @@
                                     <td>
                                         <a href="{{ route('expenses.show', $expense) }}" class="btn"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
                                         @if (is_null($expense->getAttribute('goods_type')))
-                                            <a href="{{ route('expenses.edit', $expense) }}" class="btn"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
+{{--                                            <a href="{{ route('expenses.edit', $expense) }}" class="btn"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>--}}
                                         @endif
                                         <button type="button" class="btn" onclick="deleteConfirmation({{ $expense->getAttribute('id') }}, 'expenses')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
                                     </td>

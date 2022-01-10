@@ -80,35 +80,10 @@ class ExpenseController extends Controller
         ]);
     }
 
-    public function edit(Expense $expense)
-    {
-        abort_if(!is_null($expense->getAttribute('goods_type')) , 503);
-
-        $back = strpos(back()->getTargetUrl(), '?') != false ? substr(back()->getTargetUrl(), 0, strpos(back()->getTargetUrl(), '?')) : back()->getTargetUrl();
-
-        return view('Admin.expenses.edit', [
-            'action' => route('expenses.update', $expense),
-            'method' => "PUT",
-            'data'   => $expense,
-            'types'  => ExpensesType::expenseTypes(),
-            'back'   => $back,
-            'selling' => $expense->getRelationValue('selling')
-        ]);
-    }
-
-    public function update(ExpenseRequest $request, Expense $expense): RedirectResponse
-    {
-        abort_if(!is_null($expense->getAttribute('goods_type')) , 503);
-
-        $validated = $request->validated();
-
-        $expense->update($validated);
-
-        return redirect()->to($validated['back'])->with('success', "Expense updated successfully!");
-    }
-
     public function destroy(Expense $expense): JsonResponse
     {
+        abort_if(   !is_null($expense->getAttribute('goods_type')) && $expense->getAttribute('expense_type_id') != ExpensesType::debt, 503);
+
         if($expense->delete()){
             $expense->selling()->delete();
             return response()->json(['code' => 200]);
