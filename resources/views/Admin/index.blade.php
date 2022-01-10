@@ -123,7 +123,7 @@
                     <a href="{{route('debts.income')}}" class="btn btn-warning mt-md-0 mx-2 btn-block">Borcdan Gələn</a>
                     <a href="{{route('expenses.index', ['expense_type_id' => \App\Models\ExpensesType::warehouse_cost])}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Sklad Xərci</a>
                     <a href="{{route('expenses.index', ['all_except' => \App\Models\ExpensesType::warehouse_cost])}}" class="btn btn-secondary mt-md-0 mx-2 btn-block">Digər Xərc</a>
-                    <a href="{{route('notes.index')}}" class="btn btn-info mt-md-0 mx-2 btn-block">Qeydlər</a>
+                    <a href="{{route('notes.create')}}" class="btn btn-info mt-md-0 mx-2 btn-block">Qeyd Yaz</a>
                 </div>
 
                 @if($setting->getAttribute('is_active'))
@@ -134,7 +134,7 @@
                 @endif
 
                 <div class="card-body row m-0 p-0">
-                    <div class="col-12 col-md-5 p-0">
+                    <div class="col-12 col-xl-5 p-0">
                         <table class="table table-success table-responsive-sm text-dark">
                             <thead>
                             <tr>
@@ -165,7 +165,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-12 col-md-7 p-0 pl-1">
+                    <div class="col-12 col-xl-7 p-0 pl-1">
                         <table class="table table-secondary table-responsive-sm">
                             <thead>
                             <tr>
