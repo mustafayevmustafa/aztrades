@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
@@ -40,6 +41,7 @@ Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], 
     Route::resource('onions', OnionController::class);
     Route::resource('potatoes', PotatoController::class);
     Route::resource('countries', CountryController::class);
+    Route::resource('notes', NoteController::class);
     Route::resource('cities', CityController::class);
     Route::resource('sellings', SellingController::class)->except('edit',  'update');
     Route::resource('users', UserController::class);
