@@ -25,7 +25,7 @@
 
                     <div id="closed-rates" class="d-none text-center my-4">
                         <h4 class="font-weight-bold">Baglanan satislar</h4>
-                        <table class="table table-responsive-sm table-bordered my-4">
+                        <table class="table table-responsive table-bordered my-4">
                             <thead>
                                 <tr>
                                     <th>Cibimdəki pul (AZN)</th>
@@ -135,7 +135,7 @@
 
                 <div class="card-body row m-0 p-0">
                     <div class="col-12 col-xl-5 p-0">
-                        <table class="table table-success table-responsive-sm text-dark">
+                        <table class="table table-success table-responsive text-dark">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
