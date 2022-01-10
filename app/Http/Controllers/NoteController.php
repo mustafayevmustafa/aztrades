@@ -19,7 +19,7 @@ class NoteController extends Controller
     public function index()
     {
         return view('Admin.notes.index')->with([
-            'notes' => Note::paginate(10)
+            'notes' => Note:: latest()->paginate(10)
         ]);
     }
 
