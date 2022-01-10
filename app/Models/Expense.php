@@ -29,6 +29,18 @@ class Expense extends Model implements Recordable
     {
         parent::boot();
 
+        self::updating(function (Expense $expense) {
+            if ($expense->closedRate()->exists()) {
+                $rate = $expense->getRelationValue('closedRate');
+                $change = $expense->getAttribute('expense') - $expense->getOriginal('expense');
+
+                $expense->closedRate()->update([
+                    'pocket' => $rate->getAttribute('pocket') - $change,
+                    'expenses' => $rate->getAttribute('expenses') + $change
+                ]);
+            }
+        });
+
         self::deleted(function (Expense $expense) {
             // Revert the sold goods
             if (!is_null($expense->getAttribute('goods_type'))){
