@@ -27,7 +27,8 @@
                         @endif
                         <div class="form-group">
                             <label for="post-title">Qeyd</label>
-                            <input type="text" value="{{ optional($data)->getAttribute('note') }}" name="note" class="form-control" id="note" placeholder="Qeyd  Daxil Edin">
+{{--                            <input type="text" value="{{ optional($data)->getAttribute('note') }}" name="note" class="form-control" id="note" placeholder="Qeyd  Daxil Edin">--}}
+                            <textarea name="note" id="note" rows="3" class="form-control" placeholder="Qeyd  Daxil Edin" autofocus>{{optional($data)->getAttribute('note')}}</textarea>
                             @error('note')
                             <p class="text-danger">
                                 {{ $message }}
