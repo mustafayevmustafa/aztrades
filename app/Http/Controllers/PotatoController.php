@@ -185,6 +185,7 @@ class PotatoController extends Controller
     {
         if($potato->delete()){
             $potato->expenses()->delete();
+            $potato->waste()->delete();
             Selling::where('sellingable_type', Potato::class)->where('sellingable_id', $potato->getAttribute('id'))->delete();
             return response()->json(['code' => 200]);
         }else{

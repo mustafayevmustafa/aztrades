@@ -155,6 +155,7 @@ class OnionController extends Controller
     {
         if($onion->delete()){
             $onion->expenses()->delete();
+            $onion->waste()->delete();
             Selling::where('sellingable_type', Onion::class)->where('sellingable_id', $onion->getAttribute('id'))->delete();
             return response()->json(['code' => 200]);
         }else{
