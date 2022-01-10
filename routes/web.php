@@ -47,7 +47,7 @@ Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], 
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('expenses_types', ExpensesTypeController::class);
-    Route::resource('expenses', ExpenseController::class);
+    Route::resource('expenses', ExpenseController::class)->except('edit', 'update');
 
     Route::get('income-debts', [DebtController::class, 'incomeIndex'])->name('debts.income');
     Route::get('expense-debts', [DebtController::class, 'expenseIndex'])->name('debts.expense');

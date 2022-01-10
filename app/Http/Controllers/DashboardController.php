@@ -42,14 +42,30 @@ class DashboardController extends Controller
         $setting = Setting::first();
         $setting->update(['is_active' => !$setting->getAttribute('is_active')]);
 
-        if (!$setting->getAttribute('is_active') && Setting::dailyNetIncome() != 0) {
-            ClosedRate::create([
+        if (!$setting->getAttribute('is_active') &&
+            (
+                Setting::dailyNetIncome() != 0 ||
+                Setting::dailyTurnover() != 0 ||
+                Setting::dailyWaitingDebts() != 0 ||
+                Setting::dailyWaitingIncomeDebts() != 0 ||
+                Setting::dailyExpenses() != 0
+            )
+        ) {
+            $rate = ClosedRate::create([
                 'pocket' => Setting::dailyNetIncome(),
                 'turnover' => Setting::dailyTurnover(),
                 'waiting_debts' => Setting::dailyWaitingDebts(),
                 'waiting_income_debts' => Setting::dailyWaitingIncomeDebts(),
                 'waiting_income_goods' => Setting::dailyWaitingIncomeGoods(),
                 'expenses' => Setting::dailyExpenses(),
+            ]);
+
+            Selling::whereNull('closed_rate_id')->update([
+                'closed_rate_id' => $rate->getAttribute('id')
+            ]);
+
+            Expense::whereNull('closed_rate_id')->update([
+                'closed_rate_id' => $rate->getAttribute('id')
             ]);
         }
 
