@@ -62,6 +62,11 @@ class PotatoController extends Controller
             }
         }
 
+        $sacs_weight = array_sum(array_column($validated['sacs'], 'total_weight'));
+        if ($potato->getAttribute('total_weight') <= $sacs_weight) {
+            $potato->setAttribute('total_weight', $sacs_weight);
+        }
+
         $potato->save();
         $potato->sacs()->createMany($validated['sacs'] ?? []);
 
@@ -117,7 +122,7 @@ class PotatoController extends Controller
             }
 
             $wasteData = $request->only(['waste_sac_count', 'waste_sac_name', 'waste_weight']);
-            $wasteData['waste_sac_name'] = optional(PotatoSac::find($wasteData['waste_sac_name']))->getAttribute('name') ?? null;
+            $wasteData['waste_sac_name'] = $wasteData['waste_sac_name'] ?? null;
 
             $wastableData = [
                 'total_weight' => $potato->getAttribute('total_weight') - $wasteData['waste_weight'],
@@ -160,6 +165,14 @@ class PotatoController extends Controller
 
             $potato->sacs()->updateOrCreate(['id' => $sac['id']], $sac);
         });
+
+        $sacs_weight = array_sum(array_column($potato->getRelationValue('sacs')->toArray(), 'total_weight'));
+
+        if ($potato->getAttribute('total_weight') <= $sacs_weight) {
+            $validated['total_weight'] = $sacs_weight;
+        }
+
+        $potato->update($validated);
 
         foreach ($validated as $key => $value) {
             if (!str_contains($key, 'cost')) continue;

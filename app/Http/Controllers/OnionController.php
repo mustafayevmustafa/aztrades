@@ -110,7 +110,7 @@ class OnionController extends Controller
             }
 
             $wasteData = $request->only(['waste_sac_count', 'waste_sac_name', 'waste_weight']);
-            $wasteData['waste_sac_name'] = Onion::bags()[$wasteData['waste_sac_name']] ?? null;
+            $wasteData['waste_sac_name'] = $wasteData['waste_sac_name'] ?? null;
 
             $onion->waste()->create($wasteData);
 
