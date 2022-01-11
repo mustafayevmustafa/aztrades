@@ -7,7 +7,6 @@ use App\Models\Potato;
 use App\Models\PotatoSac;
 use App\Models\Waste;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class WasteController extends Controller
 {
