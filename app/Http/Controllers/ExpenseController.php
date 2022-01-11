@@ -29,7 +29,7 @@ class ExpenseController extends Controller
         $daterange = array_key_exists('daterange', $filters) ? explode(' - ', $filters['daterange']) : [];
 
         return view('Admin.expenses.index')->with([
-            'expenses' => Expense::query()
+            'expenses' => Expense::with('type', 'goodsType')
                 ->where('expense_type_id', '!=', ExpensesType::debt)
                 ->when(array_key_exists('expense_type_id', $filters), fn ($q) => $q->where('expense_type_id', $filters['expense_type_id']))
                 ->when(array_key_exists('all_except', $filters), fn ($q) => $q->where('expense_type_id', '!=', $filters['all_except']))

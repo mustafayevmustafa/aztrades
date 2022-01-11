@@ -29,7 +29,7 @@ class OnionController extends Controller
         $types = ['Deaktiv mallar', 'Aktiv mallar'];
 
         return view('Admin.onions.index')->with([
-            'onions' => Onion::query()
+            'onions' => Onion::with('city')
                 ->when($status == 0, fn($q) => $q->where('status', 0))
                 ->when($status == 1, fn($q) => $q->where('status', 1))
                 ->latest()
