@@ -106,8 +106,16 @@ class SellingController extends Controller
             }
         }
 
+        if(!is_null($validated['sac_name']) && $validated['sac_count'] <= 0) {
+            $error = true;
+        }
+
+        if(!is_null($validated['sac_name']) && $validated['sac_count'] > 0 && $validated['weight'] > 0) {
+            $error = true;
+        }
+
         if ($error) {
-            return back()->with('message', 'Seçdiyiniz kisədə o qədər say və ya həcm mövcud deyil');
+            return back()->with('message', 'Seçdiyiniz kisədə o qədər say və ya həcm mövcud deyil, ve ya melumatlar duzgun daxil edilmeyib!');
         }
 
         if($sellingable->getTable() == 'potatoes' && !is_null($validated['sac_name']) && $validated['sac_count'] > 0) {

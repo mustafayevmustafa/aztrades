@@ -273,7 +273,7 @@
                                         <p class="font-weight-bold" style="font-size: 18px">Atxodlar</p>
                                         @foreach($waste->groupBy(fn ($data) => $data->getAttribute('waste_sac_name')) as $name => $_waste)
                                             <div class="my-2">
-                                                <p class="font-weight-bold">{{$name}}</p>
+                                                <p class="font-weight-bold">{{\App\Models\Onion::bags()[$name]}}</p>
                                                 <div>
                                                     <p>Ceki: {{$_waste->sum('waste_weight') ?? 0}} kg</p>
                                                     <p>Kise sayi: {{$_waste->sum('waste_sac_count')}}</p>

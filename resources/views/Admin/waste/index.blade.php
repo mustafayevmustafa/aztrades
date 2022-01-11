@@ -42,14 +42,17 @@
                                 <td>{{ $_waste->getAttribute('type') }}</td>
                                 <td>{{ $_waste->getRelationValue('wastable')->getAttribute('info') }}</td>
                                 <td>{{ $_waste->getAttribute('waste_weight') }}</td>
-                                <td>{{ $_waste->getAttribute('waste_sac_name') }}</td>
+                                <td>{{ $_waste->getAttribute('wastable_type') == \App\Models\Onion::class ?
+                                    \App\Models\Onion::bags()[$_waste->getAttribute('waste_sac_name')] ?? 'Yoxdur' :
+                                    optional(\App\Models\PotatoSac::find($_waste->getAttribute('waste_sac_name')))->getAttribute('name') ?? 'Yoxdur' }}
+                                </td>
                                 <td>{{ $_waste->getAttribute('waste_sac_count') }}</td>
                                 <td>{{ $_waste->getAttribute('created_at') }}</td>
-{{--                                <td>--}}
+                                <td>
 {{--                                    <a href="{{ route('waste.show', $user) }}" class="btn"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>--}}
 {{--                                    <a href="{{ route('waste.edit', $user) }}" class="btn"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>--}}
-{{--                                    <button type="button" class="btn" onclick="deleteConfirmation({{ $_waste->getAttribute('id') }}, 'waste')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>--}}
-{{--                                </td>--}}
+                                    <button type="button" class="btn" onclick="deleteConfirmation({{ $_waste->getAttribute('id') }}, 'waste')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
+                                </td>
                             </tr>
                         @empty
                             <tr>
