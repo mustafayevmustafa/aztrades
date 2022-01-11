@@ -17,7 +17,7 @@ class DashboardController extends Controller
     {
         return view('Admin.index')->with([
             // closed rates
-            'closed_rates' => ClosedRate::dailyClosedRates(),
+            'closed_rates' => ClosedRate::latest()->limit(10)->get(),
             // goods
             'onions' => Onion::isActive()->latest('updated_at')->get(),
             'potatoes' => Potato::isActive()->latest('updated_at')->get(),
