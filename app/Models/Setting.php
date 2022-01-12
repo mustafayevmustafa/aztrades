@@ -19,7 +19,7 @@ class Setting extends Model implements Recordable
             Expense::where('is_income', false)->whereNull('closed_rate_id')->where(function ($q){
                 $q->where(fn($q) => $q->whereNotNull('goods_type')->where('expense_type_id', '!=', ExpensesType::debt))
                     ->orWhereNull('goods_type');
-            })->get()->sum('expense') + Expense::where('is_income', true)->sum('expense');
+            })->get()->sum('expense') + Expense::where('is_income', true)->whereNull('closed_rate_id')->sum('expense');
 
         return $selling  ?? 0;
     }
