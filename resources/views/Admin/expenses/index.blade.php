@@ -73,7 +73,7 @@
                             </thead>
                             <tbody>
                             @foreach ($expenses as $expense)
-                                <tr @if($expense->getAttribute('closed_rate_id')) style="background-color: #8ed4af" @endif>
+                                <tr @if($expense->getAttribute('closed_rate_id')) style="background-color: #b4f6d3" @endif>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $expense->getAttribute('customer') }}</td>
                                     <td>{{ $expense->getRelationValue('type')->getAttribute('name') }}</td>
