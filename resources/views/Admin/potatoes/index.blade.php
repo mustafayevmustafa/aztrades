@@ -34,6 +34,7 @@
                             <thead>
                             <tr>
                                 <th class="text-nowrap" scope="col">#</th>
+                                <th class="text-nowrap" scope="col">Ölkə</th>
                                 <th class="text-nowrap" scope="col">Kimdən</th>
                                 <th class="text-nowrap" scope="col">Partiyası</th>
                                 <th class="text-nowrap" scope="col">Maşın Nömrəsi</th>
@@ -48,6 +49,8 @@
                             @forelse ($potatoes as $potato)
                                 <tr>
                                     <td class="text-nowrap">{{ $potato->id }}</td>
+                                    <td class="text-nowrap">{{ $potato->getRelationValue('country')->getAttribute('name') }}</td>
+                                    <td class="text-nowrap">{{ $potato->getAttribute('from_whom') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('from_whom') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('party') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('car_number') }}</td>
