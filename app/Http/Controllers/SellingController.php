@@ -33,7 +33,7 @@ class SellingController extends Controller
             'sellings' => Selling::query()
                 ->when(array_key_exists('type', $filters) && is_numeric($filters['type']), fn ($q) => $q->where('was_debt', $filters['type']))
                 ->whereBetween('created_at', [Carbon::parse($daterange[0])->startOfDay(), Carbon::parse($daterange[1])->endOfDay()])
-                ->when(array_key_exists('customer', $filters), fn ($q) => $q->where('customer', 'LIKE', "%{$filters['customer']}%"))
+                ->when(array_key_exists('customer', $filters) && !is_null($filters['customer']), fn ($q) => $q->where('customer', 'LIKE', "%{$filters['customer']}%"))
                 ->latest()
                 ->paginate(25),
             'types' => Selling::flowType(),
