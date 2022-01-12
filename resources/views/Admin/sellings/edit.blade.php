@@ -106,7 +106,7 @@
                         )
                             <div class="form-group">
                                 <label for="post-title">Çəki (kq)</label>
-                                <input type="number" min="0" step=".1" value="{{ $data->getAttribute('weight') }}" name="weight" class="form-control" id="post-title" placeholder="Çəki (kq)">
+                                <input type="number" min="0" step=".01" value="{{ $data->getAttribute('weight') }}" name="weight" class="form-control" id="post-title" placeholder="Çəki (kq)">
                                 @error('weight')
                                 <p class="text-danger">
                                     {{ $message }}
@@ -117,7 +117,7 @@
 
                         <div class="form-group">
                             <label for="post-title">Qiymət (AZN)</label>
-                            <input type="number" min="0" step=".1" value="{{ $data->getAttribute('price') }}" name="price" class="form-control" id="post-title" placeholder="Qiymət">
+                            <input type="number" min="0" step=".01" value="{{ $data->getAttribute('price') }}" name="price" class="form-control" id="post-title" placeholder="Qiymət">
                             @error('price')
                             <p class="text-danger">
                                 {{ $message }}

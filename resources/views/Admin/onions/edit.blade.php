@@ -134,7 +134,7 @@
 
                         <div class="form-group col-12 col-md-6">
                             <label for="post-title">Sürücü Xərci (AZN)</label>
-                            <input type="number" min="0" step=".1" value="{{ $data->getAttribute('driver_cost') }}" name="driver_cost" class="form-control" placeholder="Sürücü xərcini daxil edin">
+                            <input type="number" min="0" step=".01" value="{{ $data->getAttribute('driver_cost') }}" name="driver_cost" class="form-control" placeholder="Sürücü xərcini daxil edin">
                             @error('supply_cost')
                             <p class="text-danger">
                                 {{ $message }}
@@ -144,7 +144,7 @@
 
                         <div class="form-group col-12 col-md-6">
                             <label for="post-title">Tədarük Xərci (AZN)</label>
-                            <input type="number" min="0" step=".1" value="{{ $data->getAttribute('supply_cost') }}" name="supply_cost" class="form-control" placeholder="Tədarük xərcini daxil edin">
+                            <input type="number" min="0" step=".01" value="{{ $data->getAttribute('supply_cost') }}" name="supply_cost" class="form-control" placeholder="Tədarük xərcini daxil edin">
                             @error('supply_cost')
                                 <p class="text-danger">
                                     {{ $message }}
@@ -154,7 +154,7 @@
 
                         <div class="form-group col-12 col-md-6">
                             <label for="post-title">Maya Dəyəri (AZN)</label>
-                            <input type="number" min="0" step=".1" value="{{ $data->getAttribute('cost') }}" name="cost" class="form-control" placeholder="Maya dəyərini">
+                            <input type="number" min="0" step=".01" value="{{ $data->getAttribute('cost') }}" name="cost" class="form-control" placeholder="Maya dəyərini">
                             @error('cost')
                             <p class="text-danger">
                                 {{ $message }}
@@ -164,7 +164,7 @@
 
                         <div class="form-group col-12 col-md-6">
                             <label for="post-title">Çəkisi (kg)</label>
-                            <input type="number" min="0" step=".1" value="{{ $data->getAttribute('total_weight') }}" name="total_weight" class="form-control" placeholder="Çəkisini daxil edin">
+                            <input type="number" min="0" step=".01" value="{{ $data->getAttribute('total_weight') }}" name="total_weight" class="form-control" placeholder="Çəkisini daxil edin">
                             <small class="text-primary">Daxil olan: {{$data->getAttribute('old_total_weight') ?? 0}}</small>
                             @error('total_weight')
                                 <p class="text-danger">

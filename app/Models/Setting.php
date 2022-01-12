@@ -21,31 +21,31 @@ class Setting extends Model implements Recordable
                     ->orWhereNull('goods_type');
             })->get()->sum('expense') + Expense::where('is_income', true)->whereNull('closed_rate_id')->sum('expense');
 
-        return $selling  ?? 0;
+        return round($selling, 2) ?? 0;
     }
 
     public static function currentTurnover(): float
     {
-        return Selling::whereNull('closed_rate_id')->get()->sum('price') ?? 0;
+        return round(Selling::whereNull('closed_rate_id')->get()->sum('price')) ?? 0;
     }
 
     public function currentWaitingDebts(): float
     {
-        return Expense::where('is_income', false)->whereNull('closed_rate_id')->whereNull('goods_type')->where('expense_type_id', ExpensesType::debt)->get()->sum('expense') ?? 0;
+        return round(Expense::where('is_income', false)->whereNull('closed_rate_id')->whereNull('goods_type')->where('expense_type_id', ExpensesType::debt)->get()->sum('expense'), 2) ?? 0;
     }
 
     public function currentWaitingIncomeGoods(): float
     {
-        return Expense::where('is_income', false)->whereNull('closed_rate_id')->whereNotNull('goods_type')->where('expense_type_id', ExpensesType::debt)->get()->sum('expense') ?? 0;
+        return round(Expense::where('is_income', false)->whereNull('closed_rate_id')->whereNotNull('goods_type')->where('expense_type_id', ExpensesType::debt)->get()->sum('expense'), 2) ?? 0;
     }
 
     public function currentWaitingIncomeDebts(): float
     {
-        return Expense::where('is_income', true)->whereNull('closed_rate_id')->where('expense_type_id', ExpensesType::debt)->get()->sum('expense') ?? 0;
+        return round(Expense::where('is_income', true)->whereNull('closed_rate_id')->where('expense_type_id', ExpensesType::debt)->get()->sum('expense'), 2) ?? 0;
     }
 
     public function currentExpenses(): float
     {
-        return Expense::where('expense_type_id', '!=', ExpensesType::debt)->whereNull('closed_rate_id')->get()->sum('expense') ?? 0;
+        return round(Expense::where('expense_type_id', '!=', ExpensesType::debt)->whereNull('closed_rate_id')->get()->sum('expense'), 2) ?? 0;
     }
 }
