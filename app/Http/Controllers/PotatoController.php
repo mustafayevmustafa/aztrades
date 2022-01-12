@@ -60,11 +60,11 @@ class PotatoController extends Controller
             foreach ($validated['sacs'] ?? [] as $index => $sac) {
                 $validated['sacs'][$index]['total_weight'] = $validated['sacs'][$index]['sac_count'] * $validated['sacs'][$index]['sac_weight'];
             }
-        }
 
-        $sacs_weight = array_sum(array_column($validated['sacs'], 'total_weight'));
-        if ($potato->getAttribute('total_weight') <= $sacs_weight) {
-            $potato->setAttribute('total_weight', $sacs_weight);
+            $sacs_weight = array_sum(array_column($validated['sacs'], 'total_weight'));
+            if ($potato->getAttribute('total_weight') <= $sacs_weight) {
+                $potato->setAttribute('total_weight', $sacs_weight);
+            }
         }
 
         $potato->save();
