@@ -27,7 +27,7 @@ class SellingController extends Controller
         abort_if(!Setting::first()->getAttribute('is_active') && !auth()->user()->isAdmin(), 503);
 
         $filters = $request->only(['type', 'daterange', 'customer']);
-        $daterange = array_key_exists('daterange', $filters) ? explode(' - ', $filters['daterange']) : [];
+        $daterange = array_key_exists('daterange', $filters) ? explode(' - ', $filters['daterange']) : [now()->startOfDay(), now()->endOfDay()];
 
         return view('Admin.sellings.index')->with([
             'sellings' => Selling::query()

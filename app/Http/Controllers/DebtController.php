@@ -13,7 +13,7 @@ class DebtController extends Controller
     public function debtQuery($request, $is_income = false): LengthAwarePaginator
     {
         $filters = $request->only(['daterange', 'note', 'customer']);
-        $daterange = array_key_exists('daterange', $filters) ? explode(' - ', $filters['daterange']) : [];
+        $daterange = array_key_exists('daterange', $filters) ? explode(' - ', $filters['daterange']) : [now()->startOfDay(), now()->endOfDay()];
 
         return Expense::query()
             ->where('is_income', $is_income)
