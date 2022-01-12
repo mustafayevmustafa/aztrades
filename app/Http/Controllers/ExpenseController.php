@@ -26,7 +26,7 @@ class ExpenseController extends Controller
     public function index(Request $request)
     {
         $filters = $request->only(['expense_type_id', 'all_except', 'type', 'daterange', 'note', 'customer']);
-        $daterange = array_key_exists('daterange', $filters) ? explode(' - ', $filters['daterange']) : [];
+        $daterange = array_key_exists('daterange', $filters) ? explode(' - ', $filters['daterange']) : [now()->startOfDay(), now()->endOfDay()];
 
         return view('Admin.expenses.index')->with([
             'expenses' => Expense::with('type', 'goodsType')
