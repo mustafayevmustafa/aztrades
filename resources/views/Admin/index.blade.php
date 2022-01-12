@@ -54,7 +54,7 @@
                     </div>
                     <div id="statistics" class="d-none text-center">
                         <div class="my-4">
-                            <h4 class="font-weight-bold">Günlük</h4>
+                            <h4 class="font-weight-bold">Hazir ki veziyyet</h4>
                             <div class="row text-center m-0 my-4">
                                 <div class="col-6 col-md-4 my-2">
                                     <h5 class="card-title">Cibimdəki pul</h5>

@@ -28,12 +28,12 @@ class DashboardController extends Controller
             'monthly_income' => Selling::whereMonth('created_at', now()->month)->get()->sum('price'),
             'monthly_expense' => Expense::where('is_income', false)->where('expense_type_id', '!=', ExpensesType::debt)->whereMonth('created_at', now()->month)->get()->sum('expense'),
             // daily data
-            'daily_net_income' => Setting::dailyNetIncome(),
-            'daily_income' => Setting::dailyTurnover(),
-            'daily_waiting_income' => Setting::dailyWaitingDebts(),
-            'daily_waiting_income_debt' => Setting::dailyWaitingIncomeDebts(),
-            'daily_waiting_income_goods' => Setting::dailyWaitingIncomeGoods(),
-            'daily_expense' => Setting::dailyExpenses(),
+            'daily_net_income' => Setting::currentNetIncome(),
+            'daily_income' => Setting::currentTurnover(),
+            'daily_waiting_income' => Setting::currentWaitingDebts(),
+            'daily_waiting_income_debt' => Setting::currentWaitingIncomeDebts(),
+            'daily_waiting_income_goods' => Setting::currentWaitingIncomeGoods(),
+            'daily_expense' => Setting::currentExpenses(),
         ]);
     }
 
@@ -44,20 +44,20 @@ class DashboardController extends Controller
 
         if (!$setting->getAttribute('is_active') &&
             (
-                Setting::dailyNetIncome() != 0 ||
-                Setting::dailyTurnover() != 0 ||
-                Setting::dailyWaitingDebts() != 0 ||
-                Setting::dailyWaitingIncomeDebts() != 0 ||
-                Setting::dailyExpenses() != 0
+                Setting::currentNetIncome() != 0 ||
+                Setting::currentTurnover() != 0 ||
+                Setting::currentWaitingDebts() != 0 ||
+                Setting::currentWaitingIncomeDebts() != 0 ||
+                Setting::currentExpenses() != 0
             )
         ) {
             $rate = ClosedRate::create([
-                'pocket' => Setting::dailyNetIncome(),
-                'turnover' => Setting::dailyTurnover(),
-                'waiting_debts' => Setting::dailyWaitingDebts(),
-                'waiting_income_debts' => Setting::dailyWaitingIncomeDebts(),
-                'waiting_income_goods' => Setting::dailyWaitingIncomeGoods(),
-                'expenses' => Setting::dailyExpenses(),
+                'pocket' => Setting::currentNetIncome(),
+                'turnover' => Setting::currentTurnover(),
+                'waiting_debts' => Setting::currentWaitingDebts(),
+                'waiting_income_debts' => Setting::currentWaitingIncomeDebts(),
+                'waiting_income_goods' => Setting::currentWaitingIncomeGoods(),
+                'expenses' => Setting::currentExpenses(),
             ]);
 
             Selling::whereNull('closed_rate_id')->update([

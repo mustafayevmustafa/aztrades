@@ -13,40 +13,39 @@ class Setting extends Model implements Recordable
 
     protected $casts = ['is_active' => 'boolean'];
 
-    public static function dailyNetIncome(): float
+    public static function currentNetIncome(): float
     {
-        $selling = Selling::where('was_debt', false)->whereDate('created_at', now())->get()->sum('price') -
-            Expense::where('is_income', false)->where(function ($q){
+        $selling = Selling::where('was_debt', false)->whereNull('closed_rate_id')->sum('price') -
+            Expense::where('is_income', false)->whereNull('closed_rate_id')->where(function ($q){
                 $q->where(fn($q) => $q->whereNotNull('goods_type')->where('expense_type_id', '!=', ExpensesType::debt))
                     ->orWhereNull('goods_type');
-            })->whereDate('created_at', now())->get()->sum('expense') + Expense::where('is_income', true)->sum('expense');
+            })->get()->sum('expense') + Expense::where('is_income', true)->sum('expense');
 
-        return ($selling - ClosedRate::dailyClosedRates()->sum('pocket')) ?? 0;
+        return $selling  ?? 0;
     }
 
-    public static function dailyTurnover(): float
+    public static function currentTurnover(): float
     {
-        return (Selling::whereDate('created_at', now())->get()->sum('price') - ClosedRate::dailyClosedRates()->sum('turnover')) ?? 0;
+        return Selling::whereNull('closed_rate_id')->get()->sum('price') ?? 0;
     }
 
-    public function dailyWaitingDebts(): float
+    public function currentWaitingDebts(): float
     {
-        return (Expense::where('is_income', false)->whereNull('goods_type')->where('expense_type_id', ExpensesType::debt)->whereDate('created_at', now())->get()->sum('expense') - ClosedRate::dailyClosedRates()->sum('waiting_debts')) ?? 0;
+        return Expense::where('is_income', false)->whereNull('closed_rate_id')->whereNull('goods_type')->where('expense_type_id', ExpensesType::debt)->get()->sum('expense') ?? 0;
     }
 
-    public function dailyWaitingIncomeGoods(): float
+    public function currentWaitingIncomeGoods(): float
     {
-        return (Expense::where('is_income', false)->whereNotNull('goods_type')->where('expense_type_id', ExpensesType::debt)->whereDate('created_at', now())->get()->sum('expense') - ClosedRate::dailyClosedRates()->sum('waiting_income_goods')) ?? 0;
+        return Expense::where('is_income', false)->whereNull('closed_rate_id')->whereNotNull('goods_type')->where('expense_type_id', ExpensesType::debt)->get()->sum('expense') ?? 0;
     }
 
-
-    public function dailyWaitingIncomeDebts(): float
+    public function currentWaitingIncomeDebts(): float
     {
-        return (Expense::where('is_income', true)->where('expense_type_id', ExpensesType::debt)->whereDate('created_at', now())->get()->sum('expense') - ClosedRate::dailyClosedRates()->sum('waiting_income_debts')) ?? 0;
+        return Expense::where('is_income', true)->whereNull('closed_rate_id')->where('expense_type_id', ExpensesType::debt)->get()->sum('expense') ?? 0;
     }
 
-    public function dailyExpenses(): float
+    public function currentExpenses(): float
     {
-        return (Expense::where('expense_type_id', '!=', ExpensesType::debt)->whereDate('created_at', now())->get()->sum('expense') - ClosedRate::dailyClosedRates()->sum('expenses')) ?? 0;
+        return Expense::where('expense_type_id', '!=', ExpensesType::debt)->whereNull('closed_rate_id')->get()->sum('expense') ?? 0;
     }
 }
