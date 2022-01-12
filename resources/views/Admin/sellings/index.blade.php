@@ -50,7 +50,8 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Kimə Satılıb</th>
-                                <th scope="col">Tipi</th>
+                                <th scope="col">Malin növü</th>
+                                <th scope="col">Mal</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Qiymət (AZN)</th>
                                 <th scope="col">Ceki (kg)</th>
@@ -67,6 +68,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $selling->getAttribute('customer') }}</td>
                                     <td>{{ $selling->getAttribute('type') == 'onion' ? "Soğan" : "Kartof" }}</td>
+                                    <td>{{ $selling->getAttribute('sellingable')->getAttribute('info') }}</td>
                                     <td>{{ $selling->getAttribute('was_debt') ? "Borc" : "Nagd" }}</td>
                                     <td>{{ $selling->getAttribute('price')}}</td>
                                     <td>{{ $selling->getAttribute('weight')}}</td>
