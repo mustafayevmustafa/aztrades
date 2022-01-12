@@ -106,7 +106,7 @@ class SellingController extends Controller
             }
         }
 
-        if(!is_null($validated['sac_name']) && $validated['sac_count'] <= 0) {
+        if((!is_null($validated['sac_name']) && $validated['sac_count'] <= 0) || (is_null($validated['sac_name']) && $validated['sac_count'] >= 0)) {
             $error = true;
         }
 
