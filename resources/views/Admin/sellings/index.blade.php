@@ -63,7 +63,7 @@
                             </thead>
                             <tbody>
                             @forelse($sellings as $selling)
-                                <tr @if($selling->getAttribute('closed_rate_id')) style="background-color: #6dd69f" @endif>
+                                <tr @if($selling->getAttribute('closed_rate_id')) style="background-color: #8ed4af" @endif>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $selling->getAttribute('customer') }}</td>
                                     <td>{{ $selling->getAttribute('type') == 'onion' ? "Soğan" : "Kartof" }}</td>
