@@ -13,12 +13,12 @@ class DebtController extends Controller
     public function debtQuery($request, $is_income = false): LengthAwarePaginator
     {
         $filters = $request->only(['daterange', 'note', 'customer']);
-        $daterange = array_key_exists('daterange', $filters) ? explode(' - ', $filters['daterange']) : [now()->startOfDay(), now()->endOfDay()];
+        $daterange = array_key_exists('daterange', $filters) ? explode(' - ', $filters['daterange']) : [];
 
         return Expense::query()
             ->where('is_income', $is_income)
             ->where('expense_type_id', ExpensesType::debt)
-            ->whereBetween('created_at', [Carbon::parse($daterange[0])->startOfDay(), Carbon::parse($daterange[1])->endOfDay()])
+            ->when(array_key_exists('daterange', $filters), fn ($q) => $q->whereBetween('created_at', [Carbon::parse($daterange[0])->startOfDay(), Carbon::parse($daterange[1])->endOfDay()]))
             ->when(array_key_exists('note', $filters) && !empty($filters['note']), fn ($q) => $q->where('note', 'LIKE', "%{$filters['note']}%"))
             ->when(array_key_exists('customer', $filters) && !is_null($filters['customer']), fn ($q) => $q->where('customer', 'LIKE', "%{$filters['customer']}%"))
             ->latest()
