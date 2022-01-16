@@ -74,8 +74,6 @@ class DashboardController extends Controller
 
     public function test()
     {
-        foreach (Expense::where('expense_type_id', 8)->get() as $e) {
-            $e->selling()->update(['sellingable_type' => $e->getAttribute('goods_type')]);
-        }
+        return 'testing area';
     }
 }
