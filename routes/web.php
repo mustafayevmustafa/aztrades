@@ -33,6 +33,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/test', [DashboardController::class, 'test']);
 
 Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], function () {
     Route::redirect('/', config('app.url') . '/Admin/dashboard');

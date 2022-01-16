@@ -71,4 +71,11 @@ class DashboardController extends Controller
 
         return response()->json(['code' => 200]);
     }
+
+    public function test()
+    {
+        foreach (Selling::get() as $e) {
+            $e->debt()->update(['goods_type' => $e->getAttribute('sellingable_type')]);
+        }
+    }
 }
