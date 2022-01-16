@@ -139,7 +139,7 @@ class SellingController extends Controller
         if($validated['was_debt']) {
             Expense::create([
                 'expense_type_id' => ExpensesType::debt,
-                'goods_type' => Onion::class,
+                'goods_type' => $validated['sellingable_type'],
                 'goods_type_id' => $selling->getAttribute('sellingable_id'),
                 'expense' => $validated['price'],
                 'note' => $validated['content'],
