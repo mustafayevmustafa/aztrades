@@ -119,8 +119,8 @@
                     </div>
                 </div>
                 <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap justify-content-between">
-                    <a href="{{route('debts.expense')}}" class="btn btn-danger mt-md-0 mx-2 ml-0 btn-block">Borca Gedən</a>
                     <a href="{{route('debts.income')}}" class="btn btn-warning mt-md-0 mx-2 btn-block">Borcdan Gələn</a>
+                    <a href="{{route('debts.expense')}}" class="btn btn-danger mt-md-0 mx-2 ml-0 btn-block">Borca Gedən</a>
                     <a href="{{route('expenses.index', ['expense_type_id' => \App\Models\ExpensesType::warehouse_cost])}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Sklad Xərci</a>
                     <a href="{{route('expenses.index', ['all_except' => \App\Models\ExpensesType::warehouse_cost])}}" class="btn btn-secondary mt-md-0 mx-2 btn-block">Digər Xərc</a>
                     <a href="{{route('notes.create')}}" class="btn btn-info mt-md-0 mx-2 btn-block">Qeyd Yaz</a>

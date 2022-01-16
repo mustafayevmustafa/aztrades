@@ -42,8 +42,9 @@
                                 <th class="text-nowrap" scope="col">Maşın Nömrəsi</th>
                                 <th class="text-nowrap" scope="col">Tədarük Xərci (AZN)</th>
                                 <th class="text-nowrap" scope="col">Maya Dəyəri (AZN)</th>
-                                <th class="text-nowrap" scope="col">Çəkisi (kg)</th>
-                                <th class="text-nowrap" scope="col">Atxot Mal</th>
+                                <th class="text-nowrap" scope="col">Umumi Çəkisi (kg)</th>
+                                <th class="text-nowrap" scope="col">Umumi Çəkisi (daxil olan) (kg)</th>
+                                <th class="text-nowrap" scope="col">Aktiv</th>
                                 <th class="text-nowrap" scope="col">Tarix</th>
                                 <th class="text-nowrap" scope="col">Əməliyyatlar</th>
                             </tr>
@@ -58,7 +59,8 @@
                                     <td class="text-nowrap">{{ $onion->getAttribute('supply_cost') }}</td>
                                     <td class="text-nowrap">{{ $onion->getAttribute('cost') }}</td>
                                     <td class="text-nowrap">{{ $onion->getAttribute('total_weight') }}</td>
-                                    <td class="text-nowrap">{{ $onion->getAttribute('is_trash') ? 'Bəli' : 'Xeyir' }}</td>
+                                    <td class="text-nowrap">{{ $onion->getAttribute('old_total_weight') }}</td>
+                                    <td class="text-nowrap">{{ $onion->getAttribute('status') ? 'Bəli' : 'Xeyir' }}</td>
                                     <td class="text-nowrap">{{ $onion->getAttribute('created_at') }}</td>
                                     <td class="text-nowrap">
                                         <a href="{{ route('onions.show', $onion) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>

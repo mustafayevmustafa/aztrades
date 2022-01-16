@@ -51,12 +51,12 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Kimə Satılıb</th>
                                 <th scope="col">Malin növü</th>
-                                <th scope="col">Mal</th>
-                                <th scope="col">Status</th>
+                                <th scope="col">Kise sayi</th>
                                 <th scope="col">Qiymət (AZN)</th>
                                 <th scope="col">Ceki (kg)</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Kise</th>
-                                <th scope="col">Kise sayi</th>
+                                <th scope="col">Mal</th>
                                 <th scope="col">Qeyd</th>
                                 <th scope="col">Tarix</th>
                                 <th scope="col">Actions</th>
@@ -68,12 +68,12 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $selling->getAttribute('customer') }}</td>
                                     <td>{{ $selling->getAttribute('type') == 'onion' ? "Soğan" : "Kartof" }}</td>
-                                    <td>{{ $selling->getAttribute('sellingable')->getAttribute('info') }}</td>
-                                    <td>{{ $selling->getAttribute('was_debt') ? "Borc" : "Nagd" }}</td>
+                                    <td>{{ $selling->getAttribute('sac_count')}}</td>
                                     <td>{{ $selling->getAttribute('price')}}</td>
                                     <td>{{ $selling->getAttribute('weight')}}</td>
-                                    <td>{{ $selling->getAttribute('type') == 'onion' ? \App\Models\Onion::bags()[$selling->getAttribute('sac_name')] ?? 'Yoxdur' : optional(\App\Models\PotatoSac::find($selling->getAttribute('sac_name')))->getAttribute('name') ?? '' }}</td>
-                                    <td>{{ $selling->getAttribute('sac_count')}}</td>
+                                    <td>{{ $selling->getAttribute('was_debt') ? "Borc" : "Nagd" }}</td>
+                                    <td>{{ $selling->getAttribute('type') == 'onion' ? \App\Models\Onion::bags()[$selling->getAttribute('sac_name')] ?? '' : optional(\App\Models\PotatoSac::find($selling->getAttribute('sac_name')))->getAttribute('name') ?? '' }}</td>
+                                    <td>{{ $selling->getAttribute('sellingable')->getAttribute('info') }}</td>
                                     <td>{{ $selling->getAttribute('content') }}</td>
                                     <td>{{ $selling->getAttribute('created_at') }}</td>
                                     <td>

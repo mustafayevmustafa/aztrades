@@ -41,6 +41,8 @@
                                 <th class="text-nowrap" scope="col">Sürücünün Adı</th>
                                 <th class="text-nowrap" scope="col">Maya Dəyəri (AZN)</th>
                                 <th class="text-nowrap" scope="col">Ümumi Çəkisi (kg)</th>
+                                <th class="text-nowrap" scope="col">Ümumi Çəkisi (daxil olan) (kg)</th>
+                                <th class="text-nowrap" scope="col">Aktiv</th>
                                 <th class="text-nowrap" scope="col">Tarix</th>
                                 <th class="text-nowrap" scope="col">Əməliyyatlar</th>
                             </tr>
@@ -51,12 +53,13 @@
                                     <td class="text-nowrap">{{ $potato->id }}</td>
                                     <td class="text-nowrap">{{ $potato->getRelationValue('country')->getAttribute('name') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('from_whom') }}</td>
-                                    <td class="text-nowrap">{{ $potato->getAttribute('from_whom') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('party') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('car_number') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('driver_name') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('cost') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('total_weight') }}</td>
+                                    <td class="text-nowrap">{{ $potato->getAttribute('old_total_weight') }}</td>
+                                    <td class="text-nowrap">{{ $potato->getAttribute('status') ? 'Bəli' : 'Xeyir' }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('created_at') }}</td>
                                     <td class="text-nowrap">
                                         <a href="{{ route('potatoes.show', $potato) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
@@ -82,7 +85,7 @@
 @endsection
 @section('script')
     <script>
-        $('#select').change(function (){
+        $('select').change(function (){
             this.form.submit();
         });
     </script>
