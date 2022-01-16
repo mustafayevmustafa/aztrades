@@ -74,8 +74,5 @@ class DashboardController extends Controller
 
     public function test()
     {
-        foreach (Selling::get() as $e) {
-            $e->debt()->update(['goods_type' => $e->getAttribute('sellingable_type')]);
-        }
     }
 }
