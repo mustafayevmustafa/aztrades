@@ -16,10 +16,10 @@
                     @foreach($sells as $selling)
                         <ul style="list-style:none;padding:0!important;margin: 0!important;">
                             <li @if($selling->getAttribute('closed_rate_id')) style="background-color: #adcee8" @endif>
-                                @if($selling->weight) {{$selling->weight}} kq
+                                <b> @if($selling->weight){{$selling->weight}} kq
                                 @elseif($selling->sac_name) {{$selling->sac_count}}
                                 {{\App\Models\Onion::bags()[$selling->sac_name]}}
-                                @endif - {{$selling->price}} AZN ({{$selling->created_at}})
+                                @endif - {{$selling->price}} AZN </b> ({{$selling->created_at}})
                             </li>
                         </ul>
                         <hr class="m-1">
