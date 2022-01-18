@@ -116,7 +116,7 @@
                         @endif
 
                         <div class="form-group">
-                            <label for="post-title">Qiymət (AZN)</label>
+                            <label for="post-title" class="text-danger">Qiymət (AZN)</label>
                             <input type="number" min="0.01" step=".01" value="{{ $data->getAttribute('price') }}" name="price" class="form-control" id="post-title" placeholder="Qiymət">
                             @error('price')
                             <p class="text-danger">
