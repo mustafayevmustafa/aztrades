@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Altek\Accountant\Contracts\Recordable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model implements Recordable
@@ -47,5 +48,9 @@ class Setting extends Model implements Recordable
     public function currentExpenses(): float
     {
         return round(Expense::where('expense_type_id', '!=', ExpensesType::debt)->whereNull('closed_rate_id')->get()->sum('expense'), 2) ?? 0;
+    }
+
+    public function getCreatedAtAttribute($value) {
+        return Carbon::parse($value)->format('d-m-Y H:i:s');
     }
 }

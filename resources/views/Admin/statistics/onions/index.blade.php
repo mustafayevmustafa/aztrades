@@ -19,7 +19,7 @@
                                 @if($selling->weight) {{$selling->weight}} kq
                                 @elseif($selling->sac_name) {{$selling->sac_count}}
                                 {{\App\Models\Onion::bags()[$selling->sac_name]}}
-                                @endif - {{$selling->price}} AZN
+                                @endif - {{$selling->price}} AZN ({{$selling->created_at}})
                             </li>
                         </ul>
                         <hr class="m-1">

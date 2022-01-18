@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class ClosedRate extends Model
@@ -11,5 +12,9 @@ class ClosedRate extends Model
     public static function dailyClosedRates()
     {
         return ClosedRate::whereDate('created_at', now())->latest()->get();
+    }
+
+    public function getCreatedAtAttribute($value) {
+        return Carbon::parse($value)->format('d-m-Y H:i:s');
     }
 }

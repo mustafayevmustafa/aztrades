@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Altek\Accountant\Contracts\Recordable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -143,5 +144,9 @@ class Expense extends Model implements Recordable
     public function closedRate(): BelongsTo
     {
         return $this->belongsTo(ClosedRate::class, 'closed_rate_id')->withDefault();
+    }
+
+    public function getCreatedAtAttribute($value) {
+        return Carbon::parse($value)->format('d-m-Y H:i:s');
     }
 }
