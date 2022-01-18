@@ -125,7 +125,10 @@
                     <a href="{{route('expenses.index', ['all_except' => \App\Models\ExpensesType::warehouse_cost])}}" class="btn btn-secondary mt-md-0 mx-2 btn-block">Digər Xərc</a>
                     <a href="{{route('notes.create')}}" class="btn btn-info mt-md-0 mx-2 btn-block">Qeyd Yaz</a>
                 </div>
-
+                <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap">
+                    <a href="{{route('potatoes.statistics')}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Kartof Statistika</a>
+                    <a href="{{route('onions.statistics')}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Soğan Statistika </a>
+                </div>
                 @if($setting->getAttribute('is_active'))
                     <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap">
                         <button  type="button" class="btn btn-success btn-block mt-md-0 mx-2 ml-0" data-toggle="modal" data-target="#exampleModal">Sogan Sat</button>

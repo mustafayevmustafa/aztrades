@@ -19,7 +19,8 @@
                             <li @if($selling->getAttribute('closed_rate_id')) style="background-color: #adcee8" @endif>
                                 @if($selling->weight)
                                     {{$selling->weight}}kq
-                                @elseif($selling->sac_name) {{$selling->sac_count}} {{\App\Models\PotatoSac::find($selling->sac_name)->getAttribute('name')}} Kisə @endif - {{$selling->price}} AZN
+                                @elseif($selling->sac_name) {{$selling->sac_count}} {{\App\Models\PotatoSac::find($selling->sac_name)->getAttribute('name')}}
+                                Kisə @endif - {{$selling->price}} AZN ({{$selling->created_at}})
                             </li>
                         </ul>
                         <hr class="m-1">

@@ -32,4 +32,8 @@ class PasswordReset extends Model
 		'email',
 		'token'
 	];
+
+    public function getCreatedAtAttribute($value) {
+        return Carbon::parse($value)->format('d-m-Y H:i:s');
+    }
 }

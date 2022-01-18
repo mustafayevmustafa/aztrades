@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Altek\Accountant\Contracts\Recordable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -23,5 +24,9 @@ class Waste extends Model implements Recordable
     public function getTypeAttribute(): string
     {
         return $this->getRelationValue('wastable')->getTable() == 'onions' ? 'Soğan' : 'Kartof';
+    }
+
+    public function getCreatedAtAttribute($value) {
+        return Carbon::parse($value)->format('d-m-Y H:i:s');
     }
 }
