@@ -13,10 +13,16 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
-                        <a class="btn btn-outline-success" href="{{route('onions.create')}}">Soğan Əlavə Et</a>
+{{--                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">--}}
+{{--                        <a class="btn btn-outline-success" href="{{route('onions.create')}}">Soğan Əlavə Et</a>--}}
+{{--                    </div>--}}
+{{--                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">--}}
+{{--                        <a class="btn btn-warning" href="{{route('onions.statistics')}}">Statistika</a>--}}
+{{--                    </div>--}}
+                    <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap justify-content-between">
+                        <a class="btn btn-outline-success mt-md-0 mx-2 btn-block" href="{{route('onions.create')}}">Soğan Əlavə Et</a>
+                        <a class="btn btn-outline-secondary mt-md-0 mx-2 btn-block" href="{{route('onions.statistics')}}">Statistika</a>
                     </div>
-
                     @if (session('success'))
                         <div class="alert alert-success mt-2">
                             {{ session('success') }}

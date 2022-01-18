@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
@@ -37,6 +38,10 @@ Route::get('/', [HomeController::class, 'index']);
 Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], function () {
     Route::redirect('/', config('app.url') . '/Admin/dashboard');
     Route::get('/test', [DashboardController::class, 'test']);
+
+    //statistics
+    Route::get('potatoes/statistics', [StatisticsController::class, 'potatoIndex'])->name('potatoes.statistics');
+    Route::get('onions/statistics', [StatisticsController::class, 'onionIndex'])->name('onions.statistics');
 
     Route::resource('dashboard', DashboardController::class);
     Route::resource('onions', OnionController::class);

@@ -12,8 +12,17 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body" >
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
-                        <a class="btn btn-outline-success" href="{{route('potatoes.create')}}">Kartof Əlavə Et</a>
+
+{{--                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">--}}
+{{--                        <a class="btn btn-outline-success" href="{{route('potatoes.create')}}">Kartof Əlavə Et</a>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">--}}
+{{--                        <a href="{{route('potatoes.statistics')}}" class="btn btn-outline-info">Statistika</a>--}}
+{{--                    </div>--}}
+                    <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap justify-content-between">
+                        <a class="btn btn-outline-success mt-md-0 mx-2 btn-block" href="{{route('potatoes.create')}}">Kartof Əlavə Et</a>
+                        <a class="btn btn-outline-primary mt-md-0 mx-2 btn-block" href="{{route('potatoes.statistics')}}">Statistika</a>
                     </div>
                     @if (session('success'))
                         <div class="alert alert-success mt-2">
