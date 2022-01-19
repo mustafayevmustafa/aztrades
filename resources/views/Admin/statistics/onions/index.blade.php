@@ -13,7 +13,15 @@
             <div class="col-12 col-md-6 card pt-2" style="height:300px;">
                 <h5 style="color:blue">{{$car_number}}</h5>
                 <div class="overflow-auto">
+                    @php
+                        $data = [];
+                    @endphp
                     @foreach($sells as $selling)
+                        @php
+                            if ($selling->sac_name) {
+                                @$data[$selling->sac_name] += $selling->sac_count;
+                            }
+                        @endphp
                         <ul style="list-style:none;padding:0!important;margin: 0!important;">
                             <li @if($selling->getAttribute('closed_rate_id')) style="background-color: #adcee8" @endif>
                                 <b> @if($selling->weight){{$selling->weight}} kq
@@ -25,7 +33,15 @@
                         <hr class="m-1">
                     @endforeach
                 </div>
+                <div>
+                    <p><strong>Toplam Pul:{{$sells->sum('price')}}</strong></p>
+                    <p><strong>Toplam : {{$sells->sum('weight')}} Kq</strong></p>
+                    @foreach($data as $key => $sac)
+                        <p><strong>{{\App\Models\Onion::bags()[$key]}}: {{$sac}}</strong></p>
+                    @endforeach
+                </div>
             </div>
+
         @endforeach
     </div>
 @endsection
