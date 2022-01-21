@@ -13,15 +13,15 @@ use Illuminate\Http\Request;
 
 class StatisticsController extends Controller
 {
-  public function potatoIndex(){
+    public function potatoIndex(){
 
-      $potatoes = Selling::where("sellingable_type", Potato::class)->with('sellingable')->latest()->get()
+        $potatoes = Selling::where("sellingable_type", Potato::class)->with('sellingable')->latest()->get()
             ->groupBy(function ($selling){
-                    return $selling->sellingable->info;
+                return $selling->sellingable->info;
             });
 
-      return view("Admin.statistics.potatoes.index", compact('potatoes'));
-  }
+        return view("Admin.statistics.potatoes.index", compact('potatoes'));
+    }
     public function onionIndex(){
 
         $onions = Selling::where("sellingable_type", Onion::class)->with('sellingable')->latest()->get()
@@ -30,5 +30,16 @@ class StatisticsController extends Controller
             });
 
         return view("Admin.statistics.onions.index", compact('onions'));
+    }
+
+    public function closedRatesIndex(int $id){
+
+        $closed = Selling::where("closed_rate_id", $id)
+            ->with('sellingable')->latest()->get()
+            ->groupBy(function ($selling){
+                return $selling->sellingable->info;
+            });
+
+        return view("Admin.statistics.index", compact('closed'));
     }
 }

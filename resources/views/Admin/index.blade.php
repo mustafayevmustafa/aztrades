@@ -27,15 +27,16 @@
                         <h4 class="font-weight-bold">Baglanan satislar</h4>
                         <table class="table table-responsive table-bordered my-4">
                             <thead>
-                                <tr>
-                                    <th>Cibimdəki pul (AZN)</th>
-                                    <th>Dovriyye (AZN)</th>
-                                    <th>Borca geden mallar (AZN)</th>
-                                    <th>Borca aldigim pul (AZN)</th>
-                                    <th>Borcdan gozlənilən pul (AZN)</th>
-                                    <th>Xercler (AZN)</th>
-                                    <th>Tarix</th>
-                                </tr>
+                            <tr>
+                                <th>Cibimdəki pul (AZN)</th>
+                                <th>Dovriyye (AZN)</th>
+                                <th>Borca geden mallar (AZN)</th>
+                                <th>Borca aldigim pul (AZN)</th>
+                                <th>Borcdan gozlənilən pul (AZN)</th>
+                                <th>Xercler (AZN)</th>
+                                <th>Tarix</th>
+                                <th>Statistika</th>
+                            </tr>
                             </thead>
                             <tbody>
                             @foreach($closed_rates as $closed_rate)
@@ -47,6 +48,9 @@
                                     <td>{{$closed_rate->getAttribute('waiting_debts')}}</td>
                                     <td>{{$closed_rate->getAttribute('expenses')}}</td>
                                     <td>{{$closed_rate->getAttribute('created_at')}}</td>
+                                    <td>
+                                        <a href="{{ route('closed_rates.statistics', ['id' => $closed_rate->id]) }}" class="btn"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i>Statistika</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -76,7 +80,7 @@
                                     <p class="card-text" style="font-size: 16px">{{$daily_waiting_income_debt}} AZN</p>
                                 </div>
 
-                               <div class="col-6 col-md-4 my-2">
+                                <div class="col-6 col-md-4 my-2">
                                     <h5 class="card-title">Borca geden pul</h5>
                                     <p class="card-text" style="font-size: 16px">{{$daily_waiting_income}} AZN</p>
                                 </div>
@@ -126,8 +130,8 @@
                     <a href="{{route('notes.create')}}" class="btn btn-info mt-md-0 mx-2 btn-block">Qeyd Yaz</a>
                 </div>
                 <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap">
-                    <a href="{{route('potatoes.statistics')}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Kartof Statistika</a>
                     <a href="{{route('onions.statistics')}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Soğan Statistika </a>
+                    <a href="{{route('potatoes.statistics')}}" class="btn btn-primary mt-md-0 mx-2 btn-block">Kartof Statistika</a>
                 </div>
                 @if($setting->getAttribute('is_active'))
                     <div class="card-body px-0 d-flex flex-md-nowrap flex-wrap">
@@ -179,35 +183,35 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($potatoes->slice(0,5) as $potato)
-                                    <tr>
-                                        <th scope="row">{{$potato->getAttribute('id')}}</th>
-                                        <td>
-                                            <a class="text-dark @if(!$setting->getAttribute('is_active')) disabled @endif" href="{{route('sellings.create', ['type_id' => $potato->getAttribute('id'), 'type' => 'potato'])}}">
-                                                {{$potato->getAttribute('info')}}
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <table>
+                            @foreach($potatoes->slice(0,5) as $potato)
+                                <tr>
+                                    <th scope="row">{{$potato->getAttribute('id')}}</th>
+                                    <td>
+                                        <a class="text-dark @if(!$setting->getAttribute('is_active')) disabled @endif" href="{{route('sellings.create', ['type_id' => $potato->getAttribute('id'), 'type' => 'potato'])}}">
+                                            {{$potato->getAttribute('info')}}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td>Adi</td>
+                                                <td>Sayi</td>
+                                                <td>Kisə həcmi (kg)</td>
+                                                <td>Qaliq həcm (kg)</td>
+                                            </tr>
+                                            @foreach($potato->sacs as $sac)
                                                 <tr>
-                                                    <td>Adi</td>
-                                                    <td>Sayi</td>
-                                                    <td>Kisə həcmi (kg)</td>
-                                                    <td>Qaliq həcm (kg)</td>
+                                                    <td>{{$sac->name}}</td>
+                                                    <td>{{$sac->sac_count}}</td>
+                                                    <td>{{$sac->sac_weight}}</td>
+                                                    <td>{{$sac->total_weight}}</td>
                                                 </tr>
-                                                @foreach($potato->sacs as $sac)
-                                                    <tr>
-                                                        <td>{{$sac->name}}</td>
-                                                        <td>{{$sac->sac_count}}</td>
-                                                        <td>{{$sac->sac_weight}}</td>
-                                                        <td>{{$sac->total_weight}}</td>
-                                                    </tr>
-                                                @endforeach
-                                            </table>
-                                        </td>
-                                        <td>{{$potato->getAttribute('total_weight')}}</td>
-                                    </tr>
-                                @endforeach
+                                            @endforeach
+                                        </table>
+                                    </td>
+                                    <td>{{$potato->getAttribute('total_weight')}}</td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

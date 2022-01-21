@@ -43,6 +43,8 @@ Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], 
     Route::get('potatoes/statistics', [StatisticsController::class, 'potatoIndex'])->name('potatoes.statistics');
     Route::get('onions/statistics', [StatisticsController::class, 'onionIndex'])->name('onions.statistics');
 
+    Route::get('closed-rates/{id}/statistics',[StatisticsController::class, 'closedRatesIndex'])->name('closed_rates.statistics');
+
     Route::resource('dashboard', DashboardController::class);
     Route::resource('onions', OnionController::class);
     Route::resource('potatoes', PotatoController::class);
