@@ -11,7 +11,7 @@
 
     <div class="row">
         @foreach($potatoes as $id => $sells)
-            <div class="col-12 col-md-6  card pt-2 " style="height:300px;">
+            <div class="col-12 col-md-6  card pt-2 " style="height:400px;">
                 <h5 style="color:blue">{{\App\Models\Potato::find($id)->getAttribute('info')}}</h5>
                 <div class="overflow-auto">
                     @php

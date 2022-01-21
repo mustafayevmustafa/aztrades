@@ -10,7 +10,7 @@
     </div>
     <div class="row">
         @foreach($onions as $id => $sells)
-            <div class="col-12 col-md-6 card pt-2" style="height:300px;">
+            <div class="col-12 col-md-6 card pt-2" style="height:400px;">
                 <h5 style="color:blue">{{\App\Models\Onion::find($id)->getAttribute('info')}}</h5>
                 <div class="overflow-auto">
                     @php
