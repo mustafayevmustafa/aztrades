@@ -43,6 +43,7 @@
                             <thead>
                             <tr>
                                 <th class="text-nowrap" scope="col">#</th>
+                                <th class="text-nowrap" scope="col">Əməliyyatlar</th>
                                 <th class="text-nowrap" scope="col">Şəhər</th>
                                 <th class="text-nowrap" scope="col">Kimdən</th>
                                 <th class="text-nowrap" scope="col">Maşın Nömrəsi</th>
@@ -52,13 +53,17 @@
                                 <th class="text-nowrap" scope="col">Umumi Çəkisi (daxil olan) (kg)</th>
                                 <th class="text-nowrap" scope="col">Aktiv</th>
                                 <th class="text-nowrap" scope="col">Tarix</th>
-                                <th class="text-nowrap" scope="col">Əməliyyatlar</th>
                             </tr>
                             </thead>
                             <tbody>
                             @forelse ($onions as $onion)
                                 <tr>
                                     <td class="text-nowrap">{{ $onion->id }}</td>
+                                    <td class="text-nowrap">
+                                        <a href="{{ route('onions.show', $onion) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
+                                        <a href="{{ route('onions.edit', $onion) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
+                                        <button type="button" class="btn btn-link p-0" onclick="deleteConfirmation({{ $onion->getAttribute('id') }}, 'onions')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
+                                    </td>
                                     <td class="text-nowrap">{{ $onion->getRelationValue('city')->getAttribute('name') }}</td>
                                     <td class="text-nowrap">{{ $onion->getAttribute('from_whom') }}</td>
                                     <td class="text-nowrap">{{ $onion->getAttribute('car_number') }}</td>
@@ -68,11 +73,6 @@
                                     <td class="text-nowrap">{{ $onion->getAttribute('old_total_weight') }}</td>
                                     <td class="text-nowrap">{{ $onion->getAttribute('status') ? 'Bəli' : 'Xeyir' }}</td>
                                     <td class="text-nowrap">{{ $onion->getAttribute('created_at') }}</td>
-                                    <td class="text-nowrap">
-                                        <a href="{{ route('onions.show', $onion) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
-                                        <a href="{{ route('onions.edit', $onion) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
-                                        <button type="button" class="btn btn-link p-0" onclick="deleteConfirmation({{ $onion->getAttribute('id') }}, 'onions')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
-                                    </td>
                                 </tr>
                             @empty
                                 <tr>

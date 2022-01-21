@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
-                <div class="card-body p-0">
+                <div class="card-body p-5">
                     <div class="d-flex justify-content-between mb-3">
                         <a class="btn btn-outline-primary" href="{{route('potatoes.index')}}"><i class="mdi mdi-arrow-left"></i></a>
 

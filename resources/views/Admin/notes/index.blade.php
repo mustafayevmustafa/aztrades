@@ -21,13 +21,15 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    <table class="table table-responsive">
+                    <div class="table-responsive">
+
+                    <table class="table  w-100">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Qeyd</th>
-                            <th scope="col">Tarix</th>
-                            <th scope="col">Actions</th>
+                            <th >#</th>
+                            <th>Qeyd</th>
+                            <th >Tarix</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -45,6 +47,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    </div>
                     {{ $notes->appends(request()->input())->links() }}
                 </div>
             </div>

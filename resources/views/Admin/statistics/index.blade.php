@@ -33,7 +33,7 @@
                                                 <b>  @if($selling->weight)
                                                         {{$selling->weight}}kq
                                                     @elseif($selling->sac_name) {{$selling->sac_count}} {{\App\Models\PotatoSac::find($selling->sac_name)->getAttribute('name')}}
-                                                        Kisə @endif - {{$selling->price}} AZN </b>({{$selling->created_at}})
+                                                        Kisə @endif - {{$selling->price}} AZN - {{ $selling->getAttribute('was_debt') ? "Borc" : "Nagd" }} </b>({{$selling->customer}})({{$selling->customer}})({{$selling->created_at}})
                                             </li>
                                         </ul>
                                         <hr class="m-1">
@@ -45,7 +45,7 @@
                                                 <strong> @if($selling->weight){{$selling->weight}} kq
                                                     @elseif($selling->sac_name) {{$selling->sac_count}}
                                                         {{\App\Models\Onion::bags()[$selling->sac_name]}}
-                                                    @endif - {{$selling->price}} AZN </strong> ({{$selling->created_at}})
+                                                    @endif - {{$selling->price}} AZN - {{ $selling->getAttribute('was_debt') ? "Borc" : "Nagd" }} </strong>({{$selling->customer}}) ({{$selling->created_at}})
                                             </li>
                                         </ul>
                                         <hr class="m-1">

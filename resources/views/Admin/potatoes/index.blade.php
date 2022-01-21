@@ -43,6 +43,7 @@
                             <thead>
                             <tr>
                                 <th class="text-nowrap" scope="col">#</th>
+                                <th class="text-nowrap" scope="col">Əməliyyatlar</th>
                                 <th class="text-nowrap" scope="col">Ölkə</th>
                                 <th class="text-nowrap" scope="col">Kimdən</th>
                                 <th class="text-nowrap" scope="col">Partiyası</th>
@@ -53,13 +54,17 @@
                                 <th class="text-nowrap" scope="col">Ümumi Çəkisi (daxil olan) (kg)</th>
                                 <th class="text-nowrap" scope="col">Aktiv</th>
                                 <th class="text-nowrap" scope="col">Tarix</th>
-                                <th class="text-nowrap" scope="col">Əməliyyatlar</th>
                             </tr>
                             </thead>
                             <tbody>
                             @forelse ($potatoes as $potato)
                                 <tr>
                                     <td class="text-nowrap">{{ $potato->id }}</td>
+                                    <td class="text-nowrap">
+                                        <a href="{{ route('potatoes.show', $potato) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
+                                        <a href="{{ route('potatoes.edit', $potato) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
+                                        <button type="button" onclick="deleteConfirmation({{ $potato->getAttribute('id') }}, 'potatoes')" class="btn p-0"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
+                                    </td>
                                     <td class="text-nowrap">{{ $potato->getRelationValue('country')->getAttribute('name') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('from_whom') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('party') }}</td>
@@ -70,11 +75,6 @@
                                     <td class="text-nowrap">{{ $potato->getAttribute('old_total_weight') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('status') ? 'Bəli' : 'Xeyir' }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('created_at') }}</td>
-                                    <td class="text-nowrap">
-                                        <a href="{{ route('potatoes.show', $potato) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-eye" style="color: blue"></i></a>
-                                        <a href="{{ route('potatoes.edit', $potato) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
-                                        <button type="button" onclick="deleteConfirmation({{ $potato->getAttribute('id') }}, 'potatoes')" class="btn p-0"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
-                                    </td>
                                 </tr>
                             @empty
                                 <tr>
