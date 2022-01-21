@@ -15,7 +15,7 @@
                 <h5>{{$type == \App\Models\Onion::class ? 'Soğanlar' : 'Kartoflar'}}</h5>
                 <div class="row m-0">
                     @foreach($sells->groupBy(['sellingable_id']) as $id => $sell)
-                        <div class="col-12 col-md-6  card pt-2 " style="height:400px;">
+                        <div class="col-12 col-md-6  card pt-2 " style="height:450px;">
                             <h5 style="color:blue">{{$type == \App\Models\Onion::class ? \App\Models\Onion::find($id)->info : \App\Models\Potato::find($id)->info}}</h5>
                             <div class="overflow-auto">
                                 @php
