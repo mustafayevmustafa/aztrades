@@ -30,27 +30,28 @@ class Setting extends Model implements Recordable
         return round(Selling::whereNull('closed_rate_id')->get()->sum('price')) ?? 0;
     }
 
-    public function currentWaitingDebts(): float
+    public static function currentWaitingDebts(): float
     {
         return round(Expense::where('is_income', false)->whereNull('closed_rate_id')->whereNull('goods_type')->where('expense_type_id', ExpensesType::debt)->get()->sum('expense'), 2) ?? 0;
     }
 
-    public function currentWaitingIncomeGoods(): float
+    public static function currentWaitingIncomeGoods(): float
     {
         return round(Expense::where('is_income', false)->whereNull('closed_rate_id')->whereNotNull('goods_type')->where('expense_type_id', ExpensesType::debt)->get()->sum('expense'), 2) ?? 0;
     }
 
-    public function currentWaitingIncomeDebts(): float
+    public static function currentWaitingIncomeDebts(): float
     {
         return round(Expense::where('is_income', true)->whereNull('closed_rate_id')->where('expense_type_id', ExpensesType::debt)->get()->sum('expense'), 2) ?? 0;
     }
 
-    public function currentExpenses(): float
+    public static function currentExpenses(): float
     {
         return round(Expense::where('expense_type_id', '!=', ExpensesType::debt)->whereNull('closed_rate_id')->get()->sum('expense'), 2) ?? 0;
     }
 
-    public function getCreatedAtAttribute($value) {
+    public static function getCreatedAtAttribute($value): string
+    {
         return Carbon::parse($value)->format('d-m-Y H:i:s');
     }
 }

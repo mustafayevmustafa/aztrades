@@ -2,31 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Expense;
-use App\Models\ExpensesType;
 use App\Models\Onion;
 use App\Models\Potato;
 use App\Models\Selling;
-use Carbon\Carbon;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
 class StatisticsController extends Controller
 {
-    public function potatoIndex(){
+    public function potatoIndex(Request $request)
+    {
+        $id = $request->get('id');
 
-        $potatoes = Selling::where("sellingable_type", Potato::class)->with('sellingable')->latest()->get()
+        $potatoes = Selling::query()
+            ->when($id, fn($q) => $q->where('sellingable_id', $id))
+            ->where("sellingable_type", Potato::class)
+            ->with('sellingable')
+            ->latest()
+            ->get()
             ->groupBy(function ($selling){
-                return $selling->sellingable->info;
+                return $selling->sellingable->id;
             });
 
         return view("Admin.statistics.potatoes.index", compact('potatoes'));
     }
-    public function onionIndex(){
+    public function onionIndex(Request $request)
+    {
+        $id = $request->get('id');
 
-        $onions = Selling::where("sellingable_type", Onion::class)->with('sellingable')->latest()->get()
+        $onions = Selling::query()
+            ->when($id, fn($q) => $q->where('sellingable_id', $id))
+            ->where("sellingable_type", Onion::class)
+            ->with('sellingable')
+            ->latest()
+            ->get()
             ->groupBy(function ($selling){
-                return $selling->sellingable->info;
+                return $selling->sellingable->id;
             });
 
         return view("Admin.statistics.onions.index", compact('onions'));
@@ -34,10 +44,14 @@ class StatisticsController extends Controller
 
     public function closedRatesIndex(int $id){
 
-        $closed = Selling::where("closed_rate_id", $id)
-            ->with('sellingable')->latest()->get()
+        $closed = Selling::query()
+            ->where("closed_rate_id", $id)
+            ->with('sellingable')
+            ->latest('type')
+            ->latest()
+            ->get()
             ->groupBy(function ($selling){
-                return $selling->sellingable->info;
+                return $selling->sellingable_type;
             });
 
         return view("Admin.statistics.index", compact('closed'));

@@ -252,7 +252,7 @@
                                     </div>
                                     <hr>
                                     <div class="col-12 col-md-4 my-3">
-                                        <p class="font-weight-bold" style="font-size: 18px">Dovriyye</p>
+                                        <p class="font-weight-bold" style="font-size: 18px">Dovriyye <a target="_blank" href="{{route('onions.statistics', ['id' => $data->getAttribute('id')])}}"><i class="fas fa-chart-bar"></i></a></p>
                                         @foreach($sellings->groupBy(fn ($data) => $data->getAttribute('sac_name')) as $name => $selling)
                                             <div class="my-2">
                                                 <p class="font-weight-bold">@if(strlen($name) > 0) @lang('translates.onions_bags.' . $name) @else Ceki ile @endif </p>
