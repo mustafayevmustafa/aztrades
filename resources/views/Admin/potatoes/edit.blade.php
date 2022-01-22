@@ -59,12 +59,12 @@
 
                                             <div class="form-group col-12">
                                                 <label for="">Kisə sayi</label>
-                                                <input type="number" min="0" max="{{$data->getAttribute('least_bag_count')}}" step="1" class="form-control" name="waste_sac_count">
+                                                <input type="number" min="0" step="1" class="form-control" name="waste_sac_count">
                                             </div>
 
                                             <div class="form-group col-12">
                                                 <label for="">Ceki (kg)</label>
-                                                <input type="number" min="0" max="{{$data->getAttribute('total_weight')}}" step="1" class="form-control" name="waste_weight">
+                                                <input type="number" min="0"  step="1" class="form-control" name="waste_weight">
                                             </div>
                                         </div>
                                         <div class="modal-footer">

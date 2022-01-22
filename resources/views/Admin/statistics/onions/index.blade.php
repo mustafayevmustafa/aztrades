@@ -14,31 +14,72 @@
                 <h5 style="color:blue">{{\App\Models\Onion::find($id)->getAttribute('info')}}</h5>
                 <div class="overflow-auto">
                     @php
-                        $data = [];
+                        $data = [
+                            'current' => [
+                            ],
+                            'total' => [
+                            ]
+                         ];
                     @endphp
                     @foreach($sells as $selling)
                         @php
-                            if ($selling->sac_name) {
-                                @$data[$selling->sac_name] += $selling->sac_count;
+                            if(is_null($selling->closed_rate_id)){
+
+                                @$data['current']["price"] += $selling->price;
+
+                                if ($selling->sac_name) {
+                                     @$data['current'][$selling->sac_name] += $selling->sac_count;
+                                }
+                                if($selling->weight){
+                                    @$data['current']["weight"] += $selling->weight;
+                                }
+                            }
+
+                            if ($selling->sac_name){
+                                 @$data['total'][$selling->sac_name] += $selling->sac_count;
+                            }
+                            if($selling->weight){
+                                @$data['total']["weight"] += $selling->weight;
                             }
                         @endphp
                         <ul style="list-style:none;padding:0!important;margin: 0!important;">
                             <li @if($selling->getAttribute('closed_rate_id')) style="background-color: #adcee8" @endif>
                                 <strong> @if($selling->weight){{$selling->weight}} kq
-                                @elseif($selling->sac_name) {{$selling->sac_count}}
-                                {{\App\Models\Onion::bags()[$selling->sac_name]}}
-                                @endif - {{$selling->price}} AZN - {{ $selling->getAttribute('was_debt') ? "Borc" : "Nagd" }} </strong>({{$selling->customer}}) ({{$selling->created_at}})
+                                    @elseif($selling->sac_name) {{$selling->sac_count}}
+                                        {{\App\Models\Onion::bags()[$selling->sac_name]}}
+                                    @endif - {{$selling->price}} AZN  </strong><span style="color:red;">({{$selling->customer}})</span> ({{$selling->created_at}})
                             </li>
                         </ul>
                         <hr class="m-1">
                     @endforeach
                 </div>
                 <div>
-                    <p><strong>Toplam Pul:</strong> {{$sells->sum('price')}} AZN</p>
-                    <p><strong>Toplam Ceki:</strong> {{$sells->sum('weight')}} kq</p>
-                    @foreach($data as $key => $sac)
-                        <p><strong>{{\App\Models\Onion::bags()[$key]}}: {{$sac}}</strong></p>
+
+                    @foreach($data as $key => $sacs)
+                    @if($key == "current")
+                        @foreach($sacs as $k => $sac)
+                            @if($k=="weight")
+                                    <p><strong>Halhazırdakı Ceki : {{$sac}} kq</strong></p>
+                            @elseif($k=="price")
+                                    <p><strong>Halhazırdakı Dovriyye:</strong> {{$sac}} AZN</p>
+                            @else
+                                    <p><strong>{{\App\Models\Onion::bags()[$k]}}: {{$sac}}</strong></p>
+                            @endif
+                        @endforeach
+                            -------------------------------
+                    @elseif($key == "total")
+                         @foreach($sacs as $k => $sac)
+                             @if($k=="weight")
+                                    <p><strong>Toplam Ceki : {{$sac}} kq</strong></p>
+                             @elseif($k=="price")
+                                    <p><strong>Halhazırdakı Dovriyye:</strong> {{$sac}} AZN</p>
+                             @else
+                                    <p><strong>{{\App\Models\Onion::bags()[$k]}}: {{$sac}}</strong></p>
+                             @endif
+                         @endforeach
+                    @endif
                     @endforeach
+                    <p><strong>Dovriyye:</strong> {{$sells->sum('price')}} AZN</p>
                 </div>
             </div>
 

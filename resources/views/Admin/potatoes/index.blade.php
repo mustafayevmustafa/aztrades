@@ -44,10 +44,10 @@
                             <tr>
                                 <th class="text-nowrap" scope="col">#</th>
                                 <th class="text-nowrap" scope="col">Əməliyyatlar</th>
+                                <th class="text-nowrap" scope="col">Maşın Nömrəsi</th>
                                 <th class="text-nowrap" scope="col">Ölkə</th>
                                 <th class="text-nowrap" scope="col">Kimdən</th>
                                 <th class="text-nowrap" scope="col">Partiyası</th>
-                                <th class="text-nowrap" scope="col">Maşın Nömrəsi</th>
                                 <th class="text-nowrap" scope="col">Sürücünün Adı</th>
                                 <th class="text-nowrap" scope="col">Maya Dəyəri (AZN)</th>
                                 <th class="text-nowrap" scope="col">Ümumi Çəkisi (kg)</th>
@@ -65,10 +65,10 @@
                                         <a href="{{ route('potatoes.edit', $potato) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
                                         <button type="button" onclick="deleteConfirmation({{ $potato->getAttribute('id') }}, 'potatoes')" class="btn p-0"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
                                     </td>
+                                    <td class="text-nowrap">{{ $potato->getAttribute('car_number') }}</td>
                                     <td class="text-nowrap">{{ $potato->getRelationValue('country')->getAttribute('name') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('from_whom') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('party') }}</td>
-                                    <td class="text-nowrap">{{ $potato->getAttribute('car_number') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('driver_name') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('cost') }}</td>
                                     <td class="text-nowrap">{{ $potato->getAttribute('total_weight') }}</td>

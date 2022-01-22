@@ -44,9 +44,9 @@
                             <tr>
                                 <th class="text-nowrap" scope="col">#</th>
                                 <th class="text-nowrap" scope="col">Əməliyyatlar</th>
+                                <th class="text-nowrap" scope="col">Maşın Nömrəsi</th>
                                 <th class="text-nowrap" scope="col">Şəhər</th>
                                 <th class="text-nowrap" scope="col">Kimdən</th>
-                                <th class="text-nowrap" scope="col">Maşın Nömrəsi</th>
                                 <th class="text-nowrap" scope="col">Tədarük Xərci (AZN)</th>
                                 <th class="text-nowrap" scope="col">Maya Dəyəri (AZN)</th>
                                 <th class="text-nowrap" scope="col">Umumi Çəkisi (kg)</th>
@@ -64,9 +64,9 @@
                                         <a href="{{ route('onions.edit', $onion) }}" class="btn p-0 mr-2"><i class="mdi mdi-18px mdi-pencil-circle" style="color: blue"></i></a>
                                         <button type="button" class="btn btn-link p-0" onclick="deleteConfirmation({{ $onion->getAttribute('id') }}, 'onions')"> <i style="color:red" class="mdi mdi-18px mdi-close-circle"></i></button>
                                     </td>
+                                    <td class="text-nowrap">{{ $onion->getAttribute('car_number') }}</td>
                                     <td class="text-nowrap">{{ $onion->getRelationValue('city')->getAttribute('name') }}</td>
                                     <td class="text-nowrap">{{ $onion->getAttribute('from_whom') }}</td>
-                                    <td class="text-nowrap">{{ $onion->getAttribute('car_number') }}</td>
                                     <td class="text-nowrap">{{ $onion->getAttribute('supply_cost') }}</td>
                                     <td class="text-nowrap">{{ $onion->getAttribute('cost') }}</td>
                                     <td class="text-nowrap">{{ $onion->getAttribute('total_weight') }}</td>
