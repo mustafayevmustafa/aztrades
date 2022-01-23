@@ -61,7 +61,6 @@
                             </div>
                             <div>
                                 <p><strong>Dovriyye:</strong> {{$sell->sum('price')}} AZN</p>
-                                <p><strong>Dovriyye:</strong> {{$sell->sum('price')}} AZN</p>
                                 @foreach($data as $key => $sac)
                                     @if($key=="weight")
                                         <p><strong>Toplam Ceki : {{$sac}} kq</strong></p>

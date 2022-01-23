@@ -50,6 +50,7 @@ class Onion extends Model implements Recordable
                 $onion->setAttribute('old_bag_numbers', $old_bag_numbers);
                 $onion->setAttribute('old_total_weight', $onion->getAttribute('total_weight'));
             }
+
         });
     }
 
