@@ -50,7 +50,13 @@ class Menu extends Component
                 'permission' => 'generally',
                 'has_arrow' => false,
             ],
-
+            (object) [
+                'name' => 'Bağlanan Satışlar',
+                'url' => route('сlosed_sellings.index'),
+                'icon' => 'mdi-cash',
+                'permission' => 'generally',
+                'has_arrow' => false,
+            ],
             (object) [
                 'name' => 'Borclar',
                 'url' => 'javascript:void(0)',

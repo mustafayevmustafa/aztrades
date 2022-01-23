@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\ClosedSellingController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\UserController;
@@ -56,6 +57,7 @@ Route::group(["prefix" => "Admin", "middleware" => ['auth', 'optimizeImages']], 
     Route::resource('roles', RoleController::class);
     Route::resource('expenses_types', ExpensesTypeController::class);
     Route::resource('expenses', ExpenseController::class)->except('edit', 'update');
+    Route::resource('сlosed_sellings', ClosedSellingController::class)->except('edit', 'update',);
 
     Route::get('income-debts', [DebtController::class, 'incomeIndex'])->name('debts.income');
     Route::get('expense-debts', [DebtController::class, 'expenseIndex'])->name('debts.expense');
