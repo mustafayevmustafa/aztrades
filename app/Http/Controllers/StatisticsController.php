@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClosedRate;
+use App\Models\Expense;
+use App\Models\ExpensesType;
 use App\Models\Onion;
 use App\Models\Potato;
 use App\Models\Selling;
@@ -44,6 +47,7 @@ class StatisticsController extends Controller
 
     public function closedRatesIndex(int $id){
 
+
         $closed = Selling::query()
             ->where("closed_rate_id", $id)
             ->with('sellingable')
@@ -54,6 +58,10 @@ class StatisticsController extends Controller
                 return $selling->sellingable_type;
             });
 
-        return view("Admin.statistics.index", compact('closed'));
+        $expence       =  Expense::where("closed_rate_id", $id)->get();
+        $debet         = Expense::where("closed_rate_id", $id)->where('is_income', 1)->where('expense_type_id', '=', ExpensesType::debt)->get();
+        $debet_income  = Expense::where("closed_rate_id", $id)->where('is_income', 0)->where('expense_type_id', '=', ExpensesType::debt)->get();
+
+        return view("Admin.statistics.index", compact('closed','expence','debet', 'debet_income'));
     }
 }

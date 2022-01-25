@@ -61,6 +61,9 @@
                             </div>
                             <div>
                                 <p><strong>Dovriyye:</strong> {{$sell->sum('price')}} AZN</p>
+                                <p><strong>Xercler:</strong> {{$expence->sum('expense')}} AZN</p>
+                                <p><strong>Borca aldigim pul (AZN):</strong> {{$debet->sum('expense')}} AZN</p>
+                                <p><strong>Borcdan gozlənilən pul (AZN) :</strong> {{$debet_income->sum('expense')}} AZN</p>
                                 @foreach($data as $key => $sac)
                                     @if($key=="weight")
                                         <p><strong>Toplam Ceki : {{$sac}} kq</strong></p>
