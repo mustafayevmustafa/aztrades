@@ -58,10 +58,6 @@ class StatisticsController extends Controller
                 return $selling->sellingable_type;
             });
 
-        $expence       =  Expense::where("closed_rate_id", $id)->get();
-        $debet         = Expense::where("closed_rate_id", $id)->where('is_income', 1)->where('expense_type_id', '=', ExpensesType::debt)->get();
-        $debet_income  = Expense::where("closed_rate_id", $id)->where('is_income', 0)->where('expense_type_id', '=', ExpensesType::debt)->get();
-
-        return view("Admin.statistics.index", compact('closed','expence','debet', 'debet_income'));
+        return view("Admin.statistics.index", compact('closed'));
     }
 }
