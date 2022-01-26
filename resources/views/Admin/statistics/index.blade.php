@@ -77,7 +77,7 @@
             </div>
         @endforeach
 
-            <div class="card mr-3">
+            <div class="card mr-3 ml-3">
                 <h5 class="m-2">Borcdan gozlənilən pul (AZN)</h5>
                 <table class="table table-responsive">
                     <thead>
@@ -104,7 +104,7 @@
                 <p class="m-3"><strong>UMUMI:</strong> {{$debets->sum('expense')}} AZN</p>
 
             </div>
-            <div class="card">
+            <div class="card ml-3">
                 <h5 class="m-2">Borca aldigim pul (AZN)</h5>
                 <table class="table table-responsive">
                     <thead>
@@ -131,7 +131,7 @@
                 <p class="m-3"><strong>UMUMI:</strong> {{$is_income->sum('expense')}} AZN</p>
 
             </div>
-            <div class="card">
+            <div class="card ml-3">
                 <h5 class="m-2">Xercler (AZN)</h5>
                 <table class="table table-responsive">
                     <thead>
