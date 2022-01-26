@@ -76,6 +76,95 @@
                 </div>
             </div>
         @endforeach
+
+            <div class="card mr-3">
+                <h5 class="m-2">Borcdan gozlənilən pul (AZN)</h5>
+                <table class="table table-responsive">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Musteri</th>
+                        <th scope="col">Qeyd</th>
+                        <th scope="col">Borc (AZN)</th>
+                        <th scope="col">Tarix</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($debets as $expense)
+                        <tr @if($expense->getAttribute('closed_rate_id')) style="background-color: #adcee8" @endif>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $expense->getAttribute('customer') }}</td>
+                            <td>{{ $expense->getAttribute('note') }}</td>
+                            <td>{{ $expense->getAttribute('expense') }}</td>
+                            <td>{{ $expense->getAttribute('created_at') }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <p class="m-3"><strong>UMUMI:</strong> {{$debets->sum('expense')}} AZN</p>
+
+            </div>
+            <div class="card">
+                <h5 class="m-2">Borca aldigim pul (AZN)</h5>
+                <table class="table table-responsive">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Musteri</th>
+                        <th scope="col">Qeyd</th>
+                        <th scope="col">Borc (AZN)</th>
+                        <th scope="col">Tarix</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($is_income as $expense)
+                        <tr @if($expense->getAttribute('closed_rate_id')) style="background-color: #adcee8" @endif>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $expense->getAttribute('customer') }}</td>
+                            <td>{{ $expense->getAttribute('note') }}</td>
+                            <td>{{ $expense->getAttribute('expense') }}</td>
+                            <td>{{ $expense->getAttribute('created_at') }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <p class="m-3"><strong>UMUMI:</strong> {{$is_income->sum('expense')}} AZN</p>
+
+            </div>
+            <div class="card">
+                <h5 class="m-2">Xercler (AZN)</h5>
+                <table class="table table-responsive">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Musteri</th>
+                        <th scope="col">Xərcin növu</th>
+                        <th scope="col">Xərcin malın növu</th>
+                        <th scope="col">Xərcin malı</th>
+                        <th scope="col">Qeyd</th>
+                        <th scope="col">Xərc (AZN)</th>
+                        <th scope="col">Tarix</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($expenses as $expense)
+                        <tr @if($expense->getAttribute('closed_rate_id')) style="background-color: #adcee8" @endif>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $expense->getAttribute('customer') }}</td>
+                            <td>{{ $expense->getRelationValue('type')->getAttribute('name') }}</td>
+                            <td>{{ $expense->goodsType()->exists() ? ($expense->getRelationValue('goodsType')->getTable() == 'onions' ? 'Soğan' : 'Kartof') : 'Digər' }}</td>
+                            <td>{{ $expense->goodsType()->exists() ? $expense->getRelationValue('goodsType')->getAttribute('info') : 'Digər'}}</td>
+                            <td>{{ $expense->getAttribute('note') }}</td>
+                            <td>{{ $expense->getAttribute('expense') }}</td>
+                            <td>{{ $expense->getAttribute('created_at') }}</td>
+
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <p class="m-3"><strong> UMUMI:</strong> {{$expenses->sum('expense')}} AZN</p>
+
+            </div>
     </div>
 @endsection
 
