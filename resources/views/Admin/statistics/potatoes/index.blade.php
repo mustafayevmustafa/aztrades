@@ -63,7 +63,7 @@
                     @if($key == "current")
                         @foreach($sacs as $k => $sac)
                             @if($k=="weight")
-                                <p><strong style="color:darkmagenta;">Halhazırdakı Ceki : <span style="color:brown">{{$sac}} kq </span></strong></p>
+                                <p><strong style="color:green;">Halhazırdakı Ceki : <span style="color:brown">{{$sac}} kq </span></strong></p>
                             @elseif($k=="price")
                                 <p><strong style="color:darkmagenta;">Halhazırdakı Dovriyye:</strong> <span style="color:orange">{{$sac}} AZN </span></p>
                             @else
