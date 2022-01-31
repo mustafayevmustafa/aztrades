@@ -43,7 +43,7 @@ class Potato extends Model implements Recordable
         });
 
         self::updating(function (Potato $potato){
-            if (!\request()->has('is_waste')) {
+            if (!\request()->has('is_waste') && $potato->isDirty('old_total_weight')) {
                 $potato->setAttribute('old_total_weight', $potato->getAttribute('total_weight'));
             }
         });

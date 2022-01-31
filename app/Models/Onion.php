@@ -46,16 +46,20 @@ class Onion extends Model implements Recordable
 
         self::updating(function (Onion $onion){
             if (!\request()->has('is_waste')) {
-                $old_bag_numbers = "{$onion->getAttribute('red_bag_number')},{$onion->getAttribute('yellow_bag_number')},{$onion->getAttribute('lom_bag_number')}";
-                $onion->setAttribute('old_bag_numbers', $old_bag_numbers);
-                $onion->setAttribute('old_total_weight', $onion->getAttribute('total_weight'));
-            }
-//            if (!\request()->has('status')) {
-//                $old_bag_numbers = "{$onion->getAttribute('red_bag_number')},{$onion->getAttribute('yellow_bag_number')},{$onion->getAttribute('lom_bag_number')}";
-//                $onion->setAttribute('old_bag_numbers', $old_bag_numbers);
-//                $onion->setAttribute('old_total_weight', $onion->getAttribute('total_weight'));
-//            }
+                $old_bags = explode(',', $onion->getAttribute('old_bag_numbers'));
 
+                $red = $onion->isDirty('red_bag_number') ? $onion->getAttribute('red_bag_number') : $old_bags[0];
+                $yellow = $onion->isDirty('yellow_bag_number') ? $onion->getAttribute('red_bag_number') : $old_bags[1];
+                $lom = $onion->isDirty('lom_bag_number') ? $onion->getAttribute('red_bag_number') : $old_bags[2];
+
+                $old_bag_numbers = "$red,$yellow,$lom";
+
+                $onion->setAttribute('old_bag_numbers', $old_bag_numbers);
+                $onion->setAttribute('old_total_weight', $onion->isDirty('total_weight') ?
+                    $onion->getAttribute('total_weight') :
+                    $onion->getAttribute('old_total_weight')
+                );
+            }
         });
     }
 
