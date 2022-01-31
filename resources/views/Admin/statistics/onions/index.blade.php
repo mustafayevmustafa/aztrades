@@ -59,11 +59,11 @@
                     @if($key == "current")
                         @foreach($sacs as $k => $sac)
                             @if($k=="weight")
-                                    <p><strong>Halhazırdakı Ceki : {{$sac}} kq</strong></p>
+                                    <p><strong style="color:darkmagenta;">Halhazırdakı Ceki : <span style="color:brown">{{$sac}} kq</span></strong></p>
                             @elseif($k=="price")
-                                    <p><strong>Halhazırdakı Dovriyye:</strong> {{$sac}} AZN</p>
+                                    <p><strong style="color:green;">Halhazırdakı Dovriyye:</strong> <span style="color:orange">{{$sac}} AZN</span></p>
                             @else
-                                    <p><strong>{{\App\Models\Onion::bags()[$k]}}: {{$sac}}</strong></p>
+                                    <p><strong >{{\App\Models\Onion::bags()[$k]}}: {{$sac}}</strong></p>
                             @endif
                         @endforeach
                             -------------------------------
@@ -72,7 +72,7 @@
                              @if($k=="weight")
                                     <p><strong>Toplam Ceki : {{$sac}} kq</strong></p>
                              @elseif($k=="price")
-                                    <p><strong>Halhazırdakı Dovriyye:</strong> {{$sac}} AZN</p>
+                                    <p><strong >Halhazırdakı Dovriyye:</strong> {{$sac}} AZN</p>
                              @else
                                     <p><strong>{{\App\Models\Onion::bags()[$k]}}: {{$sac}}</strong></p>
                              @endif

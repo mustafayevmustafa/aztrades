@@ -63,9 +63,9 @@
                     @if($key == "current")
                         @foreach($sacs as $k => $sac)
                             @if($k=="weight")
-                                <p><strong>Halhazırdakı Ceki : {{$sac}} kq</strong></p>
+                                <p><strong style="color:darkmagenta;">Halhazırdakı Ceki : <span style="color:brown">{{$sac}} kq </span></strong></p>
                             @elseif($k=="price")
-                                <p><strong>Halhazırdakı Dovriyye:</strong> {{$sac}} AZN</p>
+                                <p><strong style="color:darkmagenta;">Halhazırdakı Dovriyye:</strong> <span style="color:orange">{{$sac}} AZN </span></p>
                             @else
                                 <p><strong>Halhazırdakı {{\App\Models\PotatoSac::find($k)->name}}: {{$sac}} Kisə</strong></p>
                             @endif
