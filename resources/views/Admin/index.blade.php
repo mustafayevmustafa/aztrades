@@ -145,7 +145,7 @@
                         <table class="table table-success table-responsive text-dark">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
+{{--                                <th scope="col">#</th>--}}
                                 <th scope="col">Son Satılan Soğanlar</th>
                                 <th scope="col">Qırmızı Kisə Sayı</th>
                                 <th scope="col">Sarı Kisə Sayı</th>
@@ -156,7 +156,7 @@
                             <tbody>
                             @foreach($onions->slice(0,5) as $onion)
                                 <tr>
-                                    <th>{{$onion->getAttribute('id')}}</th>
+{{--                                    <th>{{$onion->getAttribute('id')}}</th>--}}
                                     <th>
                                         <a class="text-dark @if(!$setting->getAttribute('is_active')) disabled @endif"  href="{{route('sellings.create', ['type_id' => $onion->getAttribute('id'), 'type' => 'onion'])}}">
                                             {{$onion->getAttribute('info')}}
@@ -176,7 +176,7 @@
                         <table class="table table-secondary table-responsive-sm">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
+{{--                                <th scope="col">#</th>--}}
                                 <th scope="col">Son Satılan Kartoflar</th>
                                 <th scope="col">Kisə Sayı</th>
                                 <th scope="col">Çəki (kq)</th>
@@ -185,7 +185,7 @@
                             <tbody>
                             @foreach($potatoes->slice(0,5) as $potato)
                                 <tr>
-                                    <th scope="row">{{$potato->getAttribute('id')}}</th>
+{{--                                    <th scope="row">{{$potato->getAttribute('id')}}</th>--}}
                                     <td>
                                         <a class="text-dark @if(!$setting->getAttribute('is_active')) disabled @endif" href="{{route('sellings.create', ['type_id' => $potato->getAttribute('id'), 'type' => 'potato'])}}">
                                             {{$potato->getAttribute('info')}}
