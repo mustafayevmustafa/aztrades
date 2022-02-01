@@ -18,6 +18,7 @@
                     </div>
 
                     <div class="my-3">
+                        <h4 style="color:green;"><strong>{{$type->getAttribute('info')}}</strong></h4>
                         <h4><strong>Məhsul Çəkisi:</strong> {{$type->total_weight}} kg</h4>
                         @if($type->getTable() == "onions")
                             <h4><strong>Sarı Kisə Sayı:</strong> {{$type->yellow_bag_number}}</h4>
