@@ -78,6 +78,9 @@
                             <select name="sac_name" class="form-control">
                                 <option value="">Kisə seç</option>
                                 @foreach($sacs as $index => $sac)
+                                    @if($type->getTable() == "onions")
+                                    <option value="{{$index}}" @if($data->getAttribute('sac_name') == $index || ($index == 'yellow_bag_number' && $type->getAttribute('red_bag_number') == null && $type->getAttribute('lom_bag_number') == null)) selected @endif>{{$sac}}</option>
+                                    @endif
                                     <option value="{{$index}}" @if($data->getAttribute('sac_name') == $index) selected @endif>{{$sac}}</option>
                                 @endforeach
                             </select>
